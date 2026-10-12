@@ -1,0 +1,7020 @@
+{
+ "what": "Fingerprints of the shipped model. The reference tests in this folder apply while the build matches it. Never changed by \"npm run accept\".",
+ "parts": {
+  "BAS-001": {
+   "shape": "051fc5ed40e0ec16",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0bab4ee1a6529692",
+   "vertices": 24293,
+   "triangles": 13576,
+   "size_mm": [
+    68.7,
+    19.55,
+    16.55
+   ]
+  },
+  "BAS-013": {
+   "shape": "2d6713b017ccb631",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "797efe1db248711a",
+   "vertices": 1138,
+   "triangles": 1392,
+   "size_mm": [
+    2.2,
+    3.55,
+    2.2
+   ]
+  },
+  "BAT-001": {
+   "shape": "1b3baddf111223d4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "751331fc7c72e411",
+   "vertices": 10451,
+   "triangles": 7578,
+   "size_mm": [
+    60.65,
+    30.7,
+    14.28
+   ]
+  },
+  "BAT-010": {
+   "shape": "efadab072af5a3a0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "31d2a73cd0ec51ea",
+   "vertices": 4040,
+   "triangles": 8036,
+   "size_mm": [
+    8.207,
+    8.639,
+    8.259
+   ]
+  },
+  "BAT-011": {
+   "shape": "f4f4c72311f87c04",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "5664bfefe8b240f5",
+   "vertices": 4040,
+   "triangles": 8036,
+   "size_mm": [
+    8.207,
+    8.639,
+    8.259
+   ]
+  },
+  "BAT-020": {
+   "shape": "755bbb7d1b4d9b1f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "3b3828327f894118",
+   "vertices": 946,
+   "triangles": 1568,
+   "size_mm": [
+    2.35,
+    6.5,
+    6.96
+   ]
+  },
+  "BAT-021": {
+   "shape": "dc2c965cc079a3ef",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "033612ce093ac949",
+   "vertices": 946,
+   "triangles": 1568,
+   "size_mm": [
+    2.35,
+    6.5,
+    6.96
+   ]
+  },
+  "BAT-022": {
+   "shape": "41e9e8e7725006f6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "c8f98e0dc18a98f9",
+   "vertices": 434,
+   "triangles": 800,
+   "size_mm": [
+    1.77,
+    1.7,
+    6.27
+   ]
+  },
+  "BAT-030": {
+   "shape": "82bf5528a7015a72",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "333f08cc7d1ce05c",
+   "vertices": 88,
+   "triangles": 76,
+   "size_mm": [
+    12,
+    27.9,
+    4.19
+   ]
+  },
+  "BAT-050": {
+   "shape": "577a4bdebb2ef969",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "fb1319029cc9b129",
+   "vertices": 1230,
+   "triangles": 820,
+   "size_mm": [
+    2.4,
+    2.4,
+    3.05
+   ]
+  },
+  "BAT-051": {
+   "shape": "677c91aa276ce99c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "a5c0fb80a6e6d731",
+   "vertices": 1230,
+   "triangles": 820,
+   "size_mm": [
+    2.4,
+    2.4,
+    2.55
+   ]
+  },
+  "BAT-052": {
+   "shape": "940a2747a662918c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5f410fb6fc1ff2c5",
+   "vertices": 1152,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.2
+   ]
+  },
+  "BAT-060": {
+   "shape": "f9bd0c24a0473913",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4a08f8029bc51212",
+   "vertices": 51,
+   "triangles": 34,
+   "size_mm": [
+    4,
+    3.7,
+    2.2
+   ]
+  },
+  "BAT-061": {
+   "shape": "30eef9e936846f73",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "13c4dce02563dd8c",
+   "vertices": 50,
+   "triangles": 32,
+   "size_mm": [
+    4,
+    3.7,
+    2.2
+   ]
+  },
+  "BAY-010": {
+   "shape": "2e3efd27fa1f22cf",
+   "poses": "f041a4553488145a",
+   "spin": "34e88fe9323c5187",
+   "other": "b06918f3d022f909",
+   "vertices": 5182,
+   "triangles": 3544,
+   "size_mm": [
+    69,
+    108.4,
+    1.35
+   ]
+  },
+  "BAY-011": {
+   "shape": "7be6e676f982b199",
+   "poses": "7b72edfffbb911a2",
+   "spin": "34e88fe9323c5187",
+   "other": "dfc42a6feeb9bd07",
+   "vertices": 216,
+   "triangles": 140,
+   "size_mm": [
+    17.55,
+    23.85,
+    0.61
+   ]
+  },
+  "BAY-012": {
+   "shape": "4e5304ef87ff0b04",
+   "poses": "08079d04f70ba523",
+   "spin": "34e88fe9323c5187",
+   "other": "27499ab79a60005e",
+   "vertices": 1802,
+   "triangles": 1210,
+   "size_mm": [
+    16.7,
+    69,
+    0.63
+   ]
+  },
+  "BAY-020": {
+   "shape": "5cb22e7f047ec634",
+   "poses": "06419a91b3960008",
+   "spin": "c669366694cebbfe",
+   "other": "ad44df113e362a47",
+   "vertices": 2269,
+   "triangles": 3058,
+   "size_mm": [
+    10.6,
+    10.6,
+    3.2
+   ]
+  },
+  "BAY-021": {
+   "shape": "d5044cf55543fec0",
+   "poses": "76e96a0466dbe94b",
+   "spin": "8d1dd50ca2373c99",
+   "other": "e977c2365bdf337b",
+   "vertices": 3072,
+   "triangles": 1728,
+   "size_mm": [
+    10.6,
+    10.6,
+    1.6
+   ]
+  },
+  "BAY-030": {
+   "shape": "c9aff4a69fa36b01",
+   "poses": "65f3fa01408e1d1a",
+   "spin": "debce1f1696bcfac",
+   "other": "e0fa4d174e019948",
+   "vertices": 1754,
+   "triangles": 2244,
+   "size_mm": [
+    8.1,
+    7.871,
+    6.41
+   ]
+  },
+  "BAY-031": {
+   "shape": "08e1a04cf8bf7ff9",
+   "poses": "76e96a0466dbe94b",
+   "spin": "2638a3f2fb7cc5ea",
+   "other": "604126f95594968a",
+   "vertices": 3048,
+   "triangles": 1728,
+   "size_mm": [
+    8.1,
+    7.871,
+    6.41
+   ]
+  },
+  "BAY-040": {
+   "shape": "c721e9aa04e0346f",
+   "poses": "526ace3f175df274",
+   "spin": "34e88fe9323c5187",
+   "other": "0f3751321528dd2e",
+   "vertices": 847,
+   "triangles": 566,
+   "size_mm": [
+    2.7,
+    2.7,
+    3.05
+   ]
+  },
+  "BAY-041": {
+   "shape": "0bd1366bc6bda787",
+   "poses": "a41e19961fd86a89",
+   "spin": "34e88fe9323c5187",
+   "other": "333a125f1cf83434",
+   "vertices": 591,
+   "triangles": 566,
+   "size_mm": [
+    2.7,
+    2.7,
+    2.85
+   ]
+  },
+  "BAY-042": {
+   "shape": "6149e417a5d0ad22",
+   "poses": "9b9064d90b5be8c8",
+   "spin": "34e88fe9323c5187",
+   "other": "e8ec9710d227c3f2",
+   "vertices": 846,
+   "triangles": 564,
+   "size_mm": [
+    2.7,
+    2.7,
+    4.3
+   ]
+  },
+  "BAY-043": {
+   "shape": "2a99f9e9fa0eb3ef",
+   "poses": "41078ac76487bb06",
+   "spin": "34e88fe9323c5187",
+   "other": "5a7daa7f9cf05d0a",
+   "vertices": 846,
+   "triangles": 564,
+   "size_mm": [
+    2.7,
+    2.7,
+    4.3
+   ]
+  },
+  "BAY-050": {
+   "shape": "2bc91b4b712752d1",
+   "poses": "7c1c4c5583e02fef",
+   "spin": "438b8d81e87102ce",
+   "other": "58c70246328a8873",
+   "vertices": 1202,
+   "triangles": 1248,
+   "size_mm": [
+    4.3,
+    4.3,
+    10.05
+   ]
+  },
+  "BAY-051": {
+   "shape": "3704733aa662c896",
+   "poses": "25bf027616945ea1",
+   "spin": "438b8d81e87102ce",
+   "other": "f417c0ff7a6ad6ea",
+   "vertices": 1202,
+   "triangles": 1248,
+   "size_mm": [
+    4.3,
+    4.3,
+    10.05
+   ]
+  },
+  "BAY-052": {
+   "shape": "1f548f37e70452cd",
+   "poses": "bf34b5f148b1487c",
+   "spin": "219fb985a08300dd",
+   "other": "da3950d087f2caf3",
+   "vertices": 800,
+   "triangles": 956,
+   "size_mm": [
+    1.6,
+    1.6,
+    23.1
+   ]
+  },
+  "BAY-053": {
+   "shape": "62268c428e289966",
+   "poses": "0c31ec4fad2e7057",
+   "spin": "34e88fe9323c5187",
+   "other": "0b6815ef84bb8113",
+   "vertices": 2420,
+   "triangles": 2880,
+   "size_mm": [
+    3.4,
+    3.4,
+    1.21
+   ]
+  },
+  "BAY-060": {
+   "shape": "8a31399a3fa1c501",
+   "poses": "5415ba3b05c94b0e",
+   "spin": "34e88fe9323c5187",
+   "other": "497198f1924122e4",
+   "vertices": 2244,
+   "triangles": 1722,
+   "size_mm": [
+    6.3,
+    15.8,
+    5.6
+   ]
+  },
+  "BAY-061": {
+   "shape": "50bd6097a7ead15f",
+   "poses": "1805ed153642174e",
+   "spin": "ebd23145ff6214da",
+   "other": "6e20eac82bb5a83e",
+   "vertices": 3084,
+   "triangles": 1732,
+   "size_mm": [
+    7.5,
+    7.5,
+    5.7
+   ]
+  },
+  "BAY-070": {
+   "shape": "4c0cdb364d2b0800",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "aef271bc34a62301",
+   "vertices": 384,
+   "triangles": 188,
+   "size_mm": [
+    1.4,
+    107.7,
+    6.78
+   ]
+  },
+  "BAY-071": {
+   "shape": "4d521186830e6e42",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4c23f21f5a8363bb",
+   "vertices": 384,
+   "triangles": 188,
+   "size_mm": [
+    55.9,
+    1.4,
+    6.78
+   ]
+  },
+  "BAY-072": {
+   "shape": "8a3eba0566de1023",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1e93f0af94817cf2",
+   "vertices": 384,
+   "triangles": 188,
+   "size_mm": [
+    55.9,
+    1.1,
+    6.78
+   ]
+  },
+  "BCL-010": {
+   "shape": "b3cdff9adc8bca71",
+   "poses": "33695491414de624",
+   "spin": "34e88fe9323c5187",
+   "other": "8e6c3309ac4d73a6",
+   "vertices": 1008,
+   "triangles": 896,
+   "size_mm": [
+    9.2,
+    5.8,
+    1.7
+   ]
+  },
+  "BCL-020": {
+   "shape": "a4143849c2b73701",
+   "poses": "b408c0a0bc10adbe",
+   "spin": "34e88fe9323c5187",
+   "other": "90ba76049e6295e2",
+   "vertices": 201,
+   "triangles": 158,
+   "size_mm": [
+    19.5,
+    8.45,
+    0.6
+   ]
+  },
+  "BCL-030": {
+   "shape": "78e6563213bd2be5",
+   "poses": "b408c0a0bc10adbe",
+   "spin": "748f5def45a71d97",
+   "other": "cd799db4209b73a2",
+   "vertices": 3824,
+   "triangles": 7580,
+   "size_mm": [
+    13.1,
+    1.698,
+    0.5
+   ]
+  },
+  "BLT-001": {
+   "shape": "93cb6601161f5b67",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "08aaafaa7753826f",
+   "vertices": 13682,
+   "triangles": 23968,
+   "size_mm": [
+    69.367,
+    24.651,
+    4.501
+   ]
+  },
+  "BLT-002": {
+   "shape": "27869cef3dc19bf9",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "4f0faf5f2b413894",
+   "vertices": 11416,
+   "triangles": 17312,
+   "size_mm": [
+    55.184,
+    17.734,
+    0.5
+   ]
+  },
+  "CAM-010": {
+   "shape": "266bed6e399b3608",
+   "poses": "2c0413bc2c614d92",
+   "spin": "44a205357a88575f",
+   "other": "4899fb832c97819b",
+   "vertices": 4012,
+   "triangles": 3964,
+   "size_mm": [
+    12.581,
+    12.581,
+    3.91
+   ]
+  },
+  "CAM-101": {
+   "shape": "709714bec3d3cf73",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "43732628d83a978a",
+   "vertices": 1672,
+   "triangles": 1668,
+   "size_mm": [
+    2.7,
+    2.7,
+    5.45
+   ]
+  },
+  "CAM-201": {
+   "shape": "67391f5e7f87be0c",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "9459fa0a841fc786",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "CAM-202": {
+   "shape": "0bd7651f53c86694",
+   "poses": "f18030e249c2204f",
+   "spin": "34e88fe9323c5187",
+   "other": "4b19d6946e73f299",
+   "vertices": 1152,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "CAM-251": {
+   "shape": "3a360ce3a8df46b1",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "852a0c8ebd95d8ac",
+   "vertices": 424,
+   "triangles": 412,
+   "size_mm": [
+    2.706,
+    2.8,
+    0.14
+   ]
+  },
+  "CAP-101": {
+   "shape": "dd560c5d98b6462f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "d7828450cce77e92",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-102": {
+   "shape": "77a58f7f0397a4c4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "ef60589632234a79",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-103": {
+   "shape": "0ef59a75e5aad686",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "7c2a5979bb87b1ce",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    1.1,
+    3.2,
+    5.25
+   ]
+  },
+  "CAP-104": {
+   "shape": "a154c95f9d798fa1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "bb28cac05a7371b2",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    2.196,
+    2.83,
+    5.25
+   ]
+  },
+  "CAP-105": {
+   "shape": "ac1a837e17e0346d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "1bebb493a8f0cea9",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-106": {
+   "shape": "2ffb109b57f11d36",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "0dc4fa1fc9f9342e",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    1.1,
+    3.2,
+    5.25
+   ]
+  },
+  "CAP-107": {
+   "shape": "ef520253713d961d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "54dfbd68846b13f5",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.452,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-108": {
+   "shape": "fed15674e7eae02d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "a4dabe605e27f961",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    1.1,
+    3.2,
+    5.25
+   ]
+  },
+  "CAP-109": {
+   "shape": "4fc5331301f9dce2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "91ffb76460106dab",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-110": {
+   "shape": "4ddbc375d86fd384",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "c1393ae2f2227c65",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-111": {
+   "shape": "5962578c7cc2abf8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "ee1044cfbce15b0b",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-112": {
+   "shape": "7f776aee81dfec8d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "811fc8bf5b29106f",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    1.1,
+    3.637,
+    5.25
+   ]
+  },
+  "CAP-113": {
+   "shape": "5726851086ce8667",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "f3ed35fc227f273f",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-114": {
+   "shape": "52b63d06eb4fab1d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "7ed9c251d89be9b8",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.452,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-115": {
+   "shape": "6f09e9992e7a8d99",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "40dcc938bda8763e",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.363,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-116": {
+   "shape": "e78abe3a13cc75c8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "7f34b3171adedbce",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    4.6,
+    4.6,
+    7.45
+   ]
+  },
+  "CAP-201": {
+   "shape": "59c515497433d0ff",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "374efca2385ab140",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-202": {
+   "shape": "d0928e4689a90057",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "7068d8d7c5d5941d",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-203": {
+   "shape": "852b6dcaa398f039",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "63c2e9e56c34ec0e",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    1.1,
+    3.2,
+    5.25
+   ]
+  },
+  "CAP-204": {
+   "shape": "a3aa3a962bdc4a94",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "2b092190057423b1",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    2.794,
+    2.248,
+    5.25
+   ]
+  },
+  "CAP-205": {
+   "shape": "a5d511cd7e1d2cea",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "ee2e2265bd7d0469",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-206": {
+   "shape": "3ee5ce3e362250f0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "db5f119ad0373b24",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    3.2,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-207": {
+   "shape": "8377c827e6101171",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "06489d54d92ea757",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.452,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-208": {
+   "shape": "ca0cd68fcf57a5ec",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "fbfff5cd2820c331",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    3.2,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-209": {
+   "shape": "8ae87060cf5477db",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "59e4f1b6ebc665cb",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-210": {
+   "shape": "c4df6ceda6e06ee6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "d05c6c13d747ea59",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-211": {
+   "shape": "3ba8ee610dde745e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "2cdc6fbe04a738b4",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-212": {
+   "shape": "d5e757a6cba26b85",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "76510c30ecb1772d",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    3.2,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-213": {
+   "shape": "dd6145d834d1e2b2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "53ee503766d70a2e",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-214": {
+   "shape": "8a8fb0698471bb2c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "64c19a488f6ef281",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.452,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-215": {
+   "shape": "78bee804cf2080a6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "eb5af4b5aa36501b",
+   "vertices": 4080,
+   "triangles": 2388,
+   "size_mm": [
+    5.408,
+    1.1,
+    5.25
+   ]
+  },
+  "CAP-216": {
+   "shape": "47740990b6914c0a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "0fd8865b5efb879b",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    4.6,
+    4.6,
+    7.45
+   ]
+  },
+  "CAP-301": {
+   "shape": "02afe3ac18fdd134",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "fd29ba5987b4b80e",
+   "vertices": 4000,
+   "triangles": 2228,
+   "size_mm": [
+    3.6,
+    3.6,
+    6.15
+   ]
+  },
+  "CAP-601": {
+   "shape": "641985ff8bedd3e0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "e41c3fe1ea812dd2",
+   "vertices": 1254,
+   "triangles": 2384,
+   "size_mm": [
+    3.7,
+    2.526,
+    6.3
+   ]
+  },
+  "CAP-602": {
+   "shape": "7d9416026398de8e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "0ab4a0f28f725347",
+   "vertices": 1236,
+   "triangles": 2352,
+   "size_mm": [
+    3.2,
+    2.5,
+    5.5
+   ]
+  },
+  "CAP-603": {
+   "shape": "2316e5e15b7ed780",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "a6970728d9c01399",
+   "vertices": 1248,
+   "triangles": 2372,
+   "size_mm": [
+    3.2,
+    2.526,
+    5.5
+   ]
+  },
+  "CAP-604": {
+   "shape": "a805c373f354e170",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "ec3c77d4b4c978a4",
+   "vertices": 1260,
+   "triangles": 2396,
+   "size_mm": [
+    3.7,
+    2.611,
+    6.3
+   ]
+  },
+  "CAP-605": {
+   "shape": "4a229f92e22fa698",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "93a441d0fe1a6e30",
+   "vertices": 1210,
+   "triangles": 2300,
+   "size_mm": [
+    3.7,
+    2.5,
+    6.3
+   ]
+  },
+  "CAP-606": {
+   "shape": "cf8bda74489f08e2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "8f29d5c96027b6a1",
+   "vertices": 1242,
+   "triangles": 2368,
+   "size_mm": [
+    3.7,
+    2.695,
+    6.3
+   ]
+  },
+  "CAP-607": {
+   "shape": "1b5a01c8a8a93c91",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "2ce39b195530cea7",
+   "vertices": 1246,
+   "triangles": 2376,
+   "size_mm": [
+    3.7,
+    2.779,
+    6.3
+   ]
+  },
+  "CAP-801": {
+   "shape": "a94430785d127f19",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "29e982461c43b742",
+   "vertices": 1164,
+   "triangles": 1964,
+   "size_mm": [
+    1.8,
+    2.908,
+    5.5
+   ]
+  },
+  "CAP-901": {
+   "shape": "67aa2a00ff76249a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "1d4b986e352fbaa8",
+   "vertices": 3114,
+   "triangles": 5216,
+   "size_mm": [
+    12,
+    17.97,
+    7.468
+   ]
+  },
+  "CLT-010": {
+   "shape": "102f8e10a7a4d846",
+   "poses": "1059bb373668f39d",
+   "spin": "ce30932319b86d81",
+   "other": "51aa365020cf40b7",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    13.7,
+    13.7,
+    0.4
+   ]
+  },
+  "CLT-020": {
+   "shape": "9957549ee0d8c03a",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "d3ab889dbf29650b",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    4.8,
+    4.8,
+    0.13
+   ]
+  },
+  "CLT-021": {
+   "shape": "4d1291e53c45526f",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "2837e145fff90328",
+   "vertices": 2048,
+   "triangles": 2048,
+   "size_mm": [
+    6.2,
+    6.2,
+    1.94
+   ]
+  },
+  "CLT-030": {
+   "shape": "44c80f95d5769d04",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "de4f4514950b2170",
+   "vertices": 3996,
+   "triangles": 6452,
+   "size_mm": [
+    14.5,
+    14.5,
+    2.94
+   ]
+  },
+  "CLT-031": {
+   "shape": "20593f2ae5d89035",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "7eac618a0ccb7a74",
+   "vertices": 6156,
+   "triangles": 12308,
+   "size_mm": [
+    5.54,
+    5.54,
+    2.4
+   ]
+  },
+  "CLT-032": {
+   "shape": "c84d7ffb5155be78",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "b11c2efd8c581b0a",
+   "vertices": 1382,
+   "triangles": 1536,
+   "size_mm": [
+    6.3,
+    6.3,
+    2.15
+   ]
+  },
+  "CLT-040": {
+   "shape": "59281a7b2a3da904",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "b7b21a755f6af816",
+   "vertices": 2305,
+   "triangles": 3262,
+   "size_mm": [
+    10.077,
+    8.182,
+    1.09
+   ]
+  },
+  "CLT-041": {
+   "shape": "7d9d5b55568c435f",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "e2e4124bb6d4c50e",
+   "vertices": 3219,
+   "triangles": 5238,
+   "size_mm": [
+    8.205,
+    6.1,
+    6.04
+   ]
+  },
+  "CLT-042": {
+   "shape": "3edfa326cae80be7",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "b99a824c6bbd1c90",
+   "vertices": 8460,
+   "triangles": 16916,
+   "size_mm": [
+    7.521,
+    8.695,
+    3.378
+   ]
+  },
+  "CTL-01": {
+   "shape": "bdb01b55566fe5fe",
+   "poses": "61b8a3dcf0c54da8",
+   "spin": "34e88fe9323c5187",
+   "other": "41b0ef08070d9124",
+   "vertices": 3126,
+   "triangles": 6248,
+   "size_mm": [
+    10.14,
+    6.2,
+    8.2
+   ]
+  },
+  "CTL-02": {
+   "shape": "ab7c1ebc34f6bb5a",
+   "poses": "a9a672aa6a371bdb",
+   "spin": "34e88fe9323c5187",
+   "other": "984e777b56474016",
+   "vertices": 3126,
+   "triangles": 6248,
+   "size_mm": [
+    10.14,
+    6.2,
+    8.2
+   ]
+  },
+  "CTL-03": {
+   "shape": "8d59401aa9a3fe32",
+   "poses": "2634c77a30012e30",
+   "spin": "34e88fe9323c5187",
+   "other": "31f543668a1de80e",
+   "vertices": 8670,
+   "triangles": 17336,
+   "size_mm": [
+    10.14,
+    16,
+    8.2
+   ]
+  },
+  "CTL-04": {
+   "shape": "2107c8951d712e0b",
+   "poses": "32a6b5fbf9f0f38b",
+   "spin": "34e88fe9323c5187",
+   "other": "d5575c6b8b17ea49",
+   "vertices": 6646,
+   "triangles": 13204,
+   "size_mm": [
+    7.155,
+    23.2,
+    4
+   ]
+  },
+  "CTL-05": {
+   "shape": "5befe9e776dd4f36",
+   "poses": "e6f945664743b4ee",
+   "spin": "438b8d81e87102ce",
+   "other": "18abbfb0b15a4143",
+   "vertices": 18625,
+   "triangles": 9220,
+   "size_mm": [
+    5.11,
+    41.5,
+    4.28
+   ],
+   "control": "07e7a212644b0e60"
+  },
+  "CTL-06": {
+   "shape": "c6eb85fb809a6f55",
+   "poses": "e6f945664743b4ee",
+   "spin": "438b8d81e87102ce",
+   "other": "01da78f8955e69e2",
+   "vertices": 18591,
+   "triangles": 8372,
+   "size_mm": [
+    5.11,
+    41.5,
+    4.28
+   ],
+   "control": "c2c2c01019cd414e"
+  },
+  "CTL-07": {
+   "shape": "c3a8d7d630f719ff",
+   "poses": "b3b387f42eeb89c4",
+   "spin": "34e88fe9323c5187",
+   "other": "f1181ef21e8dea3a",
+   "vertices": 7096,
+   "triangles": 11440,
+   "size_mm": [
+    12.9,
+    5.875,
+    6.9
+   ],
+   "control": "f173b21ffafed228"
+  },
+  "CTL-08": {
+   "shape": "a85e55b2e7cf78af",
+   "poses": "8e25a4f0829e1c13",
+   "spin": "438b8d81e87102ce",
+   "other": "740300f0de91e0cd",
+   "vertices": 1104,
+   "triangles": 1020,
+   "size_mm": [
+    11.33,
+    12.2,
+    2.3
+   ],
+   "control": "60ea7ce7d9d43833"
+  },
+  "DIO-601": {
+   "shape": "868c13be90b109ec",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "d576dab2b4e2cf51",
+   "vertices": 1408,
+   "triangles": 2604,
+   "size_mm": [
+    1.187,
+    3.284,
+    2.71
+   ]
+  },
+  "DIO-602": {
+   "shape": "2e6b9c8468c8c7c8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "b309802962d12a83",
+   "vertices": 1403,
+   "triangles": 2598,
+   "size_mm": [
+    3.284,
+    1.39,
+    2.71
+   ]
+  },
+  "DRV-001": {
+   "shape": "d4a7a6983a95694f",
+   "poses": "7d4b9146243ccce6",
+   "spin": "34e88fe9323c5187",
+   "other": "435a73d70c10b653",
+   "vertices": 7205,
+   "triangles": 7512,
+   "size_mm": [
+    40.85,
+    59.7,
+    0.9
+   ]
+  },
+  "DRV-010": {
+   "shape": "5f97403d9a92b11c",
+   "poses": "fbe54d9c3bf60d6e",
+   "spin": "bf2150a510efe303",
+   "other": "e4b10571be76fc3a",
+   "vertices": 3992,
+   "triangles": 4052,
+   "size_mm": [
+    12.6,
+    12.6,
+    2.15
+   ]
+  },
+  "DRV-011": {
+   "shape": "96dd424557d91887",
+   "poses": "54180bc8940b7050",
+   "spin": "bea330a6aebe1fd4",
+   "other": "2fa59ac5206b1540",
+   "vertices": 6103,
+   "triangles": 5856,
+   "size_mm": [
+    18.583,
+    18.583,
+    2.55
+   ]
+  },
+  "DRV-012": {
+   "shape": "5e37d4d78c546ce7",
+   "poses": "68becaf046738808",
+   "spin": "2e1c43800143765f",
+   "other": "06c6091554d5cb99",
+   "vertices": 3809,
+   "triangles": 4038,
+   "size_mm": [
+    7.755,
+    7.755,
+    3.3
+   ]
+  },
+  "DRV-013": {
+   "shape": "d655e2c306b2a104",
+   "poses": "7bef9c716d89fc76",
+   "spin": "56b90c6bb615d5f7",
+   "other": "6ae42765ae3517a3",
+   "vertices": 3176,
+   "triangles": 3128,
+   "size_mm": [
+    11.381,
+    11.381,
+    1.6
+   ]
+  },
+  "DRV-014": {
+   "shape": "9a59c50e38f7c5e4",
+   "poses": "1059bb373668f39d",
+   "spin": "20cae9d53efa55e9",
+   "other": "6a4db81f6d774b0f",
+   "vertices": 6429,
+   "triangles": 6698,
+   "size_mm": [
+    16.8,
+    16.79,
+    1.5
+   ]
+  },
+  "DRV-015": {
+   "shape": "0cc2199aa610f609",
+   "poses": "4dc3445e47f2bb14",
+   "spin": "cddef638e173b44a",
+   "other": "a613aa6f820e8d83",
+   "vertices": 1440,
+   "triangles": 1424,
+   "size_mm": [
+    4.111,
+    4.111,
+    4.1
+   ]
+  },
+  "DRV-016": {
+   "shape": "8821083b60c722f8",
+   "poses": "9b4a2d433fec0838",
+   "spin": "6dec1766368faa15",
+   "other": "1cb43285a8d93a6b",
+   "vertices": 2992,
+   "triangles": 2944,
+   "size_mm": [
+    10.179,
+    10.179,
+    2
+   ]
+  },
+  "DRV-020": {
+   "shape": "d17958e94b05ca13",
+   "poses": "da1d301a2552d085",
+   "spin": "bd7f5640317f905f",
+   "other": "6a76ec0f52858924",
+   "vertices": 2499,
+   "triangles": 3328,
+   "size_mm": [
+    16.5,
+    16.5,
+    8.45
+   ]
+  },
+  "DRV-021": {
+   "shape": "c8089d6db3b8aa5b",
+   "poses": "d445af9d9951ea45",
+   "spin": "1c2cb5008d4bebe3",
+   "other": "3f075d211914ca72",
+   "vertices": 4616,
+   "triangles": 5560,
+   "size_mm": [
+    7.3,
+    7.3,
+    2.3
+   ]
+  },
+  "DRV-022": {
+   "shape": "268a862c0f14bbd5",
+   "poses": "dc3b6da04fc67ac3",
+   "spin": "2b283030c686ac0d",
+   "other": "d6a2b7a3f4feef01",
+   "vertices": 1360,
+   "triangles": 1920,
+   "size_mm": [
+    9.4,
+    9.4,
+    2.3
+   ]
+  },
+  "DRV-023": {
+   "shape": "09d64f37ba2305ca",
+   "poses": "d445af9d9951ea45",
+   "spin": "1c2cb5008d4bebe3",
+   "other": "4f0f2db16d5dcf2c",
+   "vertices": 1604,
+   "triangles": 1920,
+   "size_mm": [
+    10.2,
+    10.2,
+    1.8
+   ]
+  },
+  "DRV-100": {
+   "shape": "8fcf0bb2201c1c6e",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "063d6e7bc21dc1d2",
+   "vertices": 1309,
+   "triangles": 1152,
+   "size_mm": [
+    1.6,
+    1.6,
+    8.45
+   ]
+  },
+  "DRV-101": {
+   "shape": "e03c1c1d64632fa2",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "2c46ffb7aec7f093",
+   "vertices": 1523,
+   "triangles": 1624,
+   "size_mm": [
+    2.7,
+    2.7,
+    7.42
+   ]
+  },
+  "DRV-102": {
+   "shape": "81e1fb1e38ca30a8",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "98b9ab200623ab51",
+   "vertices": 1523,
+   "triangles": 1624,
+   "size_mm": [
+    2.7,
+    2.7,
+    5.3
+   ]
+  },
+  "DRV-103": {
+   "shape": "972b7181e13cd0ee",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "54d9cdb206d73a77",
+   "vertices": 1520,
+   "triangles": 1624,
+   "size_mm": [
+    2.7,
+    2.7,
+    5.3
+   ]
+  },
+  "DRV-104": {
+   "shape": "4e055eca6149034b",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "803ac01fca18a107",
+   "vertices": 384,
+   "triangles": 380,
+   "size_mm": [
+    1.6,
+    1.6,
+    13.5
+   ]
+  },
+  "DRV-105": {
+   "shape": "f0c640c230850fda",
+   "poses": "9ca7ef8cafaa57a7",
+   "spin": "34e88fe9323c5187",
+   "other": "d85e805d126e868e",
+   "vertices": 1672,
+   "triangles": 1668,
+   "size_mm": [
+    2.7,
+    2.7,
+    3.8
+   ]
+  },
+  "DRV-106": {
+   "shape": "7e6213fff2e99626",
+   "poses": "c72b795b0886205c",
+   "spin": "34e88fe9323c5187",
+   "other": "ef5dc0969eebed87",
+   "vertices": 1524,
+   "triangles": 1624,
+   "size_mm": [
+    2.7,
+    2.7,
+    11.2
+   ]
+  },
+  "DRV-107": {
+   "shape": "3bb5c9317d58449a",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "11f88f6cbd3eac62",
+   "vertices": 2948,
+   "triangles": 2944,
+   "size_mm": [
+    2.7,
+    2.7,
+    7.7
+   ]
+  },
+  "DRV-108": {
+   "shape": "10765218e9595118",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "182b307d2ef54afb",
+   "vertices": 384,
+   "triangles": 380,
+   "size_mm": [
+    1.6,
+    1.6,
+    9.8
+   ]
+  },
+  "DRV-200": {
+   "shape": "2439134f21dbfc53",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "f4bffd13087b8fa8",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-201": {
+   "shape": "9b0e49ec3d381a72",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "da89b8b0b06fa4f2",
+   "vertices": 768,
+   "triangles": 512,
+   "size_mm": [
+    3.6,
+    3.6,
+    0.13
+   ]
+  },
+  "DRV-202": {
+   "shape": "6f271af5faa7249e",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "4371cb56f5534f07",
+   "vertices": 1242,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.25
+   ]
+  },
+  "DRV-203": {
+   "shape": "6e98333229c2b419",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "d8b4e6817b4a9079",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-204": {
+   "shape": "100a4e987c237b32",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "a66926031bc285ed",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    4.8,
+    4.8,
+    0.13
+   ]
+  },
+  "DRV-205": {
+   "shape": "6f50d67b30daa6a8",
+   "poses": "a91cf222205b6b81",
+   "spin": "34e88fe9323c5187",
+   "other": "af7184ae5e6ee5dd",
+   "vertices": 1256,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.25
+   ]
+  },
+  "DRV-206": {
+   "shape": "085465764fe7b2a7",
+   "poses": "c72b795b0886205c",
+   "spin": "34e88fe9323c5187",
+   "other": "b05528a0fab5e1a1",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-207": {
+   "shape": "3462ea18f554ef6a",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "12da9986d0b65cb9",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-213": {
+   "shape": "bb9a4e3982f71b3c",
+   "poses": "edec9151ee07b29a",
+   "spin": "34e88fe9323c5187",
+   "other": "4f87ef86d20b2224",
+   "vertices": 1224,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.25
+   ]
+  },
+  "DRV-216": {
+   "shape": "7fc5b48e59dc355b",
+   "poses": "edec9151ee07b29a",
+   "spin": "34e88fe9323c5187",
+   "other": "e0fd899a52628a7e",
+   "vertices": 1152,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-217": {
+   "shape": "55d3cb61d8fdcc71",
+   "poses": "edec9151ee07b29a",
+   "spin": "34e88fe9323c5187",
+   "other": "bd6ddae46c27546d",
+   "vertices": 1312,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.25
+   ]
+  },
+  "DRV-218": {
+   "shape": "4888bf1df1f98f82",
+   "poses": "edec9151ee07b29a",
+   "spin": "34e88fe9323c5187",
+   "other": "f70a0f251dd208df",
+   "vertices": 1268,
+   "triangles": 768,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "DRV-250": {
+   "shape": "37b1833fde7a9670",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "2d1ec82c66c488d7",
+   "vertices": 424,
+   "triangles": 412,
+   "size_mm": [
+    2.706,
+    2.8,
+    0.14
+   ]
+  },
+  "DRV-251": {
+   "shape": "a0b0c148ebf39cc6",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "f99f932c75c0a625",
+   "vertices": 424,
+   "triangles": 412,
+   "size_mm": [
+    2.706,
+    2.8,
+    0.14
+   ]
+  },
+  "DRV-256": {
+   "shape": "a85cadc93cec20fc",
+   "poses": "c72b795b0886205c",
+   "spin": "34e88fe9323c5187",
+   "other": "710720e160219a50",
+   "vertices": 424,
+   "triangles": 412,
+   "size_mm": [
+    2.706,
+    2.8,
+    0.14
+   ]
+  },
+  "DRV-310": {
+   "shape": "bddbcd3df78144cf",
+   "poses": "7d4b9146243ccce6",
+   "spin": "34e88fe9323c5187",
+   "other": "e6b93ab5a4b9244a",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.3
+   ]
+  },
+  "DRV-311": {
+   "shape": "26817196928a93b4",
+   "poses": "7d4b9146243ccce6",
+   "spin": "34e88fe9323c5187",
+   "other": "c4744371d5cb2d62",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.3
+   ]
+  },
+  "DRV-312": {
+   "shape": "dbfc76e9a46be18b",
+   "poses": "7d4b9146243ccce6",
+   "spin": "34e88fe9323c5187",
+   "other": "49d81ba339351e21",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.3
+   ]
+  },
+  "EXT-010": {
+   "shape": "6dcde89ced4c2cad",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "bc57ebaa1a061aaf",
+   "vertices": 294524,
+   "triangles": 452056,
+   "size_mm": [
+    72.8,
+    124.6,
+    24.504
+   ]
+  },
+  "EXT-020": {
+   "shape": "aebd65ae1f07148b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "adea989146b16338",
+   "vertices": 6498,
+   "triangles": 7323,
+   "size_mm": [
+    72.794,
+    20.521,
+    29.68
+   ]
+  },
+  "EXT-030": {
+   "shape": "bdaaa47f52536c4e",
+   "poses": "26474a2372a304f1",
+   "spin": "bd5ded21cdeef867",
+   "other": "b47f41ab0a6d8610",
+   "vertices": 3632,
+   "triangles": 3662,
+   "size_mm": [
+    72.784,
+    112.6,
+    6.741
+   ]
+  },
+  "EXT-031": {
+   "shape": "a0c95dc2a4a6af8a",
+   "poses": "2c1790697b11ddfa",
+   "spin": "34e88fe9323c5187",
+   "other": "9a33183266249862",
+   "vertices": 216,
+   "triangles": 140,
+   "size_mm": [
+    24.51,
+    66.26,
+    0.52
+   ]
+  },
+  "EXT-032": {
+   "shape": "c6d614944248e69e",
+   "poses": "2c1790697b11ddfa",
+   "spin": "34e88fe9323c5187",
+   "other": "1cc87ae80b5546ae",
+   "vertices": 436,
+   "triangles": 292,
+   "size_mm": [
+    26.15,
+    67.9,
+    0.36
+   ]
+  },
+  "EXT-040": {
+   "shape": "e33cf4220caa5011",
+   "poses": "a3c1d9111751097c",
+   "spin": "438b8d81e87102ce",
+   "other": "882dc8002bd4aa2f",
+   "vertices": 835,
+   "triangles": 698,
+   "size_mm": [
+    61.493,
+    31.5,
+    6.517
+   ]
+  },
+  "EXT-041": {
+   "shape": "3df021fb60d3bbc1",
+   "poses": "554af89098724315",
+   "spin": "fa17432f63e87349",
+   "other": "298dec26d6c13933",
+   "vertices": 6026,
+   "triangles": 5952,
+   "size_mm": [
+    35,
+    0.035,
+    4.7
+   ]
+  },
+  "EXT-042": {
+   "shape": "16db2365ddf3b5ea",
+   "poses": "a01b38c92107063e",
+   "spin": "29b80b65126f5043",
+   "other": "8b71d2c0042f2fa7",
+   "vertices": 3144,
+   "triangles": 1752,
+   "size_mm": [
+    31.5,
+    11,
+    0.06
+   ]
+  },
+  "EXT-050": {
+   "shape": "6444b3446ee5489e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "fa17432f63e87349",
+   "other": "4d1efb3c531bb5e2",
+   "vertices": 59504,
+   "triangles": 100313,
+   "size_mm": [
+    0.36,
+    126.7,
+    16
+   ]
+  },
+  "EXT-052": {
+   "shape": "816863ab6ca8b412",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "f596d526198e527e",
+   "vertices": 600,
+   "triangles": 400,
+   "size_mm": [
+    1.65,
+    2.8,
+    2
+   ]
+  },
+  "EXT-061": {
+   "shape": "b7fac58950baf359",
+   "poses": "8053b17f5ebed19e",
+   "spin": "fa17432f63e87349",
+   "other": "b85632dcc67ccc9a",
+   "vertices": 3183,
+   "triangles": 6110,
+   "size_mm": [
+    3,
+    6.028,
+    3.1
+   ]
+  },
+  "FCL-001": {
+   "shape": "224d81c667e64afa",
+   "poses": "967267c060b3eca0",
+   "spin": "34e88fe9323c5187",
+   "other": "35a6c082bd91e8c3",
+   "vertices": 28455,
+   "triangles": 15466,
+   "size_mm": [
+    61.79,
+    11.5,
+    3
+   ]
+  },
+  "FCL-010": {
+   "shape": "e85d747ee4ec14f5",
+   "poses": "967267c060b3eca0",
+   "spin": "34e88fe9323c5187",
+   "other": "758416deda00fd65",
+   "vertices": 842,
+   "triangles": 816,
+   "size_mm": [
+    2.5,
+    2.5,
+    5.65
+   ]
+  },
+  "FCL-011": {
+   "shape": "75845d56367a3bb5",
+   "poses": "967267c060b3eca0",
+   "spin": "34e88fe9323c5187",
+   "other": "c12794e0200746ec",
+   "vertices": 640,
+   "triangles": 636,
+   "size_mm": [
+    2.495,
+    2.5,
+    0.25
+   ]
+  },
+  "FCR-001": {
+   "shape": "1fcd3d557f2bfec8",
+   "poses": "6c16ab556a9a9735",
+   "spin": "34e88fe9323c5187",
+   "other": "a08d214b7ef2f2b2",
+   "vertices": 787,
+   "triangles": 720,
+   "size_mm": [
+    45.79,
+    7.1,
+    3.7
+   ]
+  },
+  "FCR-002": {
+   "shape": "86679c166818cc14",
+   "poses": "736ef1e7cabceda6",
+   "spin": "34e88fe9323c5187",
+   "other": "2b585f044bd7e54e",
+   "vertices": 716,
+   "triangles": 668,
+   "size_mm": [
+    43.79,
+    9.5,
+    3.7
+   ]
+  },
+  "FCR-010": {
+   "shape": "4d94b24c635390d6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1a130bc228d99c02",
+   "vertices": 380,
+   "triangles": 356,
+   "size_mm": [
+    4,
+    10.1,
+    3.8
+   ]
+  },
+  "FCR-011": {
+   "shape": "093d29b4e06e54f2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0f1a1771331a4c5e",
+   "vertices": 459,
+   "triangles": 434,
+   "size_mm": [
+    2.5,
+    2.5,
+    3.7
+   ]
+  },
+  "FCR-020": {
+   "shape": "e5711ebedd88e62f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "b01d87f3b4665e68",
+   "vertices": 2090,
+   "triangles": 1432,
+   "size_mm": [
+    3.2,
+    14.2,
+    1.7
+   ]
+  },
+  "FCR-021": {
+   "shape": "2bc57c2294d2add2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "3a77d8e3f0891216",
+   "vertices": 6367,
+   "triangles": 4278,
+   "size_mm": [
+    2.6,
+    2.6,
+    9.6
+   ]
+  },
+  "FCR-022": {
+   "shape": "460184ebc75a3a69",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "dfdf2d3f004af02e",
+   "vertices": 6373,
+   "triangles": 4286,
+   "size_mm": [
+    2.6,
+    2.6,
+    9.6
+   ]
+  },
+  "FCR-030": {
+   "shape": "b9b3bf329beeaf27",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "2089d02a650c0929",
+   "other": "b72dca4fd974462b",
+   "vertices": 17154,
+   "triangles": 8660,
+   "size_mm": [
+    6.65,
+    12.69,
+    1.61
+   ]
+  },
+  "FCR-040": {
+   "shape": "635148e43fa26ae8",
+   "poses": "f05894636d131daf",
+   "spin": "34e88fe9323c5187",
+   "other": "f69dbd05990dc254",
+   "vertices": 56,
+   "triangles": 36,
+   "size_mm": [
+    1.5,
+    4.22,
+    4.69
+   ]
+  },
+  "FRL-001": {
+   "shape": "930b3065ee3cb32c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "29fbea87366a3376",
+   "vertices": 3566,
+   "triangles": 3992,
+   "size_mm": [
+    8.76,
+    11.756,
+    3.47
+   ]
+  },
+  "FRL-010": {
+   "shape": "f06b0fe5cd4e809b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1095ac7da308aa1f",
+   "vertices": 8299,
+   "triangles": 4822,
+   "size_mm": [
+    13.6,
+    63.3,
+    0.4
+   ]
+  },
+  "FRL-012": {
+   "shape": "431131d0c9b5d785",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d3d266d3307f189a",
+   "vertices": 1152,
+   "triangles": 764,
+   "size_mm": [
+    2,
+    2,
+    3.7
+   ]
+  },
+  "FRL-013": {
+   "shape": "808c8fd089dc0f31",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "377203986dbb5a3f",
+   "vertices": 1234,
+   "triangles": 826,
+   "size_mm": [
+    3.05,
+    4.6,
+    2.3
+   ]
+  },
+  "FRL-020": {
+   "shape": "83ef657a26a8adb6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "028f7ecece06f51c",
+   "vertices": 6100,
+   "triangles": 3056,
+   "size_mm": [
+    8.478,
+    6.383,
+    2.182
+   ]
+  },
+  "FWD-010": {
+   "shape": "e6a82f47098d92af",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "3bdda6aadb40bcfc",
+   "vertices": 3699,
+   "triangles": 6054,
+   "size_mm": [
+    6.737,
+    7.619,
+    1.85
+   ]
+  },
+  "FWD-011": {
+   "shape": "13ae54fe545afbe4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1d9352a9e24e17d5",
+   "vertices": 16844,
+   "triangles": 9478,
+   "size_mm": [
+    8.48,
+    3.68,
+    5.92
+   ]
+  },
+  "FWD-020": {
+   "shape": "fa0e02cb4d8e2aa7",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "2c8caa78cb55e4fa",
+   "vertices": 2068,
+   "triangles": 2048,
+   "size_mm": [
+    5.2,
+    5.2,
+    2.65
+   ]
+  },
+  "FWD-021": {
+   "shape": "c73567c010e9abba",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "cd9f6dae8664cc0c",
+   "vertices": 2048,
+   "triangles": 2048,
+   "size_mm": [
+    8,
+    8,
+    2.65
+   ]
+  },
+  "FWD-030": {
+   "shape": "ec7bbf2b66473bdb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "eb045a271fd7573a",
+   "vertices": 4644,
+   "triangles": 9284,
+   "size_mm": [
+    3.733,
+    3.217,
+    2.95
+   ]
+  },
+  "FWD-101": {
+   "shape": "c5eb7624af356eb8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "19651c65c70e9cd1",
+   "vertices": 1796,
+   "triangles": 1792,
+   "size_mm": [
+    3,
+    3,
+    7.25
+   ]
+  },
+  "FWD-102": {
+   "shape": "679a84f3a7a4955d",
+   "poses": "be484685dcd85e8e",
+   "spin": "34e88fe9323c5187",
+   "other": "4f76417e8a6230fa",
+   "vertices": 1028,
+   "triangles": 1024,
+   "size_mm": [
+    1.58,
+    1.58,
+    2.68
+   ]
+  },
+  "FWD-103": {
+   "shape": "09a96ab54d0f4329",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "08605d8d1d10f91b",
+   "vertices": 768,
+   "triangles": 764,
+   "size_mm": [
+    1.58,
+    1.58,
+    4.42
+   ]
+  },
+  "FWD-201": {
+   "shape": "77c5b81f85634140",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "b0042e98e392b072",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.25
+   ]
+  },
+  "FWD-202": {
+   "shape": "bfbcf14da61ea2fe",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "65ea45d7add72ea1",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "FWD-203": {
+   "shape": "bfbcf14da61ea2fe",
+   "poses": "7bcb312063ccd97b",
+   "spin": "34e88fe9323c5187",
+   "other": "d22277740b7a69b5",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "FWD-251": {
+   "shape": "1eab6df192d4d926",
+   "poses": "be484685dcd85e8e",
+   "spin": "34e88fe9323c5187",
+   "other": "ecd116ad7481fea8",
+   "vertices": 558,
+   "triangles": 618,
+   "size_mm": [
+    2.611,
+    2.8,
+    0.14
+   ]
+  },
+  "FWD-252": {
+   "shape": "c537059eb63e3127",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "85bf7f2867b100fa",
+   "vertices": 592,
+   "triangles": 648,
+   "size_mm": [
+    2.611,
+    2.8,
+    0.14
+   ]
+  },
+  "GRL-001": {
+   "shape": "3af65a430d97a7eb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bb24272533e50665",
+   "other": "a0e7d6b7975aa031",
+   "vertices": 56418,
+   "triangles": 73650,
+   "size_mm": [
+    23.602,
+    133.3,
+    29.95
+   ]
+  },
+  "GRL-657": {
+   "shape": "24cc02b351813189",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4e872f64ed609482",
+   "vertices": 1152,
+   "triangles": 764,
+   "size_mm": [
+    4,
+    4,
+    0.95
+   ]
+  },
+  "GRL-716": {
+   "shape": "77ec8614b71ffde2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "cd254eff74f1dfcd",
+   "vertices": 696,
+   "triangles": 1016,
+   "size_mm": [
+    2.1,
+    3.9,
+    2.4
+   ]
+  },
+  "GRL-717": {
+   "shape": "027c67717f938e01",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "9e5928ce7bd7f915",
+   "other": "06b74e749c8cbf08",
+   "vertices": 912,
+   "triangles": 452,
+   "size_mm": [
+    0.48,
+    23.65,
+    10
+   ]
+  },
+  "HDC-001": {
+   "shape": "3303a09f215e3684",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "7f9da29c37fe0046",
+   "vertices": 3244,
+   "triangles": 3434,
+   "size_mm": [
+    37.18,
+    87.789,
+    3.55
+   ]
+  },
+  "HDC-002": {
+   "shape": "50ebe8c6f2cd9cf3",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "81bd543b7a823642",
+   "vertices": 598,
+   "triangles": 724,
+   "size_mm": [
+    3.2,
+    15.9,
+    0.21
+   ]
+  },
+  "HDC-003": {
+   "shape": "9ab74f4acdda76dc",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "beed35b25d3399e7",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    3.2,
+    3.2,
+    0.39
+   ]
+  },
+  "HDC-004": {
+   "shape": "3885fc40327dbdfe",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "916be0875e3591b7",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    3.3,
+    3.3,
+    0.13
+   ]
+  },
+  "HDC-005": {
+   "shape": "523c1733c587c607",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "85c80ec9523660bd",
+   "vertices": 137,
+   "triangles": 126,
+   "size_mm": [
+    3.81,
+    9.24,
+    5.21
+   ]
+  },
+  "HDC-010": {
+   "shape": "5b9cffb666d5bcc0",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "55a142baec81d0ce",
+   "vertices": 1078,
+   "triangles": 760,
+   "size_mm": [
+    3.3,
+    3.3,
+    4.75
+   ]
+  },
+  "HDC-011": {
+   "shape": "f2893aad9ed2b0b4",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "1cbf2e3b2148477f",
+   "vertices": 1072,
+   "triangles": 760,
+   "size_mm": [
+    3.3,
+    3.3,
+    4.75
+   ]
+  },
+  "HDC-020": {
+   "shape": "7a82f00be54fa3f7",
+   "poses": "ca713b9859b41387",
+   "spin": "34e88fe9323c5187",
+   "other": "12dfc1b79b5b811a",
+   "vertices": 1703,
+   "triangles": 1164,
+   "size_mm": [
+    5.85,
+    9.95,
+    6.72
+   ]
+  },
+  "HDC-021": {
+   "shape": "5c9ed721aa99d3a2",
+   "poses": "ca713b9859b41387",
+   "spin": "34e88fe9323c5187",
+   "other": "f8334e50aef2d96d",
+   "vertices": 512,
+   "triangles": 508,
+   "size_mm": [
+    1.72,
+    1.72,
+    6.95
+   ]
+  },
+  "HDC-022": {
+   "shape": "647c8b32396a31f3",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "c185e67c2d17da28",
+   "vertices": 768,
+   "triangles": 764,
+   "size_mm": [
+    1.5,
+    1.5,
+    7.62
+   ]
+  },
+  "HDC-023": {
+   "shape": "de6647e60897b2fc",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "14b37f1a01e1d158",
+   "vertices": 440,
+   "triangles": 428,
+   "size_mm": [
+    2.54,
+    2.6,
+    0.16
+   ]
+  },
+  "HDC-024": {
+   "shape": "7b3621fdd8473a70",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "2475864742a42997",
+   "vertices": 2928,
+   "triangles": 5828,
+   "size_mm": [
+    3.177,
+    3.22,
+    1.2
+   ]
+  },
+  "HDC-030": {
+   "shape": "5694daa826a8310d",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "d3c74e41b84f9a2b",
+   "vertices": 576,
+   "triangles": 636,
+   "size_mm": [
+    2.5,
+    2.5,
+    3.25
+   ]
+  },
+  "HDC-031": {
+   "shape": "c02f661b20d634a4",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "710a92ac2c220d36",
+   "vertices": 768,
+   "triangles": 764,
+   "size_mm": [
+    1.5,
+    1.5,
+    3.25
+   ]
+  },
+  "HDC-032": {
+   "shape": "b73fd4d991afd49f",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "2954446f2360b841",
+   "vertices": 440,
+   "triangles": 428,
+   "size_mm": [
+    2.54,
+    2.6,
+    0.16
+   ]
+  },
+  "HDC-040": {
+   "shape": "e78aa0920952db94",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "1d4f900c1860967d",
+   "vertices": 691,
+   "triangles": 638,
+   "size_mm": [
+    5.9,
+    20.6,
+    6.9
+   ]
+  },
+  "HDC-041": {
+   "shape": "fe815d28a4923d77",
+   "poses": "093c970aa0ccdb6a",
+   "spin": "34e88fe9323c5187",
+   "other": "3d31ec47beb1deb7",
+   "vertices": 590,
+   "triangles": 568,
+   "size_mm": [
+    2.2,
+    2.2,
+    2.5
+   ]
+  },
+  "HINGE-010": {
+   "shape": "d45e1dbe3b7a6a51",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "894b2be209b6779d",
+   "vertices": 714,
+   "triangles": 768,
+   "size_mm": [
+    0.8,
+    106.4,
+    0.8
+   ]
+  },
+  "HLT-001": {
+   "shape": "dd5937ba96e514a5",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "2b2760b5fa87978d",
+   "vertices": 1673,
+   "triangles": 2458,
+   "size_mm": [
+    5.8,
+    10.55,
+    6.6
+   ]
+  },
+  "HLT-011": {
+   "shape": "2478194de4aa606f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0154e9468953fe08",
+   "vertices": 56,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    2.11,
+    3.3
+   ]
+  },
+  "HLT-012": {
+   "shape": "d89cc9ab7fe39cb2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5abb4fea56dc25f3",
+   "vertices": 62,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    0.47,
+    3.3
+   ]
+  },
+  "HLT-013": {
+   "shape": "324028e06b571dd5",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "70ec6e7caecdcd71",
+   "vertices": 62,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    2.292,
+    3.3
+   ]
+  },
+  "HLT-014": {
+   "shape": "2478194de4aa606f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "306fc48fcab26916",
+   "vertices": 56,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    2.11,
+    3.3
+   ]
+  },
+  "HLT-015": {
+   "shape": "d89cc9ab7fe39cb2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "96b573bbb6b5dde0",
+   "vertices": 62,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    0.47,
+    3.3
+   ]
+  },
+  "HLT-016": {
+   "shape": "324028e06b571dd5",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c154210b3b46935b",
+   "vertices": 62,
+   "triangles": 40,
+   "size_mm": [
+    0.64,
+    2.292,
+    3.3
+   ]
+  },
+  "HLT-020": {
+   "shape": "59b8cef7c70bb4c2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0a3320f25b5cf438",
+   "vertices": 1139,
+   "triangles": 1110,
+   "size_mm": [
+    3.4,
+    15.35,
+    3.44
+   ],
+   "control": "a39e5971489f23ac"
+  },
+  "HLT-021": {
+   "shape": "df862e92996b9aa6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "3909eb1050fb1626",
+   "vertices": 4812,
+   "triangles": 9620,
+   "size_mm": [
+    2.66,
+    3.2,
+    2.66
+   ]
+  },
+  "HLT-031": {
+   "shape": "db96073a0d9e970f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e8a25c612c63a02c",
+   "vertices": 292,
+   "triangles": 320,
+   "size_mm": [
+    0.62,
+    0.91,
+    0.45
+   ],
+   "control": "a39e5971489f23ac"
+  },
+  "HLT-032": {
+   "shape": "84184b1ec908062a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0869b948161ef719",
+   "vertices": 292,
+   "triangles": 320,
+   "size_mm": [
+    0.62,
+    0.91,
+    0.45
+   ],
+   "control": "a39e5971489f23ac"
+  },
+  "IC-601": {
+   "shape": "d82e7455800c708b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "9d7071c1c0d9aea2",
+   "vertices": 648,
+   "triangles": 716,
+   "size_mm": [
+    18.311,
+    2.4,
+    6.45
+   ]
+  },
+  "IND-601": {
+   "shape": "9ec7519371f8e7e2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "207f7a24fe6b9270",
+   "vertices": 768,
+   "triangles": 1024,
+   "size_mm": [
+    5.5,
+    5.5,
+    2.8
+   ]
+  },
+  "IND-602": {
+   "shape": "dfef36ed8a7a2181",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1b14d9d4532ef28d",
+   "vertices": 574,
+   "triangles": 416,
+   "size_mm": [
+    6.95,
+    6.3,
+    4.4
+   ]
+  },
+  "JB-001": {
+   "shape": "4bacb5d05f88d03c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "4661713e7360ffa7",
+   "other": "0ac10dfb1f0da494",
+   "vertices": 93829,
+   "triangles": 84836,
+   "size_mm": [
+    68.315,
+    17.086,
+    1.23
+   ]
+  },
+  "JCK-01": {
+   "shape": "e823389ddffb311d",
+   "poses": "2b66f0b982dcdb1e",
+   "spin": "34e88fe9323c5187",
+   "other": "00e928b2bc09a703",
+   "vertices": 4809,
+   "triangles": 5482,
+   "size_mm": [
+    21.8,
+    15.32,
+    7.7
+   ]
+  },
+  "JCK-03": {
+   "shape": "2b218c083e9e56b3",
+   "poses": "aae757ac0bfdf010",
+   "spin": "34e88fe9323c5187",
+   "other": "9e6ca3321c6492af",
+   "vertices": 6338,
+   "triangles": 3816,
+   "size_mm": [
+    7.44,
+    21.03,
+    8.2
+   ]
+  },
+  "JCK-11": {
+   "shape": "adaf20adcbb87bd8",
+   "poses": "fca11edf60702440",
+   "spin": "438b8d81e87102ce",
+   "other": "9dd7d3ce69fed28e",
+   "vertices": 988,
+   "triangles": 1096,
+   "size_mm": [
+    4.9,
+    14.839,
+    7.8
+   ]
+  },
+  "JCK-12": {
+   "shape": "6e90d4bafbeb9a3a",
+   "poses": "fca11edf60702440",
+   "spin": "438b8d81e87102ce",
+   "other": "7004c9d04b85fdb8",
+   "vertices": 1082,
+   "triangles": 1174,
+   "size_mm": [
+    4.9,
+    14.81,
+    7.52
+   ]
+  },
+  "JCK-13": {
+   "shape": "98df2330d3192686",
+   "poses": "aae757ac0bfdf010",
+   "spin": "fa17432f63e87349",
+   "other": "291862c036867249",
+   "vertices": 5137,
+   "triangles": 4044,
+   "size_mm": [
+    10.03,
+    2.6,
+    4.45
+   ]
+  },
+  "JCK-14": {
+   "shape": "38c5ec3eb76368e3",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e9cffb9baeb7a9c3",
+   "vertices": 1230,
+   "triangles": 820,
+   "size_mm": [
+    2.5,
+    2.5,
+    3.05
+   ]
+  },
+  "JCK-15": {
+   "shape": "659110f78cc54a9f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "3ead119a574a629f",
+   "vertices": 1230,
+   "triangles": 820,
+   "size_mm": [
+    3.4,
+    3.4,
+    4.75
+   ]
+  },
+  "JCK-21": {
+   "shape": "4f23c053dd271e65",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e48d27f7324ed7b9",
+   "vertices": 496,
+   "triangles": 398,
+   "size_mm": [
+    3.271,
+    2.688,
+    5.9
+   ]
+  },
+  "JCK-22": {
+   "shape": "ea7a1ab88d153d5d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4ad960a5e71ab4dc",
+   "vertices": 501,
+   "triangles": 398,
+   "size_mm": [
+    4.439,
+    2.82,
+    5.9
+   ]
+  },
+  "JCK-23": {
+   "shape": "803ae9efc84f7058",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0e7020616f5fc30b",
+   "vertices": 597,
+   "triangles": 478,
+   "size_mm": [
+    3.242,
+    4.01,
+    5.62
+   ]
+  },
+  "JCK-24": {
+   "shape": "af762771ce4d913c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "97d951d5b34d0900",
+   "vertices": 433,
+   "triangles": 354,
+   "size_mm": [
+    4.325,
+    5.135,
+    5.9
+   ]
+  },
+  "JCK-31": {
+   "shape": "2a277fe7b7c2e746",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "defbb876b69d0333",
+   "vertices": 872,
+   "triangles": 864,
+   "size_mm": [
+    4.63,
+    3.3,
+    3.3
+   ]
+  },
+  "JCK-32": {
+   "shape": "62469eea491f8d62",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "cecf0d012c7b53f0",
+   "vertices": 868,
+   "triangles": 864,
+   "size_mm": [
+    4.63,
+    3.3,
+    3.3
+   ]
+  },
+  "JCK-33": {
+   "shape": "9f1f662b559f12f1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5b28ae7f93e3a1b2",
+   "vertices": 1270,
+   "triangles": 1260,
+   "size_mm": [
+    4,
+    19.93,
+    9.5
+   ]
+  },
+  "JCK-34": {
+   "shape": "57d14ffea0cacae8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e88ffa1094ce3328",
+   "vertices": 779,
+   "triangles": 866,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.67
+   ]
+  },
+  "JCK-35": {
+   "shape": "f2a629f3b0d6ce94",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "fa17432f63e87349",
+   "other": "95aacf27893e8dbf",
+   "vertices": 2283,
+   "triangles": 3458,
+   "size_mm": [
+    2.26,
+    8.2,
+    4.41
+   ]
+  },
+  "JCK-36": {
+   "shape": "ff387b1a5ff361c8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "b35d475f36ae972e",
+   "vertices": 1512,
+   "triangles": 1932,
+   "size_mm": [
+    1.9,
+    7.05,
+    4.41
+   ]
+  },
+  "JCK-37": {
+   "shape": "909ba2df3c6bb051",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d55e07d73efa9913",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.5,
+    2.3,
+    2.3
+   ]
+  },
+  "JCK-38": {
+   "shape": "050a637a7bf701f8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "ad2814837d422e26",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    0.35,
+    4.1,
+    4.1
+   ]
+  },
+  "JCK-39": {
+   "shape": "1dd5b3296228a1cb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "74ed7a4b6b2e66ee",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    0.35,
+    4.1,
+    4.1
+   ]
+  },
+  "JCK-40": {
+   "shape": "cb3f8411b0927a40",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d355f95b87dc5122",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    1.3,
+    3.6,
+    3.6
+   ]
+  },
+  "JNT-001": {
+   "shape": "298c4b655a0433dd",
+   "poses": "e0f7af41f46adadd",
+   "spin": "34e88fe9323c5187",
+   "other": "311b894d03915f2b",
+   "vertices": 10120,
+   "triangles": 6012,
+   "size_mm": [
+    16.873,
+    6,
+    5.37
+   ]
+  },
+  "JNT-010": {
+   "shape": "d1816ab368e277db",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "a39c0fb1ca4a8647",
+   "other": "9bfa2f35f17e276b",
+   "vertices": 21016,
+   "triangles": 10516,
+   "size_mm": [
+    32.704,
+    2.183,
+    2.773
+   ]
+  },
+  "JNT-020": {
+   "shape": "0f3358013b8e2df2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "9e244cd15be821fa",
+   "other": "b2c5bcb688ebd8ff",
+   "vertices": 8140,
+   "triangles": 4076,
+   "size_mm": [
+    3.329,
+    13.841,
+    3.024
+   ]
+  },
+  "LCK-001": {
+   "shape": "12f968ad02f073e4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8df7fba49c17ea08",
+   "vertices": 1502,
+   "triangles": 1056,
+   "size_mm": [
+    12.6,
+    22.7,
+    2.75
+   ]
+  },
+  "LCK-002": {
+   "shape": "ab6f7e766b50bcae",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "045c6ec1cb3fee2c",
+   "vertices": 2700,
+   "triangles": 1792,
+   "size_mm": [
+    2,
+    25.475,
+    2
+   ]
+  },
+  "LCK-003": {
+   "shape": "b1f505f147ba4a22",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8bd7e37c4df7370a",
+   "vertices": 2220,
+   "triangles": 1476,
+   "size_mm": [
+    2.615,
+    0.3,
+    3
+   ]
+  },
+  "LCK-010": {
+   "shape": "4e1d3676686be6fb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "9b64ace4f79a8431",
+   "vertices": 2681,
+   "triangles": 1824,
+   "size_mm": [
+    15,
+    23.25,
+    7.95
+   ]
+  },
+  "LCK-011": {
+   "shape": "31ecf34fbb547774",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0ffef46ad4949731",
+   "vertices": 587,
+   "triangles": 562,
+   "size_mm": [
+    2.5,
+    2.5,
+    2.6
+   ]
+  },
+  "LCK-020": {
+   "shape": "4151952eb6eb3739",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "6cf9435d3f06fd55",
+   "vertices": 49232,
+   "triangles": 98460,
+   "size_mm": [
+    10.278,
+    1.48,
+    5.378
+   ]
+  },
+  "LVB-001": {
+   "shape": "94da99745ad18566",
+   "poses": "9477276b186d0565",
+   "spin": "34e88fe9323c5187",
+   "other": "ce6e1cc64a16b68c",
+   "vertices": 1192,
+   "triangles": 862,
+   "size_mm": [
+    2.8,
+    9,
+    0.45
+   ]
+  },
+  "LVB-002": {
+   "shape": "5829ef0c7f249835",
+   "poses": "9477276b186d0565",
+   "spin": "34e88fe9323c5187",
+   "other": "2a505d357cdcb5f4",
+   "vertices": 1053,
+   "triangles": 718,
+   "size_mm": [
+    3.5,
+    6.6,
+    1.6
+   ]
+  },
+  "LVB-010": {
+   "shape": "45e109b58893302c",
+   "poses": "9477276b186d0565",
+   "spin": "34e88fe9323c5187",
+   "other": "42ef02b7e0b6f3cb",
+   "vertices": 2880,
+   "triangles": 1916,
+   "size_mm": [
+    2,
+    2,
+    3.55
+   ]
+  },
+  "LVB-020": {
+   "shape": "0db28f3b666c48de",
+   "poses": "8353488871013f1b",
+   "spin": "34e88fe9323c5187",
+   "other": "9d26bec1b97da4d0",
+   "vertices": 1116,
+   "triangles": 740,
+   "size_mm": [
+    3.956,
+    4,
+    0.2
+   ]
+  },
+  "LVB-030": {
+   "shape": "509546e852977e7f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "bd1e3c76234b487b",
+   "vertices": 2304,
+   "triangles": 1532,
+   "size_mm": [
+    2.8,
+    2.8,
+    2.8
+   ]
+  },
+  "MB-001": {
+   "shape": "7a390b1e0635e057",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "862b56f7afbefe9a",
+   "other": "a77b87b53624fbb6",
+   "vertices": 262691,
+   "triangles": 157064,
+   "size_mm": [
+    79.544,
+    51.126,
+    1.1
+   ]
+  },
+  "MB-010": {
+   "shape": "88cb65829bcefc25",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "72bc0082ae0f8399",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    3.1,
+    3.1,
+    1.16
+   ]
+  },
+  "MB-011": {
+   "shape": "9699925c8bc36bf8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "2048e2ec9b1f9daf",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    3.1,
+    3.1,
+    1.16
+   ]
+  },
+  "MB-101": {
+   "shape": "028b15dedf4b7c6e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "682d08bbc9d1eab2",
+   "vertices": 968,
+   "triangles": 620,
+   "size_mm": [
+    20.162,
+    2,
+    7.05
+   ]
+  },
+  "MB-102": {
+   "shape": "a983358b6d1e1e14",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "be345fbcc995db0f",
+   "vertices": 968,
+   "triangles": 620,
+   "size_mm": [
+    20.029,
+    2,
+    7.05
+   ]
+  },
+  "MB-201": {
+   "shape": "09798a26ef1826d2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "6e7ad2f6dd916a43",
+   "vertices": 968,
+   "triangles": 620,
+   "size_mm": [
+    20.117,
+    2,
+    7.05
+   ]
+  },
+  "MB-202": {
+   "shape": "6a8093f6f1148ad6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "ec24a83dae7052bd",
+   "vertices": 968,
+   "triangles": 620,
+   "size_mm": [
+    20.117,
+    2,
+    7.05
+   ]
+  },
+  "MEC-001": {
+   "shape": "4d8cfaa75830d322",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "6c4e154811a0f83d",
+   "vertices": 49668,
+   "triangles": 31270,
+   "size_mm": [
+    75.3,
+    129.35,
+    9.6
+   ]
+  },
+  "MEC-010": {
+   "shape": "01ab05bd8a58a795",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "45afa61c4e9deece",
+   "vertices": 12888,
+   "triangles": 7888,
+   "size_mm": [
+    11.4,
+    11.4,
+    7.87
+   ]
+  },
+  "MEC-011": {
+   "shape": "bf7095c42d7282c2",
+   "poses": "e9c5a522cf43bfc6",
+   "spin": "eac374b91e6ff731",
+   "other": "36661f0be3532936",
+   "vertices": 7902,
+   "triangles": 4224,
+   "size_mm": [
+    24.4,
+    24.4,
+    8.211
+   ]
+  },
+  "MEC-012": {
+   "shape": "bc912b99fa089659",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "3f1939d645c794d1",
+   "vertices": 768,
+   "triangles": 512,
+   "size_mm": [
+    4.5,
+    4.5,
+    0.13
+   ]
+  },
+  "MEC-013": {
+   "shape": "bc912b99fa089659",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "2baed5cda9c131da",
+   "vertices": 768,
+   "triangles": 512,
+   "size_mm": [
+    4.5,
+    4.5,
+    0.13
+   ]
+  },
+  "MEC-014": {
+   "shape": "5f40c9993e4d91bf",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8d4e2e52d34a7408",
+   "vertices": 1259,
+   "triangles": 1386,
+   "size_mm": [
+    2.44,
+    2.44,
+    4.15
+   ]
+  },
+  "MEC-015": {
+   "shape": "6ffc707c1cff7939",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e55821501461de85",
+   "vertices": 1257,
+   "triangles": 1386,
+   "size_mm": [
+    2.44,
+    2.44,
+    4.15
+   ]
+  },
+  "MEC-016": {
+   "shape": "ceac08223d311f6c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "586e661bd33523e4",
+   "vertices": 1279,
+   "triangles": 1386,
+   "size_mm": [
+    2.44,
+    2.44,
+    4.15
+   ]
+  },
+  "MEDIA-001": {
+   "shape": "1553cf210752a7ee",
+   "poses": "ced0324da1fa820e",
+   "spin": "34e88fe9323c5187",
+   "other": "52c3f6af830a0a09",
+   "vertices": 1238,
+   "triangles": 830,
+   "size_mm": [
+    63.8,
+    100.4,
+    6
+   ]
+  },
+  "MEDIA-002": {
+   "shape": "1bff74f1b6fb75e2",
+   "poses": "ced0324da1fa820e",
+   "spin": "34e88fe9323c5187",
+   "other": "30ba04c36f128f8d",
+   "vertices": 1238,
+   "triangles": 830,
+   "size_mm": [
+    63.8,
+    100.4,
+    2.4
+   ]
+  },
+  "MEDIA-003": {
+   "shape": "3eea1ec78022f780",
+   "poses": "4d488dd10969b2fd",
+   "spin": "4531a9301d3ef62a",
+   "other": "87d3554c901747ff",
+   "vertices": 3208,
+   "triangles": 2048,
+   "size_mm": [
+    16,
+    16,
+    6.3
+   ]
+  },
+  "MEDIA-004": {
+   "shape": "59be6a067cabb4cd",
+   "poses": "4d488dd10969b2fd",
+   "spin": "30e40cef490dcef7",
+   "other": "5f9e1d583192f70f",
+   "vertices": 768,
+   "triangles": 512,
+   "size_mm": [
+    34,
+    34,
+    3.8
+   ]
+  },
+  "MEDIA-005": {
+   "shape": "3eea1ec78022f780",
+   "poses": "cdd415f8771b4220",
+   "spin": "4ecf3e78c06988c2",
+   "other": "09dc208640dd937e",
+   "vertices": 3208,
+   "triangles": 2048,
+   "size_mm": [
+    16,
+    16,
+    6.3
+   ]
+  },
+  "MEDIA-006": {
+   "shape": "437bcd160e25bfce",
+   "poses": "cdd415f8771b4220",
+   "spin": "d4234d7f3bd121c7",
+   "other": "18b8d8a527b19549",
+   "vertices": 768,
+   "triangles": 512,
+   "size_mm": [
+    34,
+    34,
+    3.8
+   ]
+  },
+  "MIC-001": {
+   "shape": "76361d5c4d355a5f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "f32261c4ac4d1a8c",
+   "vertices": 2728,
+   "triangles": 2888,
+   "size_mm": [
+    4.45,
+    7.9,
+    7.9
+   ]
+  },
+  "MIC-002": {
+   "shape": "7299403560982a4a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d1e6d879af1964c0",
+   "vertices": 804,
+   "triangles": 800,
+   "size_mm": [
+    0.2,
+    7.28,
+    7.28
+   ]
+  },
+  "MIC-003": {
+   "shape": "4582f87c77513b51",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "21d77721e5f95ec6",
+   "vertices": 520,
+   "triangles": 512,
+   "size_mm": [
+    0.5,
+    1.34,
+    1.34
+   ]
+  },
+  "MIC-004": {
+   "shape": "6db4aa2f2406e2cf",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "ff0c04d7a06e94de",
+   "vertices": 284,
+   "triangles": 272,
+   "size_mm": [
+    0.48,
+    1.68,
+    0.96
+   ]
+  },
+  "MIC-005": {
+   "shape": "036eb6540b51b2a1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "390ddf2cfa664c2b",
+   "vertices": 968,
+   "triangles": 1276,
+   "size_mm": [
+    1.35,
+    0.88,
+    0.88
+   ]
+  },
+  "MIC-006": {
+   "shape": "6635b14e13e840ba",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "b6917d559b4b43db",
+   "vertices": 964,
+   "triangles": 1276,
+   "size_mm": [
+    1.35,
+    0.88,
+    0.88
+   ]
+  },
+  "MIC-007": {
+   "shape": "3a918b1eda5fac82",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "ad80668dee4691b7",
+   "vertices": 900,
+   "triangles": 1276,
+   "size_mm": [
+    1.35,
+    0.88,
+    0.88
+   ]
+  },
+  "MIC-008": {
+   "shape": "465ea250adc85059",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d1e101eca270927c",
+   "vertices": 1373,
+   "triangles": 1184,
+   "size_mm": [
+    0.29,
+    3.185,
+    3.21
+   ]
+  },
+  "MIC-010": {
+   "shape": "601bc3f709cfee01",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e64f61f516964790",
+   "vertices": 3548,
+   "triangles": 2560,
+   "size_mm": [
+    4.57,
+    9.1,
+    9.1
+   ]
+  },
+  "MTR-001": {
+   "shape": "1d587326dc685c0b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c6ceb669c7a8c544",
+   "vertices": 1385,
+   "triangles": 924,
+   "size_mm": [
+    15.45,
+    33.8,
+    12.5
+   ]
+  },
+  "MTR-002": {
+   "shape": "9bc885dacf88b13f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "0823f0b59a9feab8",
+   "vertices": 1156,
+   "triangles": 1280,
+   "size_mm": [
+    11.68,
+    27.75,
+    11.68
+   ]
+  },
+  "MTR-003": {
+   "shape": "f9270f56572ff998",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "45d386ac76bb7a02",
+   "vertices": 2326,
+   "triangles": 1566,
+   "size_mm": [
+    12,
+    0.4,
+    12
+   ]
+  },
+  "MTR-004": {
+   "shape": "c223f5c8ead1e562",
+   "poses": "ef458743639c74e8",
+   "spin": "f6922a9541ed4a9d",
+   "other": "98ef7c7e854ffceb",
+   "vertices": 2600,
+   "triangles": 2588,
+   "size_mm": [
+    1.1,
+    31.35,
+    1.1
+   ]
+  },
+  "MTR-005": {
+   "shape": "3d3b16b521a3394f",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "064e9665ff6eacd1",
+   "vertices": 1512,
+   "triangles": 1920,
+   "size_mm": [
+    3.8,
+    3.3,
+    3.8
+   ]
+  },
+  "MTR-006": {
+   "shape": "b7fb526daf10fd7e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c28097bdbb0699e6",
+   "vertices": 616,
+   "triangles": 540,
+   "size_mm": [
+    17.4,
+    31.6,
+    12.95
+   ]
+  },
+  "MTR-010": {
+   "shape": "5db3ea8c6f55a6da",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "02601050afc73bc4",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    8.24,
+    20.62,
+    8.24
+   ]
+  },
+  "MTR-011": {
+   "shape": "57157c8d5b8f7356",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "53e4082cf1e19c4f",
+   "vertices": 1778,
+   "triangles": 1536,
+   "size_mm": [
+    3.54,
+    2.35,
+    3.54
+   ]
+  },
+  "MTR-012": {
+   "shape": "deef02e88162237c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5d0fe2b8830821b3",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    3.44,
+    1.9,
+    3.44
+   ]
+  },
+  "MTR-013": {
+   "shape": "b3a1185ee9d50a41",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "407c6eeb14e4c1a7",
+   "vertices": 1540,
+   "triangles": 1536,
+   "size_mm": [
+    4.9,
+    24.78,
+    4.9
+   ]
+  },
+  "MTR-020": {
+   "shape": "7a35acd09714e980",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "2f7302965bef67b9",
+   "vertices": 81474,
+   "triangles": 155136,
+   "size_mm": [
+    9.436,
+    22,
+    9.436
+   ]
+  },
+  "MTR-021": {
+   "shape": "6d3dc3995c960fd1",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "4af6e421903a1fd3",
+   "vertices": 2346,
+   "triangles": 2342,
+   "size_mm": [
+    8.64,
+    0.8,
+    8.64
+   ]
+  },
+  "MTR-022": {
+   "shape": "9aa58b6aa106a355",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "1b20bfe21075586a",
+   "vertices": 1830,
+   "triangles": 1536,
+   "size_mm": [
+    4,
+    0.88,
+    4
+   ]
+  },
+  "MTR-023": {
+   "shape": "8b2d8a23ed1b9e0d",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "70b699bb62a7286d",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    4.6,
+    1.98,
+    4.6
+   ]
+  },
+  "MTR-024": {
+   "shape": "6f209585746a58f0",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "9ba6144ab87133f8",
+   "vertices": 2454,
+   "triangles": 1918,
+   "size_mm": [
+    2.34,
+    6.08,
+    2.34
+   ]
+  },
+  "MTR-025": {
+   "shape": "7490ea97c6a87586",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "3911e9e2f3715263",
+   "vertices": 328,
+   "triangles": 324,
+   "size_mm": [
+    0.694,
+    3.45,
+    0.88
+   ]
+  },
+  "MTR-026": {
+   "shape": "55ff1c85f978a375",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "9bf92345b9a4ca1d",
+   "vertices": 336,
+   "triangles": 324,
+   "size_mm": [
+    1.03,
+    3.45,
+    0.481
+   ]
+  },
+  "MTR-027": {
+   "shape": "02878fc657d771fe",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "6887ea3b162d8ac3",
+   "vertices": 328,
+   "triangles": 324,
+   "size_mm": [
+    0.313,
+    3.45,
+    1.083
+   ]
+  },
+  "MTR-028": {
+   "shape": "b79297e0898164cc",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "b0f6869a8f9a829f",
+   "vertices": 336,
+   "triangles": 324,
+   "size_mm": [
+    1.03,
+    3.45,
+    0.481
+   ]
+  },
+  "MTR-029": {
+   "shape": "a2370791d27e88ee",
+   "poses": "ef458743639c74e8",
+   "spin": "5ac5cd66c2626b87",
+   "other": "c628a847adc0794a",
+   "vertices": 328,
+   "triangles": 324,
+   "size_mm": [
+    0.694,
+    3.45,
+    0.88
+   ]
+  },
+  "MTR-030": {
+   "shape": "99bcde4aeebbae6c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "d89437b779528221",
+   "vertices": 10992,
+   "triangles": 7460,
+   "size_mm": [
+    11.2,
+    6.5,
+    11.2
+   ]
+  },
+  "MTR-031": {
+   "shape": "b07f045b3c9f2556",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "c5d7f4e0af1a26c6",
+   "vertices": 2078,
+   "triangles": 1020,
+   "size_mm": [
+    2.319,
+    2.25,
+    1.58
+   ]
+  },
+  "MTR-032": {
+   "shape": "b0415ac399573320",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "dfeed0f07e1af762",
+   "vertices": 2080,
+   "triangles": 1024,
+   "size_mm": [
+    2.319,
+    2.25,
+    1.58
+   ]
+  },
+  "MTR-033": {
+   "shape": "c3209416e69753f9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "54d598ec7659c19a",
+   "other": "366689f640ad6bde",
+   "vertices": 4484,
+   "triangles": 2432,
+   "size_mm": [
+    11.1,
+    1.02,
+    11.1
+   ]
+  },
+  "MTR-034": {
+   "shape": "cc11ee7d9c68d723",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "45dda865faca7ba6",
+   "vertices": 1044,
+   "triangles": 1042,
+   "size_mm": [
+    11.14,
+    1.83,
+    11.14
+   ]
+  },
+  "MTR-040": {
+   "shape": "54ffe1ac653e2f7a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "814f9d4764f19c43",
+   "vertices": 640,
+   "triangles": 512,
+   "size_mm": [
+    10.7,
+    0.28,
+    10.7
+   ]
+  },
+  "MTR-041": {
+   "shape": "06087212e54aa93d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "81e13b2ea8520c80",
+   "vertices": 1690,
+   "triangles": 1280,
+   "size_mm": [
+    3.3,
+    1.28,
+    3.3
+   ]
+  },
+  "MTR-042": {
+   "shape": "4a0952a9906278f2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "49c7f232aaa3a3e3",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    11.76,
+    0.22,
+    11.76
+   ]
+  },
+  "MTR-050": {
+   "shape": "f9d63ec8b2665841",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "78433fcc69fd7af8",
+   "vertices": 1228,
+   "triangles": 816,
+   "size_mm": [
+    2.4,
+    2.55,
+    2.4
+   ]
+  },
+  "MTR-201": {
+   "shape": "621498665fa9dbe2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "289612797a0de091",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.4,
+    0.09,
+    2.4
+   ]
+  },
+  "MTR-202": {
+   "shape": "63639081c352b8b7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0190bf06c28aca5c",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.4,
+    0.09,
+    2.4
+   ]
+  },
+  "MTR-203": {
+   "shape": "57c5e9b174480faa",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "2cc479c6a611b3be",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.5,
+    0.1,
+    2.5
+   ]
+  },
+  "MTR-204": {
+   "shape": "6ccadeab29c6b969",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c57b72dbc3f20214",
+   "vertices": 516,
+   "triangles": 512,
+   "size_mm": [
+    1.8,
+    0.15,
+    1.8
+   ]
+  },
+  "PRX-001": {
+   "shape": "c5ea042b0ec0f199",
+   "poses": "2227cc8c9ac66158",
+   "spin": "d2d9efe497c83adb",
+   "other": "6354cc50f1cc4192",
+   "vertices": 288,
+   "triangles": 188,
+   "size_mm": [
+    1.81,
+    1.81,
+    1.1
+   ]
+  },
+  "RES-101": {
+   "shape": "96a57dc753c8f542",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "75977b0210ad4675",
+   "vertices": 4530,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-102": {
+   "shape": "27cab95ab249ea33",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "4d67775ac58003a6",
+   "vertices": 4486,
+   "triangles": 2852,
+   "size_mm": [
+    5.47,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-103": {
+   "shape": "2ab746fa6fb84a3d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "45edf19dd18ff7ab",
+   "vertices": 4756,
+   "triangles": 2852,
+   "size_mm": [
+    4.143,
+    3.744,
+    3.132
+   ]
+  },
+  "RES-104": {
+   "shape": "1a97143d8425cdc9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "d48c3d6ab3c0db34",
+   "vertices": 4552,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-105": {
+   "shape": "00f6918f9a50d365",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "bf05b5931a27f397",
+   "vertices": 4786,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-106": {
+   "shape": "9bdc5479552e87f5",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "c76331da54f83076",
+   "vertices": 4830,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.515,
+    3.132
+   ]
+  },
+  "RES-107": {
+   "shape": "a1c7591a0f531c4e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "1e40030cea977893",
+   "vertices": 4826,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-108": {
+   "shape": "7dd4a8a0a179b9d2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "0213076f87e3e8ee",
+   "vertices": 4730,
+   "triangles": 2852,
+   "size_mm": [
+    5.426,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-109": {
+   "shape": "958f2c275827cfea",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "7d3fdb7d0ccf4130",
+   "vertices": 4760,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-110": {
+   "shape": "64608ee8bbcb34c0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "d1f933f5c1f0b31f",
+   "vertices": 4818,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-111": {
+   "shape": "2119c4c5764f144e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "a48d7f7c4dac3c9f",
+   "vertices": 4738,
+   "triangles": 2852,
+   "size_mm": [
+    5.515,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-112": {
+   "shape": "58640c7ee4d5b1b2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "b4d46bf6a0d6ff58",
+   "vertices": 4804,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.515,
+    3.132
+   ]
+  },
+  "RES-113": {
+   "shape": "0b1bcbe6c0c3baa8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "7f4180bb3bfb909b",
+   "vertices": 4860,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.515,
+    3.132
+   ]
+  },
+  "RES-114": {
+   "shape": "4a9ddb517d1bfb83",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "b6b60f7d5fedd513",
+   "vertices": 4638,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-201": {
+   "shape": "6640b39ae80da16d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "ce5b1524379222a1",
+   "vertices": 4658,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.426,
+    3.132
+   ]
+  },
+  "RES-202": {
+   "shape": "4d3c3eedbf05c193",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "2830e73e6f3b7abc",
+   "vertices": 4740,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.426,
+    3.132
+   ]
+  },
+  "RES-203": {
+   "shape": "85fd1e169d3b1103",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "1a69151f805ad45d",
+   "vertices": 4638,
+   "triangles": 2852,
+   "size_mm": [
+    4.541,
+    3.39,
+    3.132
+   ]
+  },
+  "RES-204": {
+   "shape": "848d63f6e6e66a75",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "501e14af462b35b1",
+   "vertices": 4574,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.47,
+    3.132
+   ]
+  },
+  "RES-205": {
+   "shape": "6bf810548ab28348",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "373a5679bc8767b6",
+   "vertices": 4712,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-206": {
+   "shape": "879eaee875082209",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "14f78c1c5dc27b36",
+   "vertices": 4870,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-207": {
+   "shape": "a5fcbfd5343e9ee2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "f4f54b02bb1e30eb",
+   "vertices": 4836,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-208": {
+   "shape": "1406b167a5f3bdc7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "fcfd36b292d767f3",
+   "vertices": 4812,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.426,
+    3.132
+   ]
+  },
+  "RES-209": {
+   "shape": "2af937731dfb1d94",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "c36d26d460884bbe",
+   "vertices": 4730,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-210": {
+   "shape": "2d229cba9d616696",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "fa589d6abdc08a3a",
+   "vertices": 4778,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.382,
+    3.132
+   ]
+  },
+  "RES-211": {
+   "shape": "68e76909a4a91aa6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "564459a13dfb1130",
+   "vertices": 4750,
+   "triangles": 2852,
+   "size_mm": [
+    5.515,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-212": {
+   "shape": "c9188d252a084924",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "d52db33ce9944ca3",
+   "vertices": 4790,
+   "triangles": 2852,
+   "size_mm": [
+    5.382,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-213": {
+   "shape": "669ddbed7f0c57fa",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "70aa4352be52a0f0",
+   "vertices": 4722,
+   "triangles": 2852,
+   "size_mm": [
+    5.338,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-214": {
+   "shape": "b9d782a50989d2ab",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "af2079f2a4527d22",
+   "vertices": 4818,
+   "triangles": 2852,
+   "size_mm": [
+    5.293,
+    1.464,
+    3.132
+   ]
+  },
+  "RES-301": {
+   "shape": "4d813ad08b382d43",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "07a6d95043686dca",
+   "other": "c500fcfc04d793b0",
+   "vertices": 4682,
+   "triangles": 2852,
+   "size_mm": [
+    1.464,
+    5.426,
+    3.132
+   ]
+  },
+  "RES-601": {
+   "shape": "e9d05037aa2afe3f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "240cc672aed1bb38",
+   "vertices": 1896,
+   "triangles": 2908,
+   "size_mm": [
+    1.46,
+    3.109,
+    6.497
+   ]
+  },
+  "RES-602": {
+   "shape": "3cebccae9bcb2067",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "0a578f3b723e0ad2",
+   "vertices": 1880,
+   "triangles": 2892,
+   "size_mm": [
+    3.361,
+    1.46,
+    6.611
+   ]
+  },
+  "RES-603": {
+   "shape": "abe9c8692fa47527",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "50d21fce4cbe2403",
+   "vertices": 1904,
+   "triangles": 2924,
+   "size_mm": [
+    4.455,
+    1.46,
+    7.158
+   ]
+  },
+  "RES-604": {
+   "shape": "87695bdd74ae89b0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "437eb629608b9981",
+   "vertices": 1892,
+   "triangles": 2904,
+   "size_mm": [
+    3.235,
+    1.46,
+    6.55
+   ]
+  },
+  "RES-605": {
+   "shape": "f2f44bcbf3c2bed2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "aefdced1b5acd529",
+   "vertices": 1896,
+   "triangles": 2908,
+   "size_mm": [
+    1.972,
+    2.898,
+    6.508
+   ]
+  },
+  "RES-606": {
+   "shape": "2fe1951dc50c44ae",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "f646a533f336da0f",
+   "vertices": 1768,
+   "triangles": 2684,
+   "size_mm": [
+    2.099,
+    2.688,
+    5.698
+   ]
+  },
+  "RES-607": {
+   "shape": "86b98c24de214366",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "b89aab92eeb3f464",
+   "vertices": 1753,
+   "triangles": 2674,
+   "size_mm": [
+    6.23,
+    1.459,
+    3.01
+   ]
+  },
+  "RES-608": {
+   "shape": "b5b760e05b4c2064",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "733385c85cd1c6da",
+   "vertices": 1755,
+   "triangles": 2676,
+   "size_mm": [
+    1.46,
+    6.188,
+    3.01
+   ]
+  },
+  "RES-609": {
+   "shape": "45288a6fcb11c9d8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "11eea9316b5bd1bb",
+   "vertices": 1755,
+   "triangles": 2676,
+   "size_mm": [
+    6.188,
+    1.46,
+    3.01
+   ]
+  },
+  "RES-610": {
+   "shape": "d1c2a98fcc16f82f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "efd0b4c7c967e329",
+   "vertices": 1752,
+   "triangles": 2672,
+   "size_mm": [
+    1.46,
+    6.146,
+    3.01
+   ]
+  },
+  "RES-611": {
+   "shape": "efdffd8b49c2ae0f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "aa1b1e9b00c13d3a",
+   "vertices": 4058,
+   "triangles": 2102,
+   "size_mm": [
+    4.508,
+    8.672,
+    1.97
+   ]
+  },
+  "RES-612": {
+   "shape": "3b5a0eed5ad61952",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "7cfec637de23648d",
+   "vertices": 3918,
+   "triangles": 2020,
+   "size_mm": [
+    7.177,
+    5.769,
+    1.968
+   ]
+  },
+  "RES-801": {
+   "shape": "f70bdef8faa1ef42",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "e8592d55eb3b6c07",
+   "vertices": 1552,
+   "triangles": 2204,
+   "size_mm": [
+    4.705,
+    1.49,
+    3.13
+   ]
+  },
+  "RES-802": {
+   "shape": "6e65e5cb52cee592",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "b116d9eecb0bd123",
+   "vertices": 1736,
+   "triangles": 2364,
+   "size_mm": [
+    3.524,
+    1.46,
+    6.692
+   ]
+  },
+  "RES-803": {
+   "shape": "13f8ed72ffcd08a6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "b6a040c55b5f86ac",
+   "vertices": 1632,
+   "triangles": 2204,
+   "size_mm": [
+    4.521,
+    1.847,
+    3.129
+   ]
+  },
+  "RES-804": {
+   "shape": "ae2e2389eebc9a56",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "b60fdc0b5cdde195",
+   "vertices": 1736,
+   "triangles": 2364,
+   "size_mm": [
+    3.524,
+    1.46,
+    6.692
+   ]
+  },
+  "RES-810": {
+   "shape": "5753556b277373f4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "d3a26c4fb624c039",
+   "vertices": 1656,
+   "triangles": 2204,
+   "size_mm": [
+    1.464,
+    5.391,
+    3.13
+   ]
+  },
+  "RES-811": {
+   "shape": "5d9b2ffcd82e61dc",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "61f91882166a6a66",
+   "vertices": 1656,
+   "triangles": 2204,
+   "size_mm": [
+    1.464,
+    6.588,
+    3.13
+   ]
+  },
+  "RES-812": {
+   "shape": "62804e000aaea54e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "0f9661c6d2ea7a9f",
+   "vertices": 1552,
+   "triangles": 2204,
+   "size_mm": [
+    4.442,
+    3.281,
+    3.13
+   ]
+  },
+  "RES-814": {
+   "shape": "b4e98c42302dfd31",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "3cc210bbe9baeb19",
+   "other": "cdc5468a1cae47ad",
+   "vertices": 1736,
+   "triangles": 2364,
+   "size_mm": [
+    3.701,
+    1.46,
+    6.78
+   ]
+  },
+  "RES-815": {
+   "shape": "32dbb7f26ba7eae1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "1a2ff5edf1e79fd3",
+   "vertices": 1732,
+   "triangles": 2364,
+   "size_mm": [
+    1.574,
+    3.486,
+    6.714
+   ]
+  },
+  "RLC-001": {
+   "shape": "2f90b04e39d8c4c9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d2126e7893dcd064",
+   "vertices": 1004,
+   "triangles": 1144,
+   "size_mm": [
+    7.463,
+    11.297,
+    5.97
+   ]
+  },
+  "RLC-010": {
+   "shape": "a7cdc344360ceb05",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "1ede0657a0fdecff",
+   "vertices": 768,
+   "triangles": 768,
+   "size_mm": [
+    3.2,
+    3.2,
+    0.13
+   ]
+  },
+  "RLC-020": {
+   "shape": "4b1938f3b49828c3",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "04db8768f43c5990",
+   "vertices": 1190,
+   "triangles": 1172,
+   "size_mm": [
+    3.414,
+    4,
+    0.4
+   ]
+  },
+  "RLC-030": {
+   "shape": "4dcd2db0f98cbc84",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "95b0c128d303a479",
+   "vertices": 1536,
+   "triangles": 1532,
+   "size_mm": [
+    2.5,
+    2.5,
+    8.3
+   ]
+  },
+  "SB-001": {
+   "shape": "cf77ca40e5f437a8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "b225a766468b2ade",
+   "other": "9dcd0294dad8238c",
+   "vertices": 145079,
+   "triangles": 125068,
+   "size_mm": [
+    44.698,
+    31.44,
+    1.26
+   ]
+  },
+  "SB-101": {
+   "shape": "a7085264a67fd312",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "f95b970813579e4c",
+   "vertices": 14525,
+   "triangles": 29046,
+   "size_mm": [
+    39.095,
+    9.644,
+    2.15
+   ]
+  },
+  "SB-102": {
+   "shape": "ac01a67f41f1ae96",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8470ab6ddeee6da6",
+   "vertices": 7241,
+   "triangles": 14478,
+   "size_mm": [
+    9.873,
+    17.326,
+    2.15
+   ]
+  },
+  "SB-103": {
+   "shape": "e1e5c44e73fccc6b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "053e370fc38b68b0",
+   "vertices": 7082,
+   "triangles": 14160,
+   "size_mm": [
+    17.436,
+    9.233,
+    2.15
+   ]
+  },
+  "SB-111": {
+   "shape": "52f1b8a6d3991d56",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "3a9d24b00c133157",
+   "vertices": 410,
+   "triangles": 292,
+   "size_mm": [
+    7.498,
+    10.501,
+    0.15
+   ]
+  },
+  "SB-112": {
+   "shape": "b1001dbbc195d484",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "177d03fba55ec151",
+   "vertices": 712,
+   "triangles": 532,
+   "size_mm": [
+    11.665,
+    8.296,
+    0.15
+   ]
+  },
+  "SBT-010": {
+   "shape": "b0f6f751909d35cf",
+   "poses": "68becaf046738808",
+   "spin": "34e88fe9323c5187",
+   "other": "dd5252eadb8fe284",
+   "vertices": 5388,
+   "triangles": 10772,
+   "size_mm": [
+    3.4,
+    3.4,
+    4.03
+   ]
+  },
+  "SCR-F01": {
+   "shape": "a9036eaa6bf16a3e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "36ce563dc3c94982",
+   "vertices": 1803,
+   "triangles": 1010,
+   "size_mm": [
+    2.04,
+    2.04,
+    3.396
+   ]
+  },
+  "SCR-F02": {
+   "shape": "df63816c5e470053",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0c35728535efe094",
+   "vertices": 1803,
+   "triangles": 1010,
+   "size_mm": [
+    2.04,
+    2.04,
+    2.896
+   ]
+  },
+  "SCR-R01": {
+   "shape": "6e7b3e5c7f1e1f2f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "a76460108114206f",
+   "vertices": 1806,
+   "triangles": 1008,
+   "size_mm": [
+    2.04,
+    2.04,
+    2.896
+   ]
+  },
+  "SCR-R02": {
+   "shape": "fdc9a9ae8be2ba68",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "a425222905026633",
+   "vertices": 1803,
+   "triangles": 1010,
+   "size_mm": [
+    2.04,
+    2.04,
+    2.896
+   ]
+  },
+  "SCR-T01": {
+   "shape": "eb2ba0a0e8963184",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "2b3e91e17604fa0f",
+   "vertices": 2890,
+   "triangles": 1584,
+   "size_mm": [
+    3.89,
+    2.5,
+    2.5
+   ]
+  },
+  "SCR-T02": {
+   "shape": "0ec648d07a3c0f24",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e36c0bea8b64d47a",
+   "vertices": 1098,
+   "triangles": 1584,
+   "size_mm": [
+    1.996,
+    2.5,
+    2.5
+   ]
+  },
+  "SCR-T03": {
+   "shape": "59fe13e44bdcf16f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d65b183986404f9c",
+   "vertices": 1098,
+   "triangles": 1584,
+   "size_mm": [
+    1.996,
+    2.5,
+    2.5
+   ]
+  },
+  "SPL-001": {
+   "shape": "e5f52547430d3ad0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "0af94f5b3ac1a5d2",
+   "vertices": 2214,
+   "triangles": 1400,
+   "size_mm": [
+    12.05,
+    2.9,
+    1.901
+   ]
+  },
+  "SPL-002": {
+   "shape": "36a546d403c177fe",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "f5aaa218f1ad7cea",
+   "vertices": 730,
+   "triangles": 484,
+   "size_mm": [
+    13.4,
+    2.3,
+    1.401
+   ]
+  },
+  "SPL-010": {
+   "shape": "9788dbc7214d062b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "405fc4d9a99e2d56",
+   "vertices": 1116,
+   "triangles": 740,
+   "size_mm": [
+    2.615,
+    3,
+    0.2
+   ]
+  },
+  "SPL-020": {
+   "shape": "ee8f4ecbe3409c25",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "19f3b8d7c2ba45aa",
+   "vertices": 2304,
+   "triangles": 1532,
+   "size_mm": [
+    2.4,
+    2.4,
+    3.15
+   ]
+  },
+  "SRL-021": {
+   "shape": "196ad37ad0fb2793",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "b356874a41baf00c",
+   "vertices": 2048,
+   "triangles": 2048,
+   "size_mm": [
+    6.2,
+    6.2,
+    1.94
+   ]
+  },
+  "STF-010": {
+   "shape": "895a3c1e464c1b53",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "a0c3bb6699517634",
+   "vertices": 10458,
+   "triangles": 5928,
+   "size_mm": [
+    9.9,
+    12.53,
+    5.5
+   ]
+  },
+  "STF-011": {
+   "shape": "3bcf301f7c9155ad",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "fe2b9373ef81b4e5",
+   "vertices": 1478,
+   "triangles": 1108,
+   "size_mm": [
+    7.747,
+    7.046,
+    3.31
+   ]
+  },
+  "STF-012": {
+   "shape": "80003135b682c490",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "7fe764b61a677f69",
+   "vertices": 1789,
+   "triangles": 2916,
+   "size_mm": [
+    3.149,
+    3.66,
+    6.13
+   ]
+  },
+  "STF-030": {
+   "shape": "918e6bf0cf7fd53e",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "3d106afee4be1b3c",
+   "vertices": 16140,
+   "triangles": 32276,
+   "size_mm": [
+    11.88,
+    6.215,
+    3.27
+   ]
+  },
+  "STF-101": {
+   "shape": "afc82f96f30f4ede",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "c18f6fde382a2cd5",
+   "vertices": 1796,
+   "triangles": 1792,
+   "size_mm": [
+    2.5,
+    2.5,
+    7.25
+   ]
+  },
+  "STF-201": {
+   "shape": "978636323ba8ba10",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "9da3c4c8b6467174",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    2.8,
+    2.8,
+    0.13
+   ]
+  },
+  "STF-251": {
+   "shape": "29be9247bedd218f",
+   "poses": "bf92026ed6ec1a36",
+   "spin": "34e88fe9323c5187",
+   "other": "718ce9170fe2a48e",
+   "vertices": 424,
+   "triangles": 412,
+   "size_mm": [
+    2.706,
+    2.8,
+    0.14
+   ]
+  },
+  "STP-001": {
+   "shape": "ad29a25742b40bc9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c6f216d24afd1210",
+   "vertices": 1233,
+   "triangles": 1414,
+   "size_mm": [
+    25.327,
+    16.273,
+    12.6
+   ]
+  },
+  "STP-002": {
+   "shape": "d5d43b28925956a8",
+   "poses": "0bec684d53895b8b",
+   "spin": "34e88fe9323c5187",
+   "other": "d3bb0d18bc5734e9",
+   "vertices": 1201,
+   "triangles": 834,
+   "size_mm": [
+    58.972,
+    22.743,
+    3.55
+   ]
+  },
+  "STP-003": {
+   "shape": "e306a7420613f1f8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "ad3d7bd545e2a9ce",
+   "vertices": 2497,
+   "triangles": 1718,
+   "size_mm": [
+    20.837,
+    13.471,
+    10.894
+   ]
+  },
+  "STP-004": {
+   "shape": "ee3fa701f293e922",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "04481b64d36a7294",
+   "vertices": 1156,
+   "triangles": 764,
+   "size_mm": [
+    4,
+    1.72,
+    4
+   ]
+  },
+  "STP-010": {
+   "shape": "435a9e5d9b9b93c6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "37adbe6f15bdbc9c",
+   "vertices": 1028,
+   "triangles": 1024,
+   "size_mm": [
+    2,
+    2,
+    4.9
+   ]
+  },
+  "STP-011": {
+   "shape": "8d525022f2f559fd",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4746e99ee30c39b8",
+   "vertices": 1028,
+   "triangles": 1024,
+   "size_mm": [
+    2,
+    2,
+    4.9
+   ]
+  },
+  "STP-012": {
+   "shape": "10eccfc3ae75886c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "9778e43cec699c58",
+   "vertices": 512,
+   "triangles": 512,
+   "size_mm": [
+    3.2,
+    3.2,
+    0.13
+   ]
+  },
+  "STP-013": {
+   "shape": "3fb83c74940e95a8",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "a1ad793c8d1fbc85",
+   "vertices": 2464,
+   "triangles": 3716,
+   "size_mm": [
+    4,
+    3.406,
+    0.4
+   ]
+  },
+  "STP-015": {
+   "shape": "6ecc14a1802cf054",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8f5c79834e1c50e7",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.4,
+    2.4,
+    2.2
+   ]
+  },
+  "STP-016": {
+   "shape": "6e678cb8f386a993",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5aa14d274097a129",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.4,
+    2.4,
+    2.6
+   ]
+  },
+  "STP-017": {
+   "shape": "7f5ebc4d9a671782",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e2683131c3ae807a",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.4,
+    2.4,
+    2.6
+   ]
+  },
+  "STP-018": {
+   "shape": "ff827a07b388f024",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "910f3d1ba96326c0",
+   "vertices": 2464,
+   "triangles": 3716,
+   "size_mm": [
+    4,
+    3.406,
+    0.4
+   ]
+  },
+  "STP-020": {
+   "shape": "894322add176f42e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "cb144a77782c653a",
+   "other": "9f8b1a25a7bb3baf",
+   "vertices": 5616,
+   "triangles": 11228,
+   "size_mm": [
+    10.639,
+    1.34,
+    1.34
+   ]
+  },
+  "STP-030": {
+   "shape": "660fc44af1f9ddc7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "bc40ba0cd6b0b0cd",
+   "vertices": 882,
+   "triangles": 890,
+   "size_mm": [
+    25.63,
+    10.645,
+    0.4
+   ]
+  },
+  "STP-031": {
+   "shape": "b8b17292d6930c0b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "b42cf76f39a8027d",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.2,
+    2.2,
+    2.5
+   ]
+  },
+  "STP-032": {
+   "shape": "fc8fcadc28c38e7d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "83c8cf2400187bc6",
+   "vertices": 586,
+   "triangles": 560,
+   "size_mm": [
+    2.2,
+    2.2,
+    2.5
+   ]
+  },
+  "STP-033": {
+   "shape": "afe3c89e0b9d046f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "11da086ea7191d19",
+   "vertices": 768,
+   "triangles": 764,
+   "size_mm": [
+    2.9,
+    2.9,
+    2.7
+   ]
+  },
+  "SVR-601": {
+   "shape": "341b16e914cae085",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "5f93b92a12714307",
+   "vertices": 2026,
+   "triangles": 1344,
+   "size_mm": [
+    6,
+    0.725,
+    6
+   ]
+  },
+  "SVR-611": {
+   "shape": "12feb31bb4f176cb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "a87cbc46d46becb5",
+   "vertices": 1080,
+   "triangles": 718,
+   "size_mm": [
+    2.84,
+    0.405,
+    3.35
+   ]
+  },
+  "SVR-612": {
+   "shape": "cc3322946a4a7458",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e1a20388be4d96ff",
+   "vertices": 1786,
+   "triangles": 1254,
+   "size_mm": [
+    1.18,
+    1.36,
+    6.04
+   ]
+  },
+  "SVR-613": {
+   "shape": "766221ee5d88b9fc",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "41dd0f8db7218445",
+   "vertices": 563,
+   "triangles": 438,
+   "size_mm": [
+    0.664,
+    0.63,
+    4.75
+   ]
+  },
+  "SVR-614": {
+   "shape": "404e491cddb397fd",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "391ca70b30a3ce8f",
+   "vertices": 553,
+   "triangles": 438,
+   "size_mm": [
+    2.2,
+    0.63,
+    3.673
+   ]
+  },
+  "SWT-001": {
+   "shape": "893aed8d2272d2c7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "232d084362c796ea",
+   "vertices": 592,
+   "triangles": 628,
+   "size_mm": [
+    7.236,
+    3,
+    3.9
+   ]
+  },
+  "SWT-002": {
+   "shape": "eb84a965018d8443",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "c35456230bde24d8",
+   "vertices": 928,
+   "triangles": 1300,
+   "size_mm": [
+    0.55,
+    9.5,
+    1.6
+   ]
+  },
+  "SWT-003": {
+   "shape": "55970e6144b054ce",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "39a67e20da9773b1",
+   "vertices": 920,
+   "triangles": 1300,
+   "size_mm": [
+    0.55,
+    8.7,
+    1.6
+   ]
+  },
+  "SWT-004": {
+   "shape": "57c5ad18a04d23ed",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "127487e1f0636ea0",
+   "vertices": 512,
+   "triangles": 508,
+   "size_mm": [
+    0.3,
+    0.8,
+    0.8
+   ]
+  },
+  "SWT-005": {
+   "shape": "53e7df81c7c8fac2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "5658af6dbd199094",
+   "vertices": 516,
+   "triangles": 508,
+   "size_mm": [
+    0.3,
+    0.8,
+    0.8
+   ]
+  },
+  "SWT-006": {
+   "shape": "6c6048454cff6a90",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "310775e712ded2e4",
+   "vertices": 587,
+   "triangles": 562,
+   "size_mm": [
+    2.4,
+    2.4,
+    3.1
+   ]
+  },
+  "SWT-007": {
+   "shape": "4fa7809632988ded",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "27ae417678c46391",
+   "vertices": 40,
+   "triangles": 28,
+   "size_mm": [
+    2.339,
+    2.952,
+    1.85
+   ]
+  },
+  "THP-601": {
+   "shape": "d5f5182e650c6eb6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "709f9e2057a8207e",
+   "vertices": 1425,
+   "triangles": 2648,
+   "size_mm": [
+    3.621,
+    1.811,
+    2.949
+   ]
+  },
+  "THR-001": {
+   "shape": "916864328ad28514",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "d41101caf8f54e64",
+   "vertices": 129725,
+   "triangles": 93000,
+   "size_mm": [
+    33.816,
+    33.53,
+    9.65
+   ]
+  },
+  "THR-002": {
+   "shape": "6291f8970561db86",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "67ff9fb399e33423",
+   "vertices": 1376,
+   "triangles": 912,
+   "size_mm": [
+    5.819,
+    8.293,
+    2.58
+   ]
+  },
+  "THR-003": {
+   "shape": "25b1272bcf6888f5",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "9ce8a980e5e350d4",
+   "vertices": 792,
+   "triangles": 524,
+   "size_mm": [
+    2.44,
+    2.44,
+    1.38
+   ]
+  },
+  "THR-010": {
+   "shape": "33fee46e5fe23f89",
+   "poses": "f56b306d701fadc9",
+   "spin": "34e88fe9323c5187",
+   "other": "d0c11a7d91ce61d0",
+   "vertices": 842,
+   "triangles": 560,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.65
+   ]
+  },
+  "THR-011": {
+   "shape": "9bdcd16572ff7b05",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "fba078121f28ad5a",
+   "vertices": 843,
+   "triangles": 562,
+   "size_mm": [
+    2.44,
+    2.44,
+    2.65
+   ]
+  },
+  "THR-020": {
+   "shape": "8f51313ac63c7991",
+   "poses": "e8e27cb3416d915b",
+   "spin": "34e88fe9323c5187",
+   "other": "0943947821adb94e",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    4,
+    4,
+    6.15
+   ]
+  },
+  "TNE-001": {
+   "shape": "970a3d4d911851a0",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "9b663bfcb778c0d0",
+   "vertices": 168,
+   "triangles": 124,
+   "size_mm": [
+    6.5,
+    9.9,
+    6.312
+   ]
+  },
+  "TNE-002": {
+   "shape": "a029ee9a7d44cb65",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "6099acaee24a1c57",
+   "vertices": 72,
+   "triangles": 52,
+   "size_mm": [
+    6.5,
+    9.9,
+    0.25
+   ]
+  },
+  "TNE-010": {
+   "shape": "aad969759873b37c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "b9235ebb02b04b34",
+   "vertices": 384,
+   "triangles": 256,
+   "size_mm": [
+    5.1,
+    6.65,
+    3.25
+   ],
+   "control": "4e6c723534c68390"
+  },
+  "TNE-021": {
+   "shape": "86e0770c65ff2cf1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "b118da6df523ca63",
+   "vertices": 24,
+   "triangles": 12,
+   "size_mm": [
+    3.848,
+    0.5,
+    0.15
+   ],
+   "control": "4e6c723534c68390"
+  },
+  "TNE-022": {
+   "shape": "86e0770c65ff2cf1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "fead0761acff88db",
+   "vertices": 24,
+   "triangles": 12,
+   "size_mm": [
+    3.715,
+    0.5,
+    0.15
+   ],
+   "control": "4e6c723534c68390"
+  },
+  "TNE-031": {
+   "shape": "c417b8eb7d405e60",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c3098af3f5c2b73d",
+   "vertices": 48,
+   "triangles": 28,
+   "size_mm": [
+    0.68,
+    0.6,
+    3.44
+   ]
+  },
+  "TNE-032": {
+   "shape": "c417b8eb7d405e60",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e298c91f2b8a1c1f",
+   "vertices": 48,
+   "triangles": 28,
+   "size_mm": [
+    0.68,
+    0.6,
+    3.44
+   ]
+  },
+  "TNE-033": {
+   "shape": "6f36d0247bffb5bf",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "64f2ac9a0238794b",
+   "vertices": 48,
+   "triangles": 28,
+   "size_mm": [
+    0.68,
+    0.6,
+    3.44
+   ]
+  },
+  "TNE-034": {
+   "shape": "c417b8eb7d405e60",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8695bb89f5171552",
+   "vertices": 48,
+   "triangles": 28,
+   "size_mm": [
+    0.68,
+    0.6,
+    3.44
+   ]
+  },
+  "TNE-040": {
+   "shape": "e40c3cd15d39550d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "d2020ad70b455dab",
+   "other": "d2b11f30c10912f2",
+   "vertices": 40,
+   "triangles": 20,
+   "size_mm": [
+    0.636,
+    2.282,
+    0.75
+   ]
+  },
+  "TR-101": {
+   "shape": "e152493958cec029",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "fa17432f63e87349",
+   "other": "79b18b32e068850b",
+   "vertices": 5880,
+   "triangles": 3184,
+   "size_mm": [
+    4.8,
+    4.8,
+    7.05
+   ]
+  },
+  "TR-201": {
+   "shape": "6f90f192c1f99c11",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "fa17432f63e87349",
+   "other": "acea2a3f21d660bf",
+   "vertices": 5880,
+   "triangles": 3184,
+   "size_mm": [
+    4.8,
+    4.8,
+    7.05
+   ]
+  },
+  "TR-601": {
+   "shape": "e521ffa5182e4094",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "496d177af5b9aa9b",
+   "vertices": 1491,
+   "triangles": 2412,
+   "size_mm": [
+    5.4,
+    4.272,
+    7.15
+   ]
+  },
+  "TR-602": {
+   "shape": "5b5449ba6c53f7bb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "e15a9f6da24a44af",
+   "vertices": 1514,
+   "triangles": 2428,
+   "size_mm": [
+    5.4,
+    4.482,
+    7.15
+   ]
+  },
+  "TR-603": {
+   "shape": "da2de1ec135cc8ba",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "4bf09116f8b10193",
+   "vertices": 1479,
+   "triangles": 2402,
+   "size_mm": [
+    5,
+    4.366,
+    6.75
+   ]
+  },
+  "VOL-001": {
+   "shape": "b19009c37c17a2ff",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "eafe200fb39ace0c",
+   "other": "a72c8b578e887c95",
+   "vertices": 7830,
+   "triangles": 10580,
+   "size_mm": [
+    1.105,
+    45.577,
+    10.452
+   ]
+  },
+  "VOL-010": {
+   "shape": "5d11e58a234674c4",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "a6409d1506358ecd",
+   "vertices": 2010,
+   "triangles": 1340,
+   "size_mm": [
+    7.75,
+    49.768,
+    0.612
+   ]
+  },
+  "VOL-012": {
+   "shape": "adf537070a596d6d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "431b1f656aafe086",
+   "vertices": 1126,
+   "triangles": 630,
+   "size_mm": [
+    9.176,
+    18.212,
+    1.998
+   ],
+   "control": "50b6261b21ceec29"
+  },
+  "VOL-013": {
+   "shape": "e5b750fc7d41bbb6",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "bd20b3b81c9cf28b",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-014": {
+   "shape": "88ff8b808cc6634a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "f69045d3ab8ca16e",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-015": {
+   "shape": "24f09ac4129b222f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4a5e0ea42af522ac",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-016": {
+   "shape": "cf89f87f79900bfd",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4cedd97441783497",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.381
+   ]
+  },
+  "VOL-017": {
+   "shape": "76f52223634109c2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4ca2b2c76accc070",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.211
+   ]
+  },
+  "VOL-018": {
+   "shape": "24a1a58799e474aa",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "79736dfd19d0d5b0",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.177
+   ]
+  },
+  "VOL-019": {
+   "shape": "dd200a7914caf0ae",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "8afc5499b9a7908a",
+   "vertices": 170,
+   "triangles": 136,
+   "size_mm": [
+    3,
+    2.4,
+    0.783
+   ],
+   "control": "50b6261b21ceec29"
+  },
+  "VOL-020": {
+   "shape": "a08ba3a9686ad4f5",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bd5ded21cdeef867",
+   "other": "4f49876d1b750958",
+   "vertices": 2010,
+   "triangles": 1340,
+   "size_mm": [
+    7.75,
+    49.768,
+    0.613
+   ]
+  },
+  "VOL-022": {
+   "shape": "fce9a1bde64df252",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "da2702a492245fa6",
+   "vertices": 1146,
+   "triangles": 630,
+   "size_mm": [
+    9.176,
+    18.212,
+    1.998
+   ],
+   "control": "40f9296021886075"
+  },
+  "VOL-023": {
+   "shape": "e3e1fc4d17906b7e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "ad31faf7f3b3de51",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-024": {
+   "shape": "bd6d8c92ba5b9eee",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c355a1c6ad059b60",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-025": {
+   "shape": "88538416b10a0ce2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "24f8a474a589e29e",
+   "vertices": 1280,
+   "triangles": 1536,
+   "size_mm": [
+    2.204,
+    2.204,
+    1.1
+   ]
+  },
+  "VOL-026": {
+   "shape": "920e20be303e7e21",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "d58d64a76b570a0d",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.867
+   ]
+  },
+  "VOL-027": {
+   "shape": "78af5a33fcddd1e9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "73ef080e29b8b72b",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.732
+   ]
+  },
+  "VOL-028": {
+   "shape": "0d1b3a281753c95b",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "4f25c64ebfae6e07",
+   "vertices": 530,
+   "triangles": 350,
+   "size_mm": [
+    6.206,
+    1.756,
+    1.732
+   ]
+  },
+  "VOL-029": {
+   "shape": "dcf6be432146e949",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "e9e7393fdfa9a586",
+   "vertices": 200,
+   "triangles": 130,
+   "size_mm": [
+    3,
+    2.4,
+    0.783
+   ],
+   "control": "40f9296021886075"
+  },
+  "VOL-030": {
+   "shape": "175ae391660b36aa",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "c2b11721cfeeec74",
+   "vertices": 879,
+   "triangles": 612,
+   "size_mm": [
+    4.651,
+    5.474,
+    7.82
+   ]
+  },
+  "VOL-041": {
+   "shape": "9d5502f9260e2b6c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "13c19db379117a90",
+   "vertices": 776,
+   "triangles": 764,
+   "size_mm": [
+    1.52,
+    1.24,
+    1.24
+   ],
+   "control": "50b6261b21ceec29"
+  },
+  "VOL-051": {
+   "shape": "3661962a1c335b1f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "82c345aded63f3b8",
+   "vertices": 776,
+   "triangles": 764,
+   "size_mm": [
+    1.52,
+    1.24,
+    1.24
+   ],
+   "control": "40f9296021886075"
+  },
+  "VOL-060": {
+   "shape": "a91932574c3b4077",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "034ca5277690a594",
+   "vertices": 39570,
+   "triangles": 78492,
+   "size_mm": [
+    3.5,
+    3.5,
+    11.3
+   ]
+  },
+  "VOL-061": {
+   "shape": "219e268e2d5a797f",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "34e88fe9323c5187",
+   "other": "00cf7e351e7f6920",
+   "vertices": 24078,
+   "triangles": 12500,
+   "size_mm": [
+    4.619,
+    4,
+    1.6
+   ]
+  },
+  "WIR-611": {
+   "shape": "8e239584ca43bca7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "38e15ee918c16b27",
+   "vertices": 17640,
+   "triangles": 35084,
+   "size_mm": [
+    12.717,
+    13.184,
+    7.373
+   ]
+  },
+  "WIR-612": {
+   "shape": "6a82284a5656f262",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "ba8ff38f68fd28a1",
+   "vertices": 20784,
+   "triangles": 41372,
+   "size_mm": [
+    12.053,
+    17.149,
+    8.308
+   ]
+  },
+  "WIR-901": {
+   "shape": "2fce57c6b9d40577",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "97905a5e1be0dee0",
+   "vertices": 1796,
+   "triangles": 3308,
+   "size_mm": [
+    3.737,
+    4.965,
+    3.061
+   ]
+  },
+  "WIR-902": {
+   "shape": "b50600ee5521c928",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "01e25d615c4397b9",
+   "vertices": 1488,
+   "triangles": 2780,
+   "size_mm": [
+    4.469,
+    3.39,
+    3.294
+   ]
+  },
+  "WIR-MIC-01": {
+   "shape": "7df40bf6d5b96416",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "4e742a96794bd071",
+   "vertices": 5180,
+   "triangles": 9884,
+   "size_mm": [
+    17.371,
+    6.259,
+    3.124
+   ]
+  },
+  "WIR-MIC-02": {
+   "shape": "0feb124d8427dfa7",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "4c3080d2526c6b3d",
+   "vertices": 5976,
+   "triangles": 11756,
+   "size_mm": [
+    21.081,
+    5.442,
+    5.976
+   ]
+  },
+  "WIR-MIC-03": {
+   "shape": "355d412246e7dda3",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "60523949fd1a5923",
+   "vertices": 5544,
+   "triangles": 10892,
+   "size_mm": [
+    20.079,
+    6.448,
+    3.756
+   ]
+  },
+  "WIR-MTR-01": {
+   "shape": "ac0009a6cd667d7a",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "5687d1cc4eff82e9",
+   "vertices": 13632,
+   "triangles": 27116,
+   "size_mm": [
+    20.735,
+    15.903,
+    7.754
+   ]
+  },
+  "WIR-MTR-02": {
+   "shape": "1492e631e6d61b54",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "7d0486b052eef413",
+   "vertices": 15408,
+   "triangles": 30668,
+   "size_mm": [
+    18.128,
+    19.864,
+    8.907
+   ]
+  },
+  "WIR-MTR-03": {
+   "shape": "9a9002d3fa0a9274",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "089820bbf048b30d",
+   "vertices": 29704,
+   "triangles": 59084,
+   "size_mm": [
+    54.49,
+    28.716,
+    7.571
+   ]
+  },
+  "WIR-MTR-04": {
+   "shape": "8bd7589110c90c0c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "3241af5d2b4b76d4",
+   "vertices": 31240,
+   "triangles": 62156,
+   "size_mm": [
+    52.392,
+    27.992,
+    10.363
+   ]
+  },
+  "WIR-OUT-01": {
+   "shape": "7cd2d6731a609e65",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "7c02c2ec7c707bd5",
+   "vertices": 49632,
+   "triangles": 99068,
+   "size_mm": [
+    32.131,
+    95.213,
+    24.503
+   ]
+  },
+  "WIR-OUT-02": {
+   "shape": "41e7f463b1a619bb",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "31a0fbb84e1b36bd",
+   "vertices": 46272,
+   "triangles": 92348,
+   "size_mm": [
+    32.684,
+    75.055,
+    25.412
+   ]
+  },
+  "WIR-PWR-01": {
+   "shape": "2d6567f559bfbbd9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "e15fbad05e2347f7",
+   "vertices": 22248,
+   "triangles": 44300,
+   "size_mm": [
+    58.815,
+    31.045,
+    4.299
+   ]
+  },
+  "WIR-PWR-02": {
+   "shape": "cd4f6a29b8aea5d9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "f62dc2d445128e39",
+   "vertices": 34672,
+   "triangles": 69164,
+   "size_mm": [
+    39.692,
+    93.583,
+    5.458
+   ]
+  },
+  "WIR-PWR-03": {
+   "shape": "fa1e5d42a68099e1",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "1edbd63ffdfb222f",
+   "vertices": 8844,
+   "triangles": 17228,
+   "size_mm": [
+    17.099,
+    6.06,
+    10.171
+   ]
+  },
+  "WIR-PWR-04": {
+   "shape": "de0709276b37c7e2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "3647701461ca30f0",
+   "vertices": 11064,
+   "triangles": 21980,
+   "size_mm": [
+    19.017,
+    10.277,
+    8.335
+   ]
+  },
+  "WIR-PWR-05": {
+   "shape": "5a888888a910893e",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "bba08bc0a7f48e57",
+   "vertices": 28872,
+   "triangles": 57548,
+   "size_mm": [
+    77.275,
+    18.95,
+    9.641
+   ]
+  },
+  "WIR-PWR-06": {
+   "shape": "6e3557e8d679a885",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "a53ed719bad9582f",
+   "vertices": 46224,
+   "triangles": 92348,
+   "size_mm": [
+    14.602,
+    117.531,
+    19.702
+   ]
+  },
+  "WIR-PWR-07": {
+   "shape": "4ddb03c0e957db84",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "50dc940f2b2aed61",
+   "vertices": 22152,
+   "triangles": 44156,
+   "size_mm": [
+    40.022,
+    24.891,
+    18.011
+   ]
+  },
+  "WIR-PWR-08": {
+   "shape": "19da9c4dc5050ad2",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "1ac72d016b145a2d",
+   "vertices": 19248,
+   "triangles": 38300,
+   "size_mm": [
+    16.636,
+    56.43,
+    5.377
+   ]
+  },
+  "WIR-PWR-09": {
+   "shape": "75f5db0ef524f064",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "438b8d81e87102ce",
+   "other": "4014ae70d5af028f",
+   "vertices": 24648,
+   "triangles": 49100,
+   "size_mm": [
+    60.45,
+    20,
+    3.545
+   ]
+  },
+  "exterior early EXT-010": {
+   "shape": "1986c3b80aaac931",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "fa17432f63e87349",
+   "other": "7bf8364ba2ba71d7",
+   "vertices": 300132,
+   "triangles": 454527,
+   "size_mm": [
+    72.8,
+    124.6,
+    24.524
+   ]
+  },
+  "exterior intermediate EXT-020": {
+   "shape": "0786f34b4fd7d78c",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "b5e080d8b69e3d6e",
+   "vertices": 8000,
+   "triangles": 8194,
+   "size_mm": [
+    72.794,
+    20.521,
+    29.7
+   ]
+  },
+  "exterior early EXT-020": {
+   "shape": "cc07ef4ccca94706",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "eafe200fb39ace0c",
+   "other": "0f0ce4a6d6bd32b8",
+   "vertices": 8402,
+   "triangles": 8207,
+   "size_mm": [
+    72.794,
+    20.521,
+    29.7
+   ]
+  },
+  "exterior intermediate+early EXT-030": {
+   "shape": "fd2a4baf0fecafb7",
+   "poses": "26474a2372a304f1",
+   "spin": "fa17432f63e87349",
+   "other": "e0c5cad66b336129",
+   "vertices": 8727,
+   "triangles": 5491,
+   "size_mm": [
+    72.784,
+    112.6,
+    6.741
+   ]
+  },
+  "exterior intermediate GRL-001": {
+   "shape": "3e699a91ca10b73d",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "bb24272533e50665",
+   "other": "c0cf455740709f6f",
+   "vertices": 56418,
+   "triangles": 73650,
+   "size_mm": [
+    23.602,
+    133.3,
+    29.95
+   ]
+  },
+  "exterior early GRL-001": {
+   "shape": "ebc61fdac3c3f7f9",
+   "poses": "c3c58f9b6ae38da2",
+   "spin": "cbfb52000a2de7b3",
+   "other": "babd3fa67c8aca6d",
+   "vertices": 61436,
+   "triangles": 76049,
+   "size_mm": [
+    23.602,
+    133.3,
+    29.97
+   ]
+  },
+  "cassette alternative MEDIA-001": {
+   "shape": "4f4c0ba6c1672369",
+   "poses": "74234e98afe7498f",
+   "spin": "4257f8c12b177ee4",
+   "other": "6f6d0e7caeb8ae0d",
+   "vertices": 48237,
+   "triangles": 48784,
+   "size_mm": [
+    63.8,
+    100.4,
+    2.8
+   ]
+  },
+  "cassette alternative MEDIA-002": {
+   "shape": "e2fa6f4c1d7b6a3a",
+   "poses": "74234e98afe7498f",
+   "spin": "4421ccba95d35b25",
+   "other": "63a6e342550e00b7",
+   "vertices": 56708,
+   "triangles": 50056,
+   "size_mm": [
+    63.8,
+    100.4,
+    7.9
+   ]
+  },
+  "cassette alternative MEDIA-003": {
+   "shape": "6499f20d10625d34",
+   "poses": "74234e98afe7498f",
+   "spin": "ef27c30d04f216d5",
+   "other": "973be1af8fb9240c",
+   "vertices": 26380,
+   "triangles": 42376,
+   "size_mm": [
+    21.1,
+    21.1,
+    5.4
+   ]
+  },
+  "cassette alternative MEDIA-004": {
+   "shape": "aa204b1afb04fc8a",
+   "poses": "74234e98afe7498f",
+   "spin": "ef27c30d04f216d5",
+   "other": "3866247def460548",
+   "vertices": 49782,
+   "triangles": 49664,
+   "size_mm": [
+    39.4,
+    39.4,
+    3.675
+   ]
+  },
+  "cassette alternative MEDIA-005": {
+   "shape": "d1c3310f9bb0834e",
+   "poses": "74234e98afe7498f",
+   "spin": "ef27c30d04f216d5",
+   "other": "0280388b28ed382a",
+   "vertices": 26365,
+   "triangles": 42392,
+   "size_mm": [
+    21.1,
+    21.1,
+    5.4
+   ]
+  },
+  "cassette alternative MEDIA-006": {
+   "shape": "1380a381f953ab3c",
+   "poses": "74234e98afe7498f",
+   "spin": "ef27c30d04f216d5",
+   "other": "300a1e8c57d94c52",
+   "vertices": 49574,
+   "triangles": 49664,
+   "size_mm": [
+    39.4,
+    39.4,
+    3.675
+   ]
+  }
+ },
+ "settings": "b14db064e741fdee",
+ "controls": "583882ea602c67e2",
+ "targets": {
+  "cassette.width": {
+   "definition": "55da48017bbbd087",
+   "outcome": "pass"
+  },
+  "cassette.height": {
+   "definition": "c0e469cdc10dd9b9",
+   "outcome": "pass"
+  },
+  "cassette.thickness_body": {
+   "definition": "a9124cc8ef12ea11",
+   "outcome": "no check"
+  },
+  "cassette.thickness_head_end": {
+   "definition": "c2a998aa2e22096f",
+   "outcome": "fail"
+  },
+  "cassette.reel_pitch": {
+   "definition": "e245a4bf8de0fc87",
+   "outcome": "pass"
+  },
+  "cassette.capstan_pitch": {
+   "definition": "89b04b60a8e22736",
+   "outcome": "no check"
+  },
+  "cassette.capstan_row_to_reel_row": {
+   "definition": "4ac5b848949566eb",
+   "outcome": "pass"
+  },
+  "cassette.capstan_outboard_of_reel": {
+   "definition": "1dfaa7c534f5394b",
+   "outcome": "pass"
+  },
+  "cassette.reference_hole_pitch": {
+   "definition": "83a904b9722d072f",
+   "outcome": "no check"
+  },
+  "cassette.reference_hole_row_to_reel_row": {
+   "definition": "4343c2b68081fe63",
+   "outcome": "no check"
+  },
+  "cell.aa_diameter_max": {
+   "definition": "b1e7a4378f699c90",
+   "outcome": "no check"
+  },
+  "cell.aa_length_max": {
+   "definition": "4e6f7cecef306ce1",
+   "outcome": "no check"
+  },
+  "tape.speed": {
+   "definition": "9caeb25ad6883811",
+   "outcome": "fail"
+  },
+  "wind.c60_time": {
+   "definition": "c969542e30d5a34f",
+   "outcome": "no check"
+  },
+  "torque.takeup_play": {
+   "definition": "7f08f19a0c9c7fa1",
+   "outcome": "no check"
+  },
+  "torque.fast_wind_min": {
+   "definition": "342bec68b8839790",
+   "outcome": "no check"
+  },
+  "torque.back_tension": {
+   "definition": "2c7da9eddf660e65",
+   "outcome": "no check"
+  },
+  "pinch.pressure": {
+   "definition": "71916d8535a2826c",
+   "outcome": "no check"
+  },
+  "motor.never_reverses": {
+   "definition": "b13ec4b0f6c2541a",
+   "outcome": "fail"
+  },
+  "body.height": {
+   "definition": "94f17da284bded30",
+   "outcome": "pass"
+  },
+  "body.front_width": {
+   "definition": "7723433a1ce8b944",
+   "outcome": "fail"
+  },
+  "body.depth": {
+   "definition": "bede63b3b42119bc",
+   "outcome": "pass"
+  },
+  "body.depth_over_width": {
+   "definition": "ba93f6f34e497eea",
+   "outcome": "no check"
+  },
+  "control.listen_key_proud_of_side": {
+   "definition": "40909f5f58ef2dfe",
+   "outcome": "no check"
+  },
+  "front.silver_strip": {
+   "definition": "3b2edd1e2313e4f2",
+   "outcome": "pass"
+  },
+  "front.top_band": {
+   "definition": "473725aba9d16f8e",
+   "outcome": "pass"
+  },
+  "window.opening_width": {
+   "definition": "43c4a5ab8ae030b2",
+   "outcome": "fail"
+  },
+  "window.opening_height": {
+   "definition": "291eacae2b83daea",
+   "outcome": "fail"
+  },
+  "window.right_edge_to_strip": {
+   "definition": "feec6483a33fff12",
+   "outcome": "pass"
+  },
+  "window.bottom_to_body_bottom": {
+   "definition": "8313a2eb1a2a16c1",
+   "outcome": "pass"
+  },
+  "window.left_margin": {
+   "definition": "250613b218ceff35",
+   "outcome": "fail"
+  },
+  "capstan.diameter": {
+   "definition": "36a7bccdfd86cc95",
+   "outcome": "fail"
+  },
+  "flywheel.rate_play": {
+   "definition": "2ba4c52780059c2a",
+   "outcome": "fail"
+  },
+  "shaft.fr_gears": {
+   "definition": "af8aad5033da9263",
+   "outcome": "no check"
+  },
+  "shaft.pulleys_third_gear": {
+   "definition": "e34519bf520afd15",
+   "outcome": "no check"
+  },
+  "shaft.levers": {
+   "definition": "1724c7cf811c83f2",
+   "outcome": "no check"
+  },
+  "gear.module": {
+   "definition": "d1f20393e8605d36",
+   "outcome": "no check"
+  },
+  "gear.s_gear_b.teeth": {
+   "definition": "6f2cace1a850c5d8",
+   "outcome": "no check"
+  },
+  "gear.s_gear_a.teeth": {
+   "definition": "f5e9dc65b7620aa1",
+   "outcome": "no check"
+  },
+  "gear.fr_gear_b.teeth": {
+   "definition": "cd9ed6591f762e48",
+   "outcome": "no check"
+  },
+  "gear.takeup.teeth": {
+   "definition": "11649a96af11c7bb",
+   "outcome": "no check"
+  },
+  "gear.fr_gear_a.teeth": {
+   "definition": "4cb1443e4863f89b",
+   "outcome": "no check"
+  },
+  "gear.fr_pulley_pinion.teeth": {
+   "definition": "3637db29b11d85f0",
+   "outcome": "no check"
+  },
+  "belt.main.inner_diameter": {
+   "definition": "b1cd50bc987487aa",
+   "outcome": "no check"
+  },
+  "belt.main.section": {
+   "definition": "eb71ca682283ec24",
+   "outcome": "no check"
+  },
+  "belt.main.free_length": {
+   "definition": "e17303b24b8b00b0",
+   "outcome": "fail"
+  },
+  "belt.second.free_length": {
+   "definition": "317d009d16150470",
+   "outcome": "pass"
+  },
+  "belt.stretch_range": {
+   "definition": "c77d3c6834c51c3a",
+   "outcome": "no check"
+  },
+  "ratio.reverse_wheel_to_flywheel": {
+   "definition": "72547978f96ff3ec",
+   "outcome": "fail"
+  },
+  "tyre.fr_pulley.od": {
+   "definition": "bac09eedb284747d",
+   "outcome": "fail"
+  },
+  "tyre.fr_pulley.id": {
+   "definition": "87f54542e2bcced0",
+   "outcome": "no check"
+  },
+  "tyre.fr_pulley.width": {
+   "definition": "88143bc09030c48a",
+   "outcome": "no check"
+  },
+  "tyre.fwd_pulley.od": {
+   "definition": "ae6f0b325b48c370",
+   "outcome": "pass"
+  },
+  "pinch_roller.od": {
+   "definition": "5ed3582a6f835133",
+   "outcome": "fail"
+  },
+  "pinch_roller.width": {
+   "definition": "a9425fdee53d2760",
+   "outcome": "no check"
+  },
+  "flywheel.rim_diameter": {
+   "definition": "d85adeafbd2078ed",
+   "outcome": "pass"
+  },
+  "axis.reverse_wheel": {
+   "definition": "dfa0b1d1ef4ed2ec",
+   "outcome": "fail"
+  },
+  "axis.fr_pulley_engaged": {
+   "definition": "e4e95c4a65967cbf",
+   "outcome": "fail"
+  },
+  "axis.fr_pulley_released": {
+   "definition": "80bcb74a8d5da36c",
+   "outcome": "fail"
+  },
+  "contact.fr_pulley_to_capstan_axis_engaged": {
+   "definition": "0fc558562dc3691f",
+   "outcome": "fail"
+  },
+  "contact.fr_pulley_travel": {
+   "definition": "69c362b489725e97",
+   "outcome": "no check"
+  },
+  "axis.fr_gear_b": {
+   "definition": "07849c1087d40e3f",
+   "outcome": "pass"
+  },
+  "axis.fr_gear_a_ff": {
+   "definition": "298820133cff85db",
+   "outcome": "fail"
+  },
+  "axis.fr_gear_a_rew": {
+   "definition": "ecd0b549005940a3",
+   "outcome": "pass"
+  },
+  "axis.fr_gear_a_play": {
+   "definition": "370be0c6ad032fe5",
+   "outcome": "fail"
+  },
+  "arm.fr_gear_a_about_fr_gear_b": {
+   "definition": "cc3a23b57039c067",
+   "outcome": "fail"
+  },
+  "axis.fwd_pulley_engaged": {
+   "definition": "aa77c4385a532735",
+   "outcome": "fail"
+  },
+  "gear.fr_gear_a_small_tier.teeth": {
+   "definition": "53c59cb8433e69b6",
+   "outcome": "no check"
+  },
+  "gear.third.teeth": {
+   "definition": "3874cd5badeeb8ce",
+   "outcome": "no check"
+  },
+  "flywheel.upper_flange_diameter": {
+   "definition": "fee3ec86d5de6711",
+   "outcome": "no check"
+  },
+  "flywheel.hub_flange_diameter": {
+   "definition": "92d2272c4a575071",
+   "outcome": "no check"
+  },
+  "reel_table.cap_top_above_flange": {
+   "definition": "606b18553436d350",
+   "outcome": "no check"
+  },
+  "pin.locating_tip_above_reel_cap": {
+   "definition": "09bbe969e68873ba",
+   "outcome": "no check"
+  },
+  "capstan.tip_above_reel_cap": {
+   "definition": "b3d6cc7cc88039ec",
+   "outcome": "no check"
+  },
+  "pin.locating_base_flange_below_reel_cap": {
+   "definition": "07c2d202693026ca",
+   "outcome": "no check"
+  },
+  "flywheel.main_disc_thickness": {
+   "definition": "879cb1b94e47e5be",
+   "outcome": "no check"
+  },
+  "flywheel.groove_width": {
+   "definition": "6e8bfcdc14a3d670",
+   "outcome": "no check"
+  },
+  "flywheel.upper_flange_thickness": {
+   "definition": "328607b36f35d878",
+   "outcome": "no check"
+  },
+  "flywheel.front_face_behind_pin_flange": {
+   "definition": "ca4898e468c36fbb",
+   "outcome": "no check"
+  },
+  "body.depth_minimum_from_stack": {
+   "definition": "7e2b00ef406dd82a",
+   "outcome": "no check"
+  },
+  "reverse_wheel.outer_diameter": {
+   "definition": "110dafd096cf362a",
+   "outcome": "fail"
+  },
+  "bay.cassette_rear_edge_to_frame_edge": {
+   "definition": "b1b789b43e0ea7dc",
+   "outcome": "no check"
+  },
+  "bay.cassette_to_chassis_end_battery": {
+   "definition": "50c05b23a2b48576",
+   "outcome": "no check"
+  },
+  "bay.hook_far_edge_behind_cassette_rear_edge": {
+   "definition": "4ce309d1b07106d4",
+   "outcome": "no check"
+  },
+  "bay.hook_height_above_cassette_top_face": {
+   "definition": "09828ab6a8b5bc2e",
+   "outcome": "no check"
+  },
+  "bay.top_rail_outer_edge_beyond_cassette_end": {
+   "definition": "64c06933d161e132",
+   "outcome": "no check"
+  },
+  "bay.top_rail_top_above_cassette_top_face": {
+   "definition": "1e4204e4ae04ca4e",
+   "outcome": "no check"
+  },
+  "cover.control_side_face_width": {
+   "definition": "46b87d0d6ca72124",
+   "outcome": "no check"
+  },
+  "lid.window_centre_fraction_of_lid_width": {
+   "definition": "7b47fe41f937fe1d",
+   "outcome": "no check"
+  },
+  "lid.height_over_width": {
+   "definition": "5b367be125e0e6eb",
+   "outcome": "no check"
+  },
+  "belt.length_ratio_main_to_second": {
+   "definition": "e72805bad0a7c457",
+   "outcome": "no check"
+  }
+ },
+ "confirmation": {}
+}
