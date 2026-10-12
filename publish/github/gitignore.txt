@@ -1,0 +1,14 @@
+# Copy this to ".gitignore" in your repository.
+# Scratch the build recreates; never shipped.
+/rebuild/build/
+/rebuild/node_modules/
+/view.staging/
+/view.previous/
+
+__pycache__/
+*.pyc
+*.blend1
+*.blend2
+.DS_Store
+*.zip
+*.log
