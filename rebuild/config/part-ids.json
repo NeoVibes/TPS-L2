@@ -1,0 +1,2611 @@
+{
+  "schema_version": 1,
+  "policy": "Append-only issued/reserved identities. Missing native owners remain reserved; never reuse or mutate an existing identity. Rebuilds are read-only.",
+  "records": [
+    {
+      "id": "BAS-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAS-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-040",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "BAT-041",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "BAT-042",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "BAT-043",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "BAT-050",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-051",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-052",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-060",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAT-061",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-042",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-043",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-050",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-051",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-052",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-053",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-060",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-061",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-070",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-071",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-072",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BCL-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BCL-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BCL-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BLT-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BLT-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAM-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAM-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAM-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAM-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAM-251",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-103",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-104",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-105",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-106",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-107",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-108",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-109",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-110",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-111",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-112",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-113",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-114",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-115",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-116",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-117",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-118",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-119",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-203",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-204",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-205",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-206",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-207",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-208",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-209",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-210",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-211",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-212",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-213",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-214",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-215",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-216",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-217",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-218",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-219",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "CAP-301",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-602",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-603",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-604",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-605",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-606",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-607",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-801",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CAP-901",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CLT-042",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-04",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-05",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-06",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-07",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "CTL-08",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DIO-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DIO-602",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-014",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-015",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-016",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-023",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-100",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-103",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-104",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-105",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-106",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-107",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-108",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-200",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-203",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-204",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-205",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-206",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-207",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-213",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-216",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-217",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-218",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-250",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-251",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-252",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "DRV-253",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "DRV-255",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "DRV-256",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-257",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "DRV-310",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-311",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-312",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-001",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "EXT-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-042",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-050",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-052",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "EXT-061",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCL-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCL-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCL-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FCR-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-103",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-203",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-251",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FWD-252",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "GRL-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "GRL-657",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "GRL-716",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "GRL-717",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-005",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-023",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-024",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HDC-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HINGE-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-014",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-015",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-016",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "HLT-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "IC-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "IND-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "IND-602",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JB-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-11",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-12",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-13",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-14",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-15",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-21",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-22",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-23",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-24",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-31",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-32",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-33",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-34",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-35",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-36",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-37",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-38",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-39",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JCK-40",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JMP-001",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "JMP-002",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "JNT-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JNT-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "JNT-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LCK-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LVB-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LVB-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LVB-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LVB-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "LVB-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MB-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-014",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-015",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEC-016",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-005",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MEDIA-006",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-005",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-006",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-007",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-008",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MIC-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-005",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-006",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-023",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-024",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-025",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-026",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-027",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-028",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-029",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-033",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-034",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-042",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-050",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-203",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MTR-204",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "PRX-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-103",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-104",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-105",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-106",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-107",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-108",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-109",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-110",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-111",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-112",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-113",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-114",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-115",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-116",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-117",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-202",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-203",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-204",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-205",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-206",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-207",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-208",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-209",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-210",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-211",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-212",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-213",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-214",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-215",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-216",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-217",
+      "origin": "migration",
+      "state_at_registration": "retired-reserved"
+    },
+    {
+      "id": "RES-301",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-602",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-603",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-604",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-605",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-606",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-607",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-608",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-609",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-610",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-611",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-612",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-801",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-802",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-803",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-804",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-810",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-811",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-812",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-814",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RES-815",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RLC-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RLC-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RLC-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RLC-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-102",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-103",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-111",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SB-112",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SBT-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-F01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-F02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-R01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-R02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-T01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-T02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SCR-T03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SPL-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SPL-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SPL-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SPL-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SRL-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STF-251",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-015",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-016",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-017",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-018",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "STP-033",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SVR-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SVR-611",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SVR-612",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SVR-613",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SVR-614",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-004",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-005",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-006",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SWT-007",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THP-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-003",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-011",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "THR-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-002",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-021",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-031",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-032",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-033",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-034",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TNE-040",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TR-101",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TR-201",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TR-601",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TR-602",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "TR-603",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-001",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-010",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-012",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-013",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-014",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-015",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-016",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-017",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-018",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-019",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-020",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-022",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-023",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-024",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-025",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-026",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-027",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-028",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-029",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-030",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-041",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-051",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-060",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "VOL-061",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-611",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-612",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-901",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-902",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MIC-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MIC-02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MIC-03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MTR-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MTR-02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MTR-03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MTR-04",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-OUT-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-OUT-02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-01",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-02",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-03",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-04",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-05",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-06",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-07",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-08",
+      "origin": "migration",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PWR-09",
+      "origin": "migration",
+      "state_at_registration": "active"
+    }
+  ]
+}

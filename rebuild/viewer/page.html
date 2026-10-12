@@ -1,0 +1,85 @@
+<!doctype html><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="__CONTENT_POLICY__">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portable Tape Player</title>
+<meta name="description" content="An inspectable TPS-L2 reconstruction: operate the transport, explore the component assembly, and inspect its components.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23245ec0'/%3E%3Crect x='11' y='19' width='42' height='27' rx='4' fill='%23eee9df'/%3E%3Ccircle cx='23' cy='32' r='7' fill='%2323343d'/%3E%3Ccircle cx='41' cy='32' r='7' fill='%2323343d'/%3E%3C/svg%3E">
+<style>__STYLES__</style></head>
+<body data-mode="operate">
+<div id="shell" aria-busy="true">
+<header>
+<div class="brand">
+<div class="mark" aria-hidden="true">TPS</div>
+<div>
+<div class="eyebrow">Estimated model / v__RELEASE_VERSION__</div>
+<h1>Portable Tape Player</h1></div></div>
+<div class="header-actions"><button id="quickTour" class="primary">Guided tour</button><button id="pause">Pause motion</button><button id="reset">Reset</button><button id="fullscreen" aria-label="Enter or exit full screen">Full screen</button></div></header>
+<div class="workspace">
+<aside>
+<nav class="workmodes" aria-label="Workbench mode"><button data-workmode="tour">Tour</button><button data-workmode="operate" aria-pressed="true">Operate</button><button data-workmode="inspect">Inspect</button></nav>
+<div class="eyebrow">Sony TPS-L2 / anatomy in motion</div>
+<h2 id="storyTitle" class="intro-title">A small machine, opened up</h2><p id="storyText" class="body-copy">Turn the model with your mouse. Run the transport, open the cassette compartment, or move the covers aside to see how the mechanism fits together.</p>
+<div class="tour-actions"><button id="tour" class="primary">Start guided tour</button><button id="tourNext" hidden>Next</button><button id="tourPause" hidden>Pause tour</button></div>
+<div id="tourProgress" class="tour-count"></div>
+<div class="tour-scrubber"><label for="tourSeek"><span id="tourDuration">80-second tour </span><output id="tourClock">0 / 80 s</output></label><input id="tourSeek" type="range" min="0" max="80" step="0.1" value="0" aria-label="Tour position in seconds"></div>
+<div class="audit-note" id="modelStatement">__STATEMENT__</div><p class="body-copy" id="serialNotice" style="font-size:11px">__SERIAL_NOTICE__</p>
+<section class="inspection-tools" aria-label="Inspection tools">
+<h3>Assembly close-ups</h3>
+<div id="boardContexts" class="chapters"></div><p id="contextStatus" class="body-copy" style="font-size:11px" role="status"></p><button id="clearContext" hidden>Show all parts</button>
+<h3>Inspection</h3><label>Subsystem<select id="subsystem"><option value="all">All subsystems</option></select></label><label>Projection<select id="projection"><option value="perspective">Perspective</option><option value="orthographic">Orthographic</option></select></label><label>Section plane<select id="section"><option value="off">No section</option><option value="x">X — left / right</option><option value="y">Y — top / bottom</option><option value="z">Z — front / back</option></select></label><label for="sectionOffset">Section offset <output id="sectionValue">0 mm</output><input id="sectionOffset" type="range" min="-150" max="150" step="0.1" value="0"></label><p class="body-copy" style="font-size:11px">Sections change visibility only. Dimensions are extents of the full-detail model.</p></section>
+<div class="divider"></div>
+<div class="section-label">Look closer</div>
+<nav class="chapters" aria-label="Mechanism chapters"><button data-category="all" aria-pressed="true"><span>00</span>The complete machine</button><button data-category="motor"><span>01</span>Motor &amp; flywheel</button><button data-category="belts"><span>02</span>Belts &amp; pulleys</button><button data-category="gears"><span>03</span>Gears &amp; direction</button><button data-category="tape"><span>04</span>The tape path</button><button data-category="controls"><span>05</span>Beneath the controls</button></nav>
+<div class="divider"></div>
+<details id="catalog" class="catalog"><summary>Find a component</summary><input id="search" type="search" aria-label="Search components" placeholder="Try motor, pinch roller, screw…"><small id="searchCount"></small>
+<div id="results"></div></details>
+<details id="masterList" class="catalog"><summary>Parts list and confirmation</summary><p id="masterSummary" class="body-copy"></p><input id="masterSearch" type="search" aria-label="Filter the parts list" placeholder="Filter by ID, name or part number…">
+<div class="master-filters"><label for="masterStatus">Status <select id="masterStatus"><option value="">All</option><option value="modelled">Modelled</option><option value="not modelled">Not modelled</option></select></label><label for="masterLevel">Level <select id="masterLevel"><option value="">All</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label></div><small id="masterCount"></small>
+<div id="masterResults"></div>
+<div id="masterDetail" class="master-detail" hidden></div><button id="masterReport" hidden>Report this part</button>
+<label id="masterSubmission" class="submission" hidden>Copy this into a new issue<textarea rows="9" readonly aria-label="Text to copy into a new issue"></textarea></label>
+<div class="buttons"><button id="masterDownload">Download the list (CSV)</button><button id="masterNew">Report a missing part</button></div>
+<details><summary>What the levels mean</summary><ul id="levelKey" class="level-key"></ul></details></details>
+<details id="takePart"><summary>Take part</summary><p class="body-copy">Three ways, each fine by itself.</p><ol class="take-part"><li><strong>Enjoy it and share it.</strong> It is free to use and share with credit (MIT licence).</li><li><strong>Send a measurement.</strong> Pick the part in Inspect and choose “Confirm a feature”. Photos or links to photos are enough; the maintainer adjusts the model.</li><li><strong>Adjust a part yourself.</strong> Edit your own copy in Blender and send a link to it with the measurement it rests on.</li></ol><p class="body-copy">Nothing changes the model by itself: every submission is reviewed.</p></details>
+<details><summary>About this model</summary><p>Explore the Sony TPS-L2 through its component IDs, model dimensions and operating controls. Belts use fixed paths with traveling motion cues. Audio consists of locally generated test signals.</p></details>
+<details><summary>How to present</summary><p>Start the guided tour for a short walkthrough, or use the transport and view controls. Drag to orbit, scroll or pinch to zoom, and right-drag or two-finger drag to pan. In Operate, click the modeled buttons, drag volume grips or the Tone switch, and hold Hot Line. In Inspect, click a component, then Focus or Isolate.</p><p>Space pauses motion. 0 resets. Escape ends the tour and clears isolation. This page works the same opened from disk or from a web host. Arrow keys rotate the focused model; + and − zoom.</p></details>
+<details><summary>Release &amp; performance</summary><p>Portable Tape Player v__RELEASE_VERSION__. Physical accuracy is limited: no part has been checked against a real unit yet. The README says how to help confirm one.</p><button id="performance">Show this session metrics</button><pre id="performanceReadout"></pre></details><p class="offline">Unofficial project. Not affiliated with or endorsed by Sony. Product and trademark names are the property of their respective owners.</p><p class="offline">Full-detail geometry · no Blender required</p>
+<div class="asset-status" id="packageStatus" role="status">Preparing exterior</div><button id="retryAssets" hidden>Retry detail loading</button></aside>
+<main class="main">
+<div class="viewbar">
+<nav class="segmented" aria-label="Presentation"><button data-view="assembled" aria-pressed="true">Assembled</button><button data-view="service">Service view</button><button data-view="exploded">Exploded assembly</button><button data-view="catalog">All components</button></nav><div class="exterior-choice"><label for="exteriorVersion">Exterior version</label><select id="exteriorVersion" aria-describedby="exteriorNote"></select><small id="exteriorNote"></small></div><span id="partCount" class="viewmeta">Loading model</span></div>
+<section id="stage" class="stage" aria-label="Interactive 3D model"><canvas id="canvas" tabindex="0" aria-label="Portable Tape Player 3D model. Drag to orbit, scroll to zoom, click controls in Operate or parts in Inspect."></canvas>
+<div class="view-tools" aria-label="Camera angles"><button id="homeCamera">Fit view</button><select id="controlCamera" aria-label="Control close-up"><option value="">Control close-up…</option><option value="transport">Transport &amp; volume</option><option value="hotline">Hot Line button</option><option value="tone">Tone switch</option><option value="battery">Battery door</option></select><button data-angle="front">Front</button><button data-angle="back">Back</button><button data-angle="side">Side</button><button data-angle="top">Top</button><button id="cassetteEdge" data-angle="edge" hidden>Tape edge</button><button id="toggleLabels" aria-pressed="true" hidden>Labels</button><span id="labelHint" hidden>Zoom for component IDs</span></div>
+<div id="partLabels" class="part-labels" hidden aria-label="Exploded component labels"><svg id="labelLeaders" aria-hidden="true"></svg></div>
+<div id="controlHint" class="control-hint" role="status" hidden></div><span id="fps" class="view-status">Ready to explore</span>
+<div class="stage-caption"><b id="stageHelp">Click buttons · drag volume grips · hold Hot Line</b>Explore the model through its controls and component IDs.</div>
+<section id="inspector" class="inspector" aria-label="Selected component" hidden><button id="closeInspector" class="close" aria-label="Close component details">×</button>
+<div id="partId" class="eyebrow"></div>
+<h2 id="partName"></h2><p id="partMeasure"></p>
+<div id="partService" hidden></div><div id="partConfirmation" hidden></div><div id="partActions" class="buttons" hidden><button id="confirmPart">Confirm a feature</button><button id="correctPart">Report a correction</button></div><label id="partSubmission" class="submission" hidden>Copy this into a new issue<textarea rows="9" readonly aria-label="Text to copy into a new issue"></textarea></label><button id="copyPartLink">Copy part ID</button><label id="copyFallbackLabel" hidden>Part ID or public link<input id="copyFallback" readonly aria-label="Part ID or public link to copy"></label>
+<div class="buttons"><button id="focus">Focus part</button><button id="isolate">Isolate part</button></div></section>
+<div id="loading" class="loading" role="status">
+<div class="spinner"></div>
+<h2 id="loadingTitle">Opening Portable Tape Player</h2><p id="loadingText">Loading the exterior first…</p><button id="loadingRetry" hidden>Reload viewer</button></div></section>
+<div id="assemblyLegend" class="assembly-legend" aria-label="Assembly label key" hidden></div>
+<section class="controls" aria-label="Operating controls">
+<div class="control-top">
+<div class="transport" aria-label="Tape transport"><button data-mode="rew"><span>◀◀</span>REW</button><button data-mode="play" class="play"><span>▶</span>PLAY</button><button data-mode="ff">FF<span> ▶▶</span></button><button id="eject"><span>■</span>STOP / EJECT</button></div>
+<div class="secondary-controls"><button id="door">Open door</button><button id="batteryDoor" aria-pressed="false">Open battery cover</button><button id="cassette" disabled>Remove cassette</button></div></div>
+<div id="status" class="control-status" role="status" aria-live="polite">Stopped</div><label style="display:flex;gap:8px;align-items:center"><input id="motionCues" type="checkbox" checked style="width:auto"> Illustrative motion cues</label>
+<div class="sliders">
+<div class="slider"><label for="speed">Motion speed</label><input id="speed" type="range" min="0.05" max="1" step="0.05" value="0.55"><output id="speedValue" for="speed">0.55×</output></div>
+<div class="slider"><label for="spread">Separation</label><input id="spread" type="range" min="0" max="100" step="1" value="0"><output id="spreadValue" for="spread">0%</output></div></div>
+<details class="cassette-controls"><summary>Cassette model</summary><button id="inspectCassette">Inspect cassette</button> <label for="cassetteVariant">Geometry </label><select id="cassetteVariant"><option value="refined">Detailed clear cassette</option><option value="original">Original cassette</option></select><p id="cassetteVariantStatus">Loading cassette…</p></details>
+<details id="audioControls" class="audio-controls" open><summary>Sound, tone &amp; volume</summary>
+<div class="audio-grid"><button id="audioEnable">Enable test audio</button><button id="hotline" aria-pressed="false">Hold Hot Line</button><label for="volumeLeft">Left volume<input id="volumeLeft" type="range" min="0" max="1" step="0.01" value="0.5"></label><label for="volumeRight">Right volume<input id="volumeRight" type="range" min="0" max="1" step="0.01" value="0.5"></label><label for="tone">Tone<select id="tone"><option value="high">High</option><option value="low">Low</option></select></label><label for="tapePosition">Tape <output id="tapeValue">0%</output><input id="tapePosition" type="range" min="0" max="1" step="0.001" value="0"></label></div><p id="audioStatus" role="status">Sound off · generated test signal available</p><p>Generated stereo tones; <span id="audioDuration">120</span>-second illustrative tape timeline. Hot Line mixes a generated room signal. No microphone or uncleared recording.</p></details></section></main></div></div>
+
+<noscript><p>This interactive exhibit requires JavaScript. Enable JavaScript to inspect components and use the model.</p></noscript>
+<script type="application/json" id="portable-tape-player-state">{"ready":false}</script>
+<script>window.portableTapePlayerData={};window.portableTapePlayerLoaded=function(name,payload){window.portableTapePlayerData[name]=payload;var w=window.portableTapePlayerWaiting&&window.portableTapePlayerWaiting[name];if(w)w();};</script>
+<script src="geometry/model.js"></script>
+<script>if(!window.portableTapePlayerData.model)document.getElementById("loadingText").textContent="geometry/model.js did not load. Keep index.html and the geometry folder together.";</script>
+<script type="application/json" id="masterParts">__MASTER_PARTS__</script>
+<script>__APP_JS__</script></body></html>

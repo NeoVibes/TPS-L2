@@ -1,0 +1,1705 @@
+{
+  "schema_version": 1,
+  "title": "Portable Tape Player",
+  "native": "../edit/Portable Tape Player.blend",
+  "controllers": {
+    "transport": "CTRL-TRANSPORT",
+    "operating": "CTRL-OPERATING"
+  },
+  "controls": [
+    {
+      "id": "ff",
+      "label": "FF / CUE",
+      "partIds": [
+        "CTL-01"
+      ],
+      "kind": "button",
+      "mode": "ff"
+    },
+    {
+      "id": "rew",
+      "label": "REW / REVIEW",
+      "partIds": [
+        "CTL-02"
+      ],
+      "kind": "button",
+      "mode": "rew"
+    },
+    {
+      "id": "play",
+      "label": "LISTEN / PLAY",
+      "partIds": [
+        "CTL-03"
+      ],
+      "kind": "button",
+      "mode": "play"
+    },
+    {
+      "id": "stop-eject",
+      "label": "STOP / EJECT",
+      "partIds": [
+        "CTL-04"
+      ],
+      "kind": "button"
+    },
+    {
+      "id": "volume-left",
+      "label": "Left volume",
+      "partIds": [
+        "CTL-05"
+      ],
+      "kind": "slider",
+      "stateKey": "volumeLeft",
+      "channel": "left",
+      "positiveDirection": "Toward the top of the player increases volume",
+      "native": {
+        "controller": "operating",
+        "property": "volume_left",
+        "rest": 0.5
+      },
+      "motionPartIds": [
+        "CTL-05",
+        "VOL-012",
+        "VOL-041",
+        "VOL-019"
+      ]
+    },
+    {
+      "id": "volume-right",
+      "label": "Right volume",
+      "partIds": [
+        "CTL-06"
+      ],
+      "kind": "slider",
+      "stateKey": "volumeRight",
+      "channel": "right",
+      "positiveDirection": "Toward the top of the player increases volume",
+      "native": {
+        "controller": "operating",
+        "property": "volume_right",
+        "rest": 0.5
+      },
+      "motionPartIds": [
+        "CTL-06",
+        "VOL-022",
+        "VOL-051",
+        "VOL-029"
+      ]
+    },
+    {
+      "id": "hotline",
+      "label": "Hot Line — hold to talk simulation",
+      "partIds": [
+        "CTL-07"
+      ],
+      "kind": "momentary",
+      "stateKey": "hotline",
+      "description": "Hold attenuates the program and adds a generated room signal. Release restores playback. No microphone access.",
+      "native": {
+        "controller": "operating",
+        "property": "hot_line_mm",
+        "rest": 0
+      },
+      "motionPartIds": [
+        "CTL-07"
+      ]
+    },
+    {
+      "id": "tone",
+      "label": "Tone HIGH / LOW",
+      "partIds": [
+        "CTL-08"
+      ],
+      "kind": "toggle",
+      "stateKey": "tone",
+      "positiveDirection": "HIGH is above LOW; LOW applies an illustrative 2400 Hz low-pass filter",
+      "native": {
+        "controller": "operating",
+        "property": "tone_position",
+        "rest": 0.5
+      },
+      "motionPartIds": [
+        "CTL-08",
+        "TNE-010",
+        "TNE-021",
+        "TNE-022"
+      ]
+    },
+    {
+      "id": "door",
+      "label": "Cassette cover",
+      "partIds": [
+        "EXT-030",
+        "EXT-031",
+        "EXT-032"
+      ],
+      "kind": "toggle"
+    },
+    {
+      "id": "battery-door",
+      "label": "Battery cover",
+      "partIds": [
+        "EXT-040",
+        "EXT-041"
+      ],
+      "kind": "toggle",
+      "description": "Battery cover uses a separate hinge; the catch stays with the rear cabinet"
+    },
+    {
+      "id": "battery-latch",
+      "label": "Battery cover catch",
+      "partIds": [
+        "BCL-010"
+      ],
+      "kind": "toggle",
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "description": "Slide upward to release the battery cover. The retaining plate and spring are fixed companions."
+    },
+    {
+      "id": "cassette",
+      "label": "Insert / remove cassette",
+      "partIds": [
+        "MEDIA-001",
+        "MEDIA-002",
+        "MEDIA-003",
+        "MEDIA-004",
+        "MEDIA-005",
+        "MEDIA-006"
+      ],
+      "kind": "button"
+    }
+  ],
+  "assemblies": [
+    {
+      "id": "transport",
+      "name": "Transport and battery",
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "liner",
+      "name": "Cassette liner",
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cassette",
+      "name": "Cassette",
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "lid",
+      "name": "Lid and window",
+      "axis": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "main-board",
+      "name": "Main / AF / volume",
+      "axis": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "servo-board",
+      "name": "Servo board",
+      "axis": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "jack-board",
+      "name": "Jack board",
+      "axis": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "rear-cabinet",
+      "name": "Rear cabinet and catch",
+      "axis": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "battery-door",
+      "name": "Battery door",
+      "axis": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "top-cover",
+      "name": "Top cover",
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "tone-trim",
+      "name": "Tone trim",
+      "axis": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "front-grille",
+      "name": "Front grille",
+      "axis": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "ungrouped",
+      "name": "Ungrouped",
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "inspectionContexts": {
+    "servoBoard": {
+      "label": "Servo board + L601",
+      "description": "Servo board, separated RV601 construction and L601 components. Inherited mounting and FF-lever clearance remain unresolved.",
+      "partIds": [
+        "CAP-601",
+        "CAP-602",
+        "CAP-603",
+        "CAP-604",
+        "CAP-605",
+        "CAP-606",
+        "CAP-607",
+        "DIO-601",
+        "DIO-602",
+        "IC-601",
+        "IND-601",
+        "IND-602",
+        "RES-601",
+        "RES-602",
+        "RES-603",
+        "RES-604",
+        "RES-605",
+        "RES-606",
+        "RES-607",
+        "RES-608",
+        "RES-609",
+        "RES-610",
+        "RES-611",
+        "RES-612",
+        "SB-001",
+        "SB-101",
+        "SB-102",
+        "SB-103",
+        "SB-111",
+        "SB-112",
+        "SVR-601",
+        "SVR-611",
+        "SVR-612",
+        "SVR-613",
+        "SVR-614",
+        "THP-601",
+        "TR-601",
+        "TR-602",
+        "TR-603",
+        "WIR-611",
+        "WIR-612"
+      ],
+      "focusPartId": "SB-001"
+    },
+    "servoPower": {
+      "label": "Servo + power context",
+      "description": "Servo PCB and source-traced connected motor, indicator and DC power context. This is not a single physical removable assembly.",
+      "partIds": [
+        "CAP-601",
+        "CAP-602",
+        "CAP-603",
+        "CAP-604",
+        "CAP-605",
+        "CAP-606",
+        "CAP-607",
+        "CAP-901",
+        "DIO-601",
+        "DIO-602",
+        "EXT-061",
+        "IC-601",
+        "IND-601",
+        "IND-602",
+        "JCK-03",
+        "JCK-13",
+        "JCK-31",
+        "JCK-32",
+        "JCK-33",
+        "JCK-34",
+        "JCK-35",
+        "JCK-36",
+        "JCK-37",
+        "JCK-38",
+        "JCK-39",
+        "JCK-40",
+        "MTR-001",
+        "RES-601",
+        "RES-602",
+        "RES-603",
+        "RES-604",
+        "RES-605",
+        "RES-606",
+        "RES-607",
+        "RES-608",
+        "RES-609",
+        "RES-610",
+        "RES-611",
+        "RES-612",
+        "SB-001",
+        "SB-101",
+        "SB-102",
+        "SB-103",
+        "SB-111",
+        "SB-112",
+        "SVR-601",
+        "SVR-611",
+        "SVR-612",
+        "SVR-613",
+        "SVR-614",
+        "SWT-001",
+        "SWT-002",
+        "SWT-003",
+        "SWT-004",
+        "SWT-005",
+        "SWT-006",
+        "SWT-007",
+        "THP-601",
+        "TR-601",
+        "TR-602",
+        "TR-603",
+        "WIR-611",
+        "WIR-612",
+        "WIR-901",
+        "WIR-902",
+        "WIR-MTR-01",
+        "WIR-MTR-02",
+        "WIR-MTR-03",
+        "WIR-MTR-04",
+        "WIR-PWR-01",
+        "WIR-PWR-02",
+        "WIR-PWR-03",
+        "WIR-PWR-04",
+        "WIR-PWR-05",
+        "WIR-PWR-06",
+        "WIR-PWR-07",
+        "WIR-PWR-08",
+        "WIR-PWR-09"
+      ],
+      "focusPartId": "SB-001"
+    },
+    "dcPower": {
+      "label": "DC socket + C901",
+      "description": "Black cylindrical C901 beside the DC jack/battery tray, with socket contacts/insulation and power wiring.",
+      "partIds": [
+        "BAT-001",
+        "CAP-901",
+        "JCK-03",
+        "JCK-13",
+        "JCK-31",
+        "JCK-32",
+        "JCK-33",
+        "JCK-34",
+        "JCK-35",
+        "JCK-36",
+        "JCK-37",
+        "JCK-38",
+        "JCK-39",
+        "JCK-40",
+        "SWT-001",
+        "SWT-002",
+        "SWT-003",
+        "SWT-004",
+        "SWT-005",
+        "SWT-006",
+        "SWT-007",
+        "WIR-PWR-01",
+        "WIR-PWR-02",
+        "WIR-PWR-03",
+        "WIR-PWR-04",
+        "WIR-PWR-05",
+        "WIR-PWR-06",
+        "WIR-PWR-07",
+        "WIR-PWR-08",
+        "WIR-PWR-09"
+      ],
+      "focusPartId": "CAP-901"
+    },
+    "jackHotline": {
+      "label": "Jack board + Hot Line + microphone",
+      "description": "Jack board, its two source-mapped fasteners, Hot Line contacts, microphone and output wiring.",
+      "partIds": [
+        "BAS-001",
+        "BAS-013",
+        "CAP-801",
+        "CTL-07",
+        "HLT-001",
+        "HLT-011",
+        "HLT-012",
+        "HLT-013",
+        "HLT-014",
+        "HLT-015",
+        "HLT-016",
+        "HLT-020",
+        "HLT-021",
+        "HLT-031",
+        "HLT-032",
+        "JB-001",
+        "JCK-01",
+        "JCK-11",
+        "JCK-12",
+        "JCK-21",
+        "JCK-22",
+        "JCK-23",
+        "JCK-24",
+        "MIC-001",
+        "MIC-002",
+        "MIC-003",
+        "MIC-004",
+        "MIC-005",
+        "MIC-006",
+        "MIC-007",
+        "MIC-008",
+        "MIC-010",
+        "RES-801",
+        "RES-802",
+        "RES-803",
+        "RES-804",
+        "RES-810",
+        "RES-811",
+        "RES-812",
+        "RES-814",
+        "RES-815",
+        "WIR-MIC-01",
+        "WIR-MIC-02",
+        "WIR-MIC-03",
+        "WIR-OUT-01",
+        "WIR-OUT-02"
+      ],
+      "focusPartId": "JB-001"
+    },
+    "mainAf": {
+      "label": "Main + AF/volume boards",
+      "description": "Selected New main board, perpendicular AF/volume board and TONE contacts. Source correspondence and unresolved interfaces are recorded in the current inventory.",
+      "partIds": [
+        "CAP-101",
+        "CAP-102",
+        "CAP-103",
+        "CAP-104",
+        "CAP-105",
+        "CAP-106",
+        "CAP-107",
+        "CAP-108",
+        "CAP-109",
+        "CAP-110",
+        "CAP-111",
+        "CAP-112",
+        "CAP-113",
+        "CAP-114",
+        "CAP-115",
+        "CAP-116",
+        "CAP-201",
+        "CAP-202",
+        "CAP-203",
+        "CAP-204",
+        "CAP-205",
+        "CAP-206",
+        "CAP-207",
+        "CAP-208",
+        "CAP-209",
+        "CAP-210",
+        "CAP-211",
+        "CAP-212",
+        "CAP-213",
+        "CAP-214",
+        "CAP-215",
+        "CAP-216",
+        "CAP-301",
+        "MB-001",
+        "MB-010",
+        "MB-011",
+        "MB-101",
+        "MB-102",
+        "MB-201",
+        "MB-202",
+        "RES-101",
+        "RES-102",
+        "RES-103",
+        "RES-104",
+        "RES-105",
+        "RES-106",
+        "RES-107",
+        "RES-108",
+        "RES-109",
+        "RES-110",
+        "RES-111",
+        "RES-112",
+        "RES-113",
+        "RES-114",
+        "RES-201",
+        "RES-202",
+        "RES-203",
+        "RES-204",
+        "RES-205",
+        "RES-206",
+        "RES-207",
+        "RES-208",
+        "RES-209",
+        "RES-210",
+        "RES-211",
+        "RES-212",
+        "RES-213",
+        "RES-214",
+        "RES-301",
+        "TNE-001",
+        "TNE-002",
+        "TNE-010",
+        "TNE-021",
+        "TNE-022",
+        "TNE-031",
+        "TNE-032",
+        "TNE-033",
+        "TNE-034",
+        "TNE-040",
+        "TR-101",
+        "TR-201",
+        "VOL-001",
+        "VOL-010",
+        "VOL-012",
+        "VOL-013",
+        "VOL-014",
+        "VOL-015",
+        "VOL-016",
+        "VOL-017",
+        "VOL-018",
+        "VOL-019",
+        "VOL-020",
+        "VOL-022",
+        "VOL-023",
+        "VOL-024",
+        "VOL-025",
+        "VOL-026",
+        "VOL-027",
+        "VOL-028",
+        "VOL-029",
+        "VOL-030",
+        "VOL-060",
+        "VOL-061"
+      ],
+      "focusPartId": "MB-001"
+    },
+    "cassette": {
+      "label": "Cassette close-up",
+      "description": "Generic source-informed cassette; compare the detailed clear cassette and original reconstruction below the model.",
+      "partIds": [
+        "MEDIA-001",
+        "MEDIA-002",
+        "MEDIA-003",
+        "MEDIA-004",
+        "MEDIA-005",
+        "MEDIA-006"
+      ],
+      "focusPartId": "MEDIA-001"
+    },
+    "motorCutaway": {
+      "label": "Motor cutaway",
+      "description": "Outer can, inner housing, fixed magnet and rear covers hidden to reveal the copper rotor and commutator. Bearings, brushes, sensing winding and mounting parts stay stationary. White marks are illustrative motion cues. Use slow motion to inspect direction.",
+      "partIds": [
+        "MTR-004",
+        "MTR-005",
+        "MTR-006",
+        "MTR-011",
+        "MTR-012",
+        "MTR-020",
+        "MTR-021",
+        "MTR-022",
+        "MTR-023",
+        "MTR-024",
+        "MTR-025",
+        "MTR-026",
+        "MTR-027",
+        "MTR-028",
+        "MTR-029",
+        "MTR-031",
+        "MTR-032",
+        "MTR-033",
+        "MTR-034",
+        "MTR-042",
+        "MTR-201",
+        "MTR-202",
+        "MTR-203",
+        "MTR-204",
+        "MTR-050"
+      ],
+      "focusPartId": "MTR-020"
+    },
+    "ejectMechanism": {
+      "label": "STOP / EJECT linkage",
+      "description": "Moving tongue and fixed support in assembled positions. STOP/EJECT operates this cutaway; slow motion reveals the stroke. Straightened geometry, pivot, hidden contact and travel remain inferred.",
+      "partIds": [
+        "CTL-04",
+        "STP-001",
+        "STP-002",
+        "STP-003",
+        "STP-004",
+        "STP-010",
+        "STP-011",
+        "STP-012",
+        "STP-013",
+        "STP-015",
+        "STP-016",
+        "STP-017",
+        "STP-018",
+        "STP-020",
+        "STP-030",
+        "STP-031",
+        "STP-032",
+        "STP-033"
+      ],
+      "focusPartId": "STP-003"
+    },
+    "beltDrive": {
+      "label": "Belt drive",
+      "description": "Connected motor, both belts, flywheel, return wheel and intermediate pulley. One white stripe per black belt; illustrative motion cues, with model-derived speeds.",
+      "partIds": [
+        "BLT-001",
+        "BLT-002",
+        "MTR-004",
+        "MTR-005",
+        "MEC-011",
+        "DRV-020",
+        "DRV-022"
+      ],
+      "focusPartId": "BLT-001"
+    },
+    "battery": {
+      "label": "Battery case + latch",
+      "description": "Covers hidden to show the case, catch, retaining plate, spring and backing liner in their assembled positions.",
+      "partIds": [
+        "BAT-001",
+        "BAT-010",
+        "BAT-011",
+        "BAT-020",
+        "BAT-021",
+        "BAT-022",
+        "BAT-030",
+        "BAY-010",
+        "BCL-010",
+        "BCL-020",
+        "BCL-030",
+        "BAT-050",
+        "BAT-052",
+        "BAT-051",
+        "BAT-060",
+        "BAT-061"
+      ],
+      "focusPartId": "BAT-001",
+      "focusBoundsIds": [
+        "BAT-001",
+        "BAT-010",
+        "BAT-011",
+        "BAT-020",
+        "BAT-021",
+        "BAT-022",
+        "BAT-030",
+        "BCL-010",
+        "BCL-020",
+        "BCL-030",
+        "BAT-050",
+        "BAT-052",
+        "BAT-051",
+        "BAT-060",
+        "BAT-061"
+      ]
+    },
+    "batteryHousing": {
+      "label": "Battery housing fit",
+      "description": "Battery lid removed to inspect the cabinet opening, inner wall and latch together.",
+      "partIds": [
+        "BAT-001",
+        "BAT-010",
+        "BAT-011",
+        "BAT-020",
+        "BAT-021",
+        "BAT-022",
+        "BAT-030",
+        "BAY-010",
+        "BCL-010",
+        "BCL-020",
+        "BCL-030",
+        "BAT-050",
+        "BAT-052",
+        "BAT-051",
+        "BAT-060",
+        "BAT-061",
+        "EXT-010"
+      ],
+      "focusPartId": "BAT-001",
+      "focusBoundsIds": [
+        "BAT-001",
+        "BAT-010",
+        "BAT-011",
+        "BAT-020",
+        "BAT-021",
+        "BAT-022",
+        "BAT-030",
+        "BCL-010",
+        "BCL-020",
+        "BCL-030",
+        "BAT-050",
+        "BAT-052",
+        "BAT-051",
+        "BAT-060",
+        "BAT-061"
+      ]
+    },
+    "motorAssembly": {
+      "label": "Motor, MNF-1600B (M1)",
+      "partNumber": "8-835-008-11",
+      "searchable": true,
+      "description": "Ref. No.: M1 · Part No.: 8-835-008-11 · Description: Motor, MNF-1600B. Schematic ref.: M901. Represented by 31 modeled components; mounting cradle and screw remain separate.",
+      "partIds": [
+        "MTR-001",
+        "MTR-002",
+        "MTR-003",
+        "MTR-004",
+        "MTR-005",
+        "MTR-010",
+        "MTR-011",
+        "MTR-012",
+        "MTR-013",
+        "MTR-020",
+        "MTR-021",
+        "MTR-022",
+        "MTR-023",
+        "MTR-024",
+        "MTR-025",
+        "MTR-026",
+        "MTR-027",
+        "MTR-028",
+        "MTR-029",
+        "MTR-030",
+        "MTR-031",
+        "MTR-032",
+        "MTR-033",
+        "MTR-034",
+        "MTR-040",
+        "MTR-041",
+        "MTR-042",
+        "MTR-201",
+        "MTR-202",
+        "MTR-203",
+        "MTR-204"
+      ],
+      "focusPartId": "MTR-001",
+      "refNo": "M1"
+    }
+  },
+  "roles": {
+    "door": [
+      "EXT-030",
+      "EXT-031",
+      "EXT-032"
+    ],
+    "batteryDoor": [
+      "EXT-040",
+      "EXT-041",
+      "EXT-042"
+    ],
+    "batteryLatch": "BCL-010",
+    "stopTranslation": [
+      "CTL-04",
+      "STP-002"
+    ],
+    "instantTranslation": [
+      "BCL-010",
+      "CTL-04",
+      "STP-002"
+    ],
+    "smoothDeformation": [
+      "FCR-030"
+    ],
+    "serviceStaticControls": [
+      "VOL-019",
+      "VOL-029",
+      "TNE-010",
+      "TNE-021",
+      "TNE-022"
+    ],
+    "motorWitness": {
+      "MTR-004": "shaft",
+      "MTR-005": "pulley"
+    },
+    "ejectFocus": [
+      "STP-003",
+      "STP-004",
+      "STP-030",
+      "CTL-04"
+    ],
+    "controlCloseup": {
+      "hotline": "CTL-07",
+      "tone": "CTL-08",
+      "battery": "EXT-040"
+    }
+  },
+  "deformation": {
+    "animated": [
+      "JNT-010",
+      "JNT-020",
+      "FCR-030",
+      "TNE-040",
+      "BCL-030",
+      "STP-020"
+    ],
+    "inspectionOnly": [
+      "BAT-010",
+      "BAT-011",
+      "MIC-010",
+      "HLT-021",
+      "JCK-21",
+      "JCK-22",
+      "JCK-23",
+      "JCK-24",
+      "SB-101",
+      "SB-102",
+      "SB-103"
+    ],
+    "channels": {
+      "tone": "TNE-040",
+      "stop": "STP-020",
+      "battery": "BCL-030",
+      "play": [
+        "JNT-010",
+        "JNT-020"
+      ],
+      "transport": "FCR-030"
+    }
+  },
+  "belts": {
+    "BLT-001": {
+      "sectionVertices": 16,
+      "drivers": [
+        {
+          "owner": "MTR-005",
+          "axis": 1
+        },
+        {
+          "owner": "MEC-011",
+          "axis": 2
+        },
+        {
+          "owner": "DRV-022",
+          "axis": 2
+        }
+      ]
+    },
+    "BLT-002": {
+      "sectionVertices": 16,
+      "drivers": [
+        {
+          "owner": "MEC-011",
+          "axis": 2
+        },
+        {
+          "owner": "DRV-020",
+          "axis": 2
+        }
+      ]
+    }
+  },
+  "materials": {
+    "belt": [],
+    "transparent": [
+      "Cassette window • clear lightly smoked acrylic"
+    ],
+    "indicator": {
+      "material": "D901 • milky diffuser family reference",
+      "owner": "EXT-061",
+      "strength": 2
+    }
+  },
+  "viewer": {
+    "batteryOpenFraction": 0.7647058823529411,
+    "batteryReleasePhase": 0.15,
+    "explodedGapMm": 28,
+    "explodedSideGapMm": 28,
+    "beltStripeWidthMm": 1.6,
+    "defaultSpeed": 0.55,
+    "controlCameras": {
+      "transport": [
+        [
+          43,
+          12,
+          -5
+        ],
+        [
+          260,
+          60,
+          70
+        ]
+      ],
+      "hotline": [
+        [
+          -19.17,
+          67.5,
+          4.6
+        ],
+        [
+          -45,
+          235,
+          105
+        ]
+      ],
+      "tone": [
+        [
+          -44,
+          -16,
+          -6
+        ],
+        [
+          -190,
+          5,
+          28
+        ]
+      ],
+      "battery": [
+        [
+          -12,
+          -46,
+          -12
+        ],
+        [
+          -48,
+          -80,
+          -225
+        ]
+      ]
+    },
+    "tourSteps": [
+      {
+        "view": "assembled",
+        "cat": "all",
+        "mode": "stop",
+        "title": "A portable machine, reconstructed",
+        "text": "A provisionally selected later TPS-L2. Inspect the geometry and the limits of the evidence behind it.",
+        "duration": 8
+      },
+      {
+        "view": "assembled",
+        "cat": "all",
+        "mode": "stop",
+        "door": true,
+        "media": "ejected",
+        "title": "Loading the cassette",
+        "text": "The cassette rises for loading. This exhibit combines lid opening and ejection as a demonstrator shortcut; an electrical door interlock is not established.",
+        "duration": 10
+      },
+      {
+        "view": "service",
+        "cat": "motor",
+        "mode": "play",
+        "title": "Drive and tape path",
+        "text": "The motor, belts and capstan coordinate motion. Speeds and ratios are estimates; the amber transfer idler is an added demonstration substitute.",
+        "duration": 12
+      },
+      {
+        "view": "service",
+        "cat": "tape",
+        "mode": "play",
+        "title": "At the tape",
+        "text": "PLAY advances the head and pinch roller. Hidden contact, spring and axial-stack geometry remains provisional.",
+        "duration": 12
+      },
+      {
+        "view": "service",
+        "cat": "controls",
+        "mode": "ff",
+        "title": "Controls and direction",
+        "text": "Fast winding illustrates the transmission. The selector supports, short arm and pinion need same-unit evidence before a physical correction.",
+        "duration": 10
+      },
+      {
+        "view": "service",
+        "cat": "all",
+        "mode": "stop",
+        "section": "z",
+        "title": "A section through the assembly",
+        "text": "The section plane removes pixels, not geometry. Inspect lets you choose the plane, isolate a subsystem and view source-specific limitations.",
+        "duration": 10
+      },
+      {
+        "view": "exploded",
+        "cat": "all",
+        "mode": "stop",
+        "title": "An aligned exploded assembly",
+        "text": "Covers, cassette and populated boards separate along their assembly axes. The assemblies retain their registration; these offsets illustrate the assembly, not a verified removal sequence.",
+        "duration": 12
+      },
+      {
+        "view": "assembled",
+        "cat": "all",
+        "mode": "stop",
+        "title": "Back together",
+        "text": "The exhibit is ready to explore. Operate the controls or choose Inspect for component evidence and numerical model measurements.",
+        "duration": 6
+      }
+    ],
+    "operatingPolicy": {
+      "id": "independent-cover-and-transport-v2",
+      "confidence": "illustrative",
+      "description": "The transport runs with an open or closed cover and with or without a cassette. Only seated, connected media advances or produces program audio. Speeds and internal engagement remain illustrative.",
+      "tapeDurationSeconds": 120,
+      "fastWindRatio": 8
+    },
+    "stopCycle": {
+      "press": 0.18,
+      "hold": 0.12,
+      "release": 0.3
+    },
+    "speedRange": [
+      0.05,
+      2
+    ],
+    "poseSmoothingRate": 7,
+    "serviceControlCameras": {
+      "transport": [
+        [
+          43,
+          0,
+          -5
+        ],
+        [
+          170,
+          30,
+          -170
+        ]
+      ]
+    },
+    "speedSlider": {
+      "min": 0.05,
+      "max": 1,
+      "step": 0.05
+    },
+    "cameraPresets": {
+      "assembled": {
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "position": [
+          200,
+          135,
+          340
+        ]
+      },
+      "service": {
+        "target": [
+          0,
+          55,
+          -8
+        ],
+        "position": [
+          140,
+          220,
+          0
+        ],
+        "depth": [
+          -1,
+          680,
+          600
+        ]
+      },
+      "catalog": {
+        "target": [
+          0,
+          500,
+          90
+        ],
+        "position": [
+          0,
+          500,
+          90
+        ],
+        "depth": [
+          1,
+          2150,
+          1800
+        ]
+      }
+    }
+  },
+  "sampling": {
+    "ordinary": [
+      0,
+      0.125,
+      0.25,
+      0.375,
+      0.5,
+      0.625,
+      0.75,
+      0.875,
+      1
+    ],
+    "toneRequired": [
+      0,
+      0.01,
+      0.02,
+      0.04,
+      0.06,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.94,
+      0.96,
+      0.98,
+      0.99,
+      1
+    ],
+    "positionToleranceMm": 2e-05,
+    "weightTolerance": 0.0005,
+    "weightToleranceBasis": "Native float32 driver inputs and retained keyframe snap produce sub-millipercent steps near the detent boundary; 0.0005 weight is below 0.000061 mm of cam surface travel. Sample endpoints remain evaluated native values."
+  },
+  "cassette": {
+    "schema_version": 2,
+    "alternate_id": "ALT-GENERIC-CLEAR-CASSETTE-02",
+    "label": "Generic clear cassette",
+    "classification": "Source-informed reconstructed cassette visual alternative; native geometry unchanged",
+    "numeric_detail_status": "Common-format envelope and 42.5mm hub pitch retain current native-derived interfaces. All new internal detail dimensions, material optical values and tape route are explicit visual estimates, not calibrated measurements.",
+    "owners": [
+      "MEDIA-001",
+      "MEDIA-002",
+      "MEDIA-003",
+      "MEDIA-004",
+      "MEDIA-005",
+      "MEDIA-006"
+    ],
+    "shell": {
+      "assembled_xy_bounds_mm": [
+        -39.8,
+        -57.65,
+        24,
+        42.75
+      ],
+      "assembled_z_bounds_mm": [
+        3.55,
+        11.95
+      ],
+      "corner_radius_mm": 2.1,
+      "front_roof_z_mm": [
+        10.32,
+        10.78
+      ],
+      "rear_floor_z_mm": [
+        3.55,
+        4
+      ],
+      "raised_apron_xy_mm": [
+        [
+          9,
+          -38.95
+        ],
+        [
+          9,
+          24.05
+        ],
+        [
+          24,
+          27.05
+        ],
+        [
+          24,
+          -41.95
+        ]
+      ],
+      "raised_apron_z_mm": [
+        10.32,
+        11.95
+      ],
+      "screw_centers_xy_mm": [
+        [
+          -36.5,
+          -54.35
+        ],
+        [
+          -36.5,
+          39.45
+        ],
+        [
+          20.7,
+          -54.35
+        ],
+        [
+          20.7,
+          39.45
+        ],
+        [
+          13.35,
+          -7.45
+        ]
+      ]
+    },
+    "hub": {
+      "pitch_mm": 42.5,
+      "centers_assembled_mm": [
+        [
+          -10.8,
+          -28.7,
+          5.95
+        ],
+        [
+          -10.8,
+          13.8,
+          5.95
+        ]
+      ],
+      "internal_teeth": 6,
+      "inner_tooth_tip_radius_mm": 4.2,
+      "inner_recess_radius_mm": 5.25,
+      "flange_outer_radius_mm": 10.55,
+      "flange_z_mm": [
+        8.03,
+        8.84
+      ],
+      "relief_pockets": 12,
+      "relief_pocket_radius_mm": 1.12,
+      "rear_barrel_relief_pockets": {
+        "count": 12,
+        "radius_mm": 0.75,
+        "pitch_radius_mm": 6.7,
+        "cut_top_z_mm": 3.94,
+        "spindle_engagement_change": "None; all removed material lies outside r5.95"
+      },
+      "rear_flange_relief_pockets": {
+        "count": 12,
+        "radius_mm": 1.1,
+        "pitch_radius_mm": 8.4,
+        "depth_mm": 0.085
+      }
+    },
+    "scope_limits": [
+      "A generic clear-shell reconstruction, not an exact branded cassette product or device-specific replica.",
+      "Source photographs support topology; internal dimensions and optical materials are estimates.",
+      "The nominal format thickness and apron thickness are fitted to the current 8.4mm overall cassette envelope, not represented as manufacturer measurements.",
+      "Six existing MEDIA owners and their poses/spin metadata are preserved. Screws, guide rollers, tape ribbon and pressure-pad features are separately manufactured subcomponents grouped under shell owners only for the visual alternative.",
+      "Only cassette hubs have six internal engagement teeth; the player spindles remain unchanged.",
+      "The illustrated tape ribbon is static and has an approximately 0.95mm PLAY head gap; fixed equal pack radii do not simulate winding transfer."
+    ],
+    "materials": [
+      {
+        "semantic": "shell",
+        "name": "ALT clear smoke molded shell",
+        "color": [
+          0.86,
+          0.91,
+          0.93
+        ],
+        "metalness": 0,
+        "roughness": 0.13,
+        "alpha": 1,
+        "transmission": 0.92,
+        "ior": 1.49,
+        "thickness": 0.5,
+        "attenuationColor": [
+          0.72,
+          0.79,
+          0.82
+        ],
+        "attenuationDistance": 45,
+        "clearcoat": 0.35
+      },
+      {
+        "semantic": "edge",
+        "name": "ALT clear molded edges and apron",
+        "color": [
+          0.76,
+          0.83,
+          0.88
+        ],
+        "metalness": 0,
+        "roughness": 0.18,
+        "alpha": 1,
+        "transmission": 0.79,
+        "ior": 1.49,
+        "thickness": 1.3,
+        "attenuationColor": [
+          0.6,
+          0.69,
+          0.77
+        ],
+        "attenuationDistance": 30,
+        "clearcoat": 0.4
+      },
+      {
+        "semantic": "seam",
+        "name": "ALT smoke mold seam and screw seats",
+        "color": [
+          0.11,
+          0.15,
+          0.18
+        ],
+        "metalness": 0,
+        "roughness": 0.28,
+        "alpha": 1,
+        "transmission": 0.25,
+        "ior": 1.49,
+        "thickness": 0.2
+      },
+      {
+        "semantic": "hub",
+        "name": "ALT ivory stepped six-tooth spool",
+        "color": [
+          0.91,
+          0.885,
+          0.78
+        ],
+        "metalness": 0,
+        "roughness": 0.31,
+        "alpha": 1
+      },
+      {
+        "semantic": "tape",
+        "name": "ALT dark brown concentric wound tape",
+        "color": [
+          0.055,
+          0.028,
+          0.013
+        ],
+        "metalness": 0,
+        "roughness": 0.47,
+        "alpha": 1
+      },
+      {
+        "semantic": "ribbon",
+        "name": "ALT oxide brown tape ribbon",
+        "color": [
+          0.085,
+          0.039,
+          0.016
+        ],
+        "metalness": 0,
+        "roughness": 0.38,
+        "alpha": 1
+      },
+      {
+        "semantic": "roller",
+        "name": "ALT corner guide roller acetal",
+        "color": [
+          0.5,
+          0.52,
+          0.48
+        ],
+        "metalness": 0,
+        "roughness": 0.35,
+        "alpha": 1
+      },
+      {
+        "semantic": "screw",
+        "name": "ALT recessed crossed steel screws and axles",
+        "color": [
+          0.23,
+          0.25,
+          0.27
+        ],
+        "metalness": 0.85,
+        "roughness": 0.27,
+        "alpha": 1
+      },
+      {
+        "semantic": "felt",
+        "name": "ALT tan pressure pad felt",
+        "color": [
+          0.34,
+          0.2,
+          0.095
+        ],
+        "metalness": 0,
+        "roughness": 0.95,
+        "alpha": 1
+      },
+      {
+        "semantic": "spring",
+        "name": "ALT pressure pad metal spring",
+        "color": [
+          0.49,
+          0.43,
+          0.3
+        ],
+        "metalness": 0.75,
+        "roughness": 0.35,
+        "alpha": 1
+      },
+      {
+        "semantic": "slip",
+        "name": "ALT translucent slip sheet",
+        "color": [
+          0.72,
+          0.73,
+          0.66
+        ],
+        "metalness": 0,
+        "roughness": 0.65,
+        "alpha": 1,
+        "transmission": 0.6,
+        "ior": 1.4,
+        "thickness": 0.03
+      },
+      {
+        "semantic": "label upper",
+        "name": "ALT label upper",
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "alpha": 1,
+        "uvBounds": [
+          -34.6,
+          -49.5,
+          -28.9,
+          34.6
+        ],
+        "uvSpace": "assemblyXY",
+        "label": {
+          "region": "upper",
+          "back": false
+        }
+      },
+      {
+        "semantic": "label lower",
+        "name": "ALT label lower",
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "alpha": 1,
+        "uvBounds": [
+          3.4,
+          -49.1,
+          9,
+          34.2
+        ],
+        "uvSpace": "assemblyXY",
+        "label": {
+          "region": "lower",
+          "back": false
+        }
+      },
+      {
+        "semantic": "label upper back",
+        "name": "ALT label upper back",
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "alpha": 1,
+        "uvBounds": [
+          -34.6,
+          -49.5,
+          -28.9,
+          34.6
+        ],
+        "uvSpace": "assemblyXY",
+        "label": {
+          "region": "upper",
+          "back": true
+        }
+      },
+      {
+        "semantic": "label lower back",
+        "name": "ALT label lower back",
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.8,
+        "alpha": 1,
+        "uvBounds": [
+          3.4,
+          -49.1,
+          9,
+          34.2
+        ],
+        "uvSpace": "assemblyXY",
+        "label": {
+          "region": "lower",
+          "back": true
+        }
+      }
+    ],
+    "tape": {
+      "pack_radii_mm": [
+        8,
+        19.7
+      ],
+      "pack_z_mm": [
+        4.2,
+        7.875
+      ],
+      "winding_relief_rings": 32,
+      "guide_rollers": [
+        {
+          "center_xy_mm": [
+            17.25,
+            -47.3
+          ],
+          "radius_mm": 3.9
+        },
+        {
+          "center_xy_mm": [
+            17.25,
+            32.4
+          ],
+          "radius_mm": 3.9
+        }
+      ],
+      "ribbon_z_mm": [
+        4.12,
+        7.88
+      ],
+      "ribbon_thickness_mm": 0.035,
+      "ribbon_front_x_mm": 21.15,
+      "route_status": "Static illustrative ribbon and fixed equal winding radii; no flexible tape transport or conservation simulation.",
+      "rear_winding_relief_rings": 32,
+      "rear_winding_recess_depth_mm": 0.035
+    },
+    "interfaces": {
+      "through_bores": [
+        {
+          "name": "left locating pin",
+          "center_xy_mm": [
+            18.9,
+            -21.45
+          ],
+          "radius_mm": 2.5
+        },
+        {
+          "name": "right locating pin",
+          "center_xy_mm": [
+            18.9,
+            6.55
+          ],
+          "radius_mm": 2.5
+        },
+        {
+          "name": "capstan",
+          "center_xy_mm": [
+            20.5,
+            16.55
+          ],
+          "radius_mm": 1.3
+        },
+        {
+          "name": "symmetric capstan access",
+          "center_xy_mm": [
+            20.5,
+            -31.45
+          ],
+          "radius_mm": 2
+        }
+      ],
+      "edge_openings_xy_mm": [
+        [
+          20.6,
+          -15.75,
+          25,
+          1
+        ],
+        [
+          20.8,
+          12.2,
+          25,
+          20.8
+        ],
+        [
+          23.2,
+          -44,
+          25,
+          -22.3
+        ]
+      ],
+      "apron_face_windows_xy_mm": [
+        [
+          20.6,
+          -15.75,
+          25,
+          1
+        ],
+        [
+          20.8,
+          12.2,
+          25,
+          20.8
+        ],
+        [
+          21.8,
+          -34.7,
+          25,
+          -28.2
+        ]
+      ]
+    },
+    "ownerRoles": {
+      "frontShell": "MEDIA-001",
+      "backShell": "MEDIA-002",
+      "hubs": [
+        "MEDIA-003",
+        "MEDIA-005"
+      ],
+      "packs": [
+        "MEDIA-004",
+        "MEDIA-006"
+      ]
+    }
+  }
+}

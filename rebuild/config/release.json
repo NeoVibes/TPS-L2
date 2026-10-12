@@ -1,0 +1,28 @@
+{
+  "version": "0.2.2",
+  "repository": "https://github.com/NeoVibes/TPS-L2",
+  "statement": "This model is an estimate. It was worked out from photographs, videos, Sony’s service manual and the Compact Cassette standard, and no part has yet been checked against a real unit. Every part carries a confirmation level, from 1 (modelled, not checked) to 6 (measured on two units by two people); today all are at level 1.",
+  "serialNotice": "Serial number 12345 was chosen completely arbitrarily for this model and is not taken from any real unit.",
+  "fictionalSerial": "12345",
+  "exteriors": [
+    {
+      "id": "later",
+      "label": "Later",
+      "lettering": "SONY / WALKMAN",
+      "serials": "serial above about 264,000"
+    },
+    {
+      "id": "intermediate",
+      "label": "Intermediate",
+      "lettering": "STEREO / A B",
+      "serials": "about 30,000 to 264,000"
+    },
+    {
+      "id": "early",
+      "label": "Early",
+      "lettering": "STEREO / GUYS & DOLLS",
+      "serials": "up to about 30,000"
+    }
+  ],
+  "exteriorNote": "Go by the lettering. Serial ranges are approximate and differ by market."
+}
