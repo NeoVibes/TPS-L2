@@ -1,0 +1,6 @@
+{
+ "what": "Accepted confirmations of the model against references and real parts. Maintained by hand from this project's GitHub issues; edit/EDITING.md says how. Only issue numbers are stored: no names, no serial numbers. \"npm run accept\" adds the \"bound_to\" block that ties an assessment to the model as it was when accepted.",
+ "checklists": {},
+ "assessments": [],
+ "corroborations": []
+}
