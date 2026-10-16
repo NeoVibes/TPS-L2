@@ -29,7 +29,7 @@ for(const [w,h,dpr] of [[390,650,3],[1280,850,2],[3840,2160,2]]){
  const ratio=api.renderPixelRatio(w,h,dpr);
  assert(w*h*ratio*ratio<=2500001&&ratio<=dpr&&ratio<=2,'pixel budget');
 }
-const model=JSON.parse(await readFile('build/exports/model.json'));
+const model=globalThis.portableTapePlayerData.model.meta;
 const report={gate:'PASS',nativeSha256:model.source_sha256,sourceHashes:{'viewer/app-camera.mjs':createHash('sha256').update(source).digest('hex')},source:'exported native layers; geometry is diagnostic evidence, not physical verification',depth_bits_assumed:24,geometry_change_mm:0,battery_layer_gap_mm:.01,artwork_gap_mm:.018,overview_depth_levels:{before,after},cases,pixel_budget:2500000,limitations:['Physical phone GPU and display not tested.','Subpixel silhouettes and specular aliasing can remain.']};
 await writeFile('build/test-results/render-quality-tests.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({gate:report.gate,layer_cases:cases.length,overview_precision_gain:after/before,pixel_budget:report.pixel_budget}));

@@ -16,9 +16,11 @@ import path from 'node:path';
 import {KIT, VIEW, ROOT, json} from '../rebuild/tools/integrity.mjs';
 import {checkKit} from '../rebuild/tools/check.mjs';
 import {fingerprintView, describeChanges} from '../rebuild/tools/compare.mjs';
+import {verifyZip} from './verify-zip.mjs';
+import {acquireBuildLock} from '../rebuild/tools/build-lock.mjs';
 
-const stop = reasons => { for (const r of reasons) console.error('STOP  ' + r); console.error('\nNo ZIP was made.'); process.exit(1); };
-const SCRATCH = new Set(['rebuild/build', 'rebuild/node_modules', 'view.staging', 'view.previous']);   // recreated by "npm ci" and "npm run build"
+const stop = reasons => { throw Error(reasons.join('\n') + '\nNo ZIP was made.'); };
+const SCRATCH = new Set(['rebuild/build', 'rebuild/node_modules', 'publish/browser/node_modules', 'view.staging', 'view.previous']);   // recreated by installation and builds
 const LEFT_OUT = /(^|\/)\.|(^|\/)__pycache__$|\.(pyc|blend\d+|zip|log)$/;                              // hidden files and folders, caches, Blender backups, archives, logs
 
 /** The files that ship, relative to the kit folder, and the things lying in it that do not. */
@@ -57,42 +59,57 @@ export function zipFiles(files, prefix, date) {
 }
 
 if (process.argv[1]?.endsWith('release.mjs')) {
-  const reasons = [];
-  const {errors, warnings, facts} = await checkKit();
-  reasons.push(...errors, ...warnings);
-  if (!errors.length) {
-    const changed = describeChanges(JSON.parse(readFileSync(path.join(ROOT, 'accepted.json'), 'utf8')), await fingerprintView(VIEW));
-    if (changed.length) reasons.push('The model differs from its accepted state in ' + changed.length + ' place(s). Review them with npm test, then npm run accept.');
-  }
-  const {ship, leftOut} = shippingFiles();
-  // Words that identify this computer or its user must not appear in any text file that ships.
-  const personal = [os.userInfo().username, os.hostname().split('.')[0], path.basename(os.homedir())].filter(w => w && w.length > 2);
-  const home = /(?:\/Users\/|\/home\/|[A-Z]:\\Users\\)[A-Za-z0-9._-]+/;
-  for (const file of ship) {
-    if (!/\.(md|mjs|js|py|json|csv|html|css|yml|txt)$/.test(file) || file.startsWith('view/geometry/')) continue;
-    const text = readFileSync(path.join(KIT, file), 'utf8');
-    for (const word of personal) if (text.toLowerCase().includes(word.toLowerCase())) reasons.push(file + ' contains "' + word + '", a name from this computer');
-    const found = text.match(home);
-    if (found && !/tools\/(check|blend_file)\.mjs$|publish\/(release\.mjs|clean_blender_file\.py)$/.test(file)) reasons.push(file + ' contains a home-folder path: ' + found[0]);
-  }
-  const outDir = path.resolve(process.argv[2] || path.join(KIT, '..'));
-  if (outDir === KIT || outDir.startsWith(KIT + path.sep)) reasons.push('The output folder is inside the kit. Choose one outside it, so this ZIP and its lists are not packed into the next one.');
-  if (reasons.length) stop(reasons);
+  let lock;
+  try {
+    lock = await acquireBuildLock(KIT);
+    const {ship, leftOut} = shippingFiles();
+    const snapshot = files => Object.fromEntries(files.map(file => [file, createHash('sha256').update(readFileSync(path.join(KIT, file))).digest('hex')]));
+    const candidate = snapshot(ship);
+    const assertCandidateUnchanged = () => {
+      if (JSON.stringify(shippingFiles().ship) !== JSON.stringify(ship) || JSON.stringify(snapshot(ship)) !== JSON.stringify(candidate)) stop(['Files changed during release validation. Retry with a stable candidate.']);
+    };
+    const reasons = [];
+    const {errors, warnings, facts} = await checkKit();
+    reasons.push(...errors, ...warnings);
+    if (!errors.length) {
+      const changed = describeChanges(JSON.parse(readFileSync(path.join(ROOT, 'accepted.json'), 'utf8')), await fingerprintView(VIEW));
+      if (changed.length) reasons.push('The model differs from its accepted state in ' + changed.length + ' place(s). Review them with npm test, then npm run accept.');
+    }
+    // Words that identify this computer or its user must not appear in any text file that ships.
+    const personal = [os.userInfo().username, os.hostname().split('.')[0], path.basename(os.homedir())].filter(w => w && w.length > 2);
+    const home = /(?:\/Users\/|\/home\/|[A-Z]:\\Users\\)[A-Za-z0-9._-]+/;
+    for (const file of ship) {
+      if (!/\.(md|mjs|js|py|json|csv|html|css|yml|txt)$/.test(file) || file.startsWith('view/geometry/')) continue;
+      const text = readFileSync(path.join(KIT, file), 'utf8');
+      for (const word of personal) if (text.toLowerCase().includes(word.toLowerCase())) reasons.push(file + ' contains "' + word + '", a name from this computer');
+      const found = text.match(home);
+      if (found && !/tools\/(check|blend_file)\.mjs$|publish\/(release\.mjs|clean_blender_file\.py)$/.test(file)) reasons.push(file + ' contains a home-folder path: ' + found[0]);
+    }
+    const outDir = path.resolve(process.argv[2] || path.join(KIT, '..'));
+    if (outDir === KIT || outDir.startsWith(KIT + path.sep)) reasons.push('The output folder is inside the kit. Choose one outside it, so this ZIP and its lists are not packed into the next one.');
+    if (reasons.length) stop(reasons);
 
-  const version = (await json('config/release.json')).version, name = 'Portable Tape Player-v' + version, zip = path.join(outDir, name + '.zip');
-  mkdirSync(outDir, {recursive: true});
-  const now = new Date(), bytes = zipFiles(ship, name, new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())));
-  writeFileSync(zip, bytes);
-  const sha256 = createHash('sha256').update(bytes).digest('hex'), listFile = path.join(outDir, name + '-files.txt');
-  writeFileSync(zip + '.sha256', sha256 + '  ' + name + '.zip\n');
-  const previousList = process.argv[3] && existsSync(process.argv[3]) ? readFileSync(process.argv[3], 'utf8').split('\n').filter(Boolean) : null;
-  writeFileSync(listFile, ship.join('\n') + '\n');
-  console.log('Wrote ' + zip + '\n  ' + ship.length + ' files, ' + (bytes.length / 1e6).toFixed(1) + ' MB, SHA-256 ' + sha256);
-  if (leftOut.length) console.log('Left out (hidden files, caches, backups, archives): ' + leftOut.slice(0, 8).join(', ') + (leftOut.length > 8 ? ' and ' + (leftOut.length - 8) + ' more' : ''));
-  if (previousList) {
-    const added = ship.filter(f => !previousList.includes(f)), removed = previousList.filter(f => !ship.includes(f));
-    console.log('Since the previous list: ' + added.length + ' added, ' + removed.length + ' removed.');
-    for (const f of added) console.log('  + ' + f); for (const f of removed) console.log('  - ' + f);
-  } else console.log('Review the file list: ' + listFile + ' (pass a previous list as the second argument to see what changed).');
-  console.log('Blender ' + (JSON.parse(readFileSync(path.join(VIEW, 'build-record.json'), 'utf8')).built_with.blender) + ' built this view/. ' + facts.parts + ' parts.');
+    const version = (await json('config/release.json')).version, name = 'Portable Tape Player-v' + version, zip = path.join(outDir, name + '.zip');
+    mkdirSync(outDir, {recursive: true});
+    assertCandidateUnchanged();
+    const now = new Date(), bytes = zipFiles(ship, name, new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())));
+    await verifyZip(bytes, name, candidate);
+    assertCandidateUnchanged();
+    writeFileSync(zip, bytes);
+    const sha256 = createHash('sha256').update(bytes).digest('hex'), listFile = path.join(outDir, name + '-files.txt');
+    writeFileSync(zip + '.sha256', sha256 + '  ' + name + '.zip\n');
+    writeFileSync(path.join(outDir, name + '-SHA256SUMS'), Object.entries(candidate).map(([file, digest]) => digest + '  ' + name + '/' + file).join('\n') + '\n');
+    const previousList = process.argv[3] && existsSync(process.argv[3]) ? readFileSync(process.argv[3], 'utf8').split('\n').filter(Boolean) : null;
+    writeFileSync(listFile, ship.join('\n') + '\n');
+    console.log('Wrote ' + zip + '\n  ' + ship.length + ' files, ' + (bytes.length / 1e6).toFixed(1) + ' MB, SHA-256 ' + sha256);
+    console.log('Extracted ZIP inventory and every file hash match the validated candidate. No viewer files were rebuilt.');
+    if (leftOut.length) console.log('Left out (hidden files, caches, backups, archives): ' + leftOut.slice(0, 8).join(', ') + (leftOut.length > 8 ? ' and ' + (leftOut.length - 8) + ' more' : ''));
+    if (previousList) {
+      const added = ship.filter(f => !previousList.includes(f)), removed = previousList.filter(f => !ship.includes(f));
+      console.log('Since the previous list: ' + added.length + ' added, ' + removed.length + ' removed.');
+      for (const f of added) console.log('  + ' + f); for (const f of removed) console.log('  - ' + f);
+    } else console.log('Review the file list: ' + listFile + ' (pass a previous list as the second argument to see what changed).');
+    console.log('Blender ' + (JSON.parse(readFileSync(path.join(VIEW, 'build-record.json'), 'utf8')).built_with.blender) + ' built this view/. ' + facts.parts + ' parts.');
+  } catch (error) { console.error('STOP  ' + error.message); process.exitCode = 1; }
+  finally { await lock?.release(); }
 }

@@ -2,8 +2,13 @@
 # Scratch the build recreates; never shipped.
 /rebuild/build/
 /rebuild/node_modules/
+/publish/browser/node_modules/
 /view.staging/
 /view.previous/
+/.view.staging-*/
+/.view.previous-*/
+/.ptp-build.lock/
+/publish/browser/node_modules/
 
 __pycache__/
 *.pyc

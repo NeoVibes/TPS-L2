@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {Box3,Vector3,PerspectiveCamera} from 'three';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {fitBoxDistance} from '../viewer/fit-camera.mjs';
-const model=JSON.parse(readFileSync('build/viewer-data/model.json'));
+const model=globalThis.portableTapePlayerData.model.meta;
 let checks=0;
 for(const key of ['beltDrive','motorCutaway']){
  const context=model.inspectionContexts[key],box=new Box3();

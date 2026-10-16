@@ -12,7 +12,7 @@ try {
   await page.goto(target.startsWith('http') ? target : pathToFileURL(target).href);
   await page.waitFor('window.portableTapePlayer && window.portableTapePlayer.snapshot().ready', 90);
   const state = () => E(`(()=>{const s=window.portableTapePlayer.snapshot().state;const r=v=>typeof v==='number'?Math.round(v*100)/100:v;const o={};for(const k in s){if(!/tapePosition|tapeRevision|stopTravel/.test(k))o[k]=r(s[k]);}return o})()`);
-  const step = async (name, js, pause = 350) => { let result; try { result = await E(js); } catch (e) { result = 'THREW ' + String(e.message).slice(0, 120); } await wait(pause); record.steps[name] = {result: result ?? null, state: await state(), errors: page.log.errors.length}; };
+  const step = async (name, js, pause = 350) => { let result; try { result = typeof js === 'function' ? await js() : await E(js); } catch (e) { result = 'THREW ' + String(e.message).slice(0, 120); } await wait(pause); record.steps[name] = {result: result ?? null, state: await state(), errors: page.log.errors.length}; };
   const click = sel => `(()=>{const e=document.querySelector(${JSON.stringify(sel)});if(!e)return 'missing';e.click();return 'ok'})()`;
   const set = (id, v) => `(()=>{const e=document.getElementById(${JSON.stringify(id)});if(!e)return 'missing';e.value=${JSON.stringify(String(v))};e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));return [...(e.options||[])].map(o=>o.value).join(',')||'ok'})()`;
   const key = (target, k, extra = '') => `(()=>{const t=${target};t.dispatchEvent(new KeyboardEvent('keydown',{key:${JSON.stringify(k)},bubbles:true${extra}}));return 'ok'})()`;
@@ -58,7 +58,13 @@ try {
   for (const k of ['ArrowLeft', 'ArrowUp', '+', '-', 'Home', 'Enter']) await step('canvas key ' + JSON.stringify(k), key(`document.getElementById('canvas')`, k));
   await step('performance', click('#performance')); await step('retry assets', click('#retryAssets'));
   await step('visibility', `(()=>{document.dispatchEvent(new Event('visibilitychange'));return 'ok'})()`);
-  await step('pointer on model', `(()=>{const c=document.getElementById('canvas'),r=c.getBoundingClientRect();for(const t of ['pointermove','pointerdown','pointerup','click'])c.dispatchEvent(new PointerEvent(t,{bubbles:true,clientX:r.left+r.width/2,clientY:r.top+r.height/2,pointerId:2,button:0}));return 'ok'})()`, 500);
+  await step('pointer on model', async () => {
+    const {x, y} = await E(`(()=>{const r=document.getElementById('canvas').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2}})()`);
+    await page.send('Input.dispatchMouseEvent', {type: 'mouseMoved', x, y});
+    await page.send('Input.dispatchMouseEvent', {type: 'mousePressed', x, y, button: 'left', clickCount: 1});
+    await page.send('Input.dispatchMouseEvent', {type: 'mouseReleased', x, y, button: 'left', clickCount: 1});
+    return 'ok';
+  }, 500);
   record.errors = page.log.errors.map(e => e.split('\n')[0]); record.console = page.log.console;
 } catch (e) { record.crashed = String(e.stack || e); }
 finally { await browser.close(); }

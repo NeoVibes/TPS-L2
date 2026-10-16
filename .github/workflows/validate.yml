@@ -1,0 +1,56 @@
+name: Validate committed viewer
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  software:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: rebuild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.19.0'
+          cache: npm
+          cache-dependency-path: rebuild/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test:fast
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: software-${{ matrix.os }}
+          path: rebuild/build/test-results
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      # Hosted runners may define CHROME_BIN; CI must use Playwright's pinned download.
+      CHROME_BIN: ''
+    defaults:
+      run:
+        working-directory: publish/browser
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.19.0'
+          cache: npm
+          cache-dependency-path: publish/browser/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:chromium
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chromium-browser-results
+          path: rebuild/build/browser/regressions

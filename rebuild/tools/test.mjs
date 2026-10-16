@@ -1,20 +1,27 @@
 // npm test            Rules, then every test, then what has changed since the accepted state.
 // npm test -- name    Only tests whose file name contains "name".
+// npm test -- --suite=fast     Blender-free checks; no skips allowed.
+// npm test -- --suite=release  All checks; no skips allowed.
 //
 // Three kinds of check:
 //   rules            what any valid kit must satisfy (tools/check.mjs). A failure is an error.
 //   tests            the viewer's own logic and how it uses the model's data. A failure is an error.
 //   reference tests  numbers that belong to the shipped model (tests/reference/). They apply while the
 //                    model is that model, and step aside once you have deliberately changed it.
-import {spawnSync} from 'node:child_process';
-import {readFile, readdir, writeFile, mkdir} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {ROOT, VIEW, WORK, requireNode} from './integrity.mjs';
 import {checkKit} from './check.mjs';
 import {fingerprintView, describeChanges} from './compare.mjs';
+import {TEST_SUITES} from '../tests/suites.mjs';
+import {parseTestArguments, discoverTests, validateTestSuites, runTestSuite} from './test-suite.mjs';
 
 requireNode();
-const only = process.argv.slice(2).filter(a => !a.startsWith('-'));
+let options;
+try {
+  options = parseTestArguments(process.argv.slice(2));
+  validateTestSuites(TEST_SUITES, await discoverTests(ROOT));
+} catch (error) { console.error(error.message); process.exit(1); }
 const readState = async file => JSON.parse(await readFile(path.join(ROOT, file), 'utf8'));
 let failed = false;
 
@@ -30,27 +37,18 @@ const now = await fingerprintView(VIEW);
 const sinceReference = describeChanges(await readState('tests/reference/reference-model.json'), now);
 const sinceAccepted = describeChanges(await readState('accepted.json'), now);
 
-// 3. Tests. Most read the build's working files, which a fresh download does not have.
-const listTests = async folder => (await readdir(path.join(ROOT, folder))).filter(n => /^test_.*\.mjs$/.test(n) && n !== 'test_setup.mjs').sort().map(n => folder + '/' + n);
-const all = [...await listTests('tests'), ...await listTests('tests/reference')].filter(t => !only.length || only.some(o => t.includes(o)));
-const skipped = {reference: [], working: [], parts: []}, results = [];
-await mkdir(path.join(WORK, 'test-results'), {recursive: true});
-for (const test of all) {
-  if (test.startsWith('tests/reference/') && sinceReference.length) { skipped.reference.push(test); continue; }
-  const source = await readFile(path.join(ROOT, test), 'utf8');
-  if (!facts.working_files && /build\/(exports|viewer-data)/.test(source)) { skipped.working.push(test); continue; }
-  // A test about particular parts says so in a "// needs-parts:" line and steps aside when one of them has been removed.
-  const gone = (source.match(/^\/\/ needs-parts: (.+)$/m)?.[1].split(/\s+/) || []).filter(id => !(id in now.parts));
-  if (gone.length) { skipped.parts.push(path.basename(test) + ' (' + gone.join(', ') + ')'); continue; }
-  const run = spawnSync(process.execPath, [path.join(ROOT, test)], {cwd: ROOT, encoding: 'utf8', maxBuffer: 32 * 1024 ** 2});
-  const ok = run.status === 0;
-  await writeFile(path.join(WORK, 'test-results', path.basename(test) + '.log'), (run.stdout || '') + (run.stderr || ''));
-  results.push({test, ok});
-  if (!ok) { failed = true; console.log('FAILED       ' + test + '\n' + ((run.stderr || run.stdout || '').split('\n').filter(l => /Error|assert/i.test(l)).slice(0, 3).map(l => '             ' + l.trim().slice(0, 200)).join('\n'))); }
-}
-console.log(results.filter(r => r.ok).length + ' of ' + results.length + ' tests pass.' + (failed ? ' Logs are in rebuild/build/test-results/.' : ''));
+// 3. Prerequisites come from the suite manifest, not incidental strings in test source.
+const run = await runTestSuite(TEST_SUITES, {root: ROOT, output: path.join(WORK, 'test-results'), ...options,
+  workingFiles: facts.working_files, referenceChanged: sinceReference.length > 0, partIds: Object.keys(now.parts)});
+const {results, skipped} = run;
+failed = run.failed;
+for (const error of run.errors) console.log('TEST REQUEST FAILED  ' + error);
+for (const result of results) if (!result.ok) console.log('FAILED       ' + result.test + '\n' + result.log.split('\n').filter(l => /Error|assert/i.test(l)).slice(0, 3).map(l => '             ' + l.trim().slice(0, 200)).join('\n'));
+await writeFile(path.join(WORK, 'test-results', 'summary.json'), JSON.stringify({suite: options.suite, filters: run.filterResults,
+  passed: !failed, results: results.map(({log, ...result}) => result), skipped, errors: run.errors}, null, 2) + '\n');
+console.log((results.length ? results.filter(r => r.ok).length + ' of ' + results.length + ' tests pass.' : 'No tests ran.') + (failed ? ' Logs are in rebuild/build/test-results/.' : ''));
 if (skipped.working.length) console.log(skipped.working.length + ' tests were not run because the build\'s working files are ' + (facts.out_of_date?.length ? 'out of date' : 'not here') + '. Run npm run build (needs Blender) to run them.');
-if (skipped.parts.length) console.log(skipped.parts.length + ' test' + (skipped.parts.length === 1 ? ' was' : 's were') + ' not run because this model no longer has the parts they are about: ' + skipped.parts.join('; ') + '.');
+if (skipped.parts.length) console.log(skipped.parts.length + ' test' + (skipped.parts.length === 1 ? ' was' : 's were') + ' not run because this model no longer has the parts they are about: ' + skipped.parts.map(({file, missing}) => path.basename(file) + ' (' + missing.join(', ') + ')').join('; ') + '.');
 if (skipped.reference.length) console.log(skipped.reference.length + ' reference tests were not run: they hold numbers of the shipped model, and this model differs from it in ' + sinceReference.length + ' place' + (sinceReference.length === 1 ? '' : 's') + '.');
 
 // 4. What changed.

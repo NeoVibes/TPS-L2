@@ -1,0 +1,7 @@
+# Source and generated-file hashes use the same bytes on all contributor platforms.
+* text=auto eol=lf
+*.blend binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary

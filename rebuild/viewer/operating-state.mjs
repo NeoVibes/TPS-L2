@@ -106,6 +106,7 @@ export function dispatchOperating(state, action) {
     case 'seek':
       state.tapePosition = clamp(action.position, 0, 1, state.tapePosition);
       state.tapeRevision += 1;
+      if (!reelStalled(state)) cancelAutoStop(state);
       break;
     case 'speed': state.speed = clamp(action.value, ...config.viewer.speedRange, state.speed); break;
     case 'volume':
@@ -124,6 +125,9 @@ export function dispatchOperating(state, action) {
 export function advanceOperating(state, dt) {
   const seconds = Number(dt);
   if (!Number.isFinite(seconds) || seconds <= 0) return state;
+  // Changes to tape/media/presentation can make an existing shut-off obsolete.
+  // Reconcile it before isTapeMoving(), or the entire next interval is lost.
+  if (state.autoStop && !reelStalled(state)) cancelAutoStop(state);
   const interval = transportInterval(state, seconds); let stalledFor = seconds;
   if (isTapeMoving(state)) {
     const rate = TRANSPORT_RATES[state.mode] * state.speed;

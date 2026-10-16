@@ -1,6 +1,6 @@
 {
   "name": "portable-tape-player",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "private": true,
   "type": "module",
   "description": "Editable research reconstruction and self-contained viewer",
@@ -11,6 +11,9 @@
     "build": "node tools/build.mjs",
     "build:viewer": "node tools/build.mjs --viewer",
     "test": "node tools/test.mjs",
+    "test:fast": "node tools/test.mjs --suite=fast",
+    "test:release": "node tools/test.mjs --suite=release",
+    "check": "node tools/validate.mjs",
     "accept": "node tools/accept.mjs"
   },
   "dependencies": {

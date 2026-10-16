@@ -1,0 +1,12 @@
+{
+  "name": "portable-tape-player-browser-checks",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=24.0.0"},
+  "scripts": {
+    "test": "node run.mjs",
+    "test:chromium": "node run.mjs --browser=chromium",
+    "test:feasibility": "node run.mjs --feasibility"
+  },
+  "devDependencies": {"playwright": "1.62.1"}
+}

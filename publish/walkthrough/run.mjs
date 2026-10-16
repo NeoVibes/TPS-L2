@@ -49,6 +49,7 @@ for (const [script, name] of [['main-steps.mjs', 'main'], ['control-steps.mjs', 
   await runScript(script, target, record);
   const got = JSON.parse(readFileSync(record, 'utf8')), referenceFile = path.join(here, 'reference', name + '.json');
   if (got.crashed) { console.log('WRONG ' + name + ' steps did not finish: ' + got.crashed.split('\n')[0]); failed = true; continue; }
+  if (got.errors?.length) { console.log('WRONG ' + name + ': browser errors: ' + got.errors.join('; ')); failed = true; }
   if (update) { writeFileSync(referenceFile, JSON.stringify({what: 'What the accepted viewer does at each step of the walkthrough. Written by run.mjs --update-reference.', steps: got.steps}, null, 1) + '\n'); console.log('recorded ' + name + ' as the new reference'); continue; }
   const found = differences(JSON.parse(readFileSync(referenceFile, 'utf8')).steps, got.steps);
   console.log((found.length ? 'WRONG ' : 'ok    ') + name + ': ' + Object.keys(got.steps).length + ' steps, ' + found.length + ' differences from the reference');

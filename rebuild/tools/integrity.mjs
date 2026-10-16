@@ -74,7 +74,7 @@ export async function modelInputs() {
 
 /** Files that decide what the page and the lists beside it contain: the viewer source, the settings, and the targets, assessments and service list. */
 export async function viewerInputs() {
-  const paths = [...(await walk('viewer')), 'config/model.json', 'config/release.json', 'tools/build_viewer.mjs', 'tools/targets.mjs', 'tools/confirmation.mjs', 'tools/compare.mjs', SERVICE_PARTS_CSV, TARGETS, ASSESSMENTS];
+  const paths = [...(await walk('viewer')), 'package.json', 'package-lock.json', 'config/model.json', 'config/release.json', 'tools/build_viewer.mjs', 'tools/targets.mjs', 'tools/confirmation.mjs', 'tools/compare.mjs', SERVICE_PARTS_CSV, TARGETS, ASSESSMENTS];
   return Object.fromEntries(await Promise.all(paths.sort().map(async p => [p, await fileHash(p)])));
 }
 
@@ -90,6 +90,7 @@ export async function dependencyVersions() {
 
 /** What differs between the inputs a build recorded and the inputs now: files added, removed or changed. */
 export function inputChanges(recorded, current) {
+  recorded ||= {};
   const changes = [];
   for (const p of Object.keys(current)) if (!(p in recorded)) changes.push(p + ' (new)');
   for (const [p, h] of Object.entries(recorded)) { if (!(p in current)) changes.push(p + ' (removed)'); else if (current[p] !== h) changes.push(p + ' (changed)'); }
@@ -98,7 +99,16 @@ export function inputChanges(recorded, current) {
 
 export async function exportOutputs(folder = 'build/exports') {
   const paths = (await walk(folder)).filter(p => p !== folder + '/receipt.json');
-  return Object.fromEntries(await Promise.all(paths.map(async p => [p, await fileHash(p)])));
+  return Object.fromEntries(await Promise.all(paths.map(async p => ['build/exports/' + p.slice(folder.length + 1), await fileHash(p)])));
+}
+
+/** Capture before work starts, and compare again before promoting output. */
+export async function captureInputs() {
+  return {model: await modelInputs(), viewer: await viewerInputs(), dependencies: await dependencyVersions()};
+}
+
+export async function assertInputsUnchanged(captured) {
+  if (JSON.stringify(captured) !== JSON.stringify(await captureInputs())) throw Error('Build inputs changed while the build was running. Save the files and run the build again.');
 }
 
 export async function checkSpace(bytes) {

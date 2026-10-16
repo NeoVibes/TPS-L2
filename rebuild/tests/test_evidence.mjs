@@ -4,7 +4,7 @@ import {parseServiceCatalog} from '../viewer/service-catalog.mjs';
 import {readFileSync,writeFileSync,existsSync,readdirSync} from 'node:fs';
 import {partSearchText,copyTarget,assemblySearchEntries,serviceSearchEntries,serviceEntriesForPart,serviceFields,validateServiceCatalog} from '../viewer/part-information.mjs';
 const release=JSON.parse(readFileSync('config/release.json'));
-const model=JSON.parse(readFileSync('build/exports/model.json'));
+const model=globalThis.portableTapePlayerData.model.meta;
 assert.deepEqual(model.fictional_serial,{value:'12345',fictional:true,part_id:'BAT-001'});
 const count=(text,needle)=>text.split(needle).length-1;
 for(const file of ['../README.md','../view/index.html']){
