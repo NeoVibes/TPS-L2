@@ -3,7 +3,8 @@ import config from '../config/model.json' with {type:'json'};
 // deliberately lives elsewhere. These interlocks describe this demonstration,
 // not a newly verified claim about the TPS-L2's concealed mechanism.
 export const OPERATING_POLICY=Object.freeze(config.viewer.operatingPolicy);
-export const TRANSPORT_RATES=Object.freeze({stop:0,play:1,ff:OPERATING_POLICY.fastWindRatio,rew:-OPERATING_POLICY.fastWindRatio});
+// Fast winding against playing, as the model's drive gives it: a side takes 30 minutes to play and these many times less to wind.
+export const TRANSPORT_RATES=Object.freeze({stop:0,play:1,ff:OPERATING_POLICY.fastForwardRatio,rew:-OPERATING_POLICY.rewindRatio});
 const clamp = (value, min, max, fallback = min) => Number.isFinite(Number(value)) ? Math.max(min, Math.min(max, Number(value))) : fallback;
 const defaults = () => ({
   mode: 'stop', door: false, batteryOpen: false, media: 'loaded', paused: false, speed: config.viewer.defaultSpeed,
@@ -11,6 +12,7 @@ const defaults = () => ({
   volumeLeft: .5, volumeRight: .5, toneTouched: false, tone: 'high', hotline: false,
   audioEnabled: false, muted: false,
   stopCycle: null, stopTravel: 0, ejectNeedsOpenCover: false,
+  autoStop: null,
 });
 
 // Timing and the existing 1 mm stroke are illustrative. Sony's user sequence
@@ -24,6 +26,17 @@ export function transportInterval(state, seconds) {
   return {mode: state.mode, seconds: Math.min(seconds, available)};
 }
 export function cancelStopCycle(state) { state.stopCycle = null; state.stopTravel = 0; }
+
+// Automatic shut-off. When a side runs out in PLAY the take-up reel stalls. Nothing then drags the detection
+// lever, the shut-off lever's teeth come into mesh with the third gear, the gear carries the lever along,
+// and the lever lets the FWD button go. The times are those of the third gear at the rate the viewer turns it.
+export const AUTO_STOP = Object.freeze(config.viewer.autoStop);
+export function cancelAutoStop(state) { state.autoStop = null; }
+export function autoStopProgress(state) {
+  const cycle = state.autoStop, ease = (x) => { const t = Math.max(0, Math.min(1, x)); return t*t*(3-2*t); };
+  return cycle ? {stalled: true, mesh: ease(cycle.elapsed / AUTO_STOP.detect), trip: ease((cycle.elapsed - AUTO_STOP.detect) / AUTO_STOP.trip)} : {stalled: false, mesh: 0, trip: 0};
+}
+const reelStalled = (state) => state.mode === 'play' && state.media === 'loaded' && state.tapePosition >= 1 - 1e-12 && canTransportRun(state);
 
 function normalize(state) {
   state.mode = Object.hasOwn(TRANSPORT_RATES, state.mode) ? state.mode : 'stop';
@@ -56,14 +69,14 @@ export function canTransportRun(state) {
 }
 
 export function isTapeMoving(state) {
-  return canTransportRun(state) && state.media === 'loaded' && state.view !== 'service' && !state.paused && state.mode !== 'stop';
+  return canTransportRun(state) && state.media === 'loaded' && state.view !== 'service' && !state.paused && state.mode !== 'stop' && !state.autoStop;
 }
 
 export function dispatchOperating(state, action) {
   switch (action?.type) {
     case 'transport':
       if (Object.hasOwn(TRANSPORT_RATES, action.mode) && (action.mode === 'stop' || canTransportRun(state))) {
-        cancelStopCycle(state); state.ejectNeedsOpenCover = false;
+        cancelStopCycle(state); cancelAutoStop(state); state.ejectNeedsOpenCover = false;
         state.mode = action.mode;
         state.paused = false;
       }
@@ -111,14 +124,23 @@ export function dispatchOperating(state, action) {
 export function advanceOperating(state, dt) {
   const seconds = Number(dt);
   if (!Number.isFinite(seconds) || seconds <= 0) return state;
-  const interval = transportInterval(state, seconds);
+  const interval = transportInterval(state, seconds); let stalledFor = seconds;
   if (isTapeMoving(state)) {
     const rate = TRANSPORT_RATES[state.mode] * state.speed;
     const next = state.tapePosition + interval.seconds * rate / state.tapeDuration;
-    state.tapePosition = Math.max(0, Math.min(1, next));
     if ((rate > 0 && next >= 1 - 1e-12) || (rate < 0 && next <= 1e-12)) {
+      const used = Math.abs((rate > 0 ? 1 - state.tapePosition : state.tapePosition) * state.tapeDuration / rate);
       state.tapePosition = rate > 0 ? 1 : 0;
-      state.mode = 'stop'; state.hotline = false;
+      if (state.mode === 'play') { state.autoStop = {elapsed: 0}; stalledFor = Math.max(0, interval.seconds - used); }   // the reel stalls; the mechanism does the rest
+      else { state.mode = 'stop'; state.hotline = false; }
+    } else state.tapePosition = Math.max(0, Math.min(1, next));
+  }
+  if (!state.autoStop && reelStalled(state) && !state.paused) state.autoStop = {elapsed: 0};
+  if (state.autoStop) {
+    if (!reelStalled(state)) cancelAutoStop(state);
+    else if (!state.paused) {
+      state.autoStop.elapsed += stalledFor * state.speed;
+      if (state.autoStop.elapsed >= AUTO_STOP.detect + AUTO_STOP.trip - 1e-12) { state.mode = 'stop'; state.hotline = false; cancelAutoStop(state); }
     }
   }
   if (!canTransportRun(state)) cancelStopCycle(state);

@@ -56,6 +56,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("status").textContent = state.explode > 0 || state.radial > 0 ? "Disconnected · transport stopped" : (state.paused ? "Motion paused" : { stop: "Stopped", play: "PLAY · illustrative drive running", ff: "FF · illustrative fast forward", rew: "REW · illustrative reverse winding" }[state.mode]) + (state.media !== "loaded" ? " · No engaged cassette" : "") + (state.door ? " · Cover open" : "");
     if (state.ejectNeedsOpenCover) $("status").textContent += " · Open cover, then press STOP / EJECT";
     else if (state.stopCycle) $("status").textContent += " · " + (state.stopCycle.kind === "stop" ? "Releasing transport" : "Eject button stroke");
+    else if (state.autoStop) $("status").textContent += " · End of tape: reel stalled, automatic shut-off";
     $("pause").textContent = state.paused ? "Resume motion" : "Pause motion";
     $("spread").value = Math.round(Math.max(state.explode, state.radial) * 100);
     $("spreadValue").textContent = Math.round(Math.max(state.explode, state.radial) * 100) + "%";

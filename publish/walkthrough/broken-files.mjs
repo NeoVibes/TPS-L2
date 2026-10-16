@@ -11,7 +11,8 @@ const g = n => path.join(work, 'geometry', n), original = n => path.join(view, '
 rmSync(g('mechanism.js'));                                                        // missing
 writeFileSync(g('electronics.js'), readFileSync(g('electronics.js')).subarray(0, 4_000_000));   // cut short
 const cassette = readFileSync(g('cassette/cassette.js'), 'utf8');                 // valid script, altered content
-writeFileSync(g('cassette/cassette.js'), cassette.replace(/[A-Za-z]{6}(?=.{2000}"\);)/, 'AAAAAA'));
+const at = cassette.lastIndexOf('");') - 2000;                                     // one character of the packed data, always changed
+writeFileSync(g('cassette/cassette.js'), cassette.slice(0, at) + (cassette[at] === 'A' ? 'B' : 'A') + cassette.slice(at + 1));
 const browser = await openBrowser({port: 9335});
 try {
   const page = await browser.page(), E = page.evaluate;

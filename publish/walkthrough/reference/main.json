@@ -22,6 +22,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -45,26 +46,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -114,17 +115,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -147,8 +148,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -165,43 +166,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "0893166dc8ee",
+   "positions": "d4f65deb9627",
    "status": "Stopped",
    "packageStatus": "Loading cassette…"
   },
@@ -226,6 +227,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -253,163 +255,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 808.2663,
-     "y": 363.719,
+     "x": 807.4357,
+     "y": 363.4999,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 808.4196,
-     "y": 375.0838,
+     "x": 807.5939,
+     "y": 374.9366,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 808.6734,
-     "y": 393.9086,
+     "x": 807.8559,
+     "y": 393.8782,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 804.0381,
-     "y": 381.9797,
+     "x": 803.5676,
+     "y": 381.8425,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 804.5109,
-     "y": 440.5296,
+     "x": 804.2497,
+     "y": 440.7374,
      "inFrustum": true,
      "axis": [
       {
-       "x": 804.5109,
-       "y": 440.5296
+       "x": 804.2497,
+       "y": 440.7374
       },
       {
-       "x": 804.2094,
-       "y": 420.5281
+       "x": 803.943,
+       "y": 420.6219
       }
      ]
     },
     "CTL-06": {
-     "x": 805.3133,
-     "y": 442.302,
+     "x": 805.0649,
+     "y": 442.5281,
      "inFrustum": true,
      "axis": [
       {
-       "x": 805.3133,
-       "y": 442.302
+       "x": 805.0649,
+       "y": 442.5281
       },
       {
-       "x": 805.015,
-       "y": 422.1701
+       "x": 804.7615,
+       "y": 422.281
       }
      ]
     },
     "CTL-07": {
-     "x": 876.6965,
-     "y": 186.4595,
+     "x": 876.9296,
+     "y": 184.9839,
      "inFrustum": true,
      "axis": [
       {
-       "x": 876.6965,
-       "y": 186.4595
+       "x": 876.9296,
+       "y": 184.9839
       },
       {
-       "x": 876.6893,
-       "y": 187.3426
+       "x": 876.9222,
+       "y": 185.8735
       }
      ]
     },
     "CTL-08": {
-     "x": 889.0761,
-     "y": 435.2512,
+     "x": 889.8718,
+     "y": 435.317,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.0761,
-       "y": 435.2512
+       "x": 889.8718,
+       "y": 435.317
       },
       {
-       "x": 889.0998,
-       "y": 433.4161
+       "x": 889.8963,
+       "y": 433.4723
       }
      ]
     },
     "EXT-030": {
-     "x": 963.3297,
-     "y": 397.4058,
+     "x": 963.6938,
+     "y": 397.1414,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 964.7419,
-     "y": 396.2075,
+     "x": 965.1059,
+     "y": 395.9338,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 964.5578,
-     "y": 396.0686,
+     "x": 964.9199,
+     "y": 395.7938,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 1039.6797,
-     "y": 490.6023,
+     "x": 1040.8016,
+     "y": 490.9616,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
-     "x": 1038.288,
-     "y": 506.0528,
+     "x": 1039.4102,
+     "y": 506.5053,
      "inFrustum": true,
      "axis": null
     },
     "BCL-010": {
-     "x": 1038.289,
-     "y": 474.6722,
+     "x": 1039.4484,
+     "y": 474.9771,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 969.7728,
-     "y": 406.6843,
+     "x": 969.7722,
+     "y": 406.1236,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 970.789,
-     "y": 407.4756,
+     "x": 971.3833,
+     "y": 407.3743,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 972.9676,
-     "y": 426.5228,
+     "x": 972.9191,
+     "y": 425.9752,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 973.0723,
-     "y": 426.6108,
+     "x": 973.0246,
+     "y": 426.0636,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 974.5108,
-     "y": 388.4757,
+     "x": 974.4749,
+     "y": 387.8133,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 974.6174,
-     "y": 388.5505,
+     "x": 974.5824,
+     "y": 387.8885,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "6f1b21c97f69",
+   "positions": "075d4a149560",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -434,6 +436,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -461,163 +464,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 830.9503,
-     "y": 353.4764,
+     "x": 833.3464,
+     "y": 353.6716,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 831.0401,
-     "y": 363.3981,
+     "x": 833.4245,
+     "y": 363.5345,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 831.1885,
-     "y": 379.7869,
+     "x": 833.5535,
+     "y": 379.8272,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 822.3192,
-     "y": 375.4192,
+     "x": 824.5676,
+     "y": 375.3875,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 861.8527,
-     "y": 413.5714,
+     "x": 863.6461,
+     "y": 413.2673,
      "inFrustum": true,
      "axis": [
       {
-       "x": 861.8527,
-       "y": 413.5714
+       "x": 863.6461,
+       "y": 413.2673
       },
       {
-       "x": 861.9511,
-       "y": 396.6
+       "x": 863.7587,
+       "y": 396.3969
       }
      ]
     },
     "CTL-06": {
-     "x": 865.6147,
-     "y": 412.4505,
+     "x": 867.379,
+     "y": 412.1542,
      "inFrustum": true,
      "axis": [
       {
-       "x": 865.6147,
-       "y": 412.4505
+       "x": 867.379,
+       "y": 412.1542
       },
       {
-       "x": 865.7439,
-       "y": 395.5317
+       "x": 867.522,
+       "y": 395.3358
       }
      ]
     },
     "CTL-07": {
-     "x": 883.1683,
-     "y": 316.8002,
+     "x": 884.7107,
+     "y": 317.0611,
      "inFrustum": true,
      "axis": [
       {
-       "x": 883.1683,
-       "y": 316.8002
+       "x": 884.7107,
+       "y": 317.0611
       },
       {
-       "x": 883.1589,
-       "y": 317.4063
+       "x": 884.7009,
+       "y": 317.6637
       }
      ]
     },
     "CTL-08": {
-     "x": 791.1141,
-     "y": 398.6891,
+     "x": 792.9589,
+     "y": 398.3355,
      "inFrustum": true,
      "axis": [
       {
-       "x": 791.1141,
-       "y": 398.6891
+       "x": 792.9589,
+       "y": 398.3355
       },
       {
-       "x": 791.0706,
-       "y": 397.1692
+       "x": 792.9171,
+       "y": 396.8249
       }
      ]
     },
     "EXT-030": {
-     "x": 709.7738,
-     "y": 429.3529,
+     "x": 709.7569,
+     "y": 429.7233,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 705.9496,
-     "y": 428.7761,
+     "x": 705.9481,
+     "y": 429.1487,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 705.4223,
-     "y": 428.9194,
+     "x": 705.423,
+     "y": 429.2916,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 941.5416,
-     "y": 392.8168,
+     "x": 942.6223,
+     "y": 392.6734,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
-     "x": 941.007,
-     "y": 404.0467,
+     "x": 942.1081,
+     "y": 403.8402,
      "inFrustum": true,
      "axis": null
     },
     "BCL-010": {
-     "x": 925.7989,
-     "y": 386.6043,
+     "x": 927.0162,
+     "y": 386.4823,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 737.5297,
-     "y": 419.0936,
+     "x": 737.5502,
+     "y": 419.4564,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 740.0743,
-     "y": 418.4042,
+     "x": 741.5234,
+     "y": 418.3788,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 740.682,
-     "y": 435.4655,
+     "x": 740.5459,
+     "y": 435.7986,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 740.9388,
-     "y": 435.3922,
+     "x": 740.8017,
+     "y": 435.7255,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 738.6972,
-     "y": 398.7581,
+     "x": 738.5665,
+     "y": 399.2422,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 738.959,
-     "y": 398.6917,
+     "x": 738.8273,
+     "y": 399.176,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "bdcea0e3bca1",
+   "positions": "e835c5a1a4aa",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -642,6 +645,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -669,25 +673,25 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 913.7249,
+     "x": 913.9149,
      "y": 494.6248,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 919.9922,
+     "x": 920.1822,
      "y": 494.6248,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 926.2594,
+     "x": 926.4495,
      "y": 492.9318,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 932.0111,
+     "x": 932.0715,
      "y": 491.688,
      "inFrustum": true,
      "axis": null
@@ -738,16 +742,16 @@
      ]
     },
     "CTL-08": {
-     "x": 947.0272,
+     "x": 946.8251,
      "y": 493.5883,
      "inFrustum": true,
      "axis": [
       {
-       "x": 947.0272,
+       "x": 946.8251,
        "y": 493.5883
       },
       {
-       "x": 947.0272,
+       "x": 946.8251,
        "y": 492.9318
       }
      ]
@@ -771,8 +775,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 848.2742,
-     "y": 216.2969,
+     "x": 848.2741,
+     "y": 216.2939,
      "inFrustum": true,
      "axis": null
     },
@@ -789,43 +793,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 767.8488,
-     "y": 522.1374,
+     "x": 767.7923,
+     "y": 522.2433,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 792.6432,
-     "y": 522.22,
+     "x": 792.6502,
+     "y": 522.2011,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 809.2592,
-     "y": 536.6302,
+     "x": 809.2279,
+     "y": 536.7597,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 820.6661,
-     "y": 533.5,
+     "x": 820.6435,
+     "y": 533.6271,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 832.0658,
-     "y": 536.6302,
+     "x": 832.052,
+     "y": 536.7597,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 843.4698,
-     "y": 533.5,
+     "x": 843.4648,
+     "y": 533.6271,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "bbc12339205b",
+   "positions": "b312386a97c8",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -850,6 +854,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -877,26 +882,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -946,17 +951,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -979,8 +984,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -997,43 +1002,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "139edf144868",
+   "positions": "c353483a0b2f",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1058,6 +1063,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": true,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -1085,26 +1091,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -1154,17 +1160,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -1187,8 +1193,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -1205,43 +1211,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "139edf144868",
+   "positions": "c353483a0b2f",
    "status": "Stopped · Open cover, then press STOP / EJECT",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1266,6 +1272,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -1293,26 +1300,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -1362,17 +1369,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -1395,8 +1402,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -1413,43 +1420,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "9644e3f694b8",
+   "positions": "9234c9a059ee",
    "status": "Stopped · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1474,6 +1481,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -1501,26 +1509,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -1570,17 +1578,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -1603,8 +1611,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -1621,43 +1629,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 832.1519,
-     "y": 318.6418,
+     "x": 831.139,
+     "y": 319.2069,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 834.2284,
-     "y": 317.4832,
+     "x": 834.4065,
+     "y": 317.3838,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 832.1837,
-     "y": 341.2946,
+     "x": 831.0813,
+     "y": 341.9819,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 832.3917,
-     "y": 341.1649,
+     "x": 831.2906,
+     "y": 341.8514,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 831.5851,
-     "y": 290.6912,
+     "x": 830.4436,
+     "y": 291.2349,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 831.8005,
-     "y": 290.5887,
+     "x": 830.6604,
+     "y": 291.1317,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "89dc7915124e",
+   "positions": "5f48a74b629c",
    "status": "Stopped · No engaged cassette · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1682,6 +1690,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -1709,26 +1718,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -1778,17 +1787,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -1811,8 +1820,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -1829,43 +1838,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "139edf144868",
+   "positions": "c353483a0b2f",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1890,6 +1899,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -1917,26 +1927,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -1986,17 +1996,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -2019,8 +2029,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 850.8794,
-     "y": 363.9433,
+     "x": 850.8692,
+     "y": 363.9113,
      "inFrustum": true,
      "axis": null
     },
@@ -2037,43 +2047,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "a2977ca7bfe3",
+   "positions": "7884541abadd",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2098,6 +2108,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -2125,26 +2136,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -2194,17 +2205,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -2227,8 +2238,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -2245,43 +2256,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "139edf144868",
+   "positions": "c353483a0b2f",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2306,6 +2317,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -2333,26 +2345,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -2402,17 +2414,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.333,
-     "y": 313.807,
+     "x": 812.7603,
+     "y": 313.6887,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.333,
-       "y": 313.807
+       "x": 812.7603,
+       "y": 313.6887
       },
       {
-       "x": 813.2824,
-       "y": 311.689
+       "x": 812.7089,
+       "y": 311.5719
       }
      ]
     },
@@ -2435,8 +2447,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -2453,43 +2465,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "919e0b458889",
+   "positions": "052c77831c78",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2518,6 +2530,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -2545,26 +2558,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -2614,17 +2627,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.3077,
-     "y": 312.7487,
+     "x": 812.7346,
+     "y": 312.6311,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.3077,
-       "y": 312.7487
+       "x": 812.7346,
+       "y": 312.6311
       },
       {
-       "x": 813.257,
-       "y": 310.6278
+       "x": 812.6831,
+       "y": 310.5114
       }
      ]
     },
@@ -2647,8 +2660,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -2665,43 +2678,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "58972be47d9f",
+   "positions": "98c127788d97",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2726,6 +2739,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -2753,163 +2767,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 883.4919,
-     "y": 405.6945,
+     "x": 883.6301,
+     "y": 405.6876,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 883.9385,
-     "y": 407.3098,
+     "x": 884.0793,
+     "y": 407.3016,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 884.2227,
-     "y": 409.9919,
+     "x": 884.3664,
+     "y": 409.9807,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 887.2062,
-     "y": 410.9037,
+     "x": 887.2645,
+     "y": 410.8907,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 888.5291,
-     "y": 419.1639,
+     "x": 888.5471,
+     "y": 419.1428,
      "inFrustum": true,
      "axis": [
       {
-       "x": 888.5291,
-       "y": 419.1639
+       "x": 888.5471,
+       "y": 419.1428
       },
       {
-       "x": 888.5291,
-       "y": 414.3685
+       "x": 888.5471,
+       "y": 414.3472
       }
      ]
     },
     "CTL-06": {
-     "x": 889.1883,
-     "y": 418.978,
+     "x": 889.2085,
+     "y": 418.9567,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.1883,
-       "y": 418.978
+       "x": 889.2085,
+       "y": 418.9567
       },
       {
-       "x": 889.1883,
-       "y": 414.1913
+       "x": 889.2085,
+       "y": 414.1698
       }
      ]
     },
     "CTL-07": {
-     "x": 850.7982,
-     "y": 378.4035,
+     "x": 851.0518,
+     "y": 377.9911,
      "inFrustum": true,
      "axis": [
       {
-       "x": 850.7982,
-       "y": 378.4035
+       "x": 851.0518,
+       "y": 377.9911
       },
       {
-       "x": 850.7982,
-       "y": 378.5811
+       "x": 851.0518,
+       "y": 378.1687
       }
      ]
     },
     "CTL-08": {
-     "x": 842.5015,
-     "y": 419.9356,
+     "x": 842.4238,
+     "y": 419.916,
      "inFrustum": true,
      "axis": [
       {
-       "x": 842.5015,
-       "y": 419.9356
+       "x": 842.4238,
+       "y": 419.916
       },
       {
-       "x": 842.5015,
-       "y": 419.4848
+       "x": 842.4238,
+       "y": 419.4652
       }
      ]
     },
     "EXT-030": {
-     "x": 831.4404,
-     "y": 420.4214,
+     "x": 831.4161,
+     "y": 419.4984,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 847.0013,
-     "y": 420.2686,
+     "x": 846.968,
+     "y": 419.3584,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 847.5157,
-     "y": 420.4341,
+     "x": 847.5218,
+     "y": 419.5184,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 837.2744,
-     "y": 442.9381,
+     "x": 837.181,
+     "y": 443.0146,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
      "x": 846.9542,
-     "y": 459.1496,
+     "y": 459.3506,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 826.7152,
-     "y": 424.3365,
+     "x": 826.6956,
+     "y": 424.3232,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 832.8132,
-     "y": 427.1279,
+     "x": 832.7981,
+     "y": 427.2103,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 837.6068,
-     "y": 427.027,
+     "x": 837.6057,
+     "y": 427.0112,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 840.2743,
-     "y": 433.5586,
+     "x": 840.2648,
+     "y": 433.6558,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 842.4625,
-     "y": 432.9528,
+     "x": 842.4551,
+     "y": 433.0492,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 844.6409,
-     "y": 425.9144,
+     "x": 844.6358,
+     "y": 426.0065,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 846.8131,
-     "y": 425.3067,
+     "x": 846.8104,
+     "y": 425.3981,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "834939772d8d",
+   "positions": "7d63a2dae3e3",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2934,6 +2948,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -2961,26 +2976,26 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.2137,
-     "y": 233.3231,
+     "x": 902.9014,
+     "y": 233.3971,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 901.7338,
-     "y": 248.1595,
+     "x": 902.4148,
+     "y": 248.2429,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 900.9505,
-     "y": 272.3763,
+     "x": 901.6206,
+     "y": 272.4747,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.6153,
-     "y": 265.4861,
+     "x": 896.8356,
+     "y": 265.5171,
      "inFrustum": true,
      "axis": null
     },
@@ -3030,17 +3045,17 @@
      ]
     },
     "CTL-08": {
-     "x": 813.3077,
-     "y": 312.7487,
+     "x": 812.7346,
+     "y": 312.6311,
      "inFrustum": true,
      "axis": [
       {
-       "x": 813.3077,
-       "y": 312.7487
+       "x": 812.7346,
+       "y": 312.6311
       },
       {
-       "x": 813.257,
-       "y": 310.6278
+       "x": 812.6831,
+       "y": 310.5114
       }
      ]
     },
@@ -3063,8 +3078,8 @@
      "axis": null
     },
     "EXT-040": {
-     "x": 843.5322,
-     "y": 356.4125,
+     "x": 843.5067,
+     "y": 356.4301,
      "inFrustum": true,
      "axis": null
     },
@@ -3081,43 +3096,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 834.5289,
-     "y": 317.3157,
+     "x": 833.5299,
+     "y": 317.873,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.5771,
-     "y": 316.1729,
+     "x": 836.7527,
+     "y": 316.0749,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 834.4953,
-     "y": 339.8534,
+     "x": 833.4076,
+     "y": 340.5316,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 834.7005,
-     "y": 339.7255,
+     "x": 833.6141,
+     "y": 340.4028,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 833.978,
-     "y": 289.5516,
+     "x": 832.8521,
+     "y": 290.0878,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 834.1903,
-     "y": 289.4504,
+     "x": 833.0659,
+     "y": 289.986,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "58972be47d9f",
+   "positions": "98c127788d97",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3160,6 +3175,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "refined",
     "labels": true,
@@ -3187,20 +3203,20 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 900.88,
-     "y": 38.1394,
+     "x": 904.5251,
+     "y": 38.8158,
      "inFrustum": false,
      "axis": null
     },
     "CTL-02": {
-     "x": 897.2829,
-     "y": 166.0578,
+     "x": 900.67,
+     "y": 166.694,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 892.2826,
-     "y": 343.8743,
+     "x": 895.3112,
+     "y": 344.4528,
      "inFrustum": true,
      "axis": null
     },
@@ -3211,139 +3227,139 @@
      "axis": null
     },
     "CTL-05": {
-     "x": 905.5921,
-     "y": 657.6522,
+     "x": 904.1532,
+     "y": 656.0183,
      "inFrustum": false,
      "axis": [
       {
-       "x": 905.5921,
-       "y": 657.6522
+       "x": 904.1532,
+       "y": 656.0183
       },
       {
-       "x": 911.8002,
-       "y": 524.7815
+       "x": 910.1738,
+       "y": 523.555
       }
      ]
     },
     "CTL-06": {
-     "x": 918.3023,
-     "y": 695.2283,
+     "x": 916.9851,
+     "y": 693.651,
      "inFrustum": false,
      "axis": [
       {
-       "x": 918.3023,
-       "y": 695.2283
+       "x": 916.9851,
+       "y": 693.651
       },
       {
-       "x": 924.9574,
-       "y": 582.9567
+       "x": 923.4866,
+       "y": 581.6608
       }
      ]
     },
     "CTL-07": {
-     "x": 414.237,
-     "y": 2.6103,
+     "x": 414.773,
+     "y": 3.6169,
      "inFrustum": false,
      "axis": [
       {
-       "x": 414.237,
-       "y": 2.6103
+       "x": 414.773,
+       "y": 3.6169
       },
       {
-       "x": 415.9008,
-       "y": 9.6541
+       "x": 416.4279,
+       "y": 10.6281
       }
      ]
     },
     "CTL-08": {
-     "x": 536.9209,
-     "y": 475.0614,
+     "x": 535.3093,
+     "y": 473.6218,
      "inFrustum": false,
      "axis": [
       {
-       "x": 536.9209,
-       "y": 475.0614
+       "x": 535.3093,
+       "y": 473.6218
       },
       {
-       "x": 535.1384,
-       "y": 467.2476
+       "x": 533.5265,
+       "y": 465.8388
       }
      ]
     },
     "EXT-030": {
-     "x": 537.3743,
-     "y": 585.8997,
+     "x": 537.3998,
+     "y": 584.7655,
      "inFrustum": false,
      "axis": null
     },
     "EXT-031": {
-     "x": 505.5591,
-     "y": 589.9476,
+     "x": 505.6935,
+     "y": 588.7816,
      "inFrustum": false,
      "axis": null
     },
     "EXT-032": {
-     "x": 501.2133,
-     "y": 592.948,
+     "x": 501.3635,
+     "y": 591.7641,
      "inFrustum": false,
      "axis": null
     },
     "EXT-040": {
-     "x": 666.5556,
-     "y": 644.9782,
+     "x": 666.1173,
+     "y": 644.2155,
      "inFrustum": false,
      "axis": null
     },
     "EXT-041": {
-     "x": 674.2487,
-     "y": 699.2596,
+     "x": 673.9608,
+     "y": 698.2551,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 679.9058,
-     "y": 580.4401,
+     "x": 679.5772,
+     "y": 579.6308,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 538.8483,
-     "y": 565.1489,
+     "x": 528.8168,
+     "y": 570.979,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 558.7493,
-     "y": 551.4648,
+     "x": 560.3589,
+     "y": 549.3426,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 577.5119,
-     "y": 640.4395,
+     "x": 568.2342,
+     "y": 647.1471,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 579.2246,
-     "y": 638.9713,
+     "x": 569.9948,
+     "y": 645.6415,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 527.727,
-     "y": 419.9061,
+     "x": 516.0021,
+     "y": 424.6347,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 529.9196,
-     "y": 418.9141,
+     "x": 518.2667,
+     "y": 423.6121,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "e6d0937b8422",
+   "positions": "cc13d67228b3",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3368,6 +3384,7 @@
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
+    "autoStop": null,
     "uiMode": "operate",
     "cassetteVariant": "original",
     "labels": true,
@@ -3395,20 +3412,20 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 900.88,
-     "y": 38.1394,
+     "x": 904.5251,
+     "y": 38.8158,
      "inFrustum": false,
      "axis": null
     },
     "CTL-02": {
-     "x": 897.2829,
-     "y": 166.0578,
+     "x": 900.67,
+     "y": 166.694,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 892.2826,
-     "y": 343.8743,
+     "x": 895.3112,
+     "y": 344.4528,
      "inFrustum": true,
      "axis": null
     },
@@ -3419,139 +3436,139 @@
      "axis": null
     },
     "CTL-05": {
-     "x": 905.5921,
-     "y": 657.6522,
+     "x": 904.1532,
+     "y": 656.0183,
      "inFrustum": false,
      "axis": [
       {
-       "x": 905.5921,
-       "y": 657.6522
+       "x": 904.1532,
+       "y": 656.0183
       },
       {
-       "x": 911.8002,
-       "y": 524.7815
+       "x": 910.1738,
+       "y": 523.555
       }
      ]
     },
     "CTL-06": {
-     "x": 918.3023,
-     "y": 695.2283,
+     "x": 916.9851,
+     "y": 693.651,
      "inFrustum": false,
      "axis": [
       {
-       "x": 918.3023,
-       "y": 695.2283
+       "x": 916.9851,
+       "y": 693.651
       },
       {
-       "x": 924.9574,
-       "y": 582.9567
+       "x": 923.4866,
+       "y": 581.6608
       }
      ]
     },
     "CTL-07": {
-     "x": 414.237,
-     "y": 2.6103,
+     "x": 414.773,
+     "y": 3.6169,
      "inFrustum": false,
      "axis": [
       {
-       "x": 414.237,
-       "y": 2.6103
+       "x": 414.773,
+       "y": 3.6169
       },
       {
-       "x": 415.9008,
-       "y": 9.6541
+       "x": 416.4279,
+       "y": 10.6281
       }
      ]
     },
     "CTL-08": {
-     "x": 536.9209,
-     "y": 475.0614,
+     "x": 535.3093,
+     "y": 473.6218,
      "inFrustum": false,
      "axis": [
       {
-       "x": 536.9209,
-       "y": 475.0614
+       "x": 535.3093,
+       "y": 473.6218
       },
       {
-       "x": 535.1384,
-       "y": 467.2476
+       "x": 533.5265,
+       "y": 465.8388
       }
      ]
     },
     "EXT-030": {
-     "x": 537.3743,
-     "y": 585.8997,
+     "x": 537.3998,
+     "y": 584.7655,
      "inFrustum": false,
      "axis": null
     },
     "EXT-031": {
-     "x": 505.5591,
-     "y": 589.9476,
+     "x": 505.6935,
+     "y": 588.7816,
      "inFrustum": false,
      "axis": null
     },
     "EXT-032": {
-     "x": 501.2133,
-     "y": 592.948,
+     "x": 501.3635,
+     "y": 591.7641,
      "inFrustum": false,
      "axis": null
     },
     "EXT-040": {
-     "x": 666.5556,
-     "y": 644.9782,
+     "x": 666.1173,
+     "y": 644.2155,
      "inFrustum": false,
      "axis": null
     },
     "EXT-041": {
-     "x": 674.2487,
-     "y": 699.2596,
+     "x": 673.9608,
+     "y": 698.2551,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 679.9058,
-     "y": 580.4401,
+     "x": 679.5772,
+     "y": 579.6308,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 549.4447,
-     "y": 557.8623,
+     "x": 538.5324,
+     "y": 564.3139,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 575.6598,
-     "y": 539.8377,
+     "x": 576.4558,
+     "y": 538.3015,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 579.4295,
-     "y": 638.7956,
+     "x": 570.2054,
+     "y": 645.4614,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 579.7025,
-     "y": 638.5616,
+     "x": 570.486,
+     "y": 645.2214,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 530.1817,
-     "y": 418.7955,
+     "x": 518.5373,
+     "y": 423.4899,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 530.5308,
-     "y": 418.6376,
+     "x": 518.8979,
+     "y": 423.327,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "e6d0937b8422",
+   "positions": "cc13d67228b3",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },

@@ -2,7 +2,7 @@
  "what": "What each check measures on the shipped model. Used by test_target_measurements.mjs to show that the build still measures the same things the same way.",
  "checks": {
   "solids.single_closed_shell": {
-   "value": 118,
+   "value": 41,
    "status": "fail"
   },
   "body.height": {
@@ -10,19 +10,31 @@
    "status": "pass"
   },
   "body.front_width": {
-   "value": 87.878,
+   "value": 87.802,
    "status": "fail"
+  },
+  "body.width": {
+   "value": 87.802,
+   "status": "pass"
   },
   "body.depth": {
    "value": 29.774,
    "status": "pass"
   },
   "front.silver_strip": {
-   "value": 15.126,
+   "value": 15.018,
    "status": "pass"
   },
   "front.top_band": {
    "value": 20.494,
+   "status": "pass"
+  },
+  "cover.control_side_face_width": {
+   "value": 27.5472,
+   "status": "pass"
+  },
+  "control.listen_key_proud_of_side": {
+   "value": 1.3218,
    "status": "pass"
   },
   "window.opening_width": {
@@ -41,13 +53,53 @@
    "value": 23.62,
    "status": "pass"
   },
+  "body.depth_over_width": {
+   "value": 0.3391,
+   "status": "fail"
+  },
+  "body.depth_minimum_from_stack": {
+   "value": 29.774,
+   "status": "pass"
+  },
+  "lid.height_over_width": {
+   "value": 1.547,
+   "status": "fail"
+  },
+  "lid.window_centre_fraction_of_lid_width": {
+   "value": 0.462,
+   "status": "fail"
+  },
   "window.left_margin": {
    "value": 21.37,
    "status": "fail"
   },
+  "cassette.thickness_body": {
+   "value": 8.6,
+   "status": "pass"
+  },
+  "cassette.head_band_clears_the_carriage_plate": {
+   "value": 0.1,
+   "status": "pass"
+  },
+  "tape.plane_above_carriage_plate": {
+   "value": 6.1,
+   "status": "pass"
+  },
+  "bay.cassette_to_chassis_end_battery": {
+   "value": 6.45,
+   "status": "pass"
+  },
+  "bay.top_rail_outer_edge_beyond_cassette_end": {
+   "value": 6.2,
+   "status": "pass"
+  },
+  "bay.top_rail_top_above_cassette_top_face": {
+   "value": 1.5,
+   "status": "pass"
+  },
   "cassette.thickness_head_end": {
-   "value": 8.4,
-   "status": "fail"
+   "value": 12,
+   "status": "pass"
   },
   "cassette.width": {
    "value": 100.4,
@@ -58,7 +110,7 @@
    "status": "pass"
   },
   "cassette.left_wall_room_at_registered_width": {
-   "value": 1.322,
+   "value": 1.398,
    "status": "fail"
   },
   "reel_pitch": {
@@ -74,135 +126,463 @@
    "status": "pass"
   },
   "flywheel_on_capstan_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "capstan_shaft_on_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "s_gear_a_on_supply_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "takeup_gear_on_takeup_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "supply_hub_on_supply_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "takeup_hub_on_takeup_axis": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "cassette_hub_pivots_match_reel_pivots": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "cassette_hub_pivots_match_reel_pivots_takeup": {
-   "value": 0.0,
+   "value": 0,
    "status": "pass"
   },
   "reverse_wheel_axis": {
-   "value": 1.6771,
-   "status": "fail"
+   "value": 0,
+   "status": "pass"
   },
   "fr_gear_b_axis": {
    "value": 0.6475,
    "status": "pass"
   },
+  "middle_pulley_axis": {
+   "value": 0.0608,
+   "status": "pass"
+  },
+  "third_gear_axis": {
+   "value": 0,
+   "status": "pass"
+  },
+  "shutoff_post_axis": {
+   "value": 0,
+   "status": "pass"
+  },
   "fr_pulley_axis_ff": {
-   "value": 1.6508,
-   "status": "fail"
+   "value": 0.6534,
+   "status": "pass"
   },
   "fr_pulley_axis_rew": {
-   "value": 1.6508,
-   "status": "fail"
+   "value": 0.6534,
+   "status": "pass"
   },
   "fr_pulley_axis_play": {
-   "value": 2.9567,
-   "status": "fail"
+   "value": 0.6109,
+   "status": "pass"
   },
   "fr_gear_a_axis_ff": {
-   "value": 3.7567,
-   "status": "fail"
+   "value": 0.4456,
+   "status": "pass"
   },
   "fr_gear_a_axis_rew": {
-   "value": 0.1801,
+   "value": 0.5825,
    "status": "pass"
   },
   "fr_gear_a_axis_play": {
-   "value": 1.2174,
-   "status": "fail"
+   "value": 0.4603,
+   "status": "pass"
   },
   "fwd_pulley_axis_play": {
-   "value": 2.247,
-   "status": "fail"
+   "value": 0.7741,
+   "status": "pass"
+  },
+  "pinch_roller.width": {
+   "value": 6.5,
+   "status": "pass"
+  },
+  "belt.length_ratio_main_to_second": {
+   "value": 1.2156,
+   "status": "pass"
+  },
+  "third_gear_to_motor_pulley": {
+   "value": 0.5,
+   "status": "pass"
   },
   "fr_gear_a_arm_about_fr_gear_b": {
-   "value": 9.0,
-   "status": "fail"
+   "value": 9.3,
+   "status": "pass"
   },
   "capstan.diameter": {
-   "value": 1.6,
-   "status": "fail"
+   "value": 2,
+   "status": "pass"
   },
   "flywheel.rim_diameter": {
-   "value": 24.4,
+   "value": 25.8,
    "status": "pass"
   },
   "reverse_wheel.outer_diameter": {
-   "value": 9.4,
-   "status": "fail"
+   "value": 10.1,
+   "status": "pass"
   },
   "tape.speed": {
-   "value": 8.832,
-   "status": "fail"
+   "value": 47.6,
+   "status": "pass"
   },
   "flywheel.rate_play": {
-   "value": 1.7571,
-   "status": "fail"
+   "value": 7.5758,
+   "status": "pass"
   },
   "motor.never_reverses": {
-   "value": false,
-   "status": "fail"
+   "value": true,
+   "status": "pass"
   },
   "reel.takeup_rate_matches_tape": {
-   "value": 1.1781,
-   "status": "fail"
+   "value": 2.8,
+   "status": "pass"
   },
   "reel.supply_rate_matches_tape": {
-   "value": 1.1781,
+   "value": 2.8,
+   "status": "pass"
+  },
+  "wind.c60_time": {
+   "value": 139.4469,
+   "status": "pass"
+  },
+  "wind.c60_time_rew": {
+   "value": 161.1387,
+   "status": "pass"
+  },
+  "motor.speed_while_winding": {
+   "value": 1,
+   "status": "pass"
+  },
+  "fr_pulley.slip_while_winding": {
+   "value": 28,
+   "status": "pass"
+  },
+  "clutch.pressed_parts_turn_with_reel": {
+   "value": 0,
+   "status": "pass"
+  },
+  "clutch.drum_outruns_reel_in_play": {
+   "value": 4.9852,
+   "status": "pass"
+  },
+  "clutch.drive_rolls_without_slipping": {
+   "value": 0,
+   "status": "pass"
+  },
+  "fwd_pulley.presses_drum_in_play": {
+   "value": -0.0996,
+   "status": "pass"
+  },
+  "fwd_pulley.presses_middle_pulley_in_play": {
+   "value": -0.0505,
+   "status": "pass"
+  },
+  "fwd_pulley.clear_of_drum_in_stop": {
+   "value": 0.3046,
+   "status": "pass"
+  },
+  "fwd_pulley.clear_of_drum_in_ff": {
+   "value": 0.3046,
+   "status": "pass"
+  },
+  "fwd_pulley.clear_of_drum_in_rew": {
+   "value": 0.3046,
+   "status": "pass"
+  },
+  "pinch.pressure": {
+   "value": 255.9427,
+   "status": "pass"
+  },
+  "torque.back_tension": {
+   "value": 2.7363,
+   "status": "pass"
+  },
+  "torque.takeup_play": {
+   "value": 33.835,
+   "status": "pass"
+  },
+  "clutch.felt_is_squeezed": {
+   "value": 0.03,
+   "status": "pass"
+  },
+  "clutch.spring_bears_on_its_seat": {
+   "value": 0.004,
+   "status": "pass"
+  },
+  "clutch.pressed_parts_grip_the_shaft": {
+   "value": 0.004,
+   "status": "pass"
+  },
+  "takeup.shaft_endplay": {
+   "value": 0.1,
+   "status": "pass"
+  },
+  "torque.fast_wind_min": {
+   "value": 62.0194,
+   "status": "pass"
+  },
+  "torque.fast_wind_needs_tyre_force": {
+   "value": 53.4731,
+   "status": "info"
+  },
+  "gear.takeup.step_mate": {
+   "value": 12,
+   "status": "pass"
+  },
+  "teeth.step_mate": {
+   "value": 38,
+   "status": "pass"
+  },
+  "gear.step_mate_meshes_with_the_42_tooth_ring": {
+   "value": 0.0002,
+   "status": "pass"
+  },
+  "gear.third_train_moves_tooth_for_tooth": {
+   "value": 0,
+   "status": "pass"
+  },
+  "gear.third_train_stands_in_mesh": {
+   "value": 0,
+   "status": "pass"
+  },
+  "shutoff.clear_while_reel_turns": {
+   "value": 0.3334,
+   "status": "pass"
+  },
+  "shutoff.meshes_when_reel_stalls": {
+   "value": 0.5912,
+   "status": "pass"
+  },
+  "shutoff.gear_carries_lever": {
+   "value": 3,
+   "status": "pass"
+  },
+  "shutoff.release_lever_turns_only_when_tripped": {
+   "value": 6,
+   "status": "pass"
+  },
+  "shutoff.piece_pushes_release_lever": {
+   "value": 0.048,
+   "status": "pass"
+  },
+  "shutoff.release_lever_untouched_before_the_drive": {
+   "value": 2.4861,
+   "status": "pass"
+  },
+  "shutoff.rib_rocks_the_lever": {
+   "value": 0.349,
+   "status": "pass"
+  },
+  "shutoff.pushed_out_by_the_rib": {
+   "value": 0.0002,
+   "status": "pass"
+  },
+  "ffrew.ff_lever_drives_lever_a": {
+   "value": 0.02,
+   "status": "pass"
+  },
+  "ffrew.rew_lever_drives_lever_a": {
+   "value": 0.02,
+   "status": "pass"
+  },
+  "ffrew.cams_clear_otherwise": {
+   "value": 0.1298,
+   "status": "pass"
+  },
+  "ffrew.selector_pin_rides_in_its_slot": {
+   "value": 0.05,
+   "status": "pass"
+  },
+  "ffrew.lever_a_slides_opposite_ways": {
+   "value": 179.9905,
+   "status": "pass"
+  },
+  "reel_table.cap_top_above_flange": {
+   "value": 8.86,
+   "status": "pass"
+  },
+  "pin.locating_tip_above_reel_cap": {
+   "value": 2.04,
+   "status": "pass"
+  },
+  "capstan.tip_above_reel_cap": {
+   "value": 1.15,
+   "status": "pass"
+  },
+  "pin.locating_base_flange_below_reel_cap": {
+   "value": 9.27,
+   "status": "pass"
+  },
+  "cassette.rests_on_locating_pins": {
+   "value": 0.01,
+   "status": "pass"
+  },
+  "cassette.reference_hole_pitch": {
+   "value": 28,
+   "status": "pass"
+  },
+  "cassette.reference_hole_row_to_reel_row": {
+   "value": 29.7,
+   "status": "pass"
+  },
+  "cassette.capstan_pitch": {
+   "value": 48,
+   "status": "pass"
+  },
+  "flywheel.front_face_behind_pin_flange": {
+   "value": 4.66,
    "status": "fail"
   },
-  "reel.rates_are_independent": {
-   "value": false,
-   "status": "fail"
+  "cell.aa_diameter_max": {
+   "value": 14.5508,
+   "status": "pass"
+  },
+  "cell.aa_length_max": {
+   "value": 48.783,
+   "status": "pass"
+  },
+  "tape.runs_within_roller_capstan_head_and_guide": {
+   "value": 0.1,
+   "status": "pass"
+  },
+  "tyre.fr_pulley.id": {
+   "value": 6.9918,
+   "status": "pass"
+  },
+  "tyre.fr_pulley.width": {
+   "value": 2.25,
+   "status": "pass"
+  },
+  "contact.fr_pulley_travel": {
+   "value": 1.4167,
+   "status": "pass"
+  },
+  "shaft.pulleys_third_gear": {
+   "value": 1.6004,
+   "status": "pass"
+  },
+  "shaft.levers": {
+   "value": 2,
+   "status": "pass"
+  },
+  "shaft.fr_gears": {
+   "value": 1.1996,
+   "status": "pass"
+  },
+  "gear.module": {
+   "value": 0.3,
+   "status": "pass"
+  },
+  "flywheel.main_disc_thickness": {
+   "value": 4.48,
+   "status": "pass"
+  },
+  "flywheel.groove_width": {
+   "value": 1.68,
+   "status": "pass"
+  },
+  "flywheel.upper_flange_thickness": {
+   "value": 0.82,
+   "status": "pass"
+  },
+  "flywheel.upper_flange_diameter": {
+   "value": 22.6,
+   "status": "pass"
+  },
+  "flywheel.hub_flange_diameter": {
+   "value": 7.2,
+   "status": "pass"
+  },
+  "teeth.takeup": {
+   "value": 60,
+   "status": "pass"
+  },
+  "teeth.takeup.step": {
+   "value": 42,
+   "status": "pass"
+  },
+  "teeth.s_gear_a": {
+   "value": 40,
+   "status": "pass"
+  },
+  "teeth.s_gear_b": {
+   "value": 60,
+   "status": "pass"
+  },
+  "teeth.fr_gear_b": {
+   "value": 36,
+   "status": "pass"
+  },
+  "teeth.fr_pulley_pinion": {
+   "value": 28,
+   "status": "pass"
+  },
+  "teeth.fr_gear_a": {
+   "value": 26,
+   "status": "pass"
+  },
+  "teeth.fr_gear_a_small_tier": {
+   "value": 15,
+   "status": "pass"
+  },
+  "teeth.third": {
+   "value": 44,
+   "status": "pass"
+  },
+  "teeth.secondary": {
+   "value": 30,
+   "status": "pass"
+  },
+  "teeth.secondary_pinion": {
+   "value": 13,
+   "status": "pass"
+  },
+  "teeth.third_pinion": {
+   "value": 9,
+   "status": "pass"
   },
   "ratio.reverse_wheel_to_flywheel": {
-   "value": 2.5862,
-   "status": "fail"
+   "value": 2.68,
+   "status": "pass"
   },
   "gear.s_gear_b_ratio": {
-   "value": 0.6781,
-   "status": "fail"
+   "value": 0.6667,
+   "status": "pass"
   },
-  "gear.fr_gear_b_ratio": {
-   "value": 1.1072,
-   "status": "fail"
+  "gear.fr_train_moves_tooth_for_tooth": {
+   "value": 0,
+   "status": "pass"
+  },
+  "gear.fr_gear_a_meets_clutch_gear_in_ff": {
+   "value": 12.8999,
+   "status": "pass"
+  },
+  "gear.fr_gear_a_meets_s_gear_b_in_rew": {
+   "value": 11.2498,
+   "status": "pass"
   },
   "ratio.FR_gear_A": {
-   "value": 1.6237,
+   "value": 0,
    "status": "info"
   },
   "ratio.secondary_gear": {
-   "value": -0.1123,
+   "value": -0.1115,
    "status": "info"
   },
   "ratio.third_gear_cam": {
-   "value": 0.0908,
+   "value": 0.0329,
    "status": "info"
   },
   "ratio.middle_pulley_and_primary_pinion": {
@@ -210,68 +590,84 @@
    "status": "info"
   },
   "ratio.FR_pulley_and_tyre": {
-   "value": 2.3922,
+   "value": 0,
    "status": "info"
   },
   "ratio.motor_rotor_and_pulley": {
-   "value": -6.25,
+   "value": -4.8667,
    "status": "info"
   },
   "tyre.fr_pulley.od": {
-   "value": 10.2,
-   "status": "fail"
+   "value": 12,
+   "status": "pass"
   },
   "tyre.fwd_pulley.od": {
-   "value": 8.0,
+   "value": 8,
    "status": "pass"
   },
   "pinch_roller.od": {
-   "value": 7.5,
-   "status": "fail"
+   "value": 9,
+   "status": "pass"
   },
   "belt.main.stretch": {
-   "value": 16.4918,
-   "status": "fail"
+   "value": 7.7989,
+   "status": "pass"
   },
   "belt.second.stretch": {
-   "value": 5.9862,
+   "value": 7.6514,
    "status": "pass"
   },
   "fr_pulley.touches_flywheel_in_ff": {
-   "value": 0.9103,
-   "status": "fail"
+   "value": -0.0801,
+   "status": "pass"
   },
   "fr_pulley.touches_flywheel_in_rew": {
-   "value": 0.9103,
-   "status": "fail"
+   "value": -0.0801,
+   "status": "pass"
   },
   "fr_pulley.flywheel_plus_tyre_radius": {
-   "value": 17.3,
-   "status": "fail"
+   "value": 18.9,
+   "status": "pass"
   },
   "fr_pulley.moves_between_modes": {
-   "value": 0.0,
-   "status": "fail"
+   "value": 2.1104,
+   "status": "pass"
   },
   "fr_gear_a.moves_between_modes": {
-   "value": 0.0,
-   "status": "fail"
+   "value": 2.6861,
+   "status": "pass"
   },
   "fwd_pulley.moves_between_modes": {
-   "value": 0.0,
-   "status": "fail"
+   "value": 0.6,
+   "status": "pass"
   },
   "pinch_roller.moves_between_modes": {
-   "value": 3.0575,
+   "value": 2.2,
    "status": "pass"
   },
   "fr_gear_a.swings_between_ff_and_rew": {
-   "value": 0.0,
-   "status": "fail"
+   "value": 3.688,
+   "status": "pass"
   },
   "pinch_roller.meets_capstan_in_play": {
-   "value": -0.9567,
-   "status": "fail"
+   "value": -0.1,
+   "status": "pass"
+  },
+  "size.gear.takeup.tip_diameter": {
+   "value": 18.597,
+   "status": "pass"
+  },
+  "size.clutch.drum.diameter": {
+   "value": 16.5,
+   "status": "pass"
+  },
+  "size.clutch.felt.outer_diameter": {
+   "value": 15.9,
+   "status": "pass"
+  },
+  "size.clutch.spring.outer_diameter": {
+   "value": 7.197,
+   "status": "pass"
   }
  }
 }

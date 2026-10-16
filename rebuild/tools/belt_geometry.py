@@ -50,7 +50,8 @@ def wrap_samples(belt_id, path, drivers, parts):
         candidates=stable&planar
         if sum(candidates)<12:raise ValueError(f'{belt_id}/{owner}: native path has no supported circular contact; inspect belt geometry and driving axis.')
         pitch=float(np.median(radius[candidates]));plane=float(np.median(points[candidates,axis]))
-        match=(abs(radius-pitch)<.0001)&(abs(points[:,axis]-plane)<.0001)
+        # The wheel's turning centre is worked out from sampled poses and can be a ten-thousandth of a millimetre out, so allow a thousandth here.
+        match=(abs(radius-pitch)<.001)&(abs(points[:,axis]-plane)<.0001)
         interior=match&np.roll(match,1)&np.roll(match,-1)
         if sum(interior)<12:raise ValueError(f'{belt_id}/{owner}: ambiguous native contact; explicit adaptation required.')
         # Fit the circle in its actual plane, avoiding float32 spin-pivot roundoff.

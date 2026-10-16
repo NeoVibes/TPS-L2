@@ -26,7 +26,7 @@ import {createExplodedLayout} from "./exploded-layout.mjs";
 import {deformationWeights, applyDeformationPositions} from "./native-deformation.mjs";
 import {CONTROL_BINDINGS, controlVisualOffset} from "./model-controls.mjs";
 import {modelData, listData} from "./data.mjs";
-import {createOperatingState, advanceOperating, resetOperating, transportInterval} from "./operating-state.mjs";
+import {createOperatingState, advanceOperating, resetOperating, transportInterval, autoStopProgress} from "./operating-state.mjs";
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
 import {createTransport} from "./app-transport.mjs";
@@ -164,6 +164,31 @@ export function reset() {
   cam.preset("assembled");
   views.sync();
 }
+// Automatic shut-off: which parts take part, and where each stands. In PLAY the cam on the third gear pushes the
+// shut-off lever out once a turn. When the reel stalls the detection lever falls back and the lever's teeth
+// mesh with the gear; the gear then carries the lever along and it turns release lever C.
+const shutOff = config.roles.autoStop, shutOffRole = Object.fromEntries(["lever", "detector", "release"].flatMap((role) => shutOff[role].map((id) => [id, role])));
+const reelDriven = new Set(config.roles.reelDriven);
+function shutOffWeights(role) {
+  const stage = autoStopProgress(state), cam = parts.find((q) => q.data.id === shutOff.cam);
+  const rock = role === "lever" && cam ? (1 - Math.cos(cam.phase)) / 2 * (1 - stage.mesh) : 0;
+  if (stage.trip > 0) return [["shutoff_meshed", 1 - stage.trip], ["shutoff_tripped", stage.trip]];
+  return [["play", (1 - rock) * (1 - stage.mesh)], ["shutoff_out", rock * (1 - stage.mesh)], ["shutoff_meshed", stage.mesh]];
+}
+const mixPoses = (p, weights, s) => weights.reduce((sum, [name, w]) => { const total = sum.w + w; if (w > 0) { sum.p.lerp(p.poses[name].p, w / total); sum.q.slerp(p.poses[name].q, w / total); sum.w = total; } return sum; }, { p: p.poses[weights[0][0]].p.clone(), q: p.poses[weights[0][0]].q.clone(), s, w: 0 });
+// A part that rides the rig is built from what its rig members do: each member's turn and shift are blended, then applied outermost
+// first to the part as it stands at STOP. That keeps a gear on its arm's arc, and turning with it, all the way from one position to the next.
+const linkM = new T.Matrix4(), linkR = new T.Matrix4(), linkS = new T.Vector3(), linkShift = new T.Vector3();
+function followLinks(p, weights, smoothing) {
+  linkM.identity();
+  for (const link of p.links) {
+    let a = 0; linkShift.set(0, 0, 0);
+    for (const [name, w] of weights) { a += w * link.poses[name].a; linkShift.addScaledVector(link.poses[name].t, w); }
+    link.a += (a - link.a) * smoothing; link.t.lerp(linkShift, smoothing);
+    linkM.multiply(linkR.makeTranslation(link.t.x + link.pivot.x, link.t.y + link.pivot.y, link.t.z + link.pivot.z)).multiply(linkR.makeRotationAxis(link.axis, link.a)).multiply(linkR.makeTranslation(-link.pivot.x, -link.pivot.y, -link.pivot.z));
+  }
+  linkM.multiply(p.stopMatrix).decompose(p.baseP, p.baseQ, linkS);
+}
 function updateParts(dt, spinDt = dt, spinMode = state.mode) {
   updateOperationIndicator(indicatorMaterials, state);
   const smoothing = 1 - Math.exp(-dt * config.viewer.poseSmoothingRate), pose = transport.poseName();
@@ -183,20 +208,23 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
       base.p.z += cassetteLift(contact, eject);
     }
     if (config.roles.stopTranslation.includes(p.data.id)) base = { ...base, p: p.poses.stop.p.clone().lerp(p.poses.eject.p, state.stopTravel || 0) };
+    const staged = shutOffRole[p.data.id] && state.mode === "play" && p.poses.shutoff_tripped ? shutOffWeights(shutOffRole[p.data.id]) : null;
+    if (staged && !p.links) base = mixPoses(p, staged, base.s);
     if (p.batteryHinge) {
       const q = p.poses.stop.q.clone().slerp(p.poses.battery_open.q, battery.open);
       base = { ...base, q, p: applyHingePose(p.batteryHinge, q) };
     }
     if (p.data.id === config.roles.batteryLatch) base = { ...base, p: p.poses.stop.p.clone().lerp(p.poses.battery_release.p, battery.release) };
-    if (p.batteryHinge) p.baseQ.copy(base.q);
+    if (p.links) followLinks(p, staged || [[state.view === "service" && p.data.rest_when_separated ? "stop" : pose, 1]], smoothing);
+    else if (p.batteryHinge) p.baseQ.copy(base.q);
     else p.baseQ.slerp(base.q, smoothing);
     if (p.hinge) p.baseQ.normalize();
     if (p.batteryHinge) applyHingePose(p.batteryHinge, p.baseQ, p.baseP);
     else if (p.hinge) applyHingePose(p.hinge, p.baseQ, p.baseP);
     else if (config.roles.instantTranslation.includes(p.data.id) || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
-    else p.baseP.lerp(base.p, smoothing);
+    else if (!p.links) p.baseP.lerp(base.p, smoothing);
     p.group.scale.copy(base.s);
-    const sp = p.spin[spinMode];
+    const sp = state.autoStop && reelDriven.has(p.data.id) ? null : p.spin[spinMode];   // a stalled reel and what turns with it stand still
     p.phase = advancePartAngle(p.phase, p.data, sp, { ...state, displayExplosion, displayRadial }, spinDt);
     const a = p.reference;
     if (a) {
@@ -253,9 +281,9 @@ function animate(now) {
   const start = performance.now(), dt = Math.min(wallDt, 0.1);
   const transportStep = transportInterval(state, wallDt);
   if (state.explode === 0 && state.radial === 0 && state.tour < 0) {
-    const before = [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), state.ejectNeedsOpenCover].join();
+    const before = [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join();
     advanceOperating(state, wallDt);
-    if (before !== [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), state.ejectNeedsOpenCover].join()) views.sync();
+    if (before !== [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join()) views.sync();
   }
   if (state.tour >= 0 && !state.paused) tour.seek(tour.position + wallDt);
   updateParts(reducedMotion.matches ? 10 : dt, state.tour >= 0 ? 0 : transportStep.seconds, transportStep.mode);
@@ -340,8 +368,9 @@ export async function init() {
       scene.add(group);
       const poses = Object.fromEntries(Object.entries(data.poses).map(([k, [p2, q, s]]) => [k, { p: V(p2), q: Q(q), s: V(s) }]));
       const refdata = Object.values(data.spin)[0], reference = refdata ? { axis: V(refdata.axis).normalize(), center: V(refdata.center) } : null;
-      const spin = Object.fromEntries(Object.entries(data.spin).map(([k, s]) => [k, { rate: s.rate * (reference ? V(s.axis).normalize().dot(reference.axis) : 1) }]));
-      const p = { data, group, poses, baseP: poses.stop.p.clone(), baseQ: poses.stop.q.clone(), phase: 0, reference, spin, hinge: createDoorMotion(data), batteryHinge: createDoorMotion(data, { battery: true }), family: family(data) };
+      const spin = Object.fromEntries(Object.entries(data.spin).map(([k, s]) => [k, { rate: s.rate * (config.viewer.rotationScale ?? 1) * (reference ? V(s.axis).normalize().dot(reference.axis) : 1) }]));
+      const links = data.links ? data.links.map((l) => ({ pivot: V(l.pivot), axis: V(l.axis).normalize(), poses: Object.fromEntries(Object.entries(l.poses).map(([k, [a, ...t]]) => [k, { a, t: V(t) }])), a: 0, t: new T.Vector3() })) : null;
+      const p = { data, group, poses, baseP: poses.stop.p.clone(), baseQ: poses.stop.q.clone(), phase: 0, reference, spin, hinge: createDoorMotion(data), batteryHinge: createDoorMotion(data, { battery: true }), family: family(data), links, stopMatrix: new T.Matrix4().compose(poses.stop.p, poses.stop.q, poses.stop.s) };
       labels.addPart(p, () => {
         tour.clear();
         inspect.select(p);

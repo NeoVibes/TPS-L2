@@ -1,7 +1,5 @@
 # Portable Tape Player
 
-<img width="880" height="699" alt="The viewer in use: the versions, a turn, the doors, PLAY, the exploded and service views, every part" src="https://github.com/user-attachments/assets/931e6ca6-4ece-4b89-8dc2-487cfec332a3" />
-
 ![The three exterior versions of the model, early to later](publish/github/three-versions.png)
 
 A 3D model of the Sony TPS-L2 that you can operate, take apart on screen, edit and improve.
@@ -11,8 +9,6 @@ This model is an estimate. It was worked out from photographs, videos, Sony’s 
 Serial number 12345 was chosen completely arbitrarily for this model and is not taken from any real unit.
 
 Unofficial project, not affiliated with or endorsed by Sony.
-
-**Download:** the whole kit as one ZIP is on the [Releases](https://github.com/NeoVibes/TPS-L2/releases) page.
 
 ## What is here
 
@@ -48,7 +44,9 @@ Known problems:
 
 - **Body:** the front is about 88 mm wide in the model; the target is 85 mm. Depth, window shape and margins are uncertain.
 - **Cassette bay:** a standard cassette does not yet seat with proper clearance.
-- **Drive:** shaft positions, gear ratios and capstan speed are not calibrated. Belts, springs and friction are shown, not simulated.
+- **Cassette-bay rail and lid:** the new blue headphone-end rail (BAY-073) intersects the folded end rim of the cassette lid (EXT-030) when the lid is closed or partly open. The closed-lid overlap runs across the rail's 63.6 mm width and involves a 0.55 mm thick section of the lid rim.
+- **Cassette-bay rail and EJECT lever:** the folded EJECT lever (STP-003) also intersects BAY-073 near full eject with the lid open. At full stroke the measured maximum vertex penetration into the rail is approximately 0.059 mm. Both rail collisions remain known geometry errors; their dimensions are unchanged pending better reference evidence for a correction.
+- **Drive:** the flywheel's depth remains about 1 mm away from the photographed target; its belt-groove width now meets the target. Belts and springs are shown only.
 - **Solids:** many parts are not single closed solids; the master list says which and why.
 - **Early exterior:** its white STEREO and dark key legends are printed over the moulded letters of the shared shells; a real early player is flat there. The older lettering is placed by eye from one photograph.
 - **Separated views** are illustrations, not removal instructions.

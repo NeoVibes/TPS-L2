@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import * as T from 'three';
 import { TOUR_SECONDS, TOUR_DURATIONS, tourLocation, tourMotion } from '../viewer/tour-timeline.mjs';
 import { createLoader } from '../viewer/loading.mjs';
+import { TRANSPORT_RATES } from '../viewer/operating-state.mjs';
 
 const json = async path => JSON.parse(await readFile(path, 'utf8'));
 const hash = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -30,7 +31,7 @@ assert.equal(finalMotion.tapeSeconds,0,'Service cassette is physically separated
 assert.equal(finalMotion.mediaModeSeconds.play,0);
 assert.equal(finalMotion.mediaModeSeconds.ff,0);
 const rewindFixture = [{duration:4,mode:'play',view:'assembled'},{duration:1,mode:'rew',view:'assembled'}];
-assert.equal(tourMotion(5,rewindFixture).tapeSeconds,-4,'Reverse winding contributes the shared negative transport rate');
+assert.equal(tourMotion(5,rewindFixture).tapeSeconds,4+TRANSPORT_RATES.rew,'Reverse winding contributes the shared negative transport rate');
 assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'assembled',door:true}]).tapeSeconds,10,'An open cover permits seated tape playback');
 assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'exploded'}]).tapeSeconds,0,'Separated geometry cannot advance transport');
 assert.deepEqual(tourMotion(41.5,tourFixture),tourMotion(41.5,tourFixture),'Repeated seek has no retained integration state');

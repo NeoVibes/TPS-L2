@@ -1,11 +1,11 @@
 {
  "what": "Results of checking the model against edit/targets.json and edit/assessments.json. Written by \"npm run build\"; do not edit. Issue numbers refer to this project's GitHub issues.",
- "version": "0.2.2",
+ "version": "0.2.5",
  "bound_to": {
-  "model": "91101786907a48292557601601f6fe5413c1246750b71e6e7a3779cc7433ffa2",
-  "targets": "51736a19aa0822cf459539471fe0e099cc64c40ef58b63a6aba304fe77838f29",
+  "model": "ee9ec950a5736ee62027d3ca740d654836cfd7cd13ccc0eff87c2297edaa374f",
+  "targets": "30f183511d9eba8c6c6cb41332c838db26bd6ea835884f7a03f1ad0fdbeb17cb",
   "assessments": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
-  "service_list": "8a85540ee18c05eb0546c43259a3e0614ec81b5a31e80f89654268a7f865e0cb"
+  "service_list": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a"
  },
  "levels": [
   "Not modelled",
@@ -17,8 +17,8 @@
   "Level 5 corroborated by at least two people using two different physical units"
  ],
  "rows_at_each_level": {
-  "0": 144,
-  "1": 510
+  "0": 143,
+  "1": 519
  },
  "check_totals": {
   "solids": {
@@ -28,21 +28,33 @@
    "no data": 0
   },
   "envelope": {
-   "pass": 8,
-   "fail": 6,
-   "info": 0,
-   "no data": 0
-  },
-  "axes": {
-   "pass": 13,
+   "pass": 19,
    "fail": 8,
    "info": 0,
    "no data": 0
   },
+  "axes": {
+   "pass": 34,
+   "fail": 1,
+   "info": 0,
+   "no data": 0
+  },
   "motion": {
+   "pass": 81,
+   "fail": 0,
+   "info": 7,
+   "no data": 0
+  },
+  "parts": {
+   "pass": 12,
+   "fail": 0,
+   "info": 0,
+   "no data": 0
+  },
+  "size": {
    "pass": 4,
-   "fail": 22,
-   "info": 6,
+   "fail": 0,
+   "info": 0,
    "no data": 0
   }
  },
@@ -63,14 +75,23 @@
   },
   "cassette.thickness_body": {
    "definition": "a9124cc8ef12ea11",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cassette.thickness_body"
+   ]
   },
   "cassette.thickness_head_end": {
    "definition": "c2a998aa2e22096f",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "cassette.thickness_head_end"
+   ]
+  },
+  "tape.plane_above_carriage_plate": {
+   "definition": "37e7a523c8094b23",
+   "outcome": "pass",
+   "checks": [
+    "tape.plane_above_carriage_plate"
    ]
   },
   "cassette.reel_pitch": {
@@ -82,8 +103,10 @@
   },
   "cassette.capstan_pitch": {
    "definition": "89b04b60a8e22736",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cassette.capstan_pitch"
+   ]
   },
   "cassette.capstan_row_to_reel_row": {
    "definition": "4ac5b848949566eb",
@@ -101,59 +124,92 @@
   },
   "cassette.reference_hole_pitch": {
    "definition": "83a904b9722d072f",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cassette.reference_hole_pitch"
+   ]
   },
   "cassette.reference_hole_row_to_reel_row": {
    "definition": "4343c2b68081fe63",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cassette.reference_hole_row_to_reel_row"
+   ]
   },
   "cell.aa_diameter_max": {
    "definition": "b1e7a4378f699c90",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cell.aa_diameter_max"
+   ]
   },
   "cell.aa_length_max": {
    "definition": "4e6f7cecef306ce1",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cell.aa_length_max"
+   ]
   },
   "tape.speed": {
    "definition": "9caeb25ad6883811",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "tape.speed"
    ]
   },
   "wind.c60_time": {
    "definition": "c969542e30d5a34f",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "wind.c60_time",
+    "wind.c60_time_rew"
+   ]
+  },
+  "motor.speed_while_winding": {
+   "definition": "9dffcfb6f6c3f065",
+   "outcome": "pass",
+   "checks": [
+    "motor.speed_while_winding"
+   ]
+  },
+  "fr_pulley.slip_while_winding": {
+   "definition": "5b08a858c42b9eb8",
+   "outcome": "pass",
+   "checks": [
+    "fr_pulley.slip_while_winding"
+   ]
   },
   "torque.takeup_play": {
    "definition": "7f08f19a0c9c7fa1",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "torque.takeup_play"
+   ]
   },
   "torque.fast_wind_min": {
    "definition": "342bec68b8839790",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "torque.fast_wind_min"
+   ]
   },
   "torque.back_tension": {
    "definition": "2c7da9eddf660e65",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "torque.back_tension"
+   ]
   },
   "pinch.pressure": {
    "definition": "71916d8535a2826c",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "pinch.pressure"
+   ]
   },
   "motor.never_reverses": {
    "definition": "b13ec4b0f6c2541a",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "motor.never_reverses"
    ]
@@ -172,6 +228,13 @@
     "body.front_width"
    ]
   },
+  "body.width": {
+   "definition": "46b2677947d3392d",
+   "outcome": "pass",
+   "checks": [
+    "body.width"
+   ]
+  },
   "body.depth": {
    "definition": "bede63b3b42119bc",
    "outcome": "pass",
@@ -181,13 +244,17 @@
   },
   "body.depth_over_width": {
    "definition": "ba93f6f34e497eea",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "fail",
+   "checks": [
+    "body.depth_over_width"
+   ]
   },
   "control.listen_key_proud_of_side": {
    "definition": "40909f5f58ef2dfe",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "control.listen_key_proud_of_side"
+   ]
   },
   "front.silver_strip": {
    "definition": "3b2edd1e2313e4f2",
@@ -240,67 +307,191 @@
   },
   "capstan.diameter": {
    "definition": "36a7bccdfd86cc95",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "capstan.diameter"
    ]
   },
   "flywheel.rate_play": {
    "definition": "2ba4c52780059c2a",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "flywheel.rate_play"
    ]
   },
   "shaft.fr_gears": {
    "definition": "af8aad5033da9263",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "shaft.fr_gears"
+   ]
   },
   "shaft.pulleys_third_gear": {
    "definition": "e34519bf520afd15",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "shaft.pulleys_third_gear"
+   ]
   },
   "shaft.levers": {
    "definition": "1724c7cf811c83f2",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "shaft.levers"
+   ]
   },
   "gear.module": {
    "definition": "d1f20393e8605d36",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "gear.module"
+   ]
   },
   "gear.s_gear_b.teeth": {
    "definition": "6f2cace1a850c5d8",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "teeth.s_gear_b"
+   ]
   },
   "gear.s_gear_a.teeth": {
    "definition": "f5e9dc65b7620aa1",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "teeth.s_gear_a"
+   ]
   },
   "gear.fr_gear_b.teeth": {
    "definition": "cd9ed6591f762e48",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "teeth.fr_gear_b"
+   ]
   },
   "gear.takeup.teeth": {
    "definition": "11649a96af11c7bb",
+   "outcome": "pass",
+   "checks": [
+    "teeth.takeup"
+   ]
+  },
+  "gear.takeup.step_teeth": {
+   "definition": "0e43a72f15f39e53",
+   "outcome": "pass",
+   "checks": [
+    "teeth.takeup.step"
+   ]
+  },
+  "gear.takeup.step_mate": {
+   "definition": "58eeb0adb7e3c679",
+   "outcome": "pass",
+   "checks": [
+    "gear.takeup.step_mate"
+   ]
+  },
+  "gear.step_mate.teeth": {
+   "definition": "9833293e314e2869",
+   "outcome": "pass",
+   "checks": [
+    "teeth.step_mate"
+   ]
+  },
+  "gear.takeup.tip_diameter": {
+   "definition": "14291eed197f2d55",
+   "outcome": "pass",
+   "checks": [
+    "size.gear.takeup.tip_diameter"
+   ]
+  },
+  "clutch.drum.diameter": {
+   "definition": "ded33e64e2031efd",
+   "outcome": "pass",
+   "checks": [
+    "size.clutch.drum.diameter"
+   ]
+  },
+  "clutch.felt.outer_diameter": {
+   "definition": "f6ae6db84ea4ef9b",
+   "outcome": "pass",
+   "checks": [
+    "size.clutch.felt.outer_diameter"
+   ]
+  },
+  "clutch.spring.outer_diameter": {
+   "definition": "5a7f6f2c6bfdc6d2",
+   "outcome": "pass",
+   "checks": [
+    "size.clutch.spring.outer_diameter"
+   ]
+  },
+  "clutch.spring.free_length": {
+   "definition": "72898c24bafa9f75",
+   "outcome": "no check",
+   "checks": []
+  },
+  "clutch.spring.active_coils": {
+   "definition": "1887b9950060f787",
+   "outcome": "no check",
+   "checks": []
+  },
+  "clutch.felt.friction": {
+   "definition": "82a61ac59fdb1986",
+   "outcome": "no check",
+   "checks": []
+  },
+  "spring.steel_shear_modulus": {
+   "definition": "ad40f84fabc0243d",
+   "outcome": "no check",
+   "checks": []
+  },
+  "spring.steel_youngs_modulus": {
+   "definition": "6677cc16e295397a",
+   "outcome": "no check",
+   "checks": []
+  },
+  "pinch.spring.preload": {
+   "definition": "f03f985928436507",
+   "outcome": "no check",
+   "checks": []
+  },
+  "back_tension.spring.free_length": {
+   "definition": "2cfe62b2c340beae",
+   "outcome": "no check",
+   "checks": []
+  },
+  "back_tension.spring.active_coils": {
+   "definition": "16783bec0301db27",
+   "outcome": "no check",
+   "checks": []
+  },
+  "lever_b.spring.free_length": {
+   "definition": "667c3cd17f33da83",
+   "outcome": "no check",
+   "checks": []
+  },
+  "lever_b.spring.active_coils": {
+   "definition": "b4c0071f9c08025e",
+   "outcome": "no check",
+   "checks": []
+  },
+  "fr_tyre.friction": {
+   "definition": "1fec4d84bc88ff6f",
    "outcome": "no check",
    "checks": []
   },
   "gear.fr_gear_a.teeth": {
    "definition": "4cb1443e4863f89b",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "teeth.fr_gear_a"
+   ]
   },
   "gear.fr_pulley_pinion.teeth": {
-   "definition": "3637db29b11d85f0",
-   "outcome": "no check",
-   "checks": []
+   "definition": "80fa2a0943c116e9",
+   "outcome": "pass",
+   "checks": [
+    "teeth.fr_pulley_pinion"
+   ]
   },
   "belt.main.inner_diameter": {
    "definition": "b1cd50bc987487aa",
@@ -314,7 +505,7 @@
   },
   "belt.main.free_length": {
    "definition": "e17303b24b8b00b0",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "belt.main.stretch"
    ]
@@ -333,27 +524,31 @@
   },
   "ratio.reverse_wheel_to_flywheel": {
    "definition": "72547978f96ff3ec",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "ratio.reverse_wheel_to_flywheel"
    ]
   },
   "tyre.fr_pulley.od": {
    "definition": "bac09eedb284747d",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "tyre.fr_pulley.od"
    ]
   },
   "tyre.fr_pulley.id": {
    "definition": "87f54542e2bcced0",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "tyre.fr_pulley.id"
+   ]
   },
   "tyre.fr_pulley.width": {
    "definition": "88143bc09030c48a",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "tyre.fr_pulley.width"
+   ]
   },
   "tyre.fwd_pulley.od": {
    "definition": "ae6f0b325b48c370",
@@ -364,18 +559,20 @@
   },
   "pinch_roller.od": {
    "definition": "5ed3582a6f835133",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "pinch_roller.od"
    ]
   },
   "pinch_roller.width": {
-   "definition": "a9425fdee53d2760",
-   "outcome": "no check",
-   "checks": []
+   "definition": "d70141c5fbc6873b",
+   "outcome": "pass",
+   "checks": [
+    "pinch_roller.width"
+   ]
   },
   "flywheel.rim_diameter": {
-   "definition": "d85adeafbd2078ed",
+   "definition": "ffe99ca6d7f403d4",
    "outcome": "pass",
    "checks": [
     "flywheel.rim_diameter"
@@ -383,14 +580,14 @@
   },
   "axis.reverse_wheel": {
    "definition": "dfa0b1d1ef4ed2ec",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "reverse_wheel_axis"
    ]
   },
   "axis.fr_pulley_engaged": {
    "definition": "e4e95c4a65967cbf",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_pulley_axis_ff",
     "fr_pulley_axis_rew"
@@ -398,22 +595,24 @@
   },
   "axis.fr_pulley_released": {
    "definition": "80bcb74a8d5da36c",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_pulley_axis_play"
    ]
   },
   "contact.fr_pulley_to_capstan_axis_engaged": {
    "definition": "0fc558562dc3691f",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_pulley.flywheel_plus_tyre_radius"
    ]
   },
   "contact.fr_pulley_travel": {
    "definition": "69c362b489725e97",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "contact.fr_pulley_travel"
+   ]
   },
   "axis.fr_gear_b": {
    "definition": "07849c1087d40e3f",
@@ -424,7 +623,7 @@
   },
   "axis.fr_gear_a_ff": {
    "definition": "298820133cff85db",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_gear_a_axis_ff"
    ]
@@ -438,93 +637,168 @@
   },
   "axis.fr_gear_a_play": {
    "definition": "370be0c6ad032fe5",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_gear_a_axis_play"
    ]
   },
   "arm.fr_gear_a_about_fr_gear_b": {
    "definition": "cc3a23b57039c067",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "fr_gear_a_arm_about_fr_gear_b"
    ]
   },
   "axis.fwd_pulley_engaged": {
-   "definition": "aa77c4385a532735",
-   "outcome": "fail",
+   "definition": "f35957844ccd8585",
+   "outcome": "pass",
    "checks": [
     "fwd_pulley_axis_play"
    ]
   },
+  "axis.middle_pulley": {
+   "definition": "1d16da10673e705c",
+   "outcome": "pass",
+   "checks": [
+    "middle_pulley_axis"
+   ]
+  },
+  "clearance.third_gear_to_motor_pulley": {
+   "definition": "d1741db6d3d1e7ef",
+   "outcome": "pass",
+   "checks": [
+    "third_gear_to_motor_pulley"
+   ]
+  },
   "gear.fr_gear_a_small_tier.teeth": {
    "definition": "53c59cb8433e69b6",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "teeth.fr_gear_a_small_tier"
+   ]
   },
   "gear.third.teeth": {
-   "definition": "3874cd5badeeb8ce",
-   "outcome": "no check",
-   "checks": []
+   "definition": "3b50e9b54b4f48a7",
+   "outcome": "pass",
+   "checks": [
+    "teeth.third"
+   ]
+  },
+  "gear.secondary.teeth": {
+   "definition": "8d834a52b34fba72",
+   "outcome": "pass",
+   "checks": [
+    "teeth.secondary"
+   ]
+  },
+  "gear.secondary_pinion.teeth": {
+   "definition": "3758ac2deab6b790",
+   "outcome": "pass",
+   "checks": [
+    "teeth.secondary_pinion"
+   ]
+  },
+  "gear.third_pinion.teeth": {
+   "definition": "c7383741f62c0754",
+   "outcome": "pass",
+   "checks": [
+    "teeth.third_pinion"
+   ]
+  },
+  "axis.third_gear": {
+   "definition": "efc4a8963aff96eb",
+   "outcome": "pass",
+   "checks": [
+    "third_gear_axis"
+   ]
+  },
+  "axis.shutoff_post": {
+   "definition": "21da40e567445a99",
+   "outcome": "pass",
+   "checks": [
+    "shutoff_post_axis"
+   ]
   },
   "flywheel.upper_flange_diameter": {
    "definition": "fee3ec86d5de6711",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "flywheel.upper_flange_diameter"
+   ]
   },
   "flywheel.hub_flange_diameter": {
    "definition": "92d2272c4a575071",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "flywheel.hub_flange_diameter"
+   ]
   },
   "reel_table.cap_top_above_flange": {
    "definition": "606b18553436d350",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "reel_table.cap_top_above_flange"
+   ]
   },
   "pin.locating_tip_above_reel_cap": {
    "definition": "09bbe969e68873ba",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "pin.locating_tip_above_reel_cap"
+   ]
   },
   "capstan.tip_above_reel_cap": {
    "definition": "b3d6cc7cc88039ec",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "capstan.tip_above_reel_cap"
+   ]
   },
   "pin.locating_base_flange_below_reel_cap": {
    "definition": "07c2d202693026ca",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "pin.locating_base_flange_below_reel_cap"
+   ]
   },
   "flywheel.main_disc_thickness": {
    "definition": "879cb1b94e47e5be",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "flywheel.main_disc_thickness"
+   ]
   },
   "flywheel.groove_width": {
    "definition": "6e8bfcdc14a3d670",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "flywheel.groove_width"
+   ]
   },
   "flywheel.upper_flange_thickness": {
    "definition": "328607b36f35d878",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "flywheel.upper_flange_thickness"
+   ]
   },
   "flywheel.front_face_behind_pin_flange": {
    "definition": "ca4898e468c36fbb",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "fail",
+   "checks": [
+    "flywheel.front_face_behind_pin_flange"
+   ]
   },
   "body.depth_minimum_from_stack": {
    "definition": "7e2b00ef406dd82a",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "body.depth_minimum_from_stack"
+   ]
   },
   "reverse_wheel.outer_diameter": {
    "definition": "110dafd096cf362a",
-   "outcome": "fail",
+   "outcome": "pass",
    "checks": [
     "reverse_wheel.outer_diameter"
    ]
@@ -536,8 +810,10 @@
   },
   "bay.cassette_to_chassis_end_battery": {
    "definition": "50c05b23a2b48576",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "bay.cassette_to_chassis_end_battery"
+   ]
   },
   "bay.hook_far_edge_behind_cassette_rear_edge": {
    "definition": "4ce309d1b07106d4",
@@ -551,33 +827,45 @@
   },
   "bay.top_rail_outer_edge_beyond_cassette_end": {
    "definition": "64c06933d161e132",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "bay.top_rail_outer_edge_beyond_cassette_end"
+   ]
   },
   "bay.top_rail_top_above_cassette_top_face": {
    "definition": "1e4204e4ae04ca4e",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "bay.top_rail_top_above_cassette_top_face"
+   ]
   },
   "cover.control_side_face_width": {
    "definition": "46b87d0d6ca72124",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "cover.control_side_face_width"
+   ]
   },
   "lid.window_centre_fraction_of_lid_width": {
    "definition": "7b47fe41f937fe1d",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "fail",
+   "checks": [
+    "lid.window_centre_fraction_of_lid_width"
+   ]
   },
   "lid.height_over_width": {
    "definition": "5b367be125e0e6eb",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "fail",
+   "checks": [
+    "lid.height_over_width"
+   ]
   },
   "belt.length_ratio_main_to_second": {
    "definition": "e72805bad0a7c457",
-   "outcome": "no check",
-   "checks": []
+   "outcome": "pass",
+   "checks": [
+    "belt.length_ratio_main_to_second"
+   ]
   }
  },
  "checks": [
@@ -587,7 +875,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 118,
+   "value": 41,
    "expected": 0,
    "allowed": [
     0,
@@ -599,124 +887,47 @@
     "BAT-001",
     "BAT-010",
     "BAT-011",
-    "BAT-020",
-    "BAT-021",
-    "BAT-022",
-    "BAY-030",
-    "BAY-031",
-    "CAP-101",
-    "CAP-102",
     "CAP-103",
     "CAP-104",
-    "CAP-105",
     "CAP-106",
     "CAP-107",
     "CAP-108",
-    "CAP-109",
-    "CAP-110",
-    "CAP-111",
     "CAP-112",
-    "CAP-113",
     "CAP-114",
     "CAP-115",
-    "CAP-116",
-    "CAP-201",
-    "CAP-202",
     "CAP-203",
     "CAP-204",
-    "CAP-205",
     "CAP-206",
     "CAP-207",
     "CAP-208",
-    "CAP-209",
-    "CAP-210",
-    "CAP-211",
     "CAP-212",
-    "CAP-213",
     "CAP-214",
     "CAP-215",
-    "CAP-216",
-    "CAP-301",
     "CTL-08",
-    "DRV-012",
-    "DRV-100",
     "EXT-010",
     "EXT-020",
     "EXT-042",
     "EXT-061",
-    "FCL-001",
-    "FRL-001",
-    "FRL-010",
     "GRL-001",
     "GRL-717",
-    "HDC-005",
-    "HINGE-010",
     "JB-001",
-    "JCK-11",
-    "JCK-12",
-    "JCK-13",
-    "JCK-35",
-    "JCK-36",
     "MB-001",
     "MB-101",
     "MB-102",
     "MB-201",
     "MB-202",
-    "MEC-001",
     "MEC-010",
+    "MEDIA-002",
     "MEDIA-003",
     "MEDIA-005",
-    "MIC-005",
-    "MIC-006",
-    "MIC-007",
-    "MTR-031",
-    "MTR-032",
-    "MTR-033",
-    "RES-101",
-    "RES-102",
     "RES-103",
-    "RES-104",
-    "RES-105",
-    "RES-106",
-    "RES-107",
-    "RES-108",
-    "RES-109",
-    "RES-110",
-    "RES-111",
-    "RES-112",
-    "RES-113",
-    "RES-114",
-    "RES-201",
-    "RES-202",
-    "RES-203",
-    "RES-204",
-    "RES-205",
-    "RES-206",
-    "RES-207",
-    "RES-208",
-    "RES-209",
-    "RES-210",
-    "RES-211",
-    "RES-212",
-    "RES-213",
-    "RES-214",
-    "RES-301",
     "SB-001",
-    "STF-010",
-    "STP-002",
     "STP-003",
-    "SVR-601",
     "SWT-002",
-    "SWT-003",
-    "TR-101",
-    "TR-201",
-    "VOL-001",
-    "VOL-010",
-    "VOL-020",
-    "WIR-PWR-05"
+    "SWT-003"
    ],
    "status": "fail",
-   "note": "498 parts: 380 are one closed solid, 118 are not. Vertices closer than 0.001 mm are joined; lettering is left out."
+   "note": "507 parts: 466 are one closed solid, 41 are not. Vertices closer than 0.001 mm are joined; lettering is left out."
   },
   {
    "group": "envelope",
@@ -747,7 +958,7 @@
    "target": "body.front_width",
    "uses": [],
    "variant": null,
-   "value": 87.878,
+   "value": 87.802,
    "expected": 85,
    "allowed": [
     84.4,
@@ -762,7 +973,30 @@
     "GRL-001"
    ],
    "status": "fail",
-   "note": "Across vertices within 1 mm of the front plane; side keys and trim excluded."
+   "note": "From the plain side's outer wall to the control side's side face within 3 mm of the front plane, so the rounded edges count and the side keys, rail, MIC grille and trim do not."
+  },
+  {
+   "group": "envelope",
+   "id": "body.width",
+   "target": "body.width",
+   "uses": [],
+   "variant": null,
+   "value": 87.802,
+   "expected": 88,
+   "allowed": [
+    87.4,
+    88.6
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "EXT-010",
+    "EXT-020",
+    "EXT-030",
+    "GRL-001"
+   ],
+   "status": "pass",
+   "note": "Across the front face, as body.front_width is measured: the two targets are two sources for one width. The control-side panel bulges a further 1.2 mm, counted as projecting."
   },
   {
    "group": "envelope",
@@ -793,7 +1027,7 @@
    "target": "front.silver_strip",
    "uses": [],
    "variant": null,
-   "value": 15.126,
+   "value": 15.018,
    "expected": 15.7,
    "allowed": [
     15,
@@ -826,6 +1060,47 @@
    ],
    "status": "pass",
    "note": ""
+  },
+  {
+   "group": "envelope",
+   "id": "cover.control_side_face_width",
+   "target": "cover.control_side_face_width",
+   "uses": [],
+   "variant": null,
+   "value": 27.5472,
+   "expected": 27.6,
+   "allowed": [
+    27,
+    28.2
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "GRL-001"
+   ],
+   "status": "pass",
+   "note": "The grille's control-side face across the body, between where its two rounded long edges begin, as the bare cover was measured lying flat."
+  },
+  {
+   "group": "envelope",
+   "id": "control.listen_key_proud_of_side",
+   "target": "control.listen_key_proud_of_side",
+   "uses": [],
+   "variant": null,
+   "value": 1.3218,
+   "expected": 1.4,
+   "allowed": [
+    1.1,
+    1.7
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "CTL-03",
+    "GRL-001"
+   ],
+   "status": "pass",
+   "note": "The LISTEN key at rest, from its face to the grille's outer side face beside the volume slot."
   },
   {
    "group": "envelope",
@@ -911,6 +1186,93 @@
   },
   {
    "group": "envelope",
+   "id": "body.depth_over_width",
+   "target": "body.depth_over_width",
+   "uses": [],
+   "variant": null,
+   "value": 0.3391,
+   "expected": 0.324,
+   "allowed": [
+    0.319,
+    0.329
+   ],
+   "unit": "ratio",
+   "class": "photo-measured",
+   "parts": [
+    "EXT-010",
+    "EXT-020",
+    "EXT-030",
+    "GRL-001"
+   ],
+   "status": "fail",
+   "note": "Depth as body.depth is measured, over the width across the front face."
+  },
+  {
+   "group": "envelope",
+   "id": "body.depth_minimum_from_stack",
+   "target": "body.depth_minimum_from_stack",
+   "uses": [],
+   "variant": null,
+   "value": 29.774,
+   "expected": null,
+   "allowed": [
+    27.9,
+    null
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "EXT-010",
+    "EXT-020",
+    "EXT-030",
+    "EXT-040"
+   ],
+   "status": "pass",
+   "note": "The body's depth, as body.depth is measured, against the least that holds a cassette, an AA cell and the thinnest lid, separator and door."
+  },
+  {
+   "group": "envelope",
+   "id": "lid.height_over_width",
+   "target": "lid.height_over_width",
+   "uses": [],
+   "variant": null,
+   "value": 1.547,
+   "expected": 1.62,
+   "allowed": [
+    1.57,
+    1.67
+   ],
+   "unit": "ratio",
+   "class": "photo-measured",
+   "parts": [
+    "EXT-030"
+   ],
+   "status": "fail",
+   "note": "The cassette lid's outline in the model."
+  },
+  {
+   "group": "envelope",
+   "id": "lid.window_centre_fraction_of_lid_width",
+   "target": "lid.window_centre_fraction_of_lid_width",
+   "uses": [],
+   "variant": null,
+   "value": 0.462,
+   "expected": 0.426,
+   "allowed": [
+    0.416,
+    0.436
+   ],
+   "unit": "ratio",
+   "class": "photo-measured",
+   "parts": [
+    "EXT-030",
+    "EXT-031"
+   ],
+   "status": "fail",
+   "note": "From the lid's plain-side edge to the window pane's centre, over the lid's width."
+  },
+  {
+   "group": "envelope",
    "id": "window.left_margin",
    "target": "window.left_margin",
    "uses": [],
@@ -932,11 +1294,137 @@
   },
   {
    "group": "envelope",
+   "id": "cassette.thickness_body",
+   "target": "cassette.thickness_body",
+   "uses": [],
+   "variant": "original",
+   "value": 8.6,
+   "expected": 8.6,
+   "allowed": [
+    8.3,
+    8.9
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "MEDIA-001",
+    "MEDIA-002"
+   ],
+   "status": "pass",
+   "note": "Thickness of the cassette shells away from the head band (X below 5 mm)."
+  },
+  {
+   "group": "envelope",
+   "id": "cassette.head_band_clears_the_carriage_plate",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.1,
+   "expected": null,
+   "allowed": [
+    0.05,
+    null
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "MEDIA-002",
+    "HDC-001"
+   ],
+   "status": "pass",
+   "note": "Gap between the back of the cassette's head band and the head-carriage plate under it, at rest."
+  },
+  {
+   "group": "envelope",
+   "id": "tape.plane_above_carriage_plate",
+   "target": "tape.plane_above_carriage_plate",
+   "uses": [],
+   "variant": null,
+   "value": 6.1,
+   "expected": 6,
+   "allowed": [
+    5,
+    7
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEDIA-004",
+    "HDC-001"
+   ],
+   "status": "pass",
+   "note": "From the head-carriage plate to the middle of the tape pack."
+  },
+  {
+   "group": "envelope",
+   "id": "bay.cassette_to_chassis_end_battery",
+   "target": "bay.cassette_to_chassis_end_battery",
+   "uses": [],
+   "variant": "original",
+   "value": 6.45,
+   "expected": 6.1,
+   "allowed": [
+    5.1,
+    7.1
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEDIA-001",
+    "BAY-071"
+   ],
+   "status": "pass",
+   "note": "From the cassette's battery end to the outer edge of the bay's battery-end support."
+  },
+  {
+   "group": "envelope",
+   "id": "bay.top_rail_outer_edge_beyond_cassette_end",
+   "target": "bay.top_rail_outer_edge_beyond_cassette_end",
+   "uses": [],
+   "variant": "original",
+   "value": 6.2,
+   "expected": 6.2,
+   "allowed": [
+    5.6,
+    6.8
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEDIA-001",
+    "BAY-073"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "envelope",
+   "id": "bay.top_rail_top_above_cassette_top_face",
+   "target": "bay.top_rail_top_above_cassette_top_face",
+   "uses": [],
+   "variant": "original",
+   "value": 1.5,
+   "expected": 1.5,
+   "allowed": [
+    0.9,
+    2.1
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEDIA-001",
+    "BAY-073"
+   ],
+   "status": "pass",
+   "note": "Above the cassette's thin face, toward the lid."
+  },
+  {
+   "group": "envelope",
    "id": "cassette.thickness_head_end",
    "target": "cassette.thickness_head_end",
    "uses": [],
    "variant": "original",
-   "value": 8.4,
+   "value": 12,
    "expected": 12,
    "allowed": [
     11.7,
@@ -948,7 +1436,7 @@
     "MEDIA-001",
     "MEDIA-002"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Overall thickness of the cassette shells in the model."
   },
   {
@@ -1001,7 +1489,7 @@
     "body.front_width"
    ],
    "variant": "original",
-   "value": 1.322,
+   "value": 1.398,
    "expected": null,
    "allowed": [
     2,
@@ -1241,7 +1729,7 @@
    "target": "axis.reverse_wheel",
    "uses": [],
    "variant": null,
-   "value": 1.6771,
+   "value": 0,
    "expected": 0,
    "allowed": [
     -1,
@@ -1252,8 +1740,8 @@
    "parts": [
     "DRV-022"
    ],
-   "status": "fail",
-   "note": "Model at u,v = (-6.05, 11.20); target [-5.3,12.7]."
+   "status": "pass",
+   "note": "Model at u,v = (-5.30, 12.70); target [-5.3,12.7]."
   },
   {
    "group": "axes",
@@ -1277,11 +1765,72 @@
   },
   {
    "group": "axes",
+   "id": "middle_pulley_axis",
+   "target": "axis.middle_pulley",
+   "uses": [],
+   "variant": null,
+   "value": 0.0608,
+   "expected": 0,
+   "allowed": [
+    -0.6,
+    0.6
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-020"
+   ],
+   "status": "pass",
+   "note": "Model at u,v = (4.20, -14.20); target [4.19,-14.26]."
+  },
+  {
+   "group": "axes",
+   "id": "third_gear_axis",
+   "target": "axis.third_gear",
+   "uses": [],
+   "variant": null,
+   "value": 0,
+   "expected": 0,
+   "allowed": [
+    -0.6,
+    0.6
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "Model at u,v = (-0.70, -23.50); target [-0.7,-23.5]."
+  },
+  {
+   "group": "axes",
+   "id": "shutoff_post_axis",
+   "target": "axis.shutoff_post",
+   "uses": [],
+   "variant": null,
+   "value": 0,
+   "expected": 0,
+   "allowed": [
+    -0.8,
+    0.8
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "STF-101",
+    "STF-010"
+   ],
+   "status": "pass",
+   "note": "Model at u,v = (-0.65, -13.35); target [-0.65,-13.35]."
+  },
+  {
+   "group": "axes",
    "id": "fr_pulley_axis_ff",
    "target": "axis.fr_pulley_engaged",
    "uses": [],
    "variant": null,
-   "value": 1.6508,
+   "value": 0.6534,
    "expected": 0,
    "allowed": [
     -0.7,
@@ -1292,8 +1841,8 @@
    "parts": [
     "DRV-023"
    ],
-   "status": "fail",
-   "note": "FF: model at u,v = (8.00, 15.50); target [6.65,14.55]."
+   "status": "pass",
+   "note": "FF: model at u,v = (6.91, 15.15); target [6.65,14.55]."
   },
   {
    "group": "axes",
@@ -1301,7 +1850,7 @@
    "target": "axis.fr_pulley_engaged",
    "uses": [],
    "variant": null,
-   "value": 1.6508,
+   "value": 0.6534,
    "expected": 0,
    "allowed": [
     -0.7,
@@ -1312,8 +1861,8 @@
    "parts": [
     "DRV-023"
    ],
-   "status": "fail",
-   "note": "REW: model at u,v = (8.00, 15.50); target [6.65,14.55]."
+   "status": "pass",
+   "note": "REW: model at u,v = (6.91, 15.15); target [6.65,14.55]."
   },
   {
    "group": "axes",
@@ -1321,7 +1870,7 @@
    "target": "axis.fr_pulley_released",
    "uses": [],
    "variant": null,
-   "value": 2.9567,
+   "value": 0.6109,
    "expected": 0,
    "allowed": [
     -0.7,
@@ -1332,8 +1881,8 @@
    "parts": [
     "DRV-023"
    ],
-   "status": "fail",
-   "note": "PLAY: model at u,v = (8.00, 15.50); target [6.73,12.83]."
+   "status": "pass",
+   "note": "PLAY: model at u,v = (6.21, 13.16); target [6.73,12.83]."
   },
   {
    "group": "axes",
@@ -1341,27 +1890,7 @@
    "target": "axis.fr_gear_a_ff",
    "uses": [],
    "variant": null,
-   "value": 3.7567,
-   "expected": 0,
-   "allowed": [
-    -0.7,
-    0.7
-   ],
-   "unit": "mm",
-   "class": "photo-measured",
-   "parts": [
-    "DRV-012"
-   ],
-   "status": "fail",
-   "note": "FF: model at u,v = (16.91, 2.10); target [13.15,2.03]."
-  },
-  {
-   "group": "axes",
-   "id": "fr_gear_a_axis_rew",
-   "target": "axis.fr_gear_a_rew",
-   "uses": [],
-   "variant": null,
-   "value": 0.1801,
+   "value": 0.4456,
    "expected": 0,
    "allowed": [
     -0.7,
@@ -1373,15 +1902,15 @@
     "DRV-012"
    ],
    "status": "pass",
-   "note": "REW: model at u,v = (16.91, 2.10); target [16.75,2.19]."
+   "note": "FF: model at u,v = (12.72, 2.15); target [13.15,2.03]."
   },
   {
    "group": "axes",
-   "id": "fr_gear_a_axis_play",
-   "target": "axis.fr_gear_a_play",
+   "id": "fr_gear_a_axis_rew",
+   "target": "axis.fr_gear_a_rew",
    "uses": [],
    "variant": null,
-   "value": 1.2174,
+   "value": 0.5825,
    "expected": 0,
    "allowed": [
     -0.7,
@@ -1392,8 +1921,28 @@
    "parts": [
     "DRV-012"
    ],
-   "status": "fail",
-   "note": "PLAY: model at u,v = (16.91, 2.10); target [15.81,1.57]."
+   "status": "pass",
+   "note": "REW: model at u,v = (16.39, 1.74); target [16.75,2.19]."
+  },
+  {
+   "group": "axes",
+   "id": "fr_gear_a_axis_play",
+   "target": "axis.fr_gear_a_play",
+   "uses": [],
+   "variant": null,
+   "value": 0.4603,
+   "expected": 0,
+   "allowed": [
+    -0.7,
+    0.7
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-012"
+   ],
+   "status": "pass",
+   "note": "PLAY: model at u,v = (15.37, 1.70); target [15.81,1.57]."
   },
   {
    "group": "axes",
@@ -1401,7 +1950,7 @@
    "target": "axis.fwd_pulley_engaged",
    "uses": [],
    "variant": null,
-   "value": 2.247,
+   "value": 0.7741,
    "expected": 0,
    "allowed": [
     -0.8,
@@ -1412,8 +1961,70 @@
    "parts": [
     "FWD-021"
    ],
-   "status": "fail",
-   "note": "PLAY: model at u,v = (8.49, -7.43); target [9.23,-9.55]."
+   "status": "pass",
+   "note": "PLAY: model at u,v = (8.54, -8.64); target [8.95,-9.3]."
+  },
+  {
+   "group": "motion",
+   "id": "pinch_roller.width",
+   "target": "pinch_roller.width",
+   "uses": [],
+   "variant": null,
+   "value": 6.5,
+   "expected": 6.5,
+   "allowed": [
+    6.3,
+    6.7
+   ],
+   "unit": "mm",
+   "class": "reported",
+   "parts": [
+    "BAY-061"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "motion",
+   "id": "belt.length_ratio_main_to_second",
+   "target": "belt.length_ratio_main_to_second",
+   "uses": [],
+   "variant": null,
+   "value": 1.2156,
+   "expected": 1.2,
+   "allowed": [
+    1.15,
+    1.25
+   ],
+   "unit": "ratio",
+   "class": "photo-measured",
+   "parts": [
+    "BLT-001",
+    "BLT-002"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "axes",
+   "id": "third_gear_to_motor_pulley",
+   "target": "clearance.third_gear_to_motor_pulley",
+   "uses": [],
+   "variant": null,
+   "value": 0.5,
+   "expected": 0.5,
+   "allowed": [
+    0.4,
+    0.6
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "CAM-010",
+    "MTR-005"
+   ],
+   "status": "pass",
+   "note": ""
   },
   {
    "group": "axes",
@@ -1421,7 +2032,7 @@
    "target": "arm.fr_gear_a_about_fr_gear_b",
    "uses": [],
    "variant": null,
-   "value": 9,
+   "value": 9.3,
    "expected": 9.3,
    "allowed": [
     9.2,
@@ -1433,7 +2044,7 @@
     "DRV-012",
     "DRV-013"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1442,7 +2053,7 @@
    "target": "capstan.diameter",
    "uses": [],
    "variant": null,
-   "value": 1.6,
+   "value": 2,
    "expected": 2,
    "allowed": [
     1.95,
@@ -1453,7 +2064,7 @@
    "parts": [
     "BAY-052"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1462,11 +2073,11 @@
    "target": "flywheel.rim_diameter",
    "uses": [],
    "variant": null,
-   "value": 24.4,
-   "expected": 24,
+   "value": 25.8,
+   "expected": 25.4,
    "allowed": [
-    22.8,
-    25.2
+    24.6,
+    26.2
    ],
    "unit": "mm",
    "class": "photo-measured",
@@ -1482,7 +2093,7 @@
    "target": "reverse_wheel.outer_diameter",
    "uses": [],
    "variant": null,
-   "value": 9.4,
+   "value": 10.1,
    "expected": 10.1,
    "allowed": [
     9.7,
@@ -1493,7 +2104,7 @@
    "parts": [
     "DRV-022"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1502,7 +2113,7 @@
    "target": "tape.speed",
    "uses": [],
    "variant": null,
-   "value": 8.832,
+   "value": 47.6,
    "expected": 47.6,
    "allowed": [
     46.648,
@@ -1514,7 +2125,7 @@
     "BAY-052",
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Flywheel rate in PLAY times the capstan radius, as modelled."
   },
   {
@@ -1523,7 +2134,7 @@
    "target": "flywheel.rate_play",
    "uses": [],
    "variant": null,
-   "value": 1.7571,
+   "value": 7.5758,
    "expected": 7.58,
    "allowed": [
     7.4284,
@@ -1534,7 +2145,7 @@
    "parts": [
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1543,7 +2154,7 @@
    "target": "motor.never_reverses",
    "uses": [],
    "variant": null,
-   "value": false,
+   "value": true,
    "expected": null,
    "allowed": null,
    "unit": "",
@@ -1552,8 +2163,8 @@
     "MTR-005",
     "MEC-011"
    ],
-   "status": "fail",
-   "note": "Flywheel rate (rad/s) PLAY 11.04, FF 11.04, REW -11.04; the motor ratio is fixed, so a sign change is a reversed motor."
+   "status": "pass",
+   "note": "Flywheel rate (rad/s) PLAY 47.60, FF 47.60, REW 47.60; the motor ratio is fixed, so a sign change is a reversed motor."
   },
   {
    "group": "motion",
@@ -1563,7 +2174,7 @@
     "tape.speed"
    ],
    "variant": null,
-   "value": 1.1781,
+   "value": 2.8,
    "expected": null,
    "allowed": [
     1.8667,
@@ -1575,7 +2186,7 @@
     "DRV-014",
     "DRV-010"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "A reel must turn at tape speed over its pack radius, between an empty hub (about 11 mm) and a full C-90 pack (about 25.5 mm)."
   },
   {
@@ -1586,7 +2197,7 @@
     "tape.speed"
    ],
    "variant": null,
-   "value": 1.1781,
+   "value": 2.8,
    "expected": null,
    "allowed": [
     1.8667,
@@ -1598,26 +2209,1673 @@
     "DRV-014",
     "DRV-010"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "A reel must turn at tape speed over its pack radius, between an empty hub (about 11 mm) and a full C-90 pack (about 25.5 mm)."
   },
   {
    "group": "motion",
-   "id": "reel.rates_are_independent",
+   "id": "wind.c60_time",
+   "target": "wind.c60_time",
+   "uses": [
+    "tape.speed"
+   ],
+   "variant": null,
+   "value": 139.4469,
+   "expected": 150,
+   "allowed": [
+    135,
+    165
+   ],
+   "unit": "s",
+   "class": "documented",
+   "parts": [
+    "DRV-014",
+    "DRV-012",
+    "DRV-023",
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "Time for the take-up reel, at its FF rate, to make the turns that one side of a C-60 needs (about 763). The rate follows from the flywheel through the tyre and gears without slip, with the motor at its winding speed."
+  },
+  {
+   "group": "motion",
+   "id": "wind.c60_time_rew",
+   "target": "wind.c60_time",
+   "uses": [
+    "tape.speed"
+   ],
+   "variant": null,
+   "value": 161.1387,
+   "expected": 150,
+   "allowed": [
+    135,
+    165
+   ],
+   "unit": "s",
+   "class": "documented",
+   "parts": [
+    "DRV-014",
+    "DRV-012",
+    "DRV-023",
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "Time for the supply reel, at its REW rate, to make the turns that one side of a C-60 needs (about 763). The rate follows from the flywheel through the tyre and gears without slip, with the motor at its winding speed."
+  },
+  {
+   "group": "motion",
+   "id": "motor.speed_while_winding",
+   "target": "motor.speed_while_winding",
+   "uses": [],
+   "variant": null,
+   "value": 1,
+   "expected": 1,
+   "allowed": [
+    0.98,
+    1.02
+   ],
+   "unit": "of its PLAY speed",
+   "class": "documented",
+   "parts": [
+    "MTR-004",
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "motion",
+   "id": "fr_pulley.slip_while_winding",
+   "target": "fr_pulley.slip_while_winding",
+   "uses": [],
+   "variant": null,
+   "value": 28,
+   "expected": 28,
+   "allowed": [
+    27,
+    29
+   ],
+   "unit": "%",
+   "class": "designed",
+   "parts": [
+    "DRV-023",
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "FF 28.00 %, REW 28.00 %."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.pressed_parts_turn_with_reel",
    "target": null,
    "uses": [],
    "variant": null,
-   "value": false,
+   "value": 0,
+   "expected": 0,
+   "allowed": [
+    0,
+    0
+   ],
+   "unit": "parts",
+   "class": "reported",
+   "parts": [
+    "BAY-020",
+    "BAY-030",
+    "DRV-104",
+    "DRV-014",
+    "CLT-010",
+    "CLT-031",
+    "CLT-032"
+   ],
+   "status": "pass",
+   "note": "Parts pressed on the take-up shaft that the motion rig does not turn with the reel."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.drum_outruns_reel_in_play",
+   "target": null,
+   "uses": [
+    "tape.speed"
+   ],
+   "variant": null,
+   "value": 4.9852,
    "expected": null,
-   "allowed": null,
-   "unit": "",
+   "allowed": [
+    4.3273,
+    null
+   ],
+   "unit": "rad/s",
    "class": "designed",
    "parts": [
-    "DRV-010",
+    "CLT-030",
     "DRV-014"
    ],
+   "status": "pass",
+   "note": "The drum the FWD pulley drives must turn faster than the reel ever needs (tape speed over an empty hub of about 11 mm), in the same direction, so the felt always slips."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.drive_rolls_without_slipping",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0,
+   "expected": null,
+   "allowed": [
+    0,
+    1
+   ],
+   "unit": "%",
+   "class": "designed",
+   "parts": [
+    "DRV-020",
+    "FWD-021",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Largest difference between the surface speeds of the middle pulley, the FWD tyre and the drum in PLAY."
+  },
+  {
+   "group": "motion",
+   "id": "fwd_pulley.presses_drum_in_play",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": -0.0996,
+   "expected": null,
+   "allowed": [
+    -0.3,
+    0
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "FWD-021",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Gap from the FWD tyre to the drum in PLAY; a friction drive needs slight compression."
+  },
+  {
+   "group": "motion",
+   "id": "fwd_pulley.presses_middle_pulley_in_play",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": -0.0505,
+   "expected": null,
+   "allowed": [
+    -0.3,
+    0
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "FWD-021",
+    "DRV-020"
+   ],
+   "status": "pass",
+   "note": "Gap from the FWD tyre to the middle pulley in PLAY."
+  },
+  {
+   "group": "motion",
+   "id": "fwd_pulley.clear_of_drum_in_stop",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.3046,
+   "expected": null,
+   "allowed": [
+    0.2,
+    null
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "FWD-021",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Gap from the FWD tyre to the drum in STOP; Sony marks a clearance."
+  },
+  {
+   "group": "motion",
+   "id": "fwd_pulley.clear_of_drum_in_ff",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.3046,
+   "expected": null,
+   "allowed": [
+    0.2,
+    null
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "FWD-021",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Gap from the FWD tyre to the drum in FF; Sony marks a clearance."
+  },
+  {
+   "group": "motion",
+   "id": "fwd_pulley.clear_of_drum_in_rew",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.3046,
+   "expected": null,
+   "allowed": [
+    0.2,
+    null
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "FWD-021",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Gap from the FWD tyre to the drum in REW; Sony marks a clearance."
+  },
+  {
+   "group": "motion",
+   "id": "pinch.pressure",
+   "target": "pinch.pressure",
+   "uses": [
+    "pinch.spring.preload",
+    "spring.steel_youngs_modulus"
+   ],
+   "variant": null,
+   "value": 255.9427,
+   "expected": null,
+   "allowed": [
+    200,
+    300
+   ],
+   "unit": "g",
+   "class": "designed",
+   "parts": [
+    "HDC-024",
+    "HDC-020",
+    "BAY-061"
+   ],
+   "status": "pass",
+   "note": "Spring 0.45 mm wire, 2.33 mm mean coil, 1.35 turns, wound 24.8 degrees in PLAY; arm 7.20 mm; wire stress 2.02 GPa."
+  },
+  {
+   "group": "motion",
+   "id": "torque.back_tension",
+   "target": "torque.back_tension",
+   "uses": [
+    "back_tension.spring.free_length",
+    "back_tension.spring.active_coils",
+    "clutch.felt.friction",
+    "spring.steel_shear_modulus",
+    "gear.s_gear_a.teeth",
+    "gear.s_gear_b.teeth"
+   ],
+   "variant": null,
+   "value": 2.7363,
+   "expected": null,
+   "allowed": [
+    2,
+    3.5
+   ],
+   "unit": "g.cm",
+   "class": "designed",
+   "parts": [
+    "SBT-010",
+    "SBT-011",
+    "DRV-011",
+    "DRV-010"
+   ],
+   "status": "pass",
+   "note": "Spring 0.40 mm wire, 3.00 mm mean coil, compressed 0.30 mm: 64 g on the felt (0.90-3.00 mm)."
+  },
+  {
+   "group": "motion",
+   "id": "torque.takeup_play",
+   "target": "torque.takeup_play",
+   "uses": [
+    "clutch.spring.free_length",
+    "clutch.spring.active_coils",
+    "clutch.felt.friction",
+    "spring.steel_shear_modulus"
+   ],
+   "variant": null,
+   "value": 33.835,
+   "expected": null,
+   "allowed": [
+    22.5,
+    45
+   ],
+   "unit": "g.cm",
+   "class": "designed",
+   "parts": [
+    "CLT-031",
+    "CLT-010",
+    "CLT-030",
+    "CLT-032"
+   ],
+   "status": "pass",
+   "note": "Torque the felt passes in PLAY: spring rate G d^4 / (8 D^3 n) times its compression, times the felt's friction and mean radius. Free length and friction are design figures."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.felt_is_squeezed",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.03,
+   "expected": null,
+   "allowed": [
+    0.01,
+    0.1
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "CLT-010",
+    "CLT-030",
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "How far the drum's face stands into the felt: the friction faces must bear on each other, not stand apart."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.spring_bears_on_its_seat",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.004,
+   "expected": null,
+   "allowed": [
+    0.001,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "CLT-031",
+    "CLT-032"
+   ],
+   "status": "pass",
+   "note": "How far the spring's end coil stands into the brass seat it presses on; its other end stands the same way in the drum's well."
+  },
+  {
+   "group": "motion",
+   "id": "clutch.pressed_parts_grip_the_shaft",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.004,
+   "expected": null,
+   "allowed": [
+    0.001,
+    0.02
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "DRV-104",
+    "BAY-020",
+    "DRV-014",
+    "CLT-032",
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Least interference between the shaft and the bores pressed on it (reel table, gear, spring seat). The drum must be free on the shaft instead."
+  },
+  {
+   "group": "motion",
+   "id": "takeup.shaft_endplay",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.1,
+   "expected": null,
+   "allowed": [
+    0.05,
+    0.2
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "DRV-104",
+    "BAY-020",
+    "CLT-020",
+    "CLT-021",
+    "DRV-204",
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "Room for the shaft to move along its axis: the space between the reel table and the gear, less the bush and the two thrust washers that stand in it."
+  },
+  {
+   "group": "motion",
+   "id": "torque.fast_wind_min",
+   "target": "torque.fast_wind_min",
+   "uses": [
+    "lever_b.spring.free_length",
+    "lever_b.spring.active_coils",
+    "fr_tyre.friction",
+    "spring.steel_shear_modulus"
+   ],
+   "variant": null,
+   "value": 62.0194,
+   "expected": null,
+   "allowed": [
+    55,
+    null
+   ],
+   "unit": "g.cm",
+   "class": "designed",
+   "parts": [
+    "FRL-021",
+    "FRL-001",
+    "DRV-023",
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "Spring 0.18 mm wire, 0.90 mm mean coil, 6.00 mm long in FF: 36 g pull, 60 g on the flywheel."
+  },
+  {
+   "group": "motion",
+   "id": "torque.fast_wind_needs_tyre_force",
+   "target": null,
+   "uses": [
+    "torque.fast_wind_min"
+   ],
+   "variant": null,
+   "value": 53.4731,
+   "expected": null,
+   "allowed": null,
+   "unit": "g",
+   "class": "documented",
+   "parts": [
+    "DRV-023",
+    "MEC-011"
+   ],
+   "status": "info",
+   "note": "Info: the force with which the FF/REW tyre must be pressed on the flywheel to pass Sony's least fast-wind torque in FF, taking rubber on brass at 0.8. Lever (B)'s spring is modelled and checked by torque.fast_wind_min; this figure is the required tyre force, not a separate spring check."
+  },
+  {
+   "group": "axes",
+   "id": "gear.takeup.step_mate",
+   "target": "gear.takeup.step_mate",
+   "uses": [],
+   "variant": null,
+   "value": 12,
+   "expected": 11.95,
+   "allowed": [
+    11.55,
+    12.35
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-017",
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "motion",
+   "id": "teeth.step_mate",
+   "target": "gear.step_mate.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 38,
+   "expected": 38,
+   "allowed": [
+    37,
+    39
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-017"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline."
+  },
+  {
+   "group": "motion",
+   "id": "gear.step_mate_meshes_with_the_42_tooth_ring",
+   "target": null,
+   "uses": [
+    "gear.takeup.step_teeth",
+    "gear.step_mate.teeth",
+    "gear.module"
+   ],
+   "variant": null,
+   "value": 0.0002,
+   "expected": null,
+   "allowed": [
+    0,
+    0.1
+   ],
+   "unit": "%",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-017",
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "Larger of two mismatches: tooth speed of the gear against the ring that drives it, and its distance from the take-up axis against where their teeth mesh."
+  },
+  {
+   "group": "motion",
+   "id": "gear.third_train_moves_tooth_for_tooth",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0,
+   "expected": null,
+   "allowed": [
+    0,
+    0.1
+   ],
+   "unit": "%",
+   "class": "designed",
+   "parts": [
+    "DRV-015",
+    "DRV-016",
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "Largest mismatch of tooth speed in the two meshes: the pulley's pinion with the second gear's wheel, the second gear's pinion with the third gear."
+  },
+  {
+   "group": "motion",
+   "id": "gear.third_train_stands_in_mesh",
+   "target": null,
+   "uses": [
+    "gear.module"
+   ],
+   "variant": null,
+   "value": 0,
+   "expected": null,
+   "allowed": [
+    0,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "DRV-015",
+    "DRV-016",
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "Largest departure of the two centre distances from where the counted teeth mesh."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.clear_while_reel_turns",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.3334,
+   "expected": null,
+   "allowed": [
+    0.1,
+    null
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "STF-012",
+    "STF-010",
+    "CAM-010",
+    "CLT-040",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "Smallest gap between the toothed piece and the tips of the pinion under the third gear in normal running: held back by the detection lever, at the rib's push, and at rest in STOP. If they touched it would trip with tape left."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.meshes_when_reel_stalls",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.5912,
+   "expected": null,
+   "allowed": [
+    0.4,
+    0.8
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "STF-012",
+    "STF-010",
+    "CAM-010",
+    "CLT-040",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "How deep the toothed piece stands among the pinion's teeth once the detection lever has fallen back (it must then be unswung). A tooth of the pinion is 2.25 modules deep."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.gear_carries_lever",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 3,
+   "expected": null,
+   "allowed": [
+    2,
+    4
+   ],
+   "unit": "teeth",
+   "class": "documented",
+   "parts": [
+    "STF-012",
+    "STF-010",
+    "CAM-010",
+    "CLT-040",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "How far the pinion drives the meshed toothed piece along the lever before it lets go, in teeth of the pinion."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.release_lever_turns_only_when_tripped",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 6,
+   "expected": null,
+   "allowed": [
+    3,
+    null
+   ],
+   "unit": "deg",
+   "class": "documented",
+   "parts": [
+    "STF-012",
+    "STF-010",
+    "CAM-010",
+    "CLT-040",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "Turn of release lever C when the toothed piece has been driven along; it must not move at any earlier stage."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.piece_pushes_release_lever",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.048,
+   "expected": null,
+   "allowed": [
+    0,
+    0.15
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "STF-012",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "Gap between the toothed piece's tail and release lever C's input arm once the piece has been driven and release lever C turned: the tail must be what turns it."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.release_lever_untouched_before_the_drive",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 2.4861,
+   "expected": null,
+   "allowed": [
+    0.3,
+    null
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "STF-012",
+    "RLC-001"
+   ],
+   "status": "pass",
+   "note": "Smallest gap between the toothed piece and release lever C at rest, held back, pushed out by the rib and in mesh."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.rib_rocks_the_lever",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.349,
+   "expected": null,
+   "allowed": [
+    0.2,
+    0.6
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "STF-010",
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "How far the far side of the rib on the third gear pushes the lever's blade out from where the detection lever holds it, once a turn (Sony p.3, motion 2)."
+  },
+  {
+   "group": "motion",
+   "id": "shutoff.pushed_out_by_the_rib",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.0002,
+   "expected": null,
+   "allowed": [
+    0,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "STF-010",
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "The lever's pushed-out stage against the rib's reach: the blade's foot should just meet the rib there."
+  },
+  {
+   "group": "motion",
+   "id": "ffrew.ff_lever_drives_lever_a",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.02,
+   "expected": null,
+   "allowed": [
+    0,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "FCR-001",
+    "FCR-002",
+    "FRL-014",
+    "FRL-010",
+    "FRL-011",
+    "FRL-002"
+   ],
+   "status": "pass",
+   "note": "Gap between the FF lever's cam and its post on Lever (A) with FF pressed: the cam must be what has slid the bar (0.02 designed)."
+  },
+  {
+   "group": "motion",
+   "id": "ffrew.rew_lever_drives_lever_a",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.02,
+   "expected": null,
+   "allowed": [
+    0,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "FCR-001",
+    "FCR-002",
+    "FRL-014",
+    "FRL-010",
+    "FRL-011",
+    "FRL-002"
+   ],
+   "status": "pass",
+   "note": "Gap between the REW lever's cam and its post on Lever (A) with REW pressed (0.02 designed)."
+  },
+  {
+   "group": "motion",
+   "id": "ffrew.cams_clear_otherwise",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.1298,
+   "expected": null,
+   "allowed": [
+    0.08,
+    null
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "FCR-001",
+    "FCR-002",
+    "FRL-014",
+    "FRL-010",
+    "FRL-011",
+    "FRL-002"
+   ],
+   "status": "pass",
+   "note": "Smallest gap between either cam and either post at rest and with the other button pressed: a lever must not move the bar unless its own button is pressed."
+  },
+  {
+   "group": "motion",
+   "id": "ffrew.selector_pin_rides_in_its_slot",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 0.05,
+   "expected": null,
+   "allowed": [
+    0.02,
+    0.08
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "FRL-011",
+    "FRL-002"
+   ],
+   "status": "pass",
+   "note": "Smallest gap between Lever (A)'s pin and the walls of the selector plate's slot, at rest, in FF and in REW: the pin stays in the slot as the bar slides and gear A's arm swings (0.05 a side designed)."
+  },
+  {
+   "group": "motion",
+   "id": "ffrew.lever_a_slides_opposite_ways",
+   "target": null,
+   "uses": [],
+   "variant": null,
+   "value": 179.9905,
+   "expected": null,
+   "allowed": [
+    179,
+    null
+   ],
+   "unit": "deg",
+   "class": "designed",
+   "parts": [
+    "FRL-010"
+   ],
+   "status": "pass",
+   "note": "FF slides it 0.835 mm, REW 0.307 mm, opposite ways along its length."
+  },
+  {
+   "group": "axes",
+   "id": "reel_table.cap_top_above_flange",
+   "target": "reel_table.cap_top_above_flange",
+   "uses": [],
+   "variant": null,
+   "value": 8.86,
+   "expected": 8.86,
+   "allowed": [
+    8.71,
+    9.01
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "BAY-030",
+    "BAY-031",
+    "BAY-020",
+    "BAY-021",
+    "BAY-050",
+    "BAY-051",
+    "BAY-052"
+   ],
+   "status": "pass",
+   "note": "Reel spindle cap above the brass reel flange's top face, both reels averaged."
+  },
+  {
+   "group": "axes",
+   "id": "pin.locating_tip_above_reel_cap",
+   "target": "pin.locating_tip_above_reel_cap",
+   "uses": [],
+   "variant": null,
+   "value": 2.04,
+   "expected": 2.04,
+   "allowed": [
+    1.64,
+    2.44
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "BAY-030",
+    "BAY-031",
+    "BAY-020",
+    "BAY-021",
+    "BAY-050",
+    "BAY-051",
+    "BAY-052"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "axes",
+   "id": "capstan.tip_above_reel_cap",
+   "target": "capstan.tip_above_reel_cap",
+   "uses": [],
+   "variant": null,
+   "value": 1.15,
+   "expected": 1.15,
+   "allowed": [
+    0.75,
+    1.55
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "BAY-030",
+    "BAY-031",
+    "BAY-020",
+    "BAY-021",
+    "BAY-050",
+    "BAY-051",
+    "BAY-052"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "axes",
+   "id": "pin.locating_base_flange_below_reel_cap",
+   "target": "pin.locating_base_flange_below_reel_cap",
+   "uses": [],
+   "variant": null,
+   "value": 9.27,
+   "expected": 9.25,
+   "allowed": [
+    8.75,
+    9.75
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "BAY-030",
+    "BAY-031",
+    "BAY-020",
+    "BAY-021",
+    "BAY-050",
+    "BAY-051",
+    "BAY-052"
+   ],
+   "status": "pass",
+   "note": "The cassette's head band rests on these flanges."
+  },
+  {
+   "group": "axes",
+   "id": "cassette.rests_on_locating_pins",
+   "target": null,
+   "uses": [],
+   "variant": "original",
+   "value": 0.01,
+   "expected": null,
+   "allowed": [
+    0,
+    0.05
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAY-050",
+    "BAY-051",
+    "MEDIA-002"
+   ],
+   "status": "pass",
+   "note": "Gap between the cassette's head band and the locating pins' base flanges at rest: the standard supports a cassette on rings round its reference holes (ECMA-34 Fig. 5), and the depth stack puts the flanges at the band. 0.01 is shown."
+  },
+  {
+   "group": "axes",
+   "id": "cassette.reference_hole_pitch",
+   "target": "cassette.reference_hole_pitch",
+   "uses": [],
+   "variant": null,
+   "value": 28,
+   "expected": 28,
+   "allowed": [
+    27.85,
+    28.15
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAY-050",
+    "BAY-051"
+   ],
+   "status": "pass",
+   "note": "Between the two locating pins, which stand in the reference holes."
+  },
+  {
+   "group": "axes",
+   "id": "cassette.reference_hole_row_to_reel_row",
+   "target": "cassette.reference_hole_row_to_reel_row",
+   "uses": [],
+   "variant": null,
+   "value": 29.7,
+   "expected": 29.7,
+   "allowed": [
+    29.5,
+    29.9
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAY-050",
+    "BAY-051"
+   ],
+   "status": "pass",
+   "note": "From the reel row to the locating pins' row."
+  },
+  {
+   "group": "axes",
+   "id": "cassette.capstan_pitch",
+   "target": "cassette.capstan_pitch",
+   "uses": [],
+   "variant": null,
+   "value": 48,
+   "expected": 48,
+   "allowed": [
+    47.8,
+    48.2
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAY-052"
+   ],
+   "status": "pass",
+   "note": "Twice the capstan's distance from the cassette's centre line between the reels; the player has one capstan."
+  },
+  {
+   "group": "axes",
+   "id": "flywheel.front_face_behind_pin_flange",
+   "target": "flywheel.front_face_behind_pin_flange",
+   "uses": [],
+   "variant": null,
+   "value": 4.66,
+   "expected": 3.34,
+   "allowed": [
+    2.84,
+    3.84
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011",
+    "BAY-050",
+    "BAY-051"
+   ],
    "status": "fail",
-   "note": "Supply and take-up share one fixed rate in every mode: no slip clutch and no tape conservation between the packs."
+   "note": "The chassis base lies between them in the model; bringing the flywheel nearer needs the chassis plate worked out first."
+  },
+  {
+   "group": "parts",
+   "id": "cell.aa_diameter_max",
+   "target": "cell.aa_diameter_max",
+   "uses": [],
+   "variant": null,
+   "value": 14.5508,
+   "expected": null,
+   "allowed": [
+    14.5,
+    null
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAT-001",
+    "EXT-040",
+    "MEC-001"
+   ],
+   "status": "pass",
+   "note": "Room across each cell's channel along the cell's body: twice the least distance from a cell's axis to anything rigid round it, sections every 1 mm. It must take the largest cell. The wires are left out; the pull ribbon, lying under the cells, is counted."
+  },
+  {
+   "group": "parts",
+   "id": "cell.aa_length_max",
+   "target": "cell.aa_length_max",
+   "uses": [],
+   "variant": null,
+   "value": 48.783,
+   "expected": null,
+   "allowed": [
+    46.3965,
+    49.2
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "BAT-010",
+    "BAT-011",
+    "BAT-020",
+    "BAT-021"
+   ],
+   "status": "pass",
+   "note": "Free length from the positive terminal to the conical spring's tip. It must be shorter than the shortest cell (49.2), so that every cell presses the spring, and long enough that the longest cell (50.5) compresses the spring by no more than half its height."
+  },
+  {
+   "group": "motion",
+   "id": "tape.runs_within_roller_capstan_head_and_guide",
+   "target": null,
+   "uses": [],
+   "variant": "original",
+   "value": 0.1,
+   "expected": null,
+   "allowed": [
+    0.05,
+    null
+   ],
+   "unit": "mm",
+   "class": "standard",
+   "parts": [
+    "MEDIA-004",
+    "BAY-061",
+    "BAY-052",
+    "BAY-060",
+    "HDC-040"
+   ],
+   "status": "pass",
+   "note": "Least overlap, at either edge of the 3.81 mm tape, of the pinch roller, the capstan, the head face and the tape guide: the tape must lie wholly on each."
+  },
+  {
+   "group": "parts",
+   "id": "tyre.fr_pulley.id",
+   "target": "tyre.fr_pulley.id",
+   "uses": [],
+   "variant": null,
+   "value": 6.9918,
+   "expected": 7,
+   "allowed": [
+    6.9,
+    7.1
+   ],
+   "unit": "mm",
+   "class": "reported",
+   "parts": [
+    "DRV-023"
+   ],
+   "status": "pass",
+   "note": "Bore of the FF/REW tyre. No tolerance is given; 0.1 mm is allowed for modelling."
+  },
+  {
+   "group": "parts",
+   "id": "tyre.fr_pulley.width",
+   "target": "tyre.fr_pulley.width",
+   "uses": [],
+   "variant": null,
+   "value": 2.25,
+   "expected": 2.25,
+   "allowed": [
+    2.2,
+    2.3
+   ],
+   "unit": "mm",
+   "class": "reported",
+   "parts": [
+    "DRV-023"
+   ],
+   "status": "pass",
+   "note": "Width of the FF/REW tyre along its axis. No tolerance is given; 0.05 mm is allowed for modelling."
+  },
+  {
+   "group": "motion",
+   "id": "contact.fr_pulley_travel",
+   "target": "contact.fr_pulley_travel",
+   "uses": [],
+   "variant": null,
+   "value": 1.4167,
+   "expected": 1.5,
+   "allowed": [
+    0.9,
+    2.1
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-023"
+   ],
+   "status": "pass",
+   "note": "How much nearer the capstan axis the FF/REW tyre stands in FF than in PLAY."
+  },
+  {
+   "group": "parts",
+   "id": "shaft.pulleys_third_gear",
+   "target": "shaft.pulleys_third_gear",
+   "uses": [],
+   "variant": null,
+   "value": 1.6004,
+   "expected": 1.6,
+   "allowed": [
+    1.58,
+    1.62
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "DRV-106",
+    "DRV-107",
+    "CAM-101"
+   ],
+   "status": "pass",
+   "note": "Diameter of the shafts of the middle pulley, the FF/REW pulley and the third gear above their flanges; the one furthest from 1.6 mm is shown. No tolerance is given; 0.02 mm is allowed for modelling."
+  },
+  {
+   "group": "parts",
+   "id": "shaft.levers",
+   "target": "shaft.levers",
+   "uses": [],
+   "variant": null,
+   "value": 2,
+   "expected": 2,
+   "allowed": [
+    1.98,
+    2.02
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "STP-010",
+    "STP-011",
+    "RLC-030"
+   ],
+   "status": "pass",
+   "note": "Diameter of the STOP lever's two guide spindles and release lever C's post above its foot; the one furthest from 2 mm is shown. The head board's posts are not identified in the model. No tolerance is given; 0.02 mm is allowed for modelling."
+  },
+  {
+   "group": "parts",
+   "id": "shaft.fr_gears",
+   "target": "shaft.fr_gears",
+   "uses": [],
+   "variant": null,
+   "value": 1.1996,
+   "expected": 1.2,
+   "allowed": [
+    1.18,
+    1.22
+   ],
+   "unit": "mm",
+   "class": "documented",
+   "parts": [
+    "DRV-202",
+    "DRV-213",
+    "DRV-205"
+   ],
+   "status": "pass",
+   "note": "Bore of the 1.2 mm plastic washers that hold FF/REW gears A and B and the secondary gear on their shafts, seated in a neck at the shaft's top; the one furthest from 1.2 mm is shown. No tolerance is given; 0.02 mm is allowed for modelling."
+  },
+  {
+   "group": "motion",
+   "id": "gear.module",
+   "target": "gear.module",
+   "uses": [],
+   "variant": null,
+   "value": 0.3,
+   "expected": 0.3,
+   "allowed": [
+    0.295,
+    0.305
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-010",
+    "DRV-011"
+   ],
+   "status": "pass",
+   "note": "From the centre distance of S gears A and B and their tooth counts. No tolerance is given; 0.005 mm is allowed (the photographs give 0.302)."
+  },
+  {
+   "group": "parts",
+   "id": "flywheel.main_disc_thickness",
+   "target": "flywheel.main_disc_thickness",
+   "uses": [],
+   "variant": null,
+   "value": 4.48,
+   "expected": 4.48,
+   "allowed": [
+    4.28,
+    4.68
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "Along the axis, over the heights where the flywheel is within 0.75 mm of its full radius."
+  },
+  {
+   "group": "parts",
+   "id": "flywheel.groove_width",
+   "target": "flywheel.groove_width",
+   "uses": [],
+   "variant": null,
+   "value": 1.68,
+   "expected": 1.83,
+   "allowed": [
+    1.63,
+    2.03
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "From the main disc's back to the upper flange's front. Kept narrow in the model to stay under the thrust bridge as modelled."
+  },
+  {
+   "group": "parts",
+   "id": "flywheel.upper_flange_thickness",
+   "target": "flywheel.upper_flange_thickness",
+   "uses": [],
+   "variant": null,
+   "value": 0.82,
+   "expected": 0.96,
+   "allowed": [
+    0.81,
+    1.11
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "parts",
+   "id": "flywheel.upper_flange_diameter",
+   "target": "flywheel.upper_flange_diameter",
+   "uses": [],
+   "variant": null,
+   "value": 22.6,
+   "expected": 21.6,
+   "allowed": [
+    20.6,
+    22.6
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": ""
+  },
+  {
+   "group": "parts",
+   "id": "flywheel.hub_flange_diameter",
+   "target": "flywheel.hub_flange_diameter",
+   "uses": [],
+   "variant": null,
+   "value": 7.2,
+   "expected": 7.2,
+   "allowed": [
+    6.8,
+    7.6
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEC-011"
+   ],
+   "status": "pass",
+   "note": "The flange on top of the small pulley for the second belt."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.takeup",
+   "target": "gear.takeup.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 60,
+   "expected": 60,
+   "allowed": [
+    60,
+    60
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.takeup.step",
+   "target": "gear.takeup.step_teeth",
+   "uses": [],
+   "variant": null,
+   "value": 42,
+   "expected": 42,
+   "allowed": [
+    41,
+    43
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the second ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.s_gear_a",
+   "target": "gear.s_gear_a.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 40,
+   "expected": 40,
+   "allowed": [
+    40,
+    40
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-010"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.s_gear_b",
+   "target": "gear.s_gear_b.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 60,
+   "expected": 60,
+   "allowed": [
+    60,
+    60
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-011"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.fr_gear_b",
+   "target": "gear.fr_gear_b.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 36,
+   "expected": 36,
+   "allowed": [
+    36,
+    36
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-013"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.fr_pulley_pinion",
+   "target": "gear.fr_pulley_pinion.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 28,
+   "expected": 28,
+   "allowed": [
+    26,
+    30
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-021"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.fr_gear_a",
+   "target": "gear.fr_gear_a.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 26,
+   "expected": 26,
+   "allowed": [
+    26,
+    26
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-012"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.fr_gear_a_small_tier",
+   "target": "gear.fr_gear_a_small_tier.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 15,
+   "expected": 15,
+   "allowed": [
+    13,
+    17
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-012"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the second ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.third",
+   "target": "gear.third.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 44,
+   "expected": 44,
+   "allowed": [
+    43,
+    45
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.secondary",
+   "target": "gear.secondary.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 30,
+   "expected": 30,
+   "allowed": [
+    29,
+    31
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-016"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the outer ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.secondary_pinion",
+   "target": "gear.secondary_pinion.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 13,
+   "expected": 13,
+   "allowed": [
+    11,
+    15
+   ],
+   "unit": "teeth",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-016"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the second ring of teeth."
+  },
+  {
+   "group": "motion",
+   "id": "teeth.third_pinion",
+   "target": "gear.third_pinion.teeth",
+   "uses": [],
+   "variant": null,
+   "value": 9,
+   "expected": 9,
+   "allowed": [
+    9,
+    9
+   ],
+   "unit": "teeth",
+   "class": "designed",
+   "parts": [
+    "CAM-010"
+   ],
+   "status": "pass",
+   "note": "Counted on the model's own outline: the second ring of teeth."
   },
   {
    "group": "motion",
@@ -1625,7 +3883,7 @@
    "target": "ratio.reverse_wheel_to_flywheel",
    "uses": [],
    "variant": null,
-   "value": 2.5862,
+   "value": 2.68,
    "expected": 2.68,
    "allowed": [
     2.6,
@@ -1637,7 +3895,7 @@
     "DRV-022",
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1649,7 +3907,7 @@
     "gear.s_gear_b.teeth"
    ],
    "variant": null,
-   "value": 0.6781,
+   "value": 0.6667,
    "expected": 0.6666666666666666,
    "allowed": [
     0.666,
@@ -1661,31 +3919,87 @@
     "DRV-011",
     "DRV-010"
    ],
-   "status": "fail",
-   "note": "Speed against S gear A; tooth ratio 40/60. Motion rig: -u*(6.3/9.29)"
+   "status": "pass",
+   "note": "Speed against S gear A; tooth ratio 40/60. Motion rig: -u*(40/60)"
   },
   {
    "group": "motion",
-   "id": "gear.fr_gear_b_ratio",
+   "id": "gear.fr_train_moves_tooth_for_tooth",
    "target": null,
    "uses": [
-    "gear.s_gear_a.teeth",
-    "gear.fr_gear_b.teeth"
+    "gear.fr_pulley_pinion.teeth",
+    "gear.fr_gear_a.teeth",
+    "gear.fr_gear_a_small_tier.teeth",
+    "gear.fr_gear_b.teeth",
+    "gear.s_gear_b.teeth",
+    "gear.takeup.teeth"
    ],
    "variant": null,
-   "value": 1.1072,
-   "expected": 1.1111111111111112,
+   "value": 0,
+   "expected": null,
    "allowed": [
-    1.11,
-    1.1122
+    0,
+    0.1
    ],
-   "unit": "",
+   "unit": "%",
    "class": "photo-measured",
    "parts": [
-    "DRV-013"
+    "DRV-021",
+    "DRV-012",
+    "DRV-013",
+    "DRV-011",
+    "DRV-014"
    ],
-   "status": "fail",
-   "note": "Speed against S gear A; tooth ratio 40/36. Motion rig: -u*(6.3/5.69)"
+   "status": "pass",
+   "note": "Largest mismatch of tooth speed among the gears in mesh: the FR pulley with FR gear B and FR gear B with FR gear A in FF and REW, FR gear A with the clutch gear in FF, FR gear A with S gear B in REW."
+  },
+  {
+   "group": "motion",
+   "id": "gear.fr_gear_a_meets_clutch_gear_in_ff",
+   "target": null,
+   "uses": [
+    "gear.module",
+    "gear.fr_gear_a.teeth",
+    "gear.takeup.teeth"
+   ],
+   "variant": null,
+   "value": 12.8999,
+   "expected": 12.9,
+   "allowed": [
+    12.85,
+    12.95
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "DRV-012"
+   ],
+   "status": "pass",
+   "note": "Distance from FR gear A to the clutch gear in FF, against the distance at which their teeth mesh."
+  },
+  {
+   "group": "motion",
+   "id": "gear.fr_gear_a_meets_s_gear_b_in_rew",
+   "target": null,
+   "uses": [
+    "gear.module",
+    "gear.fr_gear_a_small_tier.teeth",
+    "gear.s_gear_b.teeth"
+   ],
+   "variant": null,
+   "value": 11.2498,
+   "expected": 11.25,
+   "allowed": [
+    11.2,
+    11.3
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "DRV-012"
+   ],
+   "status": "pass",
+   "note": "Distance from FR gear A to S gear B in REW, against the distance at which their teeth mesh."
   },
   {
    "group": "motion",
@@ -1693,14 +4007,14 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 1.6237,
+   "value": 0,
    "expected": null,
    "allowed": null,
    "unit": "",
    "class": "",
    "parts": [],
    "status": "info",
-   "note": "Motion rig: u*(6.3/3.88). No target yet."
+   "note": "Motion rig: u*(40/15) if m==3 else -t*(60/26) if m==2 else 0. No target yet."
   },
   {
    "group": "motion",
@@ -1708,14 +4022,14 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": -0.1123,
+   "value": -0.1115,
    "expected": null,
    "allowed": null,
    "unit": "",
    "class": "",
    "parts": [],
    "status": "info",
-   "note": "Motion rig: -a*(0.278719486567)*(2.05/5.09). No target yet."
+   "note": "Motion rig: -a*(0.278719486567)*(12/30). No target yet."
   },
   {
    "group": "motion",
@@ -1723,14 +4037,14 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 0.0908,
+   "value": 0.0329,
    "expected": null,
    "allowed": null,
    "unit": "",
    "class": "",
    "parts": [],
    "status": "info",
-   "note": "Motion rig: a*(0.278719486567)*(2.05/6.29). No target yet."
+   "note": "Motion rig: a*(0.278719486567)*(12/30)*(13/44). No target yet."
   },
   {
    "group": "motion",
@@ -1753,14 +4067,14 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 2.3922,
+   "value": 0,
    "expected": null,
    "allowed": null,
    "unit": "",
    "class": "",
    "parts": [],
    "status": "info",
-   "note": "Motion rig: a*(12.2/5.1). No target yet."
+   "note": "Motion rig: -t*(60/28) if m==2 else u*(40/15)*(26/28) if m==3 else 0. No target yet."
   },
   {
    "group": "motion",
@@ -1768,14 +4082,14 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": -6.25,
+   "value": -4.8667,
    "expected": null,
    "allowed": null,
    "unit": "",
    "class": "",
    "parts": [],
    "status": "info",
-   "note": "Motion rig: a*(-6.25000117755). No target yet."
+   "note": "Motion rig: a*(-4.866666667). No target yet."
   },
   {
    "group": "motion",
@@ -1783,7 +4097,7 @@
    "target": "tyre.fr_pulley.od",
    "uses": [],
    "variant": null,
-   "value": 10.2,
+   "value": 12,
    "expected": 12,
    "allowed": [
     11.7,
@@ -1794,7 +4108,7 @@
    "parts": [
     "DRV-023"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1823,7 +4137,7 @@
    "target": "pinch_roller.od",
    "uses": [],
    "variant": null,
-   "value": 7.5,
+   "value": 9,
    "expected": 9,
    "allowed": [
     8.7,
@@ -1834,7 +4148,7 @@
    "parts": [
     "BAY-061"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": ""
   },
   {
@@ -1845,7 +4159,7 @@
     "belt.stretch_range"
    ],
    "variant": null,
-   "value": 16.4918,
+   "value": 7.7989,
    "expected": null,
    "allowed": [
     4,
@@ -1856,8 +4170,8 @@
    "parts": [
     "BLT-001"
    ],
-   "status": "fail",
-   "note": "Installed centreline 163.9 mm against a free length of 140.7 mm."
+   "status": "pass",
+   "note": "Installed centreline 151.7 mm against a free length of 140.7 mm."
   },
   {
    "group": "motion",
@@ -1867,7 +4181,7 @@
     "belt.stretch_range"
    ],
    "variant": null,
-   "value": 5.9862,
+   "value": 7.6514,
    "expected": null,
    "allowed": [
     4,
@@ -1879,7 +4193,7 @@
     "BLT-002"
    ],
    "status": "pass",
-   "note": "Installed centreline 122.8 mm against a free length of 115.9 mm."
+   "note": "Installed centreline 124.8 mm against a free length of 115.9 mm."
   },
   {
    "group": "motion",
@@ -1889,7 +4203,7 @@
     "tyre.fr_pulley.od"
    ],
    "variant": null,
-   "value": 0.9103,
+   "value": -0.0801,
    "expected": null,
    "allowed": [
     -0.3,
@@ -1901,7 +4215,7 @@
     "DRV-023",
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Gap from the flywheel rim to a tyre of the target size; friction drive needs slight compression."
   },
   {
@@ -1912,7 +4226,7 @@
     "tyre.fr_pulley.od"
    ],
    "variant": null,
-   "value": 0.9103,
+   "value": -0.0801,
    "expected": null,
    "allowed": [
     -0.3,
@@ -1924,7 +4238,7 @@
     "DRV-023",
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Gap from the flywheel rim to a tyre of the target size; friction drive needs slight compression."
   },
   {
@@ -1933,7 +4247,7 @@
    "target": "contact.fr_pulley_to_capstan_axis_engaged",
    "uses": [],
    "variant": null,
-   "value": 17.3,
+   "value": 18.9,
    "expected": 19.2,
    "allowed": [
     18.7,
@@ -1945,7 +4259,7 @@
     "DRV-023",
     "MEC-011"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Model flywheel rim radius plus model tyre radius, against the axle-to-capstan distance Sony shows at engagement."
   },
   {
@@ -1954,7 +4268,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 0,
+   "value": 2.1104,
    "expected": null,
    "allowed": [
     0.2,
@@ -1965,7 +4279,7 @@
    "parts": [
     "DRV-023"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Largest shift from STOP in FF/REW; this axis is carried on a lever and has to move."
   },
   {
@@ -1974,7 +4288,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 0,
+   "value": 2.6861,
    "expected": null,
    "allowed": [
     0.2,
@@ -1985,7 +4299,7 @@
    "parts": [
     "DRV-012"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Largest shift from STOP in FF/REW; this axis is carried on a lever and has to move."
   },
   {
@@ -1994,7 +4308,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 0,
+   "value": 0.6,
    "expected": null,
    "allowed": [
     0.2,
@@ -2005,7 +4319,7 @@
    "parts": [
     "FWD-021"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Largest shift from STOP in PLAY; this axis is carried on a lever and has to move."
   },
   {
@@ -2014,7 +4328,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 3.0575,
+   "value": 2.2,
    "expected": null,
    "allowed": [
     0.2,
@@ -2034,7 +4348,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 0,
+   "value": 3.688,
    "expected": null,
    "allowed": [
     0.5,
@@ -2045,7 +4359,7 @@
    "parts": [
     "DRV-012"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "FF sends drive to the take-up side, REW to the supply side, by swinging this gear."
   },
   {
@@ -2057,7 +4371,7 @@
     "capstan.diameter"
    ],
    "variant": null,
-   "value": -0.9567,
+   "value": -0.1,
    "expected": null,
    "allowed": [
     -0.5,
@@ -2069,8 +4383,88 @@
     "BAY-061",
     "BAY-052"
    ],
-   "status": "fail",
+   "status": "pass",
    "note": "Roller-to-capstan gap in PLAY at the target roller and capstan sizes."
+  },
+  {
+   "group": "size",
+   "id": "size.gear.takeup.tip_diameter",
+   "target": "gear.takeup.tip_diameter",
+   "uses": [],
+   "variant": null,
+   "value": 18.597,
+   "expected": 18.6,
+   "allowed": [
+    17.9,
+    19.3
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "DRV-014"
+   ],
+   "status": "pass",
+   "note": "Width along the model's axes of DRV-014."
+  },
+  {
+   "group": "size",
+   "id": "size.clutch.drum.diameter",
+   "target": "clutch.drum.diameter",
+   "uses": [],
+   "variant": null,
+   "value": 16.5,
+   "expected": 17,
+   "allowed": [
+    16.4,
+    17.6
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "CLT-030"
+   ],
+   "status": "pass",
+   "note": "Width along the model's axes of CLT-030."
+  },
+  {
+   "group": "size",
+   "id": "size.clutch.felt.outer_diameter",
+   "target": "clutch.felt.outer_diameter",
+   "uses": [],
+   "variant": null,
+   "value": 15.9,
+   "expected": 15.9,
+   "allowed": [
+    15.3,
+    16.5
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "CLT-010"
+   ],
+   "status": "pass",
+   "note": "Width along the model's axes of CLT-010."
+  },
+  {
+   "group": "size",
+   "id": "size.clutch.spring.outer_diameter",
+   "target": "clutch.spring.outer_diameter",
+   "uses": [],
+   "variant": null,
+   "value": 7.197,
+   "expected": 7.2,
+   "allowed": [
+    6.4,
+    8
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "CLT-031"
+   ],
+   "status": "pass",
+   "note": "Width along the model's axes of CLT-031."
   }
  ],
  "rows": {
@@ -2570,6 +4964,21 @@
    ]
   },
   "BAY-072": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "BAY-073": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -3769,6 +6178,21 @@
     }
    ]
   },
+  "DRV-017": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "DRV-020": {
    "level": 1,
    "checklist": "placeholder",
@@ -3950,6 +6374,21 @@
    ]
   },
   "DRV-108": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "DRV-109": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -4654,7 +7093,37 @@
     }
    ]
   },
+  "FRL-002": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "FRL-010": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "FRL-011": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -4699,7 +7168,52 @@
     }
    ]
   },
+  "FRL-014": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "FRL-020": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "FRL-021": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "FRL-022": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -7984,6 +10498,21 @@
     }
    ]
   },
+  "SBT-011": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "SCR-F01": {
    "level": 1,
    "checklist": "placeholder",
@@ -9762,7 +12291,6 @@
   "manual/SVC-0111",
   "manual/SVC-0117",
   "manual/SVC-0118",
-  "manual/SVC-0135",
   "manual/SVC-0139",
   "manual/SVC-0140",
   "manual/SVC-0141",

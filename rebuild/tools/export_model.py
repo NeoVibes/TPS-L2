@@ -1,7 +1,7 @@
 """Read-only export of current master geometry and controller poses for offline presentation."""
 import bpy,json,hashlib,gzip,base64,math,struct,time,sys
 import numpy as np
-from mathutils import Matrix,Vector
+from mathutils import Matrix,Vector,Quaternion
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from build_io import KIT, ROOT as R, OUT as O, CONFIG, check_space,write_bytes_guarded,write_json,sha256,bound_native,prepare_exterior,exterior_tags,shown_by_default
@@ -213,6 +213,55 @@ for label,angle,release in [('battery_release',0.,operation.id_properties_ui('ba
 operation['battery_open_deg']=0.;operation['battery_catch_release_mm']=0.;operation.update_tag();setpose()
 # Capture the contact spring's native control values, including its untouched
 # midpoint. Runtime uses these typed channels; never executes driver strings.
+# Automatic shut-off: the lever at the cam's push, the teeth meshed after a reel stalls, and the tripped state, all in PLAY.
+if 'Shut off' in c:
+ for label,stage in [('shutoff_out',1),('shutoff_meshed',2),('shutoff_tripped',3)]:
+  setpose(1);c['Shut off']=stage;c.update_tag();s.frame_set(1);s.frame_set(0);bpy.context.view_layer.update()
+  for p in parts:p['poses'][label]=trs(C@byid[p['id']].matrix_world)
+  for deformation,keys in deformation_sources:
+   for target in deformation['targets']:target['weights'][label]=keys.key_blocks[target['name']].value
+ c['Shut off']=0
+# How a part gets from one position to another. A part that rides a swinging arm has to follow the arm's arc, and one that also turns on
+# the arm has to turn as it goes; a straight blend between two positions does neither. So for each part the moving members of the rig above
+# it are recorded, outermost first: where each stands at STOP, and how far it is turned and shifted in every position. The viewer blends
+# those amounts and builds the position from them. A part gets this only if it reproduces every position recorded for it.
+movers=[o for o in bpy.data.objects if o.name.startswith('MOVE • ')]
+def rig_now():
+ dg=bpy.context.evaluated_depsgraph_get();return {o.name:(o.evaluated_get(dg).location.copy(),o.evaluated_get(dg).rotation_euler[2],o.evaluated_get(dg).matrix_world.copy()) for o in movers}
+def members(obj):
+ chain=[];o=obj
+ while o is not None:
+  target=next((k.target for k in o.constraints if k.type=='COPY_TRANSFORMS' and k.target),None)
+  if o.name.startswith('MOVE • '):chain.append(o)
+  o=target if target is not None else o.parent
+ return chain[::-1]
+if movers:
+ rig_at={};cases={name:(mode,door,media,eject,0) for name,mode,door,media,eject in pose_cases}
+ for name in parts[0]['poses']:
+  if name in cases:setpose(*cases[name][:4],0)
+  elif name.startswith('shutoff_'):setpose(1);c['Shut off']={'shutoff_out':1,'shutoff_meshed':2,'shutoff_tripped':3}[name];c.update_tag();s.frame_set(1);s.frame_set(0);bpy.context.view_layer.update()
+  else:setpose()
+  rig_at[name]=rig_now()
+  if 'Shut off' in c:c['Shut off']=0
+ setpose();Cr=C.to_3x3()*(1/1000);linked=0
+ for p in parts:
+  chain=members(byid[p['id']])
+  if not chain:continue
+  links=[]
+  for o in chain:
+   loc0,rot0,world0=rig_at['stop'][o.name];frame=(o.parent.matrix_world.to_3x3() if o.parent else Matrix.Identity(3))
+   links.append({'pivot':list(C@world0.translation),'axis':list((Cr@(world0.to_3x3()@Vector((0,0,1)))).normalized()),
+                 'poses':{name:[rig_at[name][o.name][1]-rot0,*(C.to_3x3()@(frame@(rig_at[name][o.name][0]-loc0)))] for name in rig_at}})
+  if all(abs(v)<1e-9 for l in links for values in l['poses'].values() for v in values):continue
+  stop=Matrix.LocRotScale(Vector(p['poses']['stop'][0]),Quaternion((p['poses']['stop'][1][3],*p['poses']['stop'][1][:3])),Vector(p['poses']['stop'][2]));good=True
+  for name,pose in p['poses'].items():
+   m=Matrix.Identity(4)
+   for l in links:
+    a,*t=l['poses'][name];pivot=Vector(l['pivot']);m=m@Matrix.Translation(Vector(t))@Matrix.Translation(pivot)@Matrix.Rotation(a,4,Vector(l['axis']))@Matrix.Translation(-pivot)
+   want=Matrix.LocRotScale(Vector(pose[0]),Quaternion((pose[1][3],*pose[1][:3])),Vector(pose[2]));got=m@stop
+   if max(abs(got[i][j]-want[i][j]) for i in range(3) for j in range(4))>2e-3:good=False;break
+  if good:p['links']=links;linked+=1
+ print('LINKS',linked,'parts follow the rig between positions',flush=True)
 setpose();operation=controllers[CONFIG['controllers']['operating']]
 if operation:
  original=operation['tone_position']

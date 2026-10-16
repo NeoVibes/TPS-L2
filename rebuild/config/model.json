@@ -878,7 +878,41 @@
       "hotline": "CTL-07",
       "tone": "CTL-08",
       "battery": "EXT-040"
-    }
+    },
+    "autoStop": {
+      "lever": [
+        "STF-010",
+        "STF-011",
+        "STF-012"
+      ],
+      "detector": [
+        "CLT-040",
+        "CLT-041",
+        "CLT-042"
+      ],
+      "release": [
+        "RLC-001"
+      ],
+      "cam": "CAM-010"
+    },
+    "reelDriven": [
+      "BAY-020",
+      "BAY-021",
+      "BAY-030",
+      "BAY-031",
+      "BAY-061",
+      "CLT-010",
+      "CLT-031",
+      "CLT-032",
+      "DRV-010",
+      "DRV-011",
+      "DRV-014",
+      "DRV-104",
+      "MEDIA-003",
+      "MEDIA-004",
+      "MEDIA-005",
+      "MEDIA-006"
+    ]
   },
   "deformation": {
     "animated": [
@@ -963,6 +997,7 @@
     "explodedSideGapMm": 28,
     "beltStripeWidthMm": 1.6,
     "defaultSpeed": 0.55,
+    "rotationScale": 0.3,
     "controlCameras": {
       "transport": [
         [
@@ -1085,9 +1120,10 @@
     "operatingPolicy": {
       "id": "independent-cover-and-transport-v2",
       "confidence": "illustrative",
-      "description": "The transport runs with an open or closed cover and with or without a cassette. Only seated, connected media advances or produces program audio. Speeds and internal engagement remain illustrative.",
+      "description": "The transport runs with an open or closed cover and with or without a cassette. Only seated, connected media advances or produces program audio. A side is shown in tapeDurationSeconds; fast winding is quicker by the ratio the model's drive gives (a 30-minute side winds in about 139 s forward and 161 s back). At the end of a side in PLAY the reel stalls and the automatic shut-off releases the transport.",
       "tapeDurationSeconds": 120,
-      "fastWindRatio": 8
+      "fastForwardRatio": 12.9,
+      "rewindRatio": 11.2
     },
     "stopCycle": {
       "press": 0.18,
@@ -1165,6 +1201,10 @@
           1800
         ]
       }
+    },
+    "autoStop": {
+      "detect": 6.7,
+      "trip": 4.5
     }
   },
   "sampling": {
@@ -1222,17 +1262,17 @@
         42.75
       ],
       "assembled_z_bounds_mm": [
-        3.55,
-        11.95
+        1.6,
+        13.6
       ],
       "corner_radius_mm": 2.1,
       "front_roof_z_mm": [
-        10.32,
-        10.78
+        11.49,
+        11.9
       ],
       "rear_floor_z_mm": [
-        3.55,
-        4
+        3.3,
+        4.11
       ],
       "raised_apron_xy_mm": [
         [
@@ -1253,8 +1293,8 @@
         ]
       ],
       "raised_apron_z_mm": [
-        10.32,
-        11.95
+        11.9,
+        13.6
       ],
       "screw_centers_xy_mm": [
         [
@@ -1277,6 +1317,10 @@
           13.35,
           -7.45
         ]
+      ],
+      "raised_apron_rear_z_mm": [
+        1.6,
+        3.3
       ]
     },
     "hub": {
@@ -1285,12 +1329,12 @@
         [
           -10.8,
           -28.7,
-          5.95
+          7.6
         ],
         [
           -10.8,
           13.8,
-          5.95
+          7.6
         ]
       ],
       "internal_teeth": 6,
@@ -1298,8 +1342,8 @@
       "inner_recess_radius_mm": 5.25,
       "flange_outer_radius_mm": 10.55,
       "flange_z_mm": [
-        8.03,
-        8.84
+        9.68,
+        10.49
       ],
       "relief_pockets": 12,
       "relief_pocket_radius_mm": 1.12,
@@ -1307,7 +1351,7 @@
         "count": 12,
         "radius_mm": 0.75,
         "pitch_radius_mm": 6.7,
-        "cut_top_z_mm": 3.94,
+        "cut_top_z_mm": 5.59,
         "spindle_engagement_change": "None; all removed material lies outside r5.95"
       },
       "rear_flange_relief_pockets": {
@@ -1320,7 +1364,7 @@
     "scope_limits": [
       "A generic clear-shell reconstruction, not an exact branded cassette product or device-specific replica.",
       "Source photographs support topology; internal dimensions and optical materials are estimates.",
-      "The nominal format thickness and apron thickness are fitted to the current 8.4mm overall cassette envelope, not represented as manufacturer measurements.",
+      "Body 8.6 mm and 12.0 mm across the head band on both faces (ECMA-34 Fig. 4), with the tape plane where the native model now has it; the band outline and its openings are estimates, not manufacturer measurements.",
       "Six existing MEDIA owners and their poses/spin metadata are preserved. Screws, guide rollers, tape ribbon and pressure-pad features are separately manufactured subcomponents grouped under shell owners only for the visual alternative.",
       "Only cassette hubs have six internal engagement teeth; the player spindles remain unchanged.",
       "The illustrated tape ribbon is static and has an approximately 0.95mm PLAY head gap; fixed equal pack radii do not simulate winding transfer."
@@ -1583,8 +1627,8 @@
         19.7
       ],
       "pack_z_mm": [
-        4.2,
-        7.875
+        5.85,
+        9.525
       ],
       "winding_relief_rings": 32,
       "guide_rollers": [
@@ -1604,8 +1648,8 @@
         }
       ],
       "ribbon_z_mm": [
-        4.12,
-        7.88
+        5.77,
+        9.53
       ],
       "ribbon_thickness_mm": 0.035,
       "ribbon_front_x_mm": 21.15,

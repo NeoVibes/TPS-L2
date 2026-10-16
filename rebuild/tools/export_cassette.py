@@ -229,6 +229,25 @@ add(box('felt pressure pad',[19.85,-10.20,20.9,-4.7],4.36,7.64,.18),spec['ownerR
 add(box('pressure pad spring',[19.4,-17.0,19.65,2.1],4.65,7.35,.08),spec['ownerRoles']['backShell'],'spring','pad_spring',.06)
 for cy in [-16.7,1.8]:add(box('spring anchor',[18.4,cy-.6,20.05,cy+.6],4.05,8.15,.2),spec['ownerRoles']['backShell'],'edge','pad_spring_anchor',.10)
 
+# Standard thickness, with the tape plane where the native model now has it, 1.65 mm nearer the lid (ECMA-34 Fig. 4: body 8.6 mm,
+# 12.0 mm across the head band on both faces). The shell pieces are mapped onto the standard faces; what lies between them (hubs, packs,
+# rollers, ribbon, pad) moves whole with the tape.
+DZ,ZC0=1.65,5.95;ZC=ZC0+DZ
+SHELL_KINDS={'rear_shell','perimeter_wall','front_shell','head_apron','mold_seam','reel_access_collar','internal_rib','internal_guide_rib','screw_boss','screw_seat','screw_head','slip_sheet','label_upper','label_lower','label_upper_back','label_lower_back'}
+def zshell(z):
+    if z<=ZC0:return ZC-(ZC0-z)*4.30/(ZC0-3.55)
+    if z<=10.78:return ZC+(z-ZC0)*4.30/(10.78-ZC0)
+    return ZC+4.30+(z-10.78)*1.70/(11.95-10.78)
+for f in features:
+    shell_kind=f['kind'] in SHELL_KINDS
+    for v in f['obj'].data.vertices:v.co.z=zshell(v.co.z) if shell_kind else v.co.z+DZ
+    f['obj'].data.update()
+# The band on the deck side, with the same openings, the capstan holes at the standard 4.5 mm and room for the head carriage's guide pin.
+rear_apron=prism('raised head band, deck side',apron_loop,ZC-6.0,ZC-4.30)
+for b in bores:boolean(rear_apron,cylinder(b['name'],*b['center_xy_mm'],max(b['radius_mm'],2.25 if 'capstan' in b['name'] else 0),ZC-7,ZC))
+for b in edge_openings+spec['interfaces']['apron_face_windows_xy_mm']+[[17.3,-42.5,24.5,-38.0]]:boolean(rear_apron,box('band opening',b,ZC-7,ZC,.3))
+add(rear_apron,spec['ownerRoles']['backShell'],'edge','rear_head_apron',.18)
+
 # Export grouped by owner/material but retain triangle ranges for every physical
 # feature, allowing contact audit to distinguish shell, ribbon and pad surfaces.
 def bounds(mesh,transform=None):
@@ -278,7 +297,7 @@ manifest={'schema_version':2,'alternate_id':spec['alternate_id'],'label':spec['l
 'packing':{'packed':False,'positions':'float32 little-endian','normals':'float32 little-endian','indices':'uint32 little-endian'},
 'geometry':{'file':'geometry.bin.gz','uncompressed_bytes':len(buffer),'compressed_bytes':len(compressed),'sha256':hashlib.sha256(compressed).hexdigest()},
 'parts':exported,'materials':spec['materials'],'parameters':{k:spec[k] for k in ['shell','hub','tape','interfaces','numeric_detail_status']},'parameter_sha256':hashlib.sha256((O/'parameters.json').read_bytes()).hexdigest(),'config_sha256':hashlib.sha256((R/'config/model.json').read_bytes()).hexdigest(),
-'checks':{'passed':True,'component_ids_preserved':True,'native_unchanged':True,'external_envelope_mm':[100.4,63.8,8.4],'external_bounds_mm':[[x0,y0,z0],[x1,y1,z1]],'hub_teeth':6,'hub_pitch_mm':42.5,'six_owner_transforms_unchanged':not inactive_owners,'inactive_owner_bindings':inactive_owners,'all_feature_solids_manifold':True,'parts':checks,'features':feature_checks,'physical_fit_limit':'New occupied volume is deliberate. Independent cassette/player contact regression is required; visual topology and illustrative tape route do not establish physical accuracy.'},
+'checks':{'passed':True,'component_ids_preserved':True,'native_unchanged':True,'external_envelope_mm':[100.4,63.8,12.0],'body_thickness_mm':8.6,'external_bounds_mm':[[x0,y0,z0],[x1,y1,z1]],'hub_teeth':6,'hub_pitch_mm':42.5,'six_owner_transforms_unchanged':not inactive_owners,'inactive_owner_bindings':inactive_owners,'all_feature_solids_manifold':True,'parts':checks,'features':feature_checks,'physical_fit_limit':'New occupied volume is deliberate. Independent cassette/player contact regression is required; visual topology and illustrative tape route do not establish physical accuracy.'},
 'limitations':spec['scope_limits']}
 write_json(O/'part-measurements.json',{'native_sha256':source_hash,'variant':spec['alternate_id'],'units':'mm','axes':'X across the front, Y front to back, Z along the body','parts':measured})
 write_bytes_guarded(O/'manifest.json',(json.dumps(manifest,indent=2)+'\n').encode())

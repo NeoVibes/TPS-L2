@@ -176,7 +176,9 @@ export function exteriorStateParts(meta) {
 function comparePages(ref, cand, checked) {
   const pagePackage = kit => part => kit.packages[part.package];
   // Kits are compared as their default exterior version shows them. Lettering that only other versions show is listed separately.
-  const {parts: refParts, alternatives: refAlt, ...refRest} = defaultExteriorMeta(ref.meta), {parts: candParts, alternatives: candAlt, ...candRest} = defaultExteriorMeta(cand.meta);
+  // Materials are compared by name: their numbers follow the order parts are exported in, so one edit can renumber them all.
+  const named = meta => ({...meta, materials: Object.fromEntries((meta.materials ?? []).map(m => [m.name, m])), parts: meta.parts.map(p => ({...p, meshes: p.meshes.map(mesh => ({...mesh, m: meta.materials?.[mesh.m]?.name ?? mesh.m}))}))});
+  const {parts: refParts, alternatives: refAlt, ...refRest} = named(defaultExteriorMeta(ref.meta)), {parts: candParts, alternatives: candAlt, ...candRest} = named(defaultExteriorMeta(cand.meta));
   deepCompare(refRest, candRest, 'meta');
   const geometry = compareParts('page.part', describeParts(refParts, pagePackage(ref)), describeParts(candParts, pagePackage(cand)));
   checked.push('page: ' + refParts.length + ' parts, their poses and geometry' + (cand.meta.exterior?.default ? ', as the ' + cand.meta.exterior.default + ' exterior shows them' : ''));
@@ -218,24 +220,24 @@ export async function fingerprintView(viewDir) {
 
 /** The same, from a view that has already been read. */
 export function fingerprint(view) {
-  const state = {parts: {}};
-  const describe = (parts, bufferFor) => {
+  const state = {parts: {}}, materials = view.meta.materials ?? [];
+  const describe = (parts, bufferFor, table = materials) => {
     const {described, decoded} = describeParts(parts, bufferFor);
     for (const [id, part] of Object.entries(described)) {
       const {meshes, ...rest} = part, lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
       for (const mesh of decoded[id]) for (let i = 0; i < mesh.positions.length; i++) { const v = mesh.positions[i]; if (v < lo[i % 3]) lo[i % 3] = v; if (v > hi[i % 3]) hi[i % 3] = v; }
       const {poses, spin, authoritativeBounds, ...other} = rest;   // the bounds follow the shape
       state.parts[id] = {shape: sha(JSON.stringify(meshes.map(m => m.content))), poses: sha(JSON.stringify(poses ?? null)), spin: sha(JSON.stringify([spin ?? null, meshes.map(m => m.deformation ?? null)])),
-        other: sha(JSON.stringify([other, meshes.map(({content, deformation, vertices, triangles, pmin, pscale, indexType, ...m}) => m)])),   // how the coordinates are packed follows the shape
+        other: sha(JSON.stringify([other, meshes.map(({content, deformation, vertices, triangles, pmin, pscale, indexType, m, ...rest}) => ({...rest, material: table[m] ?? null}))])),   // how the coordinates are packed follows the shape; materials by what they are, not by their number
         vertices: meshes.reduce((n, m) => n + m.vertices, 0), triangles: meshes.reduce((n, m) => n + m.triangles, 0), size_mm: hi.map((v, i) => Math.round((v - lo[i]) * 1000) / 1000)};
     }
   };
   const base = defaultExteriorMeta(view.meta);
   describe(base.parts, part => view.packages[part.package]);
   describe(exteriorStateParts(view.meta), part => view.packages[part.package]);
-  describe(view.meta.alternatives.cassette.parts.map(p => ({...p, id: 'cassette alternative ' + p.id, package: 'cassette'})), () => view.packages.cassette);
+  describe(view.meta.alternatives.cassette.parts.map(p => ({...p, id: 'cassette alternative ' + p.id, package: 'cassette'})), () => view.packages.cassette, view.meta.alternatives.cassette.materials ?? []);
   // Model-wide data that is not a size or a checksum: materials, units, the viewer settings baked into the part list.
-  const m = base, pick = keys => Object.fromEntries(keys.map(k => [k, m[k] ?? null]));
+  const m = {...base, materials: [...(base.materials ?? [])].sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)}, pick = keys => Object.fromEntries(keys.map(k => [k, m[k] ?? null]));   // materials in name order: their numbering follows the order parts are exported in
   state.settings = sha(JSON.stringify(pick(['units', 'materials', 'config', 'spin_sampling', 'frozen_controls', 'deformation_owners', 'legacy_static_shape_channels', 'inspectionContexts', 'fictional_serial', 'nativeCueSubstitutions', 'inactiveBindings'])));
   // Control travel. A part that a control drags also carries its own samples, so an assessment of that part can be tied to them.
   const controls = view.pageMotion?.controls || {};

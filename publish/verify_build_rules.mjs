@@ -127,7 +127,7 @@ try {
   done.push('the release tool needs no git, ships exactly the kit, is repeatable, and refuses a file that names a home folder or an output folder inside the kit');
 
   // 7. A target edit shows in the change report; an assessment counts only after accept and only while its target stands.
-  await edit('edit/targets.json', s => { const f = JSON.parse(s); f.targets.find(t => t.id === 'body.height').tol = 3; f.targets.push({id: 'scratch.capstan_length', value: 23.1, tol: 0.1, unit: 'mm', class: 'measured', basis: 'made up for this check', measure: {size_of: 'BAY-052', along: 'depth'}}); return JSON.stringify(f, null, 1) + '\n'; });
+  await edit('edit/targets.json', s => { const f = JSON.parse(s); f.targets.find(t => t.id === 'body.height').tol = 3; f.targets.push({id: 'scratch.capstan_length', value: 24.41, tol: 0.1, unit: 'mm', class: 'measured', basis: 'made up for this check', measure: {size_of: 'BAY-052', along: 'depth'}}); return JSON.stringify(f, null, 1) + '\n'; });
   await edit('edit/assessments.json', s => { const f = JSON.parse(s); f.checklists['BAY-052'] = {features: ['length'], reviewed: 'this check'}; f.assessments.push({id: 'A-9001', part: 'BAY-052', feature: 'length', level: 4, target: 'scratch.capstan_length', issues: [1]}); return JSON.stringify(f, null, 1) + '\n'; });
   assert.equal(run('build.mjs', ['--viewer']).status, 0);
   let report = run('test.mjs', ['stale']).stdout;

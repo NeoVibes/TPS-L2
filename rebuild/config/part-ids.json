@@ -2606,6 +2606,51 @@
       "id": "WIR-PWR-09",
       "origin": "migration",
       "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-017",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "DRV-109",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-002",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-011",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-014",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "SBT-011",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-021",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "FRL-022",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "BAY-073",
+      "origin": "authoring-helper",
+      "state_at_registration": "active"
     }
   ]
 }

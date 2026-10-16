@@ -11,6 +11,7 @@ import {makeDriveMaterial} from '../viewer/drive-materials.mjs';
 import {assertInventoryCoverage} from './inventory_contract.mjs';
 import {countGeometry} from './geometry_contract.mjs';
 import {tourMotion} from '../viewer/tour-timeline.mjs';
+const windSpeed=JSON.parse(await (await import('node:fs/promises')).readFile(new URL('../../edit/targets.json',import.meta.url),'utf8')).targets.find(t=>t.id==='motor.speed_while_winding').value;
 
 const read=p=>JSON.parse(fs.readFileSync(p)),hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const model=read('build/exports/model.json'),packed=read('build/exports/model-packed.json'),viewer=read('build/viewer-data/model.json');
@@ -77,7 +78,8 @@ for(const p of model.parts){
   close(beltTravel(b,angle),expected,.002,'Travel follows native signed contact velocity');phaseChecks++;
  }
  assert.equal(beltTravel(b,0),0,'Reset clears belt travel with pulley angle');
- close(spin('play').rate,spin('ff').rate,1e-8,'FF does not multiply motor speed');
+ close(spin('ff').rate,spin('play').rate*windSpeed,1e-3,'FF does not multiply motor speed: the servo holds the motor at its PLAY speed');
+ close(spin('rew').rate,spin('ff').rate,1e-8,'The motor turns the same way and as fast in REW as in FF');
  const seekSteps=[{duration:5,mode:'play',view:'service'},{duration:3,mode:'ff',view:'service'},{duration:2,mode:'rew',view:'assembled'},{duration:4,mode:'play',view:'catalog'}];
  for(const time of [0,1,7,9,14,3,0]) {
   const seconds=tourMotion(time,seekSteps).modeSeconds;
