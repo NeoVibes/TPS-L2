@@ -127,7 +127,9 @@ try {
 
   if (process.platform === 'win32') {
     transaction = await fixture('windows-open-handle');
-    const script = `Add-Type -TypeDefinition @'
+    const releaseFile = path.join(path.dirname(transaction.live), 'release-handle');
+    const script = `$ErrorActionPreference = 'Stop'
+Add-Type -TypeDefinition @'
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
@@ -136,24 +138,73 @@ public class DirectoryHandle {
   public static extern SafeFileHandle CreateFileW(string name, uint access, uint sharing, IntPtr security, uint creation, uint flags, IntPtr template);
 }
 '@
-$handle = [DirectoryHandle]::CreateFileW($env:PTP_TEST_DIRECTORY, 0x80000000, 3, [IntPtr]::Zero, 3, 0x02000000, [IntPtr]::Zero)
-if ($handle.IsInvalid) { throw 'Could not hold the live directory handle' }
-try { [Console]::Out.WriteLine('held'); [Console]::In.ReadLine() | Out-Null } finally { $handle.Dispose() }`;
+# Windows PowerShell treats 0x80000000 as a negative Int32. Use its positive UInt32 value.
+$handle = [DirectoryHandle]::CreateFileW($env:PTP_TEST_DIRECTORY, [uint32]2147483648, [uint32]3, [IntPtr]::Zero, [uint32]3, [uint32]0x02000000, [IntPtr]::Zero)
+$lastError = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
+if ($null -eq $handle -or $handle.IsInvalid -or $handle.IsClosed) { throw "Could not hold the live directory handle; Win32 error $lastError" }
+try {
+  [Console]::Out.WriteLine('PTP_DIRECTORY_HELD')
+  [Console]::Out.Flush()
+  $timer = [Diagnostics.Stopwatch]::StartNew()
+  while (-not (Test-Path -LiteralPath $env:PTP_TEST_RELEASE)) {
+    if ($timer.ElapsedMilliseconds -ge 30000) { throw 'Timed out waiting for explicit handle release' }
+    Start-Sleep -Milliseconds 25
+  }
+} finally { $handle.Dispose() }
+[Console]::Out.WriteLine('PTP_DIRECTORY_RELEASED')`;
     const holder = spawn('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', script],
-      {env: {...process.env, PTP_TEST_DIRECTORY: transaction.live}, stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true});
-    const closed = once(holder, 'close'); let output = '', errors = '';
+      {env: {...process.env, PTP_TEST_DIRECTORY: transaction.live, PTP_TEST_RELEASE: releaseFile}, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true});
+    let output = '', errors = '', outcome = null;
+    const closed = new Promise(resolve => holder.once('close', (code, signal) => { outcome = {code, signal}; resolve(outcome); }));
     holder.stdout.on('data', data => output += data); holder.stderr.on('data', data => errors += data);
+    holder.once('error', error => errors += String(error));
+    const diagnostics = () => `Directory holder: exit=${holder.exitCode}, signal=${holder.signalCode}; stdout=${output}; stderr=${errors}`;
+    const assertHolding = () => {
+      assert.equal(outcome, null, diagnostics());
+      assert.equal(holder.exitCode, null, diagnostics()); assert.equal(holder.signalCode, null, diagnostics());
+      assert.equal(errors, '', diagnostics());
+      process.kill(holder.pid, 0); // The ready message alone must not stand in for a live holder.
+    };
+    const waitForClose = async timeout => {
+      let timer;
+      try { return await Promise.race([closed, new Promise(resolve => { timer = setTimeout(() => resolve(null), timeout); })]); }
+      finally { clearTimeout(timer); }
+    };
     try {
       await new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject(Error('Directory handle was not opened: ' + errors)), 10000);
-        holder.stdout.on('data', () => { if (output.includes('held')) { clearTimeout(timer); resolve(); } });
-        holder.once('error', error => { clearTimeout(timer); reject(error); });
-        holder.once('close', () => { clearTimeout(timer); if (!output.includes('held')) reject(Error('Directory holder failed: ' + errors)); });
+        const finish = error => {
+          clearTimeout(timer);
+          holder.stdout.off('data', ready); holder.off('error', failed); holder.off('close', exited);
+          if (error) reject(error); else resolve();
+        };
+        const ready = () => { if (output.split(/\r?\n/).includes('PTP_DIRECTORY_HELD')) finish(); };
+        const failed = error => finish(error);
+        const exited = () => finish(Error('Directory holder exited before readiness. ' + diagnostics()));
+        const timer = setTimeout(() => finish(Error('Directory handle was not opened. ' + diagnostics())), 10000);
+        holder.stdout.on('data', ready); holder.once('error', failed); holder.once('close', exited);
       });
-      await assert.rejects(transaction.commit(), error => error.unchanged === true && error.phase === 'before-commit');
+      assertHolding();
+      await assert.rejects(transaction.commit(), error => {
+        assert.equal(error.unchanged, true); assert.equal(error.phase, 'before-commit');
+        assert(['EPERM', 'EACCES', 'EBUSY'].includes(error.cause?.code), 'Expected a Windows sharing/access denial: ' + error);
+        console.log('Windows open directory handle blocked rename: ' + error.cause.code);
+        return true;
+      }, diagnostics());
+      assertHolding();
       assert.equal(await value(transaction.live), 'old');
       await transaction.discard();
-    } finally { holder.stdin.end('\n'); await closed; }
+    } finally {
+      await fs.writeFile(releaseFile, 'release');
+      const graceful = await waitForClose(5000);
+      if (!graceful) {
+        holder.kill('SIGKILL');
+        assert(await waitForClose(5000), 'Directory holder did not stop after forced cleanup. ' + diagnostics());
+        assert.fail('Directory holder required forced cleanup. ' + diagnostics());
+      }
+      assert.equal(graceful.code, 0, diagnostics()); assert.equal(graceful.signal, null, diagnostics());
+      assert.equal(errors, '', diagnostics());
+      assert(output.split(/\r?\n/).includes('PTP_DIRECTORY_RELEASED'), diagnostics());
+    }
   }
   console.log('Directory transactions: committed output, rename/rollback failures, cleanup warnings, actual process interruption and conservative leftover handling pass.');
 } finally { await fs.rm(root, {recursive: true, force: true}); }

@@ -38,6 +38,7 @@ const snapshot = page => page.evaluate(() => window.portableTapePlayer.snapshot(
 const waitState = (page, predicate) => page.waitForFunction(predicate, null, {timeout: 30000});
 
 async function zoom(page, record) {
+  record.phase = 'keyboard-zoom';
   await page.locator('[data-workmode="inspect"]').click();
   const extent = () => page.evaluate(() => {
     const points = Object.values(window.portableTapePlayer.snapshot().controls).filter(Boolean);
@@ -63,6 +64,7 @@ async function zoom(page, record) {
 }
 
 async function interruptedAction(page, kind, record) {
+  record.phase = kind + '-interruption';
   await page.locator('#reset').click();
   await page.locator('[data-workmode="operate"]').click();
   await page.locator('#door').click();
@@ -112,6 +114,7 @@ try {
       await page.goto(url, {waitUntil: 'load', timeout: 90000});
       await page.waitForFunction(() => window.portableTapePlayer?.snapshot().ready || window.portableTapePlayerError, null, {timeout: 90000});
       assert.equal(await page.evaluate(() => window.portableTapePlayerError || null), null, 'Viewer must initialize');
+      record.phase = 'render-readiness';
       await page.waitForFunction(() => {
         const text = document.getElementById('stage')?.dataset.test;
         return text && JSON.parse(text).triangles > 0 && JSON.parse(text).draws > 0;
@@ -140,6 +143,19 @@ try {
       record.passed = true;
     } catch (error) {
       record.error = String(error.stack || error);
+      let diagnosticTimer;
+      try {
+        record.failureState = await Promise.race([
+          page?.evaluate(() => {
+            const current = window.portableTapePlayer?.snapshot();
+            return {ready: current?.ready, renderedFrames: current?.renderedFrames, loaded: current?.loaded,
+              state: current?.state, packageErrors: current?.packageErrors,
+              render: document.getElementById('stage')?.dataset.test || null,
+              focusedControl: document.activeElement?.id, initializationError: window.portableTapePlayerError || null};
+          }).catch(() => null),
+          new Promise(resolve => { diagnosticTimer = setTimeout(() => resolve({timedOut: true}), 5000); }),
+        ]);
+      } finally { clearTimeout(diagnosticTimer); }
       await page?.screenshot({path: path.join(output, `${name}-${protocol}-failure.png`), timeout: 10000}).catch(() => {});
     } finally {
       await context?.tracing.stop({path: path.join(output, `${name}-${protocol}-trace.zip`)}).catch(() => {});

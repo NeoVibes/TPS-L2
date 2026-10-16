@@ -308,12 +308,14 @@ function animate(now) {
     metrics.motionSampling = true;
   } else metrics.motionSampling = false;
   audio.sync(state);
+  // Publish every completed render: a slow renderer can become idle before
+  // the throttled UI update reaches its fifteenth frame.
+  $("stage").dataset.test = JSON.stringify({ mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
   if (frameNumber % 15 === 0 || !active) {
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";
     const mean = metrics.frames.reduce((a, v) => a + v.interval, 0) / metrics.frames.length;
     $("fps").textContent = state.mode === "stop" || state.paused ? "Render on change" : Math.round(1e3 / mean) + " FPS · " + renderer.info.render.calls + " draws";
-    $("stage").dataset.test = JSON.stringify({ mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
   }
 }
 export async function init() {

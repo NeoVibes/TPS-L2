@@ -33,6 +33,9 @@ jobs:
   chromium:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    env:
+      # Hosted runners may define CHROME_BIN; CI must use Playwright's pinned download.
+      CHROME_BIN: ''
     defaults:
       run:
         working-directory: publish/browser
