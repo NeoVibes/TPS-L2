@@ -35,7 +35,56 @@ await new Promise((resolve, reject) => { server.once('error', reject); server.li
 const urls = {file: pathToFileURL(path.join(view, 'index.html')).href, hosted: `http://127.0.0.1:${server.address().port}${prefix}`};
 const results = [];
 const snapshot = page => page.evaluate(() => window.portableTapePlayer.snapshot());
-const waitState = (page, predicate) => page.waitForFunction(predicate, null, {timeout: 30000});
+async function bounded(label, operation, milliseconds = 60000) {
+  let timer;
+  try {
+    return await Promise.race([operation, new Promise((_, reject) => {
+      timer = setTimeout(() => reject(Error(`${label} exceeded ${milliseconds} ms of real time`)), milliseconds);
+    })]);
+  } finally { clearTimeout(timer); }
+}
+const observation = page => bounded('Read viewer observation', page.evaluate(() => {
+  const current = window.portableTapePlayer.snapshot();
+  return {state: current.state, frames: current.renderedFrames, now: performance.now(),
+    render: JSON.parse(document.getElementById('stage').dataset.test)};
+}));
+
+async function advanceFrame(page, record, label, milliseconds) {
+  const before = await observation(page);
+  await bounded(label, page.clock.fastForward(milliseconds));
+  const after = await observation(page);
+  assert.equal(after.frames, before.frames + 1, label + ': exactly one real viewer render must complete');
+  assert.equal(after.render.frames, after.frames, label + ': render diagnostics must describe that frame');
+  assert(after.render.draws > 0 && after.render.triangles > 0, label + ': geometry must be rendered');
+  assert(Math.abs(after.now - before.now - milliseconds) < 1e-6, label + ': only the requested test time may elapse');
+  record.clock.steps.push({label, milliseconds, before: before.frames, after: after.frames,
+    draws: after.render.draws, triangles: after.render.triangles});
+  return after;
+}
+
+async function prepareInterruptionClock(page, record) {
+  record.phase = 'interruption-clock';
+  await page.waitForFunction(() => ['exterior', 'mechanism', 'electronics', 'cassette']
+    .every(name => window.portableTapePlayer.snapshot().loaded.includes(name)), null, {timeout: 30000});
+  const state = (await snapshot(page)).state;
+  assert.equal(state.mode, 'stop'); assert.equal(state.stopCycle, null);
+  // Install only after normal startup and zoom. Playwright's fake Performance
+  // omits inherited EventTarget methods needed when document diagnostics start.
+  // The now-idle app has only one outstanding native RAF to hand over.
+  const nativeFrame = await page.evaluateHandle(() => requestAnimationFrame.bind(window));
+  const initialTime = Date.UTC(2025, 0, 1);
+  record.clock = {scope: 'interrupted STOP/EJECT only', steps: []};
+  try {
+    await bounded('Install interruption clock', page.clock.install({time: initialTime}));
+    await bounded('Pause interruption clock', page.clock.pauseAt(initialTime + 3600000));
+    await bounded('Hand over native animation frame', nativeFrame.evaluate(raf =>
+      new Promise(resolve => raf(() => raf(resolve)))));
+  } finally { await nativeFrame.dispose(); }
+  // Consume the native/fake timestamp boundary while stopped, with an actual
+  // user action invalidating the frame; no mechanical stroke is in progress.
+  await page.locator('#reset').click();
+  await advanceFrame(page, record, 'Stopped clock baseline', 32);
+}
 
 async function zoom(page, record) {
   record.phase = 'keyboard-zoom';
@@ -71,22 +120,28 @@ async function interruptedAction(page, kind, record) {
   await page.locator('#speed').focus(); await page.keyboard.press('Home');
   if (kind === 'stop') await page.locator('[data-mode="play"]').click();
   await page.locator('#eject').click();
-  await waitState(page, () => window.portableTapePlayer.snapshot().state.stopTravel > 0);
-  const during = (await snapshot(page)).state;
-  assert(during.stopTravel < 1, 'Interrupt before the press commits');
+  const partial = await advanceFrame(page, record, kind + ' partial stroke', 200), during = partial.state;
+  assert.equal(during.speed, .05);
+  assert.equal(partial.render.stopCycle, kind, 'The intended mechanical stroke must be pending');
+  assert(during.stopTravel > 0 && during.stopTravel < 1, 'Interrupt a moving stroke before the press commits');
+  assert.equal(during.door, true); assert.equal(during.media, 'loaded');
+  assert.equal(during.mode, kind === 'stop' ? 'play' : 'stop', 'The stroke must not have committed');
+  const cancelled = (state, view) => {
+    assert.equal(state.view, view);
+    assert.equal(state.stopCycle, null, kind + ': cancel the pending stroke immediately');
+    assert.equal(state.stopTravel, 0); assert.equal(state.media, 'loaded'); assert.equal(state.mode, 'stop');
+  };
   await page.locator('#spread').focus(); await page.keyboard.press('End');
-  await waitState(page, () => window.portableTapePlayer.snapshot().state.view === 'catalog');
+  cancelled((await observation(page)).state, 'catalog');
   await page.keyboard.press('Home');
-  await waitState(page, () => window.portableTapePlayer.snapshot().state.view === 'assembled');
+  cancelled((await observation(page)).state, 'assembled');
   await page.locator('#speed').focus(); await page.keyboard.press('End');
-  // Wait through a full old stroke using animation frames, then inspect observable state.
-  await page.evaluate(() => new Promise(resolve => {
-    const start = performance.now(); const tick = now => now - start >= 900 ? resolve() : requestAnimationFrame(tick); requestAnimationFrame(tick);
-  }));
-  const after = (await snapshot(page)).state;
-  assert.equal(after.stopCycle, null, kind + ': no pending stroke after reassembly');
-  assert.equal(after.stopTravel, 0); assert.equal(after.media, 'loaded'); assert.equal(after.mode, 'stop');
-  (record.interruptions ||= []).push({kind, interruptedAt: during.stopTravel, after: {mode: after.mode, media: after.media, stopTravel: after.stopTravel}});
+  // One deliberately long frame exceeds the old full stroke duration. This
+  // complements the immediate no-frame cancellation checks above.
+  const after = (await advanceFrame(page, record, kind + ' after reassembly', 900)).state;
+  cancelled(after, 'assembled');
+  (record.interruptions ||= []).push({kind, interruptedAt: during.stopTravel, partialStepMs: 200,
+    immediateCancellation: true, after: {mode: after.mode, media: after.media, stopTravel: after.stopTravel}});
 }
 
 try {
@@ -126,6 +181,7 @@ try {
       if (!feasibility) {
         record.phase = 'regressions';
         await zoom(page, record);
+        await prepareInterruptionClock(page, record);
         await interruptedAction(page, 'stop', record);
         await interruptedAction(page, 'eject', record);
       }
@@ -158,8 +214,8 @@ try {
       } finally { clearTimeout(diagnosticTimer); }
       await page?.screenshot({path: path.join(output, `${name}-${protocol}-failure.png`), timeout: 10000}).catch(() => {});
     } finally {
-      await context?.tracing.stop({path: path.join(output, `${name}-${protocol}-trace.zip`)}).catch(() => {});
-      await context?.close().catch(() => {}); await browser?.close().catch(() => {});
+      if (context) await bounded('Save trace', context.tracing.stop({path: path.join(output, `${name}-${protocol}-trace.zip`)}), 30000).catch(() => {});
+      if (browser) await bounded('Close browser', browser.close(), 30000).catch(() => {});
     }
     results.push(record);
     await writeFile(path.join(output, `${name}-${protocol}.json`), JSON.stringify(record, null, 2) + '\n');
