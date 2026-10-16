@@ -4,12 +4,12 @@
 // it still works, but it does not show the latest edit until "npm run build" has been run.
 import {readFile, lstat, readdir} from 'node:fs/promises';
 import path from 'node:path';
-import {ROOT, VIEW, hash, json, kitPath, walk, modelInputs, viewerInputs, dependencyVersions, inputChanges, haveWorkingFiles, verifyExports, serviceCatalog, fileHash, SERVICE_PARTS_CSV, TARGETS, ASSESSMENTS} from './integrity.mjs';
-import {readView} from './compare.mjs';
+import {ROOT, VIEW, json, kitPath, walk, modelInputs, viewerInputs, dependencyVersions, inputChanges, haveWorkingFiles, verifyExports, serviceCatalog, SERVICE_PARTS_CSV, TARGETS, ASSESSMENTS} from './integrity.mjs';
 import {validateServiceCatalog} from '../viewer/part-information.mjs';
 import {computerPathsIn} from './blend_file.mjs';
 import {targetProblems} from './targets.mjs';
 import {listRows, assessmentProblems, versionProblems} from './confirmation.mjs';
+import {validateView} from './view-integrity.mjs';
 
 export async function checkKit() {
   const errors = [], warnings = [], facts = {};
@@ -17,16 +17,8 @@ export async function checkKit() {
 
   let record, view;
   await rule('build record', async () => {
-    record = JSON.parse(await readFile(path.join(VIEW, 'build-record.json'), 'utf8'));
-    for (const [file, expected] of Object.entries(record.outputs)) {
-      const bytes = await readFile(path.join(VIEW, file)).catch(() => { throw Error('view/' + file + ' is missing'); });
-      if (hash(bytes) !== expected.sha256) throw Error('view/' + file + ' was changed after it was built');
-    }
-    const listed = new Set([...Object.keys(record.outputs), 'build-record.json']);
-    const extra = (await walk('../view')).map(p => p.slice('../view/'.length)).filter(p => !listed.has(p));
-    if (extra.length) throw Error('view/ holds files the build did not write: ' + extra.join(', '));
+    ({record, view} = await validateView(VIEW));
   });
-  await rule('geometry files', async () => { view = await readView(VIEW); });
   if (!view || !record) return {errors, warnings, facts};
 
   const ids = view.meta.parts.map(p => p.id), registry = (await json('config/part-ids.json')).records, config = await json('config/model.json');
@@ -98,7 +90,7 @@ export async function checkKit() {
   // Dependencies are checked on their own: what the lock file asks for, what is installed, what built the page.
   for (const [name, v] of Object.entries(await dependencyVersions())) {
     if (v.installed && v.installed !== v.locked) errors.push('dependencies: ' + name + ' ' + v.installed + ' is installed but the lock file asks for ' + v.locked + '. Run npm ci.');
-    else if (v.installed && record.dependencies && record.dependencies[name] !== v.installed) { warnings.push('The page was built with ' + name + ' ' + record.dependencies[name] + '; ' + v.installed + ' is installed now. Run npm run build:viewer.'); facts.out_of_date.push('package ' + name); }
+    if (record.dependencies?.[name] !== v.locked) { warnings.push('The page was built with ' + name + ' ' + record.dependencies?.[name] + '; the lock file asks for ' + v.locked + '. Run npm run build:viewer.'); facts.out_of_date.push('package ' + name); }
   }
 
   // With the build's working files at hand, the part list can also be checked against what Blender reported.

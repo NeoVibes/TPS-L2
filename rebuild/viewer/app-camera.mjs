@@ -5,6 +5,7 @@ import config from "../config/model.json" with { type: "json" };
 import * as T from "three";
 
 const V = (a) => new T.Vector3().fromArray(a), clamp = T.MathUtils.clamp;
+const halfFovTangent = Math.tan(16 * Math.PI / 180);
 
 /** Sets near and far planes so thin layers stay apart at the current viewing distance. */
 export function updateClipRange(camera, target) {
@@ -24,16 +25,28 @@ export function renderPixelRatio(width, height, dpr) {
 export function createCamera({ $, state, parts, stage, layout, invalidate, reducedMotion, replaceCamera }) {
   let tween = null;   // the glide in progress, if any
 
+  // Give wheel/pinch and keyboard the same scale range as the perspective
+  // camera's distance limits. Presets change this frustum, so refresh its bounds.
+  function updateZoomLimits() {
+    const {camera, orbit} = stage;
+    if (!camera.isOrthographicCamera) return;
+    const distance = (camera.top - camera.bottom) / (2 * halfFovTangent);
+    orbit.minZoom = distance / orbit.maxDistance;
+    orbit.maxZoom = distance / orbit.minDistance;
+    camera.zoom = clamp(camera.zoom, orbit.minZoom, orbit.maxZoom);
+  }
+
   function to(target, pos, duration = 0.85) {
     const { camera, orbit } = stage;
     invalidate();
     if (camera.isOrthographicCamera) {
-      const extent = V(pos).distanceTo(V(target)) * Math.tan(16 * Math.PI / 180);
+      const extent = V(pos).distanceTo(V(target)) * halfFovTangent;
       camera.top = extent;
       camera.bottom = -extent;
       camera.left = -extent * camera.aspect;
       camera.right = extent * camera.aspect;
       camera.zoom = 1;
+      updateZoomLimits();
       camera.updateProjectionMatrix();
     }
     if (reducedMotion.matches) {
@@ -58,7 +71,7 @@ export function createCamera({ $, state, parts, stage, layout, invalidate, reduc
     }
     const aspect = old.aspect || 1;
     const distance = old.position.distanceTo(orbit.target);
-    const extent = distance * Math.tan(16 * Math.PI / 180);
+    const extent = distance * halfFovTangent;
     camera = value === "orthographic" ? new T.OrthographicCamera(-extent * aspect, extent * aspect, extent, -extent, 0.1, 6e3) : new T.PerspectiveCamera(32, aspect, old.near, old.far);
     camera.aspect = aspect;
     camera.position.copy(old.position);
@@ -66,9 +79,36 @@ export function createCamera({ $, state, parts, stage, layout, invalidate, reduc
     camera.up.copy(old.up);
     replaceCamera(camera);
     orbit.object = camera;
+    updateZoomLimits();
+    camera.updateProjectionMatrix();
     orbit.update();
     $("projection").value = value;
     invalidate();
+  }
+
+  /** Handles keys on the focused canvas and reports whether the key was used. */
+  function handleKey(key) {
+    const {camera, orbit} = stage;
+    if (!camera || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "-"].includes(key)) return false;
+    tween = null;
+    const offset = camera.position.clone().sub(orbit.target);
+    if (key === "+" || key === "-") {
+      const factor = key === "+" ? 0.9 : 1.1;
+      if (camera.isOrthographicCamera) {
+        updateZoomLimits();
+        camera.zoom = clamp(camera.zoom / factor, orbit.minZoom, orbit.maxZoom);
+        camera.updateProjectionMatrix();
+      } else {
+        offset.setLength(clamp(offset.length() * factor, orbit.minDistance, orbit.maxDistance));
+        camera.position.copy(orbit.target).add(offset);
+      }
+    } else {
+      offset.applyAxisAngle(key === "ArrowLeft" || key === "ArrowRight" ? new T.Vector3(0, 1, 0) : new T.Vector3(1, 0, 0), key === "ArrowLeft" || key === "ArrowUp" ? 0.12 : -0.12);
+      camera.position.copy(orbit.target).add(offset);
+    }
+    orbit.update();
+    invalidate();
+    return true;
   }
 
   function preset(view) {
@@ -120,6 +160,6 @@ export function createCamera({ $, state, parts, stage, layout, invalidate, reduc
     if (t === 1) tween = null;
   }
 
-  return { to, setProjection, preset, fitExploded, controlView, step, stop: () => { tween = null; }, get moving() { return Boolean(tween); },
+  return { to, setProjection, preset, fitExploded, controlView, handleKey, step, stop: () => { tween = null; }, get moving() { return Boolean(tween); },
     updateClipRange: () => updateClipRange(stage.camera, stage.orbit.target) };
 }

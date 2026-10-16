@@ -25,8 +25,14 @@ export async function readBlend(file) {
   return Buffer.concat(out);
 }
 
-/** Folder paths from the computer that saved the file (a home folder and what follows). Empty when there are none. */
+/** Home or temporary folder paths from the computer that saved the file. Empty when there are none. */
 export async function computerPathsIn(file) {
   const text = (await readBlend(file)).toString('latin1');
-  return [...new Set([...text.matchAll(/(?:\/Users\/|\/home\/|[A-Z]:\\Users\\)[\x21-\x7e]{1,40}/g)].map(m => m[0]))];
+  // File-browser folders are stored as printable, NUL-terminated strings. Temporary profiles can
+  // identify a user, tool or session just as home folders do, including macOS's per-user temp root.
+  const folders = /(?:\/Users\/|\/home\/|[A-Z]:[\\/]Users[\\/]|\/(?:private\/)?(?:tmp|var\/tmp|var\/folders)\/|\/run\/user\/|[A-Z]:[\\/](?:Windows[\\/])?(?:Temp|tmp)[\\/])[\x20-\x7e]*/gi;
+  const paths = [...text.matchAll(folders)].map(match => match[0].trimEnd());
+  // The publishing cleaner uses this exact neutral folder. Do not exempt arbitrary descendants,
+  // similar prefixes or parent traversals, which could still expose machine-specific information.
+  return [...new Set(paths.filter(folder => !/^\/(?:private\/)?tmp\/portable-tape-player\/?$/.test(folder)))];
 }

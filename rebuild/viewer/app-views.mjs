@@ -3,7 +3,7 @@
 // It is given the other controllers it calls (camera, transport, packages) and the few things it
 // needs from the tour and the inspector when a view changes.
 import * as T from "three";
-import {cancelStopCycle} from "./operating-state.mjs";
+import {cancelStopCycle, cancelAutoStop} from "./operating-state.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
 
 const descriptions = {
@@ -80,12 +80,33 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("partCount").textContent = model ? model.inventory.physicalIds.length + " device parts · " + model.inventory.presentationOnlyIds.length + " display objects" : "Loading model";
     updateVisibility();
   }
+  // Cancel immediately: the frame loop does not advance mechanical state while
+  // separated, and a slider can separate and reassemble before another frame.
+  function prepareViewChange(fromTour = false) {
+    cancelStopCycle(state);
+    cancelAutoStop(state);
+    state.ejectNeedsOpenCover = false;
+    transport.cancelControlHold();
+    if (!fromTour) clearTour();
+  }
+  function setSeparation(value) {
+    const {camera, orbit} = stage;
+    if (!camera || !Number.isFinite(value)) return;
+    value = Math.max(0, Math.min(1, value));
+    prepareViewChange();
+    const radial = state.view === "exploded";
+    state.radial = radial ? value : 0;
+    state.explode = radial ? 0 : value;
+    state.view = value ? radial ? "exploded" : "catalog" : "assembled";
+    state.mode = "stop";
+    if (value > 0.08 && camera.position.distanceTo(orbit.target) < 800) cam.preset(state.view);
+    if (value === 0) cam.preset("assembled");
+    sync();
+  }
   function setView(view, fromTour = false) {
     if (!stage.camera) return;
-    cancelStopCycle(state);
-    transport.cancelControlHold();
+    prepareViewChange(fromTour);
     $("controlCamera").value = "";
-    if (!fromTour) clearTour();
     state.view = view;
     $("audioControls").open = view === "assembled";
     clearInspectionContext();
@@ -184,5 +205,5 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     onExterior();
   }
 
-  return { setUIMode, applySection, sync, setView, focusCategory, updateVisibility, controlCloseup, setExterior };
+  return { setUIMode, applySection, sync, setView, setSeparation, focusCategory, updateVisibility, controlCloseup, setExterior };
 }

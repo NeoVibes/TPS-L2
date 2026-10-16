@@ -2,9 +2,8 @@
 // The work itself is in the app-*.mjs modules beside this file; shared state lives in app-core.mjs.
 import config from "../config/model.json" with { type: "json" };
 import {copyTarget} from "./part-information.mjs";
-import * as T from "three";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
-import {motionCueEnabled, $, state, model, camera, orbit, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
+import {motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
 for (const b of document.querySelectorAll("[data-view]")) b.onclick = () => views.setView(b.dataset.view);
@@ -32,20 +31,7 @@ $("pause").onclick = () => {
   views.sync();
 };
 $("reset").onclick = reset;
-$("spread").oninput = (e) => {
-  if (!camera) return;
-  transport.cancelControlHold();
-  tour.clear();
-  const value = +e.target.value / 100;
-  const radial = state.view === "exploded";
-  state.radial = radial ? value : 0;
-  state.explode = radial ? 0 : value;
-  state.view = value ? radial ? "exploded" : "catalog" : "assembled";
-  state.mode = "stop";
-  if (value > 0.08 && camera.position.distanceTo(orbit.target) < 800) cam.preset(state.view);
-  if (value === 0) cam.preset("assembled");
-  views.sync();
-};
+$("spread").oninput = (e) => views.setSeparation(+e.target.value / 100);
 $("motionCues").onchange = (e) => {
   motionCueEnabled.value = e.target.checked ? 1 : 0;
   invalidate();
@@ -216,16 +202,7 @@ $("canvas").addEventListener("webglcontextlost", (e) => {
   $("loadingRetry").hidden = false;
 });
 $("canvas").addEventListener("keydown", (e) => {
-  if (!camera) return;
-  if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "-"].includes(e.key)) {
-    e.preventDefault();
-    const offset = camera.position.clone().sub(orbit.target);
-    if (e.key === "+") offset.multiplyScalar(0.9);
-    else if (e.key === "-") offset.multiplyScalar(1.1);
-    else offset.applyAxisAngle(e.key === "ArrowLeft" || e.key === "ArrowRight" ? new T.Vector3(0, 1, 0) : new T.Vector3(1, 0, 0), e.key === "ArrowLeft" || e.key === "ArrowUp" ? 0.12 : -0.12);
-    camera.position.copy(orbit.target).add(offset);
-    invalidate();
-  }
+  if (cam.handleKey(e.key)) e.preventDefault();
 });
 $("tourSeek").max = TOUR_SECONDS;
 $("tourDuration").textContent = TOUR_SECONDS + "-second tour ";

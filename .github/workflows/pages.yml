@@ -16,6 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.19.0'
+      - name: Validate committed bytes without rebuilding
+        working-directory: rebuild
+        run: |
+          npm ci
+          npm run check
+          npm run test:fast
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

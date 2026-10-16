@@ -1,6 +1,6 @@
 # Targets
 
-Version 0.2.5. Written by the build from `edit/targets.json`; edit that file, not this one.
+Version 0.2.6. Written by the build from `edit/targets.json`; edit that file, not this one.
 
 **These are the numbers the model is meant to match, and how the model compares today.** Most come from photographs, videos, Sony's service manual and published standards. A target is not a measurement of a real unit unless its class is `measured`. Where the model fails a target, the model is wrong or the target is in doubt; both are shown rather than hidden.
 

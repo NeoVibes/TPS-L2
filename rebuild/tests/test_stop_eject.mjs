@@ -20,10 +20,5 @@ for(const mode of ['play','ff','rew'])for(const speed of [.05,.55,1])for(const v
 }
 const a=createOperatingState({mode:'play',speed:1,tapePosition:.5}),b=createOperatingState({mode:'play',speed:1,tapePosition:.5});act(a,'stop-eject');act(b,'stop-eject');for(let i=0;i<60;i++)advanceOperating(a,.01);advanceOperating(b,.6);assert(Math.abs(a.tapePosition-b.tapePosition)<1e-12);assert.equal(a.mode,b.mode);
 for(const view of ['exploded','catalog']){const s=createOperatingState({view});act(s,'stop-eject');assert.equal(s.stopCycle,null);}
-const model=JSON.parse(fs.readFileSync('build/exports/model.json'));
-for(const id of ['CTL-04','STP-002']){const p=model.parts.find(p=>p.id===id);assert(Math.abs(p.poses.eject[0][0]-p.poses.stop[0][0]+1)<.00001);}
-const spring=model.parts.find(p=>p.id==='STP-020');assert(spring.meshes.every(m=>m.deformation));assert.equal(spring.meshes[0].deformation.targets[0].weights.eject,1);
-const lid=model.parts.find(p=>p.id==='EXT-040');assert(lid.meshes.every(m=>model.materials[m.m].name==='Housing study • plain muted blue'));
-const fixed=model.parts.find(p=>p.id==='STP-003');assert.deepEqual(fixed.poses.stop,fixed.poses.eject,'Fixed EJECT mounting must stay stationary while its child rocker moves');
 const paths=['viewer/app.js','viewer/operating-state.mjs','viewer/native-deformation.mjs','tests/test_stop_eject.mjs'];
-fs.writeFileSync('build/test-results/stop-eject-tests.json',JSON.stringify({passed:true,nativeSha256:model.source_sha256,cases,sourceHashes:Object.fromEntries(paths.map(p=>[p,createHash('sha256').update(fs.readFileSync(p)).digest('hex')])),scope:'Press-before-disengage; release stroke; separate eject with manual lid opening; repeated clicks; pause; reset; speed/frame independence; separation; native-backed cap/slide/spring; fully blue door material.'},null,2)+'\n');console.log('STOP/EJECT PASS',cases);
+fs.writeFileSync('build/test-results/stop-eject-tests.json',JSON.stringify({passed:true,cases,sourceHashes:Object.fromEntries(paths.map(p=>[p,createHash('sha256').update(fs.readFileSync(p)).digest('hex')])),scope:'Blender-free behavior: press-before-disengage; release stroke; separate eject with manual lid opening; repeated clicks; pause; reset; speed/frame independence; separation.'},null,2)+'\n');console.log('STOP/EJECT PASS',cases);
