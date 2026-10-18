@@ -57,3 +57,18 @@ for (const form of ['confirmation.yml', 'part.yml']) {
 }
 assert.match(readFileSync(path.join(VIEW, '../publish/github/confirmation.yml'), 'utf8'), /- Not sure\n/);
 console.log('Parts list view:', rows.length, 'rows; filters, labels and submissions behave as specified');
+
+// Finder counts include mapped components before pagination, use all words, and never duplicate IDs.
+const {displayName, finderResults} = await import('../viewer/part-information.mjs');
+const {serviceCatalog} = await import('../tools/integrity.mjs');
+const parts = globalThis.portableTapePlayerData.model.meta.parts, services = await serviceCatalog();
+for (const separator of [' • ', ' · ', ' — ', ': ']) assert.equal(displayName({id:'BAY-052', name:'BAY-052'+separator+'Capstan'}), 'Capstan');
+assert.equal(displayName({id:'BAY-052',name:'BAY-0520 · Capstan'}), 'BAY-0520 · Capstan');
+assert.equal(displayName({id:'BAY-052',name:'Capstan BAY-052'}), 'Capstan BAY-052');
+assert.deepEqual(finderResults(parts, services, '  pinch   ROLLER  '), finderResults(parts, services, 'pinch roller'));
+const motorMatches = finderResults(parts, services, '8-835-008-11');
+assert.equal(motorMatches.components.length, 31);
+assert.equal(new Set(motorMatches.components.map(p=>p.id)).size,31);
+assert.equal(finderResults([...parts,parts[0]],services,'').components.length,parts.length);
+assert.equal(finderResults(parts, services, '').services.length,0);
+assert.equal(finderResults(parts, services, 'nonexistent -xyz').components.length,0);

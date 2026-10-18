@@ -3,7 +3,7 @@
 // It owns the service catalogue and the selection. It is given the camera, views and packages
 // controllers, and three things from the core: clearTour, reset and updateParts.
 import config from "../config/model.json" with { type: "json" };
-import {partSearchText, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
+import {displayName, finderResults, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
 import {fitBoxDistance} from "./fit-camera.mjs";
 import {parseServiceCatalog} from "./service-catalog.mjs";
 import serviceCatalogCsv from "../../edit/service-manual-parts.csv";
@@ -186,7 +186,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
         state.subsystem = "all";
         $("subsystem").value = "all";
       }
-      $("partName").textContent = part.data.name;
+      $("partName").textContent = displayName(part.data);
       $("partId").textContent = part.data.id;
       refreshPartInformation(part);
       $("copyPartLink").textContent = copyTarget(part.data.id, location, versionSuffix()).label;
@@ -209,82 +209,66 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const dir = camera.position.clone().sub(orbit.target).normalize();
     cam.to(center.toArray(), center.clone().addScaledVector(dir, Math.max(20, size * 1.7)).toArray());
   }
-  function search() {
-    const query = $("search").value.toLowerCase(), matches = parts.filter((p) => partSearchText(p.data).toLowerCase().includes(query)), services = serviceSearchEntries(serviceCatalog, query);
-    $("searchCount").textContent = matches.length + " components · " + services.length + " service entries";
-    $("results").replaceChildren();
-    for (const entry of services.slice(0, 60)) {
-      const active = entry.partIds.filter((id) => parts.some((p) => p.data.id === id)), b = document.createElement("button");
-      b.className = "part-result";
-      b.type = "button";
-      b.textContent = serviceLabel(entry) + " · " + (active.length ? active.length + " modeled component" + (active.length === 1 ? "" : "s") : "No verified model mapping");
-      b.disabled = !active.length;
-      b.onclick = () => {
-        focusServiceEntry(entry);
-        $("catalog").open = false;
-      };
-      $("results").append(b);
+  let componentLimit = 60, serviceLimit = 60, informationOnly = false;
+  function search(append = false) {
+    if (append !== true) {
+      componentLimit = serviceLimit = 60;
+      $("results").replaceChildren();
+      $("serviceResults").replaceChildren();
     }
-    for (const p of matches.slice(0, 60)) {
+    const {components, services} = finderResults(stage.model?.parts || [], serviceCatalog, $("search").value);
+    const renderGroup = (items, limit, listId, countId, moreId, row, noun) => {
+      const list = $(listId), shown = Math.min(limit, items.length), exhausted = shown === items.length;
+      for (const item of items.slice(list.children.length, shown)) list.append(row(item));
+      $(countId).textContent = `Showing ${shown} of ${items.length} ${noun}`;
+      const more = $(moreId);
+      more.hidden = items.length <= 60;
+      more.setAttribute("aria-disabled", String(exhausted));
+      more.textContent = exhausted ? `All ${items.length} shown` : "Show more " + noun;
+      more.onclick = () => {
+        if (exhausted) return;
+        if (moreId === "moreComponents") componentLimit += 60; else serviceLimit += 60;
+        search(true);
+      };
+    };
+    renderGroup(components, componentLimit, "results", "searchCount", "moreComponents", data => {
       const b = document.createElement("button");
-      b.className = "part-result";
-      b.type = "button";
-      b.textContent = p.data.id + " · " + p.data.name;
+      b.type = "button"; b.className = "part-result";
+      b.textContent = data.id + " · " + displayName(data);
       b.onclick = () => {
-        clearTour();
-        select(p);
-        focusPart();
+        if (informationOnly) showInformationOnly(data);
+        else { clearTour(); select(parts.find(p => p.data.id === data.id)); focusPart(); views.sync(); }
         $("catalog").open = false;
-        views.sync();
       };
-      $("results").append(b);
-    }
-    if (services.length > 60 || matches.length > 60) {
-      const hint = document.createElement("p");
-      hint.textContent = "Showing the first 60 matches in each list. Refine your search to see more.";
-      $("results").append(hint);
-    }
+      return b;
+    }, "components");
+    renderGroup(services, serviceLimit, "serviceResults", "serviceCount", "moreServices", entry => {
+      const active = entry.partIds.filter(id => stage.model?.parts.some(p => p.id === id));
+      const b = document.createElement(informationOnly ? "p" : "button");
+      b.className = "part-result";
+      b.textContent = serviceLabel(entry) + " · " + (active.length ? "Model IDs: " + active.join(", ") : "No verified model mapping");
+      if (!informationOnly) { b.type = "button"; b.disabled = !active.length; b.onclick = () => { focusServiceEntry(entry); $("catalog").open = false; }; }
+      return b;
+    }, "service entries");
+    $("searchEmpty").hidden = Boolean(components.length || services.length);
   }
+  $("clearSearch").onclick = () => { $("search").value = ""; search(); $("search").focus(); };
 
   /** Shows a part's information without the 3D view. */
   function showInformationOnly(data) {
     $("inspector").hidden = false;
     $("partId").textContent = data.id;
-    $("partName").textContent = data.name;
+    $("partName").textContent = displayName(data);
     refreshPartInformation({ data });
     $("focus").disabled = true;
     $("isolate").disabled = true;
     history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(data.id));
   }
 
-  /** The search for when the 3D view could not start: results open the part's information only. */
-  function fallbackSearch() {
-    const { model } = stage;
-    const query = $("search").value.toLowerCase(), matches = model.parts.filter((p) => partSearchText(p).toLowerCase().includes(query)), services = serviceSearchEntries(serviceCatalog, query);
-    $("searchCount").textContent = matches.length + " components · " + services.length + " service entries · graphics unavailable";
-    $("results").replaceChildren();
-    for (const entry of services.slice(0, 60)) {
-      const summary = document.createElement("p");
-      summary.textContent = serviceLabel(entry) + " · " + (entry.partIds.length ? "Model IDs: " + entry.partIds.join(", ") : "No verified model mapping");
-      $("results").append(summary);
-      for (const id of entry.partIds) {
-        const part = model.parts.find((p) => p.id === id);
-        if (part && !matches.includes(part)) matches.push(part);
-      }
-    }
-    for (const data of matches.slice(0, 60)) {
-      const b = document.createElement("button");
-      b.className = "part-result";
-      b.textContent = data.id + " · " + data.name;
-      b.onclick = () => {
-        showInformationOnly(data);
-      };
-      $("results").append(b);
-    }
-  }
   function useFallbackSearch() {
-    $("search").oninput = fallbackSearch;
-    fallbackSearch();
+    informationOnly = true;
+    $("search").oninput = search;
+    search();
   }
 
   return { clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };

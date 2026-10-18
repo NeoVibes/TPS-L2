@@ -32,11 +32,11 @@ try {
       expect(await text('loadingTitle') === 'The viewer could not start', label + 'the page says the 3D view could not start');
       expect(/graphics unavailable/.test(await text('searchCount')), label + 'the component search still answers');
     }
-    expect((await filter('', '', '')).startsWith(lines + ' of ' + lines + ' rows'), label + 'the list holds every row of master-parts.csv (' + lines + ')');
-    const modelled = Number((await filter('', 'modelled', '')).split(' ')[0]), missing = Number((await filter('', 'not modelled', '')).split(' ')[0]);
+    expect((await filter('', '', '')).startsWith('Showing 60 of ' + lines + ' rows'), label + 'the list holds every row of master-parts.csv (' + lines + ')');
+    const modelled = Number((await filter('', 'modelled', '')).split(' ')[3]), missing = Number((await filter('', 'not modelled', '')).split(' ')[3]);
     expect(modelled + missing === lines && missing > 0, label + 'status filter: ' + modelled + ' modelled, ' + missing + ' not modelled');
-    expect(Number((await filter('', '', '0')).split(' ')[0]) === missing, label + 'level 0 is exactly the unmodelled entries');
-    expect(Number((await filter('', '', '1')).split(' ')[0]) + Number((await filter('', '', '0')).split(' ')[0]) <= lines, label + 'level filter');
+    expect(Number((await filter('', '', '0')).split(' ')[3]) === missing, label + 'level 0 is exactly the unmodelled entries');
+    expect(Number((await filter('', '', '1')).split(' ')[3]) + Number((await filter('', '', '0')).split(' ')[3]) <= lines, label + 'level filter');
 
     // An unmodelled entry: its detail and the report action.
     await filter('', 'not modelled', ''); await clickRow(0); await wait(150);
@@ -49,7 +49,7 @@ try {
     else expect(report.startsWith('New or corrected part') && /hide serial numbers/.test(report) && !(await E(`document.getElementById('masterSubmission').hidden`)), label + 'with no repository set, the submission text is offered for copying');
 
     // A modelled part.
-    expect((await filter('BAY-052', '', '')).startsWith('1 of'), label + 'filtering by part ID finds one row');
+    expect((await filter('BAY-052', '', '')).startsWith('Showing 1 of 1'), label + 'filtering by part ID finds one row');
     await clickRow(0); await wait(graphics ? 900 : 200);
     expect(await text('partId') === 'BAY-052', label + 'picking the row opens the part');
     const block = await text('partConfirmation');
@@ -60,7 +60,7 @@ try {
     expect((await E('location.hash')).includes('part=BAY-052'), label + 'the address still carries the part link');
 
     // A cassette part has a row for each cassette.
-    expect((await filter('MEDIA-001', '', '')).startsWith('2 of'), label + 'a cassette part has two rows');
+    expect((await filter('MEDIA-001', '', '')).startsWith('Showing 2 of 2'), label + 'a cassette part has two rows');
     const cassette = await rows();
     expect(cassette.some(r => r.includes('original cassette')) && cassette.some(r => r.includes('detailed cassette')), label + 'each row says which cassette it is');
     await clickRow(cassette.findIndex(r => r.includes('original cassette'))); await wait(graphics ? 900 : 200);

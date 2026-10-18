@@ -30,3 +30,23 @@ export function validateServiceCatalog(catalog,issuedIds){
  return true;
 }
 
+
+// Strip only this exact ID followed by a label separator; identifiers inside names stay intact.
+export function displayName(part) {
+ const name = String(part.name || '');
+ if (!part.id || !name.startsWith(part.id)) return name;
+ const tail = name.slice(part.id.length);
+ return /^\s*[•·:—–-]\s*/.test(tail) ? tail.replace(/^\s*[•·:—–-]\s*/, '') : name;
+}
+export function finderResults(parts, catalog, query = '') {
+ const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+ const services = serviceSearchEntries(catalog, query);
+ const mapped = new Set(services.flatMap(entry => entry.partIds));
+ const seen = new Set();
+ const components = parts.filter(part => {
+  const text = partSearchText(part).toLowerCase();
+  if (seen.has(part.id) || !(mapped.has(part.id) || words.every(word => text.includes(word)))) return false;
+  seen.add(part.id); return true;
+ });
+ return {components, services};
+}
