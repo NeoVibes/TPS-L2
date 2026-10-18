@@ -41,7 +41,7 @@ try {
   for (const a of angles) await step('angle ' + a, click('[data-angle="' + a + '"]'));
   const closeups = await E(`[...document.getElementById('controlCamera').options].map(o=>o.value)`);
   for (const c of closeups.slice(0, 4)) await step('close-up ' + c, set('controlCamera', c));
-  await step('search motor', set('search', 'motor')); await step('pick first result', click('.part-result'), 500);
+  await step('search motor', set('search', 'motor')); await step('pick first result', click('#serviceResults .part-result'), 500);
   await step('focus part', click('#focus')); await step('isolate', click('#isolate')); await step('isolate off', click('#isolate'));
   await step('show all', click('#clearContext')); await step('close inspector', click('#closeInspector'));
   await step('inspect cassette', click('#inspectCassette'), 700);

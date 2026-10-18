@@ -88,3 +88,12 @@ test('Every rendered frame refreshes diagnostics while visible tape and FPS text
   assert.equal(observation.draws, 30);
   assert.equal(observation.triangles, 7000);
 });
+
+
+test('A lost graphics context stops the real render callback', () => {
+  const loop = frameLoop();
+  loop.context.state.graphicsUnavailable = true;
+  loop.tick(1000);
+  assert.equal(loop.renders, 0);
+  assert.equal(loop.observation(), null);
+});

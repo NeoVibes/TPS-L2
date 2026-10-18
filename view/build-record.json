@@ -34,7 +34,7 @@
     "rebuild/tools/confirmation.mjs": "29f0467b5eecaeb3faaf0ba80d1f6c8bd7cbec15d93e8f0df3c05b17d868fa40",
     "rebuild/tools/targets.mjs": "7d660efee9d094d697f95b1295a4679867794f0e9738ade47813807e8a32f820",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
-    "rebuild/viewer/app-core.mjs": "f017d6098fc6251f0dbb2500efeb23aba4d55207aeb304cc6c327c424ae0bba0",
+    "rebuild/viewer/app-core.mjs": "ac7f424fb27f8939879f564940b08236737fbad986ba4d8003ae652e05d83213",
     "rebuild/viewer/app-inspect.mjs": "ea1b7a497c919695bb024acf6a68a426c629416589369b7e5a90d1f295f9c4eb",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "e29b74ba80d422457c5771a5050d072895904847f66baa5edca0360639833bb2",
@@ -43,7 +43,7 @@
     "rebuild/viewer/app-tour.mjs": "1a4d61086052284deefb96633ae357f89baef254b24cdaaa174df5c406e36dba",
     "rebuild/viewer/app-transport.mjs": "6fd58d2b71bd49f64f099e29cf2f85a10a484c944579ed1bc0f0728b1dbabc11",
     "rebuild/viewer/app-views.mjs": "2bb81cd34c7c771de03178f17e31e969bf1845814e56008496db2ed7c4d60697",
-    "rebuild/viewer/app.js": "c31544beadb778065bdf3a17448c3e0e5c51553c27374181349684d60e823763",
+    "rebuild/viewer/app.js": "4a931ee0da05209385ad8e0d6d07bcf3fd259b28b724ac4a52c7c584e3b0dd09",
     "rebuild/viewer/audio.mjs": "f6b286ec19dd05bebeddcddd2a0d045f57814910cba8d0192fea7afb14248e2d",
     "rebuild/viewer/cassette-materials.mjs": "908ed5f2ea446e6c3124c6c9e395b8dc44ecfb33b7557a8251a8441bc0586769",
     "rebuild/viewer/control-pointers.mjs": "b3e3c69d64713322a65ca303b1507d1f9dccbf91d7c9e43a5cc6d1cb9130c0d1",
@@ -108,8 +108,8 @@
       "bytes": 2331593
     },
     "index.html": {
-      "sha256": "8dcd0ae23b67e1e14ca0f5e05384df1935731b7e6711c9732ba48938099e3098",
-      "bytes": 898207
+      "sha256": "a4aadc997a0148979ce5c945993f4878c89d40f0db3cb34bb49c4148ea3cf039",
+      "bytes": 898211
     },
     "master-parts.csv": {
       "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",

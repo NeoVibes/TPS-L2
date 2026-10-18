@@ -1,10 +1,9 @@
 // The page's start-up: wires every button, slider and key to its function, then starts the viewer.
 // The work itself is in the app-*.mjs modules beside this file; shared state lives in app-core.mjs.
-import {GRAPHICS_CONTROLS} from "./app-views.mjs";
 import config from "../config/model.json" with { type: "json" };
 import {copyTarget} from "./part-information.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
-import {markGraphicsUnavailable, saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
+import {GRAPHICS_CONTROLS, markGraphicsUnavailable, saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
 for (const b of document.querySelectorAll("button[data-view]")) b.onclick = () => views.setView(b.dataset.view);

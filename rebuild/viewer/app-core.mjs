@@ -30,7 +30,7 @@ import {createOperatingState, advanceOperating, resetOperating, transportInterva
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
 import {createTransport} from "./app-transport.mjs";
-import {createViews, syncUnavailable} from "./app-views.mjs";
+import {createViews, syncUnavailable, GRAPHICS_CONTROLS} from "./app-views.mjs";
 import {createInspect, expandVisiblePartBounds} from "./app-inspect.mjs";
 import {createPackages} from "./app-packages.mjs";
 import {createCamera, renderPixelRatio} from "./app-camera.mjs";
@@ -40,6 +40,7 @@ import {readPreferences, savePreferences} from "./preferences.mjs";
 import {createTheme} from "./app-theme.mjs";
 
 const preferences = readPreferences();
+export {GRAPHICS_CONTROLS};
 export const motionCueEnabled = { value: Number(preferences.motionCues) };
 const indicatorMaterials = [];
 export const $ = (id) => document.getElementById(id);
@@ -281,6 +282,23 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
     p.cueTravel.value = beltTravel(p.data.belt, driver.phase);
   }
 }
+export function markGraphicsUnavailable(message) {
+  transport.cancelControlHold();
+  Object.assign(state, {graphicsUnavailable:true, mode:"stop", paused:true, audioEnabled:false, tour:-1, stopCycle:null});
+  cam.stop();
+  if (orbit) orbit.enabled = false;
+  audio.setVisibility(false);
+  $("loadingText").textContent = message + " Use the catalog, or reload to try 3D again.";
+  $("catalog").open = Boolean(model);
+  if (model) {
+    views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
+    inspect.useFallbackSearch();
+  } else {
+    $("masterList").open = true;
+    $("searchCount").textContent = "Component finder unavailable: model metadata did not load.";
+  }
+  syncUnavailable($, state, model);
+}
 function animate(now) {
   if (state.graphicsUnavailable) return;
   requestAnimationFrame(animate);
@@ -356,23 +374,6 @@ function appearanceSnapshot() {
     environment: {id: scene.environment?.uuid, intensity: scene.environmentIntensity, rotation: scene.environmentRotation.toArray()},
     audio: {...audio.status}
   };
-}
-export function markGraphicsUnavailable(message) {
-  transport.cancelControlHold();
-  Object.assign(state, {graphicsUnavailable:true, mode:"stop", paused:true, audioEnabled:false, tour:-1, stopCycle:null});
-  cam.stop();
-  if (orbit) orbit.enabled = false;
-  audio.setVisibility(false);
-  $("loadingText").textContent = message + " Use the catalog, or reload to try 3D again.";
-  $("catalog").open = Boolean(model);
-  if (model) {
-    views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
-    inspect.useFallbackSearch();
-  } else {
-    $("masterList").open = true;
-    $("searchCount").textContent = "Component finder unavailable: model metadata did not load.";
-  }
-  syncUnavailable($, state, model);
 }
 export async function init() {
   try {

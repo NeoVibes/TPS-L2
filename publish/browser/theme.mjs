@@ -160,7 +160,7 @@ export async function themeAccessibility({page, record, output}) {
   record.phase = 'theme-accessibility';
   await page.locator('[data-workmode="inspect"]').click();
   if (!await page.locator('#catalog').evaluate(node => node.open)) await page.locator('#catalog > summary').click();
-  await page.locator('#search').fill('EXT-030'); await page.locator('#results .part-result').last().click();
+  await page.locator('#search').fill('EXT-030'); await page.locator('#results .part-result').filter({hasText: /^EXT-030 ·/}).click();
   await page.locator('#homeCamera').click();
   await page.waitForFunction(() => ['exterior', 'mechanism', 'electronics', 'cassette'].every(name => window.portableTapePlayer.snapshot().loaded.includes(name)));
   for (const theme of ['light', 'dark']) {
@@ -195,7 +195,7 @@ export async function themeRuntime({page, record, output, advanceFrame}) {
   await page.locator('[data-workmode="inspect"]').click();
   if (!await page.locator('#catalog').evaluate(node => node.open)) await page.locator('#catalog > summary').click();
   await page.locator('#search').fill('EXT-030');
-  await page.locator('#results .part-result').last().click();
+  await page.locator('#results .part-result').filter({hasText: /^EXT-030 ·/}).click();
   await page.locator('#homeCamera').click();
   await page.locator('#canvas').focus(); await page.keyboard.press('ArrowRight');
   await page.locator('#tapePosition').focus(); await page.keyboard.press('Home');

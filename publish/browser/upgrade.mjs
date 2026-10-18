@@ -4,7 +4,7 @@ import path from 'node:path';
 const ready = page => page.waitForFunction(()=>window.portableTapePlayer?.snapshot().ready,null,{timeout:90000});
 async function select(page,id) {
  await page.locator('#catalog').evaluate(e=>e.open=true);await page.locator('#search').fill(id);
- await page.locator('#results button').first().click();
+ await page.locator('#results button').filter({hasText:new RegExp('^'+id+' ·')}).click();
 }
 export async function interactionChecks({browser,url,record,output}) {
  const page=await browser.newPage({viewport:{width:390,height:1000},reducedMotion:'reduce'});
