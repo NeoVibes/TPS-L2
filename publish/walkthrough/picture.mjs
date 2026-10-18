@@ -14,6 +14,8 @@ try {
   const page = await browser.page(), E = page.evaluate;
   await page.goto(pathToFileURL(path.join(kit, 'view/index.html')).href);
   await page.waitFor('window.portableTapePlayer && window.portableTapePlayer.snapshot().ready', 90);
+  // Published artwork uses the original light backdrop regardless of the host preference.
+  await E(`(()=>{const e=document.getElementById('theme-select');e.value='light';e.dispatchEvent(new Event('change',{bubbles:true}))})()`);
   await browser.sleep(1500);
   const box = await E(`(()=>{const r=document.getElementById('canvas').getBoundingClientRect();return {x:r.left,y:r.top,w:r.width,h:r.height}})()`);
   // The middle of the 3D view, where the model stands, clear of the buttons in its corners.

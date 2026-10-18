@@ -1,6 +1,6 @@
 {
   "what": "Build record for this folder. Written by \"npm run build\" in rebuild/; checked by \"npm test\".",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "built_with": {
     "blender": "5.2.1",
     "node": "v24.19.0"
@@ -26,23 +26,24 @@
     "edit/service-manual-parts.csv": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a",
     "edit/targets.json": "30f183511d9eba8c6c6cb41332c838db26bd6ea835884f7a03f1ad0fdbeb17cb",
     "rebuild/config/model.json": "3f91b99b866b536514e1a7e7de27d201c0d5e5907a313b0bf9299a0b7b9213ce",
-    "rebuild/config/release.json": "4284f3b53ebe128c90e2b2cccab912361481d9f4ba8bcd6362435cf06cff1aff",
-    "rebuild/package-lock.json": "6e25d5cf1dd75b68048abe11a80865177b6d8060b9b0e5adf6ca18ae923a3e91",
-    "rebuild/package.json": "f395cef0ed1b7258d78790b483d35b44ea1aeddc620074962b3a0fd1215b9559",
-    "rebuild/tools/build_viewer.mjs": "b74eddfa9a246ed6a597cd856123b1e57f0969113a831e0b02cf77657356dfde",
+    "rebuild/config/release.json": "94e1624802cab00ef78e40c5aa8f275161098e146124e3f3f8660414c374de1c",
+    "rebuild/package-lock.json": "cee2e90842695956ec304d3be6d24d4f393eaf64b0801b68c461d23beae27491",
+    "rebuild/package.json": "ccfbd57aa5ad2df8ab39e03996f65b793ee8ade590a8e4272be31c83f3ee52a5",
+    "rebuild/tools/build_viewer.mjs": "7b116ac600de19f197fc14e649ed440f41ce184eb55791a474806d8bde97a1b0",
     "rebuild/tools/compare.mjs": "83f13d1ce0f72b6dd99cc300a1c8c45b7bd9cdbb107e89837d51dc75040bd822",
     "rebuild/tools/confirmation.mjs": "29f0467b5eecaeb3faaf0ba80d1f6c8bd7cbec15d93e8f0df3c05b17d868fa40",
     "rebuild/tools/targets.mjs": "7d660efee9d094d697f95b1295a4679867794f0e9738ade47813807e8a32f820",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
-    "rebuild/viewer/app-core.mjs": "3b8c75c55a2b7336419a2ae4ce3c87719953203e45f797aa836430c0e97cb1aa",
+    "rebuild/viewer/app-core.mjs": "9df98852c5475b9e3f3829d2b21cc83477fcb437ab4a6509d5e07a496e07f2a4",
     "rebuild/viewer/app-inspect.mjs": "6f8d01a86a9a202e572bbe802a009eecb9e8d26a485184948b1333eecd714168",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "ac5013697d65c4943fcb085f112f609ca6654901e3d05d91ed3d1cc4af1296fb",
     "rebuild/viewer/app-packages.mjs": "0feb0dacbe9dd656a670054a344feb05d785fe81168044525132bd5754334941",
+    "rebuild/viewer/app-theme.mjs": "263c39d3a044b7dd9a3572a5f4599fc02469b37caff277413011867d3e6a6731",
     "rebuild/viewer/app-tour.mjs": "1a4d61086052284deefb96633ae357f89baef254b24cdaaa174df5c406e36dba",
     "rebuild/viewer/app-transport.mjs": "d0d6747e6e4f1b19087ea0bdd9de00e8c7eb37f72f988bcd7ca9ba6154fbee5d",
-    "rebuild/viewer/app-views.mjs": "48750e9567ab452403381966725b34efc62876cedd313a2487313618e20e8952",
-    "rebuild/viewer/app.js": "203139a5f69525aa8a2ad848e1f4349079f2b306dd96ff2320192e5a6bf8fbe0",
+    "rebuild/viewer/app-views.mjs": "bd3dae5c85d668c3f3459acc8094a23bbb8233dd0081f392fba52d63f6def844",
+    "rebuild/viewer/app.js": "c172101330566e18d7f51560d8da4bcc364b0ef506310fae90a8132a1dcd4e2d",
     "rebuild/viewer/audio.mjs": "f6b286ec19dd05bebeddcddd2a0d045f57814910cba8d0192fea7afb14248e2d",
     "rebuild/viewer/cassette-materials.mjs": "908ed5f2ea446e6c3124c6c9e395b8dc44ecfb33b7557a8251a8441bc0586769",
     "rebuild/viewer/control-pointers.mjs": "b3e3c69d64713322a65ca303b1507d1f9dccbf91d7c9e43a5cc6d1cb9130c0d1",
@@ -61,12 +62,13 @@
     "rebuild/viewer/operating-state.mjs": "1b13560713184fb84865b67104ed57ba75e61e337ca0192418a63c7039cba71d",
     "rebuild/viewer/operation-indicator.mjs": "8f2aaef6a1269633d2f8215d754a63eea2e4fd2081d688257695b3fc8cfd404b",
     "rebuild/viewer/owner-geometry.mjs": "3314e393e40cca9339cfd93085b2e07cd2f972f32ab8eb55e6ff17f0cfb7b75f",
-    "rebuild/viewer/page.css": "74805c048794af32b64800e5d601c9fe87b41518f7eb6f4e57281abfd795daa0",
-    "rebuild/viewer/page.html": "b2e3bf9be6e3cc93a00947427d8717c44007f83ed6970abe19e81a076c92a0a7",
+    "rebuild/viewer/page.css": "ed8c819f2dcdaffee0263e89237269d4871ba72bf493fb0aca81e3465c3859fd",
+    "rebuild/viewer/page.html": "797000b72292ec6ee3a6c3c7e964330db7a45a3115c7faa1ff7f6f60cd25891c",
     "rebuild/viewer/part-information.mjs": "ba0a6ad104cd0aa72f158b8687082ffdfb90a0b8e7a1d9b1280f5a72b1ffb80d",
     "rebuild/viewer/service-catalog.mjs": "e8d66bc684eb34f0c4dc153ee2f860641d350e3abc916c8f236e9571806823a6",
     "rebuild/viewer/session-diagnostics.mjs": "01b7dd89d2e1799d42521afe0d27d992195a7570ecc43d191dbf9f444e7f635c",
     "rebuild/viewer/shared/audio-policy.mjs": "97854a8ac96ddc0825a478ad4546c8a3ea764fdaa9a500455db479956f7dd4c3",
+    "rebuild/viewer/theme-init.js": "d75d8a4da529034faa593cc976c0a5c7bd47658045f95f661129d549fe0cacde",
     "rebuild/viewer/tour-timeline.mjs": "159047fe8e95b6bc9809317cd59338fb09fba27f93a9b37ef7f1ab66ab65ed17"
   },
   "dependencies": {
@@ -76,11 +78,11 @@
   "parts": 507,
   "outputs": {
     "TARGETS.md": {
-      "sha256": "3fbb740dcf5338c44ca2b772b4e899f357b9f282a610878354689218d97783bd",
+      "sha256": "9bb9a1b913950088a7f22e64721f1c454b310f5d9b6e911ebcffb7ede27f5087",
       "bytes": 40761
     },
     "assessment-results.json": {
-      "sha256": "fc94baf32f63f1e8780e253427631ec8ac88c47f19318edc3ccd82f35218d17a",
+      "sha256": "db7ddba7ef2fb6440ed6721df1a52ed1de7aca12a7f7d8748b8ce6cff10ffbe1",
       "bytes": 243697
     },
     "geometry/cassette/cassette.js": {
@@ -104,12 +106,16 @@
       "bytes": 2331593
     },
     "index.html": {
-      "sha256": "636ffba46d3d42b452450ab7dbc9718ed9ccd2aba2099e2871cb1ed8fb950c61",
-      "bytes": 876117
+      "sha256": "3483fdc4e1723b03163918d4dc002b844459caa2f1ef012c2537bd9838f6e1b5",
+      "bytes": 883471
     },
     "master-parts.csv": {
       "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",
       "bytes": 138634
+    },
+    "theme-init.js": {
+      "sha256": "d75d8a4da529034faa593cc976c0a5c7bd47658045f95f661129d549fe0cacde",
+      "bytes": 428
     }
   }
 }

@@ -9,7 +9,7 @@ const folder = 'viewer', files = readdirSync(folder).filter(n => /\.(mjs|js)$/.t
 const imports = Object.fromEntries(files.map(file => [file, [...readFileSync(path.join(folder, file), 'utf8').matchAll(/^import .*? from "\.\/([^"]+)";/gm)].map(m => m[1])]));
 
 const controllers = {'app-labels.mjs': 'createLabels', 'app-camera.mjs': 'createCamera', 'app-packages.mjs': 'createPackages', 'app-transport.mjs': 'createTransport',
-  'app-views.mjs': 'createViews', 'app-inspect.mjs': 'createInspect', 'app-tour.mjs': 'createTour', 'app-master-list.mjs': 'createMasterList'};
+  'app-views.mjs': 'createViews', 'app-inspect.mjs': 'createInspect', 'app-tour.mjs': 'createTour', 'app-master-list.mjs': 'createMasterList', 'app-theme.mjs': 'createTheme'};
 for (const [file, factory] of Object.entries(controllers)) {
   const source = readFileSync(path.join(folder, file), 'utf8');
   assert(source.includes('export function ' + factory + '({'), file + ' exports ' + factory + ' and names its dependencies');

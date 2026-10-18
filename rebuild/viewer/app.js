@@ -6,7 +6,7 @@ import {TOUR_SECONDS} from "./tour-timeline.mjs";
 import {motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
-for (const b of document.querySelectorAll("[data-view]")) b.onclick = () => views.setView(b.dataset.view);
+for (const b of document.querySelectorAll("button[data-view]")) b.onclick = () => views.setView(b.dataset.view);
 for (const b of document.querySelectorAll("[data-category]")) b.onclick = () => views.focusCategory(b.dataset.category);
 $("inspectCassette").onclick = () => inspect.focusContext("cassette");
 $("cassetteVariant").onchange = (e) => packages.setCassetteVariant(e.target.value);

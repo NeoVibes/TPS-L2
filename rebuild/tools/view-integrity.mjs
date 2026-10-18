@@ -53,9 +53,19 @@ export async function validateView(root, {record = null, geometryOnly = false} =
   const found = actual.filter(name => selected(name) && name !== 'build-record.json');
   const missing = expected.filter(name => !found.includes(name)), extra = found.filter(name => !expected.includes(name));
   if (missing.length || extra.length) throw Error('Output inventory differs: ' + [missing.length && 'missing ' + missing.join(', '), extra.length && 'unexpected ' + extra.join(', ')].filter(Boolean).join('; '));
+  let page = null;
   for (const name of expected) {
     const bytes = await readFile(path.join(root, name)), entry = record.outputs[name];
     if (bytes.length !== entry.bytes || hash(bytes) !== entry.sha256) throw Error(name + ' was changed after it was built');
+    if (name === 'index.html') page = bytes.toString('utf8');
+  }
+  if (!geometryOnly) {
+    // Older viewers have no theme bootstrap. Require it when the actual page references it,
+    // rather than trusting a version label or allowing both file and manifest entry to vanish.
+    const scripts = [...page.matchAll(/<script\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+      .map(match => match[1] ?? match[2] ?? match[3]);
+    if (scripts.some(src => /^(?:\.\/)?theme-init\.js(?:[?#].*)?$/.test(src)) && !expected.includes('theme-init.js'))
+      throw Error('The manifest must include theme-init.js referenced by index.html');
   }
   if (!expected.includes('geometry/model.js')) throw Error('The manifest must include geometry/model.js');
   const modelText = await readFile(path.join(root, 'geometry/model.js'), 'utf8');

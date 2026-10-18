@@ -1,6 +1,6 @@
 {
   "name": "portable-tape-player",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "type": "module",
   "description": "Editable research reconstruction and self-contained viewer",

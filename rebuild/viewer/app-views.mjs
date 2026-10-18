@@ -33,19 +33,19 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     invalidate();
   }
   function sync() {
-    const { scene, model } = stage;
+    const { model } = stage;
     invalidate();
     audio.sync(state);
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";
     $("stage").dataset.view = state.view;
     $("stageHelp").textContent = state.view === "exploded" ? "Aligned assemblies · zoom for individual IDs" : state.uiMode === "operate" && ["assembled", "service"].includes(state.view) ? "Click buttons · drag volume grips · hold Hot Line" : "Drag to orbit · scroll to zoom · click a component";
-    if (scene) scene.background.set(state.view === "assembled" ? "#e9e7df" : "#34424d");
+    stage.syncBackdrop?.();
     for (const el of document.querySelectorAll("button[data-mode]")) {
       el.setAttribute("aria-pressed", el.dataset.mode === state.mode);
       el.disabled = state.explode > 1e-3 || state.radial > 1e-3;
     }
-    for (const el of document.querySelectorAll("[data-view]")) el.setAttribute("aria-pressed", el.dataset.view === state.view);
+    for (const el of document.querySelectorAll("button[data-view]")) el.setAttribute("aria-pressed", el.dataset.view === state.view);
     $("batteryDoor").textContent = state.batteryOpen ? "Close battery cover" : "Open battery cover";
     $("batteryDoor").setAttribute("aria-pressed", state.batteryOpen);
     $("batteryDoor").disabled = state.explode > 0 || state.radial > 0;

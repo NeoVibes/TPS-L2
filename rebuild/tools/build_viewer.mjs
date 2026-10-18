@@ -95,5 +95,6 @@ export async function pageFile({masterParts = '', levels = []} = {}) {
     .replace('__APP_JS__', () => app.replaceAll('</script', '<\\/script'));
 
   const dependencies = Object.fromEntries(Object.entries(await dependencyVersions()).map(([name, v]) => [name, v.installed]));
-  return {html, inputs: await viewerInputs(), dependencies};
+  const themeInit = await readFile(path.join(ROOT, 'viewer/theme-init.js'), 'utf8');
+  return {html, assets: {'theme-init.js': themeInit}, inputs: await viewerInputs(), dependencies};
 }

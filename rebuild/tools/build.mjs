@@ -107,6 +107,7 @@ export async function buildView(viewerOnly, {captured, hooks = {}, signal} = {})
 
     const page = await pageFile({masterParts: lists.files['master-parts.csv'], levels: LEVELS});
     await writeFile(path.join(staging, 'index.html'), page.html);
+    for (const [name, text] of Object.entries(page.assets)) await writeFile(path.join(staging, name), text);
     record.viewer_inputs = keyed(captured.viewer);
     record.dependencies = page.dependencies;
 
@@ -116,7 +117,7 @@ export async function buildView(viewerOnly, {captured, hooks = {}, signal} = {})
     if (!serial?.fictional || serial.value !== release.fictionalSerial) throw Error('The serial marking in the model (' + serial?.value + ') does not match config/release.json (' + release.fictionalSerial + ').');
     record.parts = ids.length;
     record.outputs = {};
-    for (const relative of ['index.html', ...Object.keys(lists.files), 'geometry/model.js', ...Object.values(view.packageTable).map(p => 'geometry/' + p.file)].sort()) {
+    for (const relative of ['index.html', ...Object.keys(page.assets), ...Object.keys(lists.files), 'geometry/model.js', ...Object.values(view.packageTable).map(p => 'geometry/' + p.file)].sort()) {
       if (viewerOnly && relative.startsWith('geometry/')) record.outputs[relative] = oldRecord.outputs[relative];
       else { const bytes = await readFile(path.join(staging, relative)); record.outputs[relative] = {sha256: hash(bytes), bytes: bytes.length}; }
     }
