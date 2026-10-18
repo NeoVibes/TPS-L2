@@ -19,6 +19,7 @@ export function createTransport({ $, state, parts, stage, packages, audio, inval
   });
 
   function operation(action) {
+    if (state.graphicsUnavailable) return;
     dispatchOperating(state, action);
     audio.sync(state);
     invalidate();
@@ -35,6 +36,7 @@ export function createTransport({ $, state, parts, stage, packages, audio, inval
     return operatingPose(state);
   }
   function operate(mode) {
+    if (state.graphicsUnavailable) return;
     clearTour();
     if (state.explode > 0 || state.radial > 0) return;
     operation({ type: "transport", mode });
@@ -43,6 +45,7 @@ export function createTransport({ $, state, parts, stage, packages, audio, inval
     sync();
   }
   function stopEject() {
+    if (state.graphicsUnavailable) return;
     clearTour();
     if (state.explode > 0 || state.radial > 0) return;
     operation({ type: "stop-eject" });
@@ -51,6 +54,7 @@ export function createTransport({ $, state, parts, stage, packages, audio, inval
     sync();
   }
   function modelAction(id, phase, value) {
+    if (state.graphicsUnavailable) return;
     const action = actionForControl(id, state, phase, value);
     if (!action) return;
     if (action.type === "transport") {
@@ -76,6 +80,7 @@ export function createTransport({ $, state, parts, stage, packages, audio, inval
     sync();
   }
   function modelHit(event) {
+    if (state.graphicsUnavailable) return null;
     const { camera, renderer, raycaster } = stage;
     const rect = $("canvas").getBoundingClientRect();
     raycaster.setFromCamera(new T.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1), camera);

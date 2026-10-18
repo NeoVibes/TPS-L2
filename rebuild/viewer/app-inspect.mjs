@@ -61,6 +61,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     }
   }
   async function focusContext(key) {
+    if (state.graphicsUnavailable) return;
     const { model, scene } = stage, context = model.inspectionContexts[key];
     if (!context) return;
     reset();
@@ -235,6 +236,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     views.updateVisibility();
   }
   function focusPart() {
+    if (state.graphicsUnavailable) return;
     if (!state.selected) return;
     if (!state.selected.loaded) {
       packages.ensure(state.selected.data.package).then(focusPart).catch(() => {
@@ -307,6 +309,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
 
   function useFallbackSearch() {
     informationOnly = true;
+    if (selection) showInformationOnly(selection.data);
     $("search").oninput = search;
     search();
     applyPartLink();

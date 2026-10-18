@@ -29,8 +29,8 @@ try {
     await E(`document.getElementById('masterList').open = true`);
 
     if (!graphics) {
-      expect(await text('loadingTitle') === 'The viewer could not start', label + 'the page says the 3D view could not start');
-      expect(/graphics unavailable/.test(await text('searchCount')), label + 'the component search still answers');
+      expect(await text('loadingTitle') === '3D unavailable; parts catalog available.', label + 'the page says the 3D view could not start');
+      expect(/catalog available/.test(await text('packageStatus')), label + 'the component search still answers');
     }
     expect((await filter('', '', '')).startsWith('Showing 60 of ' + lines + ' rows'), label + 'the list holds every row of master-parts.csv (' + lines + ')');
     const modelled = Number((await filter('', 'modelled', '')).split(' ')[3]), missing = Number((await filter('', 'not modelled', '')).split(' ')[3]);

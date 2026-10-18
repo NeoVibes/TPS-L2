@@ -18,6 +18,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
   function open(table) {
     files = table;
     loader = createLoader({ packages: table }, (text) => {
+      if (state.graphicsUnavailable) return;
       $("loadingText").textContent = text;
       $("packageStatus").textContent = text;
     });
@@ -25,11 +26,13 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
 
   /** Loads one group of parts (exterior, mechanism, electronics) unless it is loaded or loading already. */
   async function ensure(name) {
+    if (state.graphicsUnavailable) return;
     if (loaded.has(name)) return;
     if (promises.has(name)) return promises.get(name);
     const job = queue.catch(() => {
     }).then(async () => {
       const raw = await loader.load(name), { materials } = stage;
+      if (state.graphicsUnavailable) return;
       for (const p of parts.filter((p2) => p2.data.package === name)) {
         const chunks = [];
         for (const mesh of p.data.meshes) {
@@ -76,6 +79,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
     job.catch((err) => {
       promises.delete(name);
       metrics.packageErrors.push(String(err));
+      if (state.graphicsUnavailable) return;
       $("packageStatus").textContent = err.message;
       $("retryAssets").hidden = false;
     });
@@ -84,9 +88,11 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
 
   /** Loads the detailed cassette. */
   async function ensureCassette() {
+    if (state.graphicsUnavailable) return;
     if (loaded.has("cassette")) return;
     if (promises.has("cassette")) return promises.get("cassette");
     const job = loader.load("cassette").then((raw) => {
+      if (state.graphicsUnavailable) return;
       const { model, materials, highlightMaterials } = stage, alt = model.alternatives.cassette, offset = materials.length;
       for (const spec of alt.materials) {
         const material = makeCassetteMaterial(spec);
@@ -119,6 +125,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
       promises.delete("cassette");
       $("cassetteVariantStatus").textContent = "Refinement unavailable; original geometry shown. Change the selection to retry.";
       metrics.packageErrors.push(String(err));
+      if (state.graphicsUnavailable) return;
       throw err;
     });
     promises.set("cassette", job);

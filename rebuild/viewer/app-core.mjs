@@ -30,7 +30,7 @@ import {createOperatingState, advanceOperating, resetOperating, transportInterva
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
 import {createTransport} from "./app-transport.mjs";
-import {createViews} from "./app-views.mjs";
+import {createViews, syncUnavailable} from "./app-views.mjs";
 import {createInspect, expandVisiblePartBounds} from "./app-inspect.mjs";
 import {createPackages} from "./app-packages.mjs";
 import {createCamera, renderPixelRatio} from "./app-camera.mjs";
@@ -128,9 +128,9 @@ const masterList = createMasterList({ $, data: listData(), exterior: () => state
   if (data?.is_cassette && row.variant) {
     state.cassetteVariant = row.variant === "detailed" ? "refined" : "original";
     $("cassetteVariant").value = state.cassetteVariant;
-    if (renderer) packages.setCassetteVariant(state.cassetteVariant);
+    if (!state.graphicsUnavailable && renderer) packages.setCassetteVariant(state.cassetteVariant);
   } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
-  if (!renderer || !part) {
+  if (state.graphicsUnavailable || !renderer || !part) {
     if (data) inspect.showInformationOnly(data, source);
     return;
   }
@@ -149,7 +149,7 @@ export function invalidate() {
   settleUntil = performance.now() + 3e3;
 }
 export function reset() {
-  if (!renderer) return;
+  if (state.graphicsUnavailable || !renderer) return;
   transport.cancelControlHold();
   $("controlCamera").value = "";
   $("audioControls").open = true;
@@ -282,6 +282,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
   }
 }
 function animate(now) {
+  if (state.graphicsUnavailable) return;
   requestAnimationFrame(animate);
   if (window.portableTapePlayer && performance.now() - lastObservation > 500) {
     lastObservation = performance.now();
@@ -355,6 +356,23 @@ function appearanceSnapshot() {
     environment: {id: scene.environment?.uuid, intensity: scene.environmentIntensity, rotation: scene.environmentRotation.toArray()},
     audio: {...audio.status}
   };
+}
+export function markGraphicsUnavailable(message) {
+  transport.cancelControlHold();
+  Object.assign(state, {graphicsUnavailable:true, mode:"stop", paused:true, audioEnabled:false, tour:-1, stopCycle:null});
+  cam.stop();
+  if (orbit) orbit.enabled = false;
+  audio.setVisibility(false);
+  $("loadingText").textContent = message + " Use the catalog below, or reload to try 3D again.";
+  $("catalog").open = Boolean(model);
+  if (model) {
+    views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
+    inspect.useFallbackSearch();
+  } else {
+    $("masterList").open = true;
+    $("searchCount").textContent = "Component finder unavailable: model metadata did not load.";
+  }
+  syncUnavailable($, state, model);
 }
 export async function init() {
   try {
@@ -438,6 +456,7 @@ export async function init() {
     orbit.addEventListener("end", invalidate);
     raycaster = new T.Raycaster();
     const resize = () => {
+      if (state.graphicsUnavailable) return;
       const r = $("stage").getBoundingClientRect();
       renderer.setPixelRatio(renderPixelRatio(r.width, r.height, devicePixelRatio));
       renderer.setSize(r.width, r.height, false);
@@ -510,22 +529,14 @@ export async function init() {
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);
-    $("loadingTitle").textContent = "The viewer could not start";
-    $("loadingText").textContent = err.message + " — Try opening this file in a current version of Chrome, Safari or Edge.";
-    $("retryAssets").hidden = false;
-    $("loadingRetry").hidden = false;
     Object.defineProperty(window, "portableTapePlayerError", { value: String(err), writable: false });
-    $("catalog").open = true;
-    $("loading").querySelector(".spinner").hidden = true;
-    if (model) {
-      views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
-      inspect.useFallbackSearch();
-    }
+    markGraphicsUnavailable(err.message);
+
   }
 }
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) transport.cancelControlHold();
   lastTime = performance.now();
-  audio.setVisibility(!document.hidden);
+  audio.setVisibility(!state.graphicsUnavailable && !document.hidden);
   invalidate();
 });

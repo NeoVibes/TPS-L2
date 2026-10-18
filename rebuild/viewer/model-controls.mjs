@@ -8,8 +8,8 @@ const freeze = value => {
   return value;
 };
 import config from '../config/model.json' with {type:'json'};
-import {modelData} from './data.mjs';
-const motionData=modelData().motion;   // control ranges and moving parts, sampled from the Blender file by the build
+import {optionalModelData} from './data.mjs';
+const motionData=optionalModelData()?.motion || {controls:{},active_owner_ids:[]};   // control ranges and moving parts, sampled from the Blender file by the build
 const nativeControls=motionData.controls;
 const activeOwners=new Set(motionData.active_owner_ids);
 const descriptors=config.controls.map(c=>({...c,partIds:c.partIds.filter(id=>activeOwners.has(id)),...(c.motionPartIds?{motionPartIds:c.motionPartIds.filter(id=>activeOwners.has(id))}:{}),...(nativeControls[c.id]?{axis:nativeControls[c.id].axis,travelMm:nativeControls[c.id].travelMm,restValue:nativeControls[c.id].restValue}:{} )}));

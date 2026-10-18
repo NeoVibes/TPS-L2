@@ -1,15 +1,19 @@
 // The page's start-up: wires every button, slider and key to its function, then starts the viewer.
 // The work itself is in the app-*.mjs modules beside this file; shared state lives in app-core.mjs.
+import {GRAPHICS_CONTROLS} from "./app-views.mjs";
 import config from "../config/model.json" with { type: "json" };
 import {copyTarget} from "./part-information.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
-import {saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
+import {markGraphicsUnavailable, saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
 for (const b of document.querySelectorAll("button[data-view]")) b.onclick = () => views.setView(b.dataset.view);
 for (const b of document.querySelectorAll("[data-category]")) b.onclick = () => views.focusCategory(b.dataset.category);
 $("inspectCassette").onclick = () => inspect.focusContext("cassette");
-$("cassetteVariant").onchange = (e) => packages.setCassetteVariant(e.target.value);
+$("cassetteVariant").onchange = (e) => {
+  if (state.graphicsUnavailable) { state.cassetteVariant = e.target.value; inspect.refreshPartInformation(); }
+  else packages.setCassetteVariant(e.target.value);
+};
 $("batteryDoor").onclick = () => transport.modelAction(config.roles.batteryDoor[0], "click");
 $("eject").onclick = transport.stopEject;
 $("door").onclick = () => {
@@ -107,6 +111,7 @@ document.addEventListener("keydown", (e) => {
     views.sync();
     return;
   }
+  if (state.graphicsUnavailable) return;
   if (/^(INPUT|TEXTAREA|BUTTON|SUMMARY|A)$/.test(e.target.tagName)) return;
   if (e.code === "Space") {
     e.preventDefault();
@@ -204,15 +209,10 @@ window.addEventListener("hashchange", () => {
 window.addEventListener("blur", transport.cancelControlHold);
 $("canvas").addEventListener("webglcontextlost", (e) => {
   e.preventDefault();
-  state.paused = true;
-  audio.setVisibility(false);
-  $("loading").hidden = false;
-  $("loadingTitle").textContent = "Graphics paused";
-  $("loadingText").textContent = "The graphics context was lost. Reload to restore the model. Component information remains available in the finder.";
-  $("loadingRetry").hidden = false;
+  markGraphicsUnavailable("The graphics context was lost.");
 });
 $("canvas").addEventListener("keydown", (e) => {
-  if (cam.handleKey(e.key)) e.preventDefault();
+  if (!state.graphicsUnavailable && cam.handleKey(e.key)) e.preventDefault();
 });
 $("tourSeek").max = TOUR_SECONDS;
 $("tourDuration").textContent = TOUR_SECONDS + "-second tour ";
@@ -220,4 +220,9 @@ for (const key of ["min", "max", "step"]) $("speed")[key] = config.viewer.speedS
 $("speed").value = state.speed;
 $("speedValue").textContent = state.speed.toFixed(2) + "×";
 $("audioDuration").textContent = state.tapeDuration;
+// Guard callbacks as well as native disabled controls, including synthetic events.
+for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) for (const event of ["onclick", "oninput", "onchange"]) {
+  const callback = control[event];
+  if (callback) control[event] = function(e) { if (!state.graphicsUnavailable) return callback.call(this, e); };
+}
 init();

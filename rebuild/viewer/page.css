@@ -1391,3 +1391,7 @@ canvas:focus-visible { outline: 3px solid var(--focus); outline-offset: -4px; }
 #copyFallback { width:100%; box-sizing:border-box; }
 #toggleInspector { font-size:11px; margin-bottom:6px; }
 #serviceResults { max-height:270px; overflow:auto; }
+
+.loading[data-unavailable="true"] { inset:auto; top:14px; left:14px; right:14px; width:auto; height:auto; padding:14px; border-radius:10px; pointer-events:auto; }
+.loading[data-unavailable="true"] h2 { font-size:16px; margin:0 0 6px; }
+.loading[data-unavailable="true"] p { margin:6px 0; }
