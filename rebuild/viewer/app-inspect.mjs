@@ -27,7 +27,25 @@ export function serviceLabel(entry) {
 
 // onPartShown(partId) lets the master list add the part's confirmation level to the inspector.
 export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown, detailsData }) {
-  let selection = null;
+  let selection = null, opener = null, collapsed = false;
+  const visible = element => element?.isConnected && element.getClientRects().length && !element.closest('[hidden]') && (element.tagName === 'SUMMARY' || !element.closest('details:not([open])')) && !element.disabled;
+  function rememberOpener(source = document.activeElement) {
+    if (!$("inspector").contains(source)) opener = [document.body, document.documentElement].includes(source) ? null : source;
+  }
+  function dismiss() {
+    const wasOpen = !$("inspector").hidden;
+    select(null);
+    if (!wasOpen) return;
+    const fallback = $("catalog").querySelector("summary");
+    (visible(opener) ? opener : visible(fallback) ? fallback : $("canvas")).focus();
+  }
+  $("toggleInspector").onclick = () => {
+    collapsed = !collapsed;
+    if (collapsed && $("inspectorBody").contains(document.activeElement)) $("toggleInspector").focus();
+    $("inspectorBody").hidden = collapsed;
+    $("toggleInspector").setAttribute("aria-expanded", String(!collapsed));
+    $("toggleInspector").textContent = collapsed ? "Expand details" : "Collapse details";
+  };
   // Links carry the exterior version when it is not the default one.
   const versionSuffix = () => state.exterior && state.exterior !== stage.model?.exterior?.default ? "&exterior=" + state.exterior : "";
   function clearInspectionContext() {
@@ -193,7 +211,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
       }
     }
   }
-  function select(part) {
+  function select(part, source) {
+    if (part) rememberOpener(source);
     state.selected = part;
     if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
     $("inspector").hidden = !part;
@@ -253,8 +272,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
       b.type = "button"; b.className = "part-result";
       b.textContent = data.id + " · " + displayName(data);
       b.onclick = () => {
-        if (informationOnly) showInformationOnly(data);
-        else { clearTour(); select(parts.find(p => p.data.id === data.id)); focusPart(); views.sync(); }
+        if (informationOnly) showInformationOnly(data, b);
+        else { clearTour(); select(parts.find(p => p.data.id === data.id), b); focusPart(); views.sync(); }
         $("catalog").open = false;
       };
       return b;
@@ -272,7 +291,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
   $("clearSearch").onclick = () => { $("search").value = ""; search(); $("search").focus(); };
 
   /** Shows a part's information without the 3D view. */
-  function showInformationOnly(data) {
+  function showInformationOnly(data, source) {
+    rememberOpener(source);
     state.selected = null;
     $("inspector").hidden = false;
     $("partId").textContent = data.id;
@@ -290,5 +310,5 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     applyPartLink();
   }
 
-  return { copiedDetails, clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
+  return { dismiss, copiedDetails, clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
 }

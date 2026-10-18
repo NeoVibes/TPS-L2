@@ -123,7 +123,6 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
       $("section").value = "off";
       applySection();
       select(null);
-      if (view === "exploded") state.labels = true;
     }
     if (view === "assembled") {
       state.isolate = false;

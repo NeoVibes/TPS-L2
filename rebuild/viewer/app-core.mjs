@@ -36,13 +36,15 @@ import {createPackages} from "./app-packages.mjs";
 import {createCamera, renderPixelRatio} from "./app-camera.mjs";
 import {createLabels} from "./app-labels.mjs";
 import {createMasterList} from "./app-master-list.mjs";
+import {readPreferences, savePreferences} from "./preferences.mjs";
 import {createTheme} from "./app-theme.mjs";
 
-export const motionCueEnabled = { value: 1 };
+const preferences = readPreferences();
+export const motionCueEnabled = { value: Number(preferences.motionCues) };
 const indicatorMaterials = [];
 export const $ = (id) => document.getElementById(id);
 const clamp = T.MathUtils.clamp;
-export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: true, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1 };
+export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1 };
 const family = (p) => p.category;
 export let model;
 let parts = [];
@@ -120,7 +122,7 @@ export const views = createViews({ $, state, parts, stage, packages, cam, transp
   onExterior: () => { inspect.refreshPartInformation(); } });
 export const inspect = createInspect({ $, state, parts, stage, packages, cam, views, clearTour: () => tour.clear(), reset, updateParts, detailsData: () => ({measured: modelData().measured, rows: masterList.rows, levels: listData().levels}), onPartShown: (id, details) => masterList.showPart(id, details.confirmation) });
 // Picking a modelled row of the parts list shows that part; a cassette row also shows its cassette.
-const masterList = createMasterList({ $, data: listData(), exterior: () => state.exterior, pickPart: (row) => {
+const masterList = createMasterList({ $, data: listData(), exterior: () => state.exterior, pickPart: (row, source) => {
   const part = parts.find((p) => p.data.id === row.part_id);
   const data = part?.data || model?.parts.find(p => p.id === row.part_id);
   if (data?.is_cassette && row.variant) {
@@ -129,16 +131,19 @@ const masterList = createMasterList({ $, data: listData(), exterior: () => state
     if (renderer) packages.setCassetteVariant(state.cassetteVariant);
   } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
   if (!renderer || !part) {
-    if (data) inspect.showInformationOnly(data);
+    if (data) inspect.showInformationOnly(data, source);
     return;
   }
   tour.clear();
   views.setUIMode("inspect");
-  inspect.select(part);
+  inspect.select(part, source);
   inspect.focusPart();
   views.sync();
 } });
 export const tour = createTour({ $, state, parts, steps: config.viewer.tourSteps, views, cam, invalidate });
+export function saveViewerPreferences() {
+  savePreferences({projection:state.projection,labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
+}
 export function invalidate() {
   dirty = true;
   settleUntil = performance.now() + 3e3;
@@ -164,7 +169,6 @@ export function reset() {
   $("sectionOffset").value = 0;
   $("sectionValue").textContent = "0 mm";
   views.applySection();
-  cam.setProjection("perspective");
   inspect.select(null);
   views.updateVisibility();
   displayExplosion = 0;
@@ -448,6 +452,9 @@ export async function init() {
     };
     new ResizeObserver(resize).observe($("stage"));
     resize();
+    cam.setProjection(preferences.projection);
+    $("motionCues").checked = preferences.motionCues;
+    $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
     packages.ensureCassette().catch(() => {
     });

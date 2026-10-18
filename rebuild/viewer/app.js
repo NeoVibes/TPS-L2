@@ -3,7 +3,7 @@
 import config from "../config/model.json" with { type: "json" };
 import {copyTarget} from "./part-information.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
-import {motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
+import {saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
 for (const b of document.querySelectorAll("button[data-view]")) b.onclick = () => views.setView(b.dataset.view);
@@ -34,6 +34,7 @@ $("reset").onclick = reset;
 $("spread").oninput = (e) => views.setSeparation(+e.target.value / 100);
 $("motionCues").onchange = (e) => {
   motionCueEnabled.value = e.target.checked ? 1 : 0;
+  saveViewerPreferences();
   invalidate();
 };
 $("speed").oninput = (e) => {
@@ -52,7 +53,7 @@ $("isolate").onclick = () => {
   views.updateVisibility();
   inspect.focusPart();
 };
-$("closeInspector").onclick = () => inspect.select(null);
+$("closeInspector").onclick = () => inspect.dismiss();
 $("tour").onclick = () => {
   if (state.tour >= 0) {
     tour.clear();
@@ -74,6 +75,7 @@ $("fullscreen").onclick = () => {
 };
 $("toggleLabels").onclick = () => {
   state.labels = !state.labels;
+  saveViewerPreferences();
   $("toggleLabels").setAttribute("aria-pressed", state.labels);
   invalidate();
 };
@@ -96,17 +98,19 @@ for (const b of document.querySelectorAll("[data-angle]")) b.onclick = () => {
   cam.to(target, V(target).add(V(positions[b.dataset.angle])).toArray());
 };
 document.addEventListener("keydown", (e) => {
-  if (/^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY|A)$/.test(e.target.tagName)) return;
-  if (e.code === "Space") {
-    e.preventDefault();
-    transport.operation({ type: "pause" });
-    views.sync();
-  }
+  if (e.defaultPrevented || e.target.tagName === "SELECT") return;
   if (e.key === "Escape") {
     tour.clear();
     state.isolate = false;
-    inspect.select(null);
+    inspect.dismiss();
     views.updateVisibility();
+    views.sync();
+    return;
+  }
+  if (/^(INPUT|TEXTAREA|BUTTON|SUMMARY|A)$/.test(e.target.tagName)) return;
+  if (e.code === "Space") {
+    e.preventDefault();
+    transport.operation({ type: "pause" });
     views.sync();
   }
   if (e.key === "0") reset();
@@ -123,7 +127,7 @@ $("tourPause").onclick = () => {
   transport.operation({ type: "pause" });
   views.sync();
 };
-$("projection").onchange = (e) => cam.setProjection(e.target.value);
+$("projection").onchange = (e) => { cam.setProjection(e.target.value); saveViewerPreferences(); };
 $("clearContext").onclick = () => {
   inspect.clearInspectionContext();
   inspect.select(null);

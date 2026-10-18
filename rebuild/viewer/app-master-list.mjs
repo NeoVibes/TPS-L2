@@ -131,7 +131,7 @@ export function createMasterList({ $, data, exterior, pickPart }) {
         $("masterReport").hidden = false;
         $("masterReport").textContent = row.status === "modelled" ? "Report a correction to this part" : "Report this part";
         $("masterReport").onclick = () => offer("part", row, "masterSubmission");
-        if (row.status === "modelled") pickPart(row);
+        if (row.status === "modelled") pickPart(row, b);
       };
       return b;
     }));

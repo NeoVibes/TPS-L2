@@ -5,6 +5,7 @@ import {createReadStream} from 'node:fs';
 import {mkdir, readFile, realpath, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
+import {interactionChecks, preferenceChecks} from './upgrade.mjs';
 import {themeStartup, themeAccessibility, themeRuntime} from './theme.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url)), kit = path.resolve(here, '../..');
@@ -156,7 +157,11 @@ try {
       if (name === 'chromium' && process.env.CHROME_BIN) launch.executablePath = process.env.CHROME_BIN;
       browser = await playwright[name].launch(launch);
       record.browserVersion = browser.version(); record.executableOverride = name === 'chromium' && Boolean(process.env.CHROME_BIN);
-      if (!feasibility) await themeStartup({browser, url, record, output});
+      if (!feasibility) {
+        if (name === 'chromium' || name === 'webkit') await interactionChecks({browser,url,record,output});
+        if (name === 'chromium') await preferenceChecks({browser,url,record});
+        await themeStartup({browser,url,record,output});
+      }
       context = await browser.newContext({viewport: {width: 1400, height: 900}, reducedMotion: 'reduce'});
       await context.tracing.start({screenshots: true, snapshots: true, sources: false});
       page = await context.newPage();
