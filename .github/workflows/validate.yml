@@ -32,7 +32,8 @@ jobs:
           path: rebuild/build/test-results
   chromium:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # The full theme suite renders both protocols with software WebGL on CI.
+    timeout-minutes: 30
     env:
       # Hosted runners may define CHROME_BIN; CI must use Playwright's pinned download.
       CHROME_BIN: ''
