@@ -1,8 +1,10 @@
-// The page and its data files work without a network: nothing is fetched, nothing comes from
-// another site, and every geometry file loads through the real loader and matches the part list.
+// The page and its data files work without a network: runtime resources are local, and every
+// geometry file loads through the real loader and matches the part list. Navigation links are optional.
 import './test_setup.mjs';
 import assert from 'node:assert/strict';
-import {writeFileSync} from 'node:fs';
+import {writeFileSync, readFileSync} from 'node:fs';
+import {VIEW} from '../tools/integrity.mjs';
+import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {createLoader} from '../viewer/loading.mjs';
@@ -11,11 +13,15 @@ import {pageHtml, modelFile, geometryBytes, fakeDocument} from './kit_files.mjs'
 const sha = b => createHash('sha256').update(b).digest('hex');
 const html = pageHtml(), {meta: model, packages: table} = modelFile();
 
-// Scripts come only from the page itself or its own geometry folder; no stylesheet or script from elsewhere.
+// Scripts come only from the page itself or its own folder; no stylesheet or script from elsewhere.
 const sources = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(m => m[1]);
-assert.deepEqual(sources, ['geometry/model.js']);
+assert.deepEqual(sources, ['theme-init.js', 'geometry/model.js']);
+assert(html.indexOf('<script src="theme-init.js"></script>') < html.indexOf('<body'), 'stored theme applies in the head before content paints');
+assert.equal(readFileSync(path.join(VIEW, 'theme-init.js'), 'utf8'), readFileSync('viewer/theme-init.js', 'utf8'), 'the standalone bootstrap ships intact');
 assert(!/<link[^>]+rel="stylesheet"/i.test(html));
-assert(!/(?:src|href)=["'](?:https?:)?\/\//i.test(html));
+// A user-followed repository link does not fetch a resource or make offline startup depend on it.
+assert(!/(?:src|href)=["'](?:https?:)?\/\//i.test(html.replace(/<a\b[^>]*>/gi, '')));
+assert(html.includes('<a href="https://github.com/NeoVibes/TPS-L2" target="_blank" rel="noopener noreferrer">View the project on GitHub</a>'));
 const policy = html.match(/Content-Security-Policy" content="([^"]+)"/)[1];
 assert(policy.includes("default-src 'none'") && policy.includes("connect-src 'none'") && policy.includes("script-src 'unsafe-inline' 'self'"));
 assert(!html.includes('component-evidence'));

@@ -6,6 +6,7 @@
 <title>Portable Tape Player</title>
 <meta name="description" content="An inspectable TPS-L2 reconstruction: operate the transport, explore the component assembly, and inspect its components.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23245ec0'/%3E%3Crect x='11' y='19' width='42' height='27' rx='4' fill='%23eee9df'/%3E%3Ccircle cx='23' cy='32' r='7' fill='%2323343d'/%3E%3Ccircle cx='41' cy='32' r='7' fill='%2323343d'/%3E%3C/svg%3E">
+<script src="theme-init.js"></script>
 <style>__STYLES__</style></head>
 <body data-mode="operate">
 <div id="shell" aria-busy="true">
@@ -15,7 +16,7 @@
 <div>
 <div class="eyebrow">Estimated model / v__RELEASE_VERSION__</div>
 <h1>Portable Tape Player</h1></div></div>
-<div class="header-actions"><button id="quickTour" class="primary">Guided tour</button><button id="pause">Pause motion</button><button id="reset">Reset</button><button id="fullscreen" aria-label="Enter or exit full screen">Full screen</button></div></header>
+<div class="header-actions"><label class="theme-choice" for="theme-select">Theme<select id="theme-select"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><button id="quickTour" class="primary">Guided tour</button><button id="pause">Pause motion</button><button id="reset">Reset</button><button id="fullscreen" aria-label="Enter or exit full screen">Full screen</button></div></header>
 <div class="workspace">
 <aside>
 <nav class="workmodes" aria-label="Workbench mode"><button data-workmode="tour">Tour</button><button data-workmode="operate" aria-pressed="true">Operate</button><button data-workmode="inspect">Inspect</button></nav>
@@ -45,7 +46,7 @@
 <details id="takePart"><summary>Take part</summary><p class="body-copy">Three ways, each fine by itself.</p><ol class="take-part"><li><strong>Enjoy it and share it.</strong> It is free to use and share with credit (MIT licence).</li><li><strong>Send a measurement.</strong> Pick the part in Inspect and choose “Confirm a feature”. Photos or links to photos are enough; the maintainer adjusts the model.</li><li><strong>Adjust a part yourself.</strong> Edit your own copy in Blender and send a link to it with the measurement it rests on.</li></ol><p class="body-copy">Nothing changes the model by itself: every submission is reviewed.</p></details>
 <details><summary>About this model</summary><p>Explore the Sony TPS-L2 through its component IDs, model dimensions and operating controls. Belts use fixed paths with traveling motion cues. Audio consists of locally generated test signals.</p></details>
 <details><summary>How to present</summary><p>Start the guided tour for a short walkthrough, or use the transport and view controls. Drag to orbit, scroll or pinch to zoom, and right-drag or two-finger drag to pan. In Operate, click the modeled buttons, drag volume grips or the Tone switch, and hold Hot Line. In Inspect, click a component, then Focus or Isolate.</p><p>Space pauses motion. 0 resets. Escape ends the tour and clears isolation. This page works the same opened from disk or from a web host. Arrow keys rotate the focused model; + and − zoom.</p></details>
-<details><summary>Release &amp; performance</summary><p>Portable Tape Player v__RELEASE_VERSION__. Physical accuracy is limited: no part has been checked against a real unit yet. The README says how to help confirm one.</p><button id="performance">Show this session metrics</button><pre id="performanceReadout"></pre></details><p class="offline">Unofficial project. Not affiliated with or endorsed by Sony. Product and trademark names are the property of their respective owners.</p><p class="offline">Full-detail geometry · no Blender required</p>
+<details><summary>Release &amp; performance</summary><p>Portable Tape Player v__RELEASE_VERSION__. Physical accuracy is limited: no part has been checked against a real unit yet. The README says how to help confirm one.</p><button id="performance">Show this session metrics</button><pre id="performanceReadout"></pre></details><p class="offline"><a href="https://github.com/NeoVibes/TPS-L2" target="_blank" rel="noopener noreferrer">View the project on GitHub</a></p><p class="offline">Unofficial project. Not affiliated with or endorsed by Sony. Product and trademark names are the property of their respective owners.</p><p class="offline">Full-detail geometry · no Blender required</p>
 <div class="asset-status" id="packageStatus" role="status">Preparing exterior</div><button id="retryAssets" hidden>Retry detail loading</button></aside>
 <main class="main">
 <div class="viewbar">

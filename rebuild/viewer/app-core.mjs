@@ -36,6 +36,7 @@ import {createPackages} from "./app-packages.mjs";
 import {createCamera, renderPixelRatio} from "./app-camera.mjs";
 import {createLabels} from "./app-labels.mjs";
 import {createMasterList} from "./app-master-list.mjs";
+import {createTheme} from "./app-theme.mjs";
 
 export const motionCueEnabled = { value: 1 };
 const indicatorMaterials = [];
@@ -74,9 +75,18 @@ export const audio = createAudioEngine({ onStatus: (message) => {
 // The three.js objects, for the controllers. They are made in init(), and the camera is replaced when the
 // projection changes, so controllers read them through this object when they need them.
 const stage = {
+  syncBackdrop,
   get scene() { return scene; }, get camera() { return camera; }, get renderer() { return renderer; }, get orbit() { return orbit; },
   get raycaster() { return raycaster; }, get model() { return model; }, get materials() { return materials; }, get highlightMaterials() { return highlightMaterials; }
 };
+// CSS owns theme/view colors. Reading it here also honors System without a JS theme override.
+// Background changes were instant before theming; keep them on the existing render loop.
+export function syncBackdrop() {
+  if (!scene) return;
+  scene.background.set(getComputedStyle($("stage")).getPropertyValue("--stage-backdrop").trim());
+  invalidate();
+}
+export const theme = createTheme({onChange: syncBackdrop});
 const labels = createLabels({ $, state, parts, stage });
 // What follows a load: the new meshes take their place and the picture is redrawn.
 export const packages = createPackages({ $, state, parts, stage, metrics, motionCueEnabled,
@@ -318,6 +328,29 @@ function animate(now) {
     $("fps").textContent = state.mode === "stop" || state.paused ? "Render on change" : Math.round(1e3 / mean) + " FPS · " + renderer.info.render.calls + " draws";
   }
 }
+// Optional read-only evidence for appearance changes; ordinary session snapshots stay small.
+function appearanceSnapshot() {
+  const materialSet = new Set([...materials, ...highlightMaterials]);
+  const assignments = [];
+  for (const p of parts) p.group.traverse(object => {
+    if (!object.material) return;
+    const assigned = Array.isArray(object.material) ? object.material : [object.material];
+    [...assigned, ...(object.userData.cueMaterials || [])].forEach(material => materialSet.add(material));
+    assignments.push({object: object.uuid, materials: assigned.map(material => material.uuid)});
+  });
+  const lights = [];
+  scene.traverse(object => { if (object.isLight) lights.push(object.toJSON()); });
+  const materialMeta = {textures: {}, images: {}}; // Compare texture identities without encoding canvas textures.
+  return {
+    pending: {stopCycle: state.stopCycle, autoStop: state.autoStop},
+    camera: {type: camera.type, position: camera.position.toArray(), quaternion: camera.quaternion.toArray(),
+      zoom: camera.zoom, projectionMatrix: camera.projectionMatrix.toArray(), target: orbit.target.toArray()},
+    materials: [...materialSet].map(material => material.toJSON(materialMeta)), assignments, lights,
+    renderer: {toneMapping: renderer.toneMapping, toneMappingExposure: renderer.toneMappingExposure, outputColorSpace: renderer.outputColorSpace},
+    environment: {id: scene.environment?.uuid, intensity: scene.environmentIntensity, rotation: scene.environmentRotation.toArray()},
+    audio: {...audio.status}
+  };
+}
 export async function init() {
   try {
     model = modelData().meta;
@@ -325,7 +358,8 @@ export async function init() {
     packages.open(modelData().packages);
     $("loadingText").textContent = "Opening the exterior…";
     scene = new T.Scene();
-    scene.background = new T.Color("#e9e7df");
+    scene.background = new T.Color();
+    syncBackdrop();
     camera = new T.PerspectiveCamera(32, 1, 40, 2400);
     camera.position.set(200, 135, 340);
     renderer = new T.WebGLRenderer({ canvas: $("canvas"), antialias: true, powerPreference: "high-performance" });
@@ -451,7 +485,7 @@ export async function init() {
       views.sync();
     });
     transport.installPointers();
-    Object.defineProperty(window, "portableTapePlayer", { value: Object.freeze({ snapshot() {
+    Object.defineProperty(window, "portableTapePlayer", { value: Object.freeze({ snapshot({appearance = false} = {}) {
       const values = Object.fromEntries(Object.entries(state).filter(([key2, value]) => key2 !== "selected" && (value === null || ["number", "string", "boolean"].includes(typeof value))));
       const rect = $("canvas").getBoundingClientRect();
       const controls = Object.fromEntries(Object.keys(CONTROL_BINDINGS).map((id) => {
@@ -464,7 +498,7 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: true, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: true, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);

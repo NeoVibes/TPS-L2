@@ -4,7 +4,7 @@ import {cp, mkdtemp, realpath, readFile, writeFile, rm, symlink} from 'node:fs/p
 import {spawnSync} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import {KIT, ROOT} from '../tools/integrity.mjs';
+import {KIT, ROOT, hash} from '../tools/integrity.mjs';
 
 if (!process.env.PTP_INTEGRITY_FIXTURE) {
   const fixture = await mkdtemp(path.join(await realpath(tmpdir()), 'ptp-integrity-'));
@@ -75,6 +75,23 @@ if (!process.env.PTP_INTEGRITY_FIXTURE) {
   await assert.rejects(() => validateView(view, {record: traversal}), /Unsafe/);
   const withoutPage = structuredClone(fresh); delete withoutPage.outputs['index.html'];
   await assert.rejects(() => validateView(view, {record: withoutPage}), /must include index/);
+  // An external page asset cannot disappear together with its manifest entry. Legacy output
+  // without a bootstrap reference must still validate, independent of the record's version.
+  const bootstrapFile = path.join(view, 'theme-init.js'), pageFile = path.join(view, 'index.html');
+  const bootstrapBytes = await readFile(bootstrapFile), pageBytes = await readFile(pageFile);
+  const withoutBootstrap = structuredClone(fresh); delete withoutBootstrap.outputs['theme-init.js'];
+  try {
+    await rm(bootstrapFile);
+    await assert.rejects(() => validateView(view, {record: withoutBootstrap}), /must include theme-init\.js referenced by index\.html/);
+    const legacyPage = pageBytes.toString().replace('<script src="theme-init.js"></script>', '');
+    assert.notEqual(legacyPage, pageBytes.toString(), 'The fixture must remove the actual bootstrap reference');
+    await writeFile(pageFile, legacyPage);
+    const legacyRecord = structuredClone(withoutBootstrap);
+    legacyRecord.outputs['index.html'] = {sha256: hash(legacyPage), bytes: Buffer.byteLength(legacyPage)};
+    await validateView(view, {record: legacyRecord});
+  } finally {
+    await writeFile(bootstrapFile, bootstrapBytes); await writeFile(pageFile, pageBytes);
+  }
   const linked = path.join(view, 'linked.html');
   try { await symlink(path.join(view, 'index.html'), linked); await assert.rejects(() => validateView(view), /Links/); }
   catch (error) { if (process.platform !== 'win32' || error.code !== 'EPERM') throw error; }

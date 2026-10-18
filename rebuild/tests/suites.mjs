@@ -3,7 +3,7 @@
 const fast = [
   'auto_stop', 'blend_privacy', 'blender_discovery', 'blender_supervisor', 'build_failure', 'build_integrity', 'build_lock', 'confirmation', 'control_pointers', 'directory_transaction',
   'eject_behavior', 'evidence', 'exterior_versions', 'fit_camera', 'master_list', 'offline', 'operating',
-  'operating_seek', 'parts_list_view', 'release_zip', 'render_observation', 'render_quality', 'rig_links', 'stale_detection', 'stop_eject', 'test_runner', 'viewer_inputs', 'viewer_modules',
+  'operating_seek', 'parts_list_view', 'release_zip', 'render_observation', 'render_quality', 'rig_links', 'stale_detection', 'stop_eject', 'test_runner', 'theme', 'viewer_inputs', 'viewer_modules',
 ];
 const geometry = [
   'battery_attachments', 'control_geometry', 'door_motion', 'drive_motion', 'eject_motion', 'exploded_layout',

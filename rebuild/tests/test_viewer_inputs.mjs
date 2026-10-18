@@ -49,7 +49,7 @@ const elements = new Map(), $ = id => {
 const viewButtons = ['assembled', 'service', 'exploded', 'catalog'].map(view => new Target({view}));
 const transportButtons = ['play', 'ff', 'rew'].map(mode => new Target({mode}));
 globalThis.document = Object.assign(new Target(), {body: new Target(), querySelectorAll(selector) {
-  if (selector === '[data-view]') return viewButtons;
+  if (selector === 'button[data-view]') return viewButtons;
   if (selector === 'button[data-mode]') return transportButtons;
   return [];
 }});

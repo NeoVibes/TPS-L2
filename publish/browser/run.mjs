@@ -5,6 +5,7 @@ import {createReadStream} from 'node:fs';
 import {mkdir, readFile, realpath, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
+import {themeStartup, themeAccessibility, themeRuntime} from './theme.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url)), kit = path.resolve(here, '../..');
 const view = await realpath(path.join(kit, 'view'));
@@ -155,6 +156,7 @@ try {
       if (name === 'chromium' && process.env.CHROME_BIN) launch.executablePath = process.env.CHROME_BIN;
       browser = await playwright[name].launch(launch);
       record.browserVersion = browser.version(); record.executableOverride = name === 'chromium' && Boolean(process.env.CHROME_BIN);
+      if (!feasibility) await themeStartup({browser, url, record, output});
       context = await browser.newContext({viewport: {width: 1400, height: 900}, reducedMotion: 'reduce'});
       await context.tracing.start({screenshots: true, snapshots: true, sources: false});
       page = await context.newPage();
@@ -180,10 +182,12 @@ try {
       record.initial = {frames: initial.renderedFrames, loaded: initial.loaded, draws: rendered.draws, triangles: rendered.triangles};
       if (!feasibility) {
         record.phase = 'regressions';
+        await themeAccessibility({page, record, output});
         await zoom(page, record);
         await prepareInterruptionClock(page, record);
         await interruptedAction(page, 'stop', record);
         await interruptedAction(page, 'eject', record);
+        await themeRuntime({page, record, output, advanceFrame});
       }
       const final = await snapshot(page);
       record.diagnostics = final.diagnostics;

@@ -1,13 +1,159 @@
 * {
   box-sizing: border-box;
 }
-:root {
-  --ink:#23343d;
-  --muted:#647078;
-  --paper:#f8f7f2;
-  --line:#d9dcd8;
-  --blue:#245ec0;
-  --amber:#c98d25;
+/* Declare each palette on body too: WebKit can cache inherited root tokens while
+   the synchronous theme bootstrap loads, before body exists. Keep one value list. */
+:root,
+body {
+  color-scheme: light;
+  --theme-resolved: light;
+  --ink: #23343d;
+  --muted: #647078;
+  --paper: #f8f7f2;
+  --line: #d9dcd8;
+  --blue: #245ec0;
+  --amber: #c98d25;
+  --surface: #fff;
+  --hover: #eef2f6;
+  --hover-line: #a6b5c5;
+  --focus: #245ec0;
+  --active: #23343d;
+  --on-active: #fff;
+  --primary: #245ec0;
+  --primary-hover: #184b9f;
+  --on-primary: #fff;
+  --body-copy: #596871;
+  --chapter-active: #e5ebf1;
+  --chapter-ink: #214c83;
+  --chapter-number: #596871;
+  --viewbar: #f4f3ee;
+  --backdrop-assembled: #e9e7df;
+  --backdrop-separated: #34424d;
+  --stage-text: #59646c;
+  --stage-strong: #39464f;
+  --separated-text: #c9d2d9;
+  --overlay: #fffffff2;
+  --overlay-line: #cbd2d4;
+  --tool-surface: #ffffffad;
+  --tool-select: #ffffffda;
+  --badge-ink: #755313;
+  --badge-bg: #f5ebd6;
+  --success: #53705b;
+  --tour-bg: #e9eef4;
+  --label-bg: #f8f7f2c9;
+  --assembly-label-bg: #f8f7f2ed;
+  --label-ink: #23343d;
+  --label-halo: #fff;
+  --selected-bg: #f1bc56;
+  --selected-ink: #17202a;
+  --label-line: #b5c3c8;
+  --leader: #b8cbd7;
+  --legend-hover: #495b69;
+  --hint-bg: #172b3dea;
+  --hint-ink: #fff;
+  --detail-muted: #67645e;
+}
+:root[data-theme=dark],
+:root[data-theme=dark] body {
+  color-scheme: dark;
+  --theme-resolved: dark;
+  --ink: #e6edf2;
+  --muted: #adbcc7;
+  --paper: #171e25;
+  --line: #485865;
+  --blue: #9fc3ff;
+  --amber: #e6b55f;
+  --surface: #25313b;
+  --hover: #344654;
+  --hover-line: #91a7b8;
+  --focus: #a5c7ff;
+  --active: #bfd7f2;
+  --on-active: #142535;
+  --primary: #a6c8ff;
+  --primary-hover: #c4dbff;
+  --on-primary: #11263f;
+  --body-copy: #bdc9d2;
+  --chapter-active: #30475c;
+  --chapter-ink: #d8e8ff;
+  --chapter-number: #adbcc7;
+  --viewbar: #1d2730;
+  --backdrop-assembled: #202c36;
+  --backdrop-separated: #111a22;
+  --stage-text: #bdcbd5;
+  --stage-strong: #e0e9ef;
+  --separated-text: #c6d3dd;
+  --overlay: #1e2a34f5;
+  --overlay-line: #607585;
+  --tool-surface: #25313bf5;
+  --tool-select: #25313bf5;
+  --badge-ink: #ffe0a3;
+  --badge-bg: #534225;
+  --success: #a4d5b1;
+  --tour-bg: #263b4e;
+  --label-bg: #223441f5;
+  --assembly-label-bg: #223441f5;
+  --label-ink: #e9f1f7;
+  --label-halo: #14212b;
+  --selected-bg: #f1bc56;
+  --selected-ink: #17202a;
+  --label-line: #8ea6b7;
+  --leader: #b8cbd7;
+  --legend-hover: #304653;
+  --hint-bg: #d3e4f1f5;
+  --hint-ink: #122432;
+  --detail-muted: #bdc9d2;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :root:not([data-theme]) body {
+    color-scheme: dark;
+    --theme-resolved: dark;
+    --ink: #e6edf2;
+    --muted: #adbcc7;
+    --paper: #171e25;
+    --line: #485865;
+    --blue: #9fc3ff;
+    --amber: #e6b55f;
+    --surface: #25313b;
+    --hover: #344654;
+    --hover-line: #91a7b8;
+    --focus: #a5c7ff;
+    --active: #bfd7f2;
+    --on-active: #142535;
+    --primary: #a6c8ff;
+    --primary-hover: #c4dbff;
+    --on-primary: #11263f;
+    --body-copy: #bdc9d2;
+    --chapter-active: #30475c;
+    --chapter-ink: #d8e8ff;
+    --chapter-number: #adbcc7;
+    --viewbar: #1d2730;
+    --backdrop-assembled: #202c36;
+    --backdrop-separated: #111a22;
+    --stage-text: #bdcbd5;
+    --stage-strong: #e0e9ef;
+    --separated-text: #c6d3dd;
+    --overlay: #1e2a34f5;
+    --overlay-line: #607585;
+    --tool-surface: #25313bf5;
+    --tool-select: #25313bf5;
+    --badge-ink: #ffe0a3;
+    --badge-bg: #534225;
+    --success: #a4d5b1;
+    --tour-bg: #263b4e;
+    --label-bg: #223441f5;
+    --assembly-label-bg: #223441f5;
+    --label-ink: #e9f1f7;
+    --label-halo: #14212b;
+    --selected-bg: #f1bc56;
+    --selected-ink: #17202a;
+    --label-line: #8ea6b7;
+    --leader: #b8cbd7;
+    --legend-hover: #304653;
+    --hint-bg: #d3e4f1f5;
+    --hint-ink: #122432;
+    --detail-muted: #bdc9d2;
+  }
 }
 body {
   margin: 0;
@@ -20,7 +166,9 @@ body {
     sans-serif;
 }
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 button {
@@ -28,37 +176,40 @@ button {
   color: inherit;
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: #fff;
+  background: var(--surface);
   padding: 9px 13px;
   transition: background .15s;
 }
 button:hover {
-  background: #eef2f6;
-  border-color: #a6b5c5;
+  background: var(--hover);
+  border-color: var(--hover-line);
 }
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
 summary:focus-visible {
-  outline: 3px solid #659aff;
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 button[aria-pressed=true] {
-  background: var(--ink);
-  color: #fff;
-  border-color: var(--ink);
+  background: var(--active);
+  color: var(--on-active);
+  border-color: var(--active);
 }
 button:disabled {
   opacity: .38;
   cursor: default;
 }
 .primary {
-  background: var(--blue);
-  color: #fff;
-  border-color: var(--blue);
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
 }
 .primary:hover {
-  background: #184b9f;
-  color: #fff;
+  background: var(--primary-hover);
+  color: var(--on-primary);
 }
 h1,
 h2,
@@ -128,7 +279,7 @@ aside {
   font-weight: 560;
 }
 .body-copy {
-  color: #596871;
+  color: var(--body-copy);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -171,12 +322,12 @@ aside {
   font-size: 13px;
 }
 .chapters button[aria-pressed=true] {
-  background: #e5ebf1;
-  color: #214c83;
+  background: var(--chapter-active);
+  color: var(--chapter-ink);
 }
 .chapters span {
   font: 11px ui-monospace, monospace;
-  color: #88949e;
+  color: var(--chapter-number);
   margin-right: 12px;
 }
 details summary {
@@ -196,7 +347,7 @@ details p {
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 8px;
-  background: white;
+  background: var(--surface);
   color: var(--ink);
 }
 .catalog small {
@@ -229,7 +380,7 @@ details p {
   align-items: center;
   justify-content: space-between;
   padding: 14px 20px;
-  background: #f4f3ee;
+  background: var(--viewbar);
   gap: 14px;
   border-bottom: 1px solid var(--line);
 }
@@ -247,11 +398,12 @@ details p {
   white-space: nowrap;
 }
 .stage {
+  --stage-backdrop: var(--backdrop-assembled);
   position: relative;
   flex: 1;
   min-height: 230px;
   overflow: hidden;
-  background: #e9e7df;
+  background: var(--stage-backdrop, var(--backdrop-assembled));
 }
 canvas {
   display: block;
@@ -271,12 +423,12 @@ canvas {
 }
 .view-tools button {
   font-size: 11px;
-  background: #ffffffad;
+  background: var(--tool-surface);
   backdrop-filter: blur(8px);
   padding: 5px 9px;
 }
 .view-tools button:hover {
-  background: white;
+  background: var(--surface);
 }
 .stage-caption {
   position: absolute;
@@ -285,21 +437,21 @@ canvas {
   pointer-events: none;
   max-width: 55%;
   font-size: 11px;
-  color: #626d74;
+  color: var(--stage-text);
 }
 .stage-caption b {
   display: block;
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 3px;
-  color: #39464f;
+  color: var(--stage-strong);
 }
 .view-status {
   position: absolute;
   right: 18px;
   top: 18px;
   font: 10px ui-monospace, monospace;
-  color: #5c6a74;
+  color: var(--stage-text);
   letter-spacing: .5px;
 }
 .inspector {
@@ -307,9 +459,9 @@ canvas {
   right: 18px;
   bottom: 18px;
   width: 275px;
-  border: 1px solid #cbd2d4;
+  border: 1px solid var(--overlay-line);
   border-radius: 10px;
-  background: #fffffff2;
+  background: var(--overlay);
   box-shadow: 0 10px 40px #21313d18;
   padding: 17px;
   backdrop-filter: blur(12px);
@@ -337,8 +489,8 @@ canvas {
 .badge {
   display: inline-block;
   font-size: 10px;
-  color: #755313;
-  background: #f5ebd6;
+  color: var(--badge-ink);
+  background: var(--badge-bg);
   border-radius: 4px;
   padding: 3px 6px;
 }
@@ -387,7 +539,7 @@ canvas {
 }
 .control-status {
   font-size: 11px;
-  color: #53705b;
+  color: var(--success);
   margin-top: 10px;
   min-height: 17px;
 }
@@ -427,7 +579,7 @@ input[type=range] {
   gap: 12px;
   align-items: center;
   justify-content: center;
-  background: #e9e7df;
+  background: var(--stage-backdrop, var(--backdrop-assembled));
   z-index: 10;
   padding: 40px;
   text-align: center;
@@ -443,7 +595,7 @@ input[type=range] {
 .loading .spinner {
   width: 28px;
   height: 28px;
-  border: 2px solid #c7d1d9;
+  border: 2px solid var(--line);
   border-top-color: var(--blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -563,7 +715,7 @@ input[type=range] {
 .stage[data-view=exploded] .stage-caption b,
 .stage[data-view=service] .view-status,
 .stage[data-view=exploded] .view-status {
-  color: #c9d2d9;
+  color: var(--separated-text);
 }
 @media (max-width: 480px) {
   header {
@@ -654,7 +806,7 @@ input[type=range] {
 }
 select {
   font: inherit;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 5px;
@@ -662,7 +814,7 @@ select {
   max-width: 100%;
 }
 select:focus-visible {
-  outline: 3px solid #659aff;
+  outline: 3px solid var(--focus);
 }
 button,
 a,
@@ -819,7 +971,7 @@ body:not([data-mode=inspect]) .inspection-tools {
   font-size: 9px;
 }
 body[data-mode=tour] .tour-scrubber {
-  background: #e9eef4;
+  background: var(--tour-bg);
   border-radius: 6px;
   padding: 8px;
 }
@@ -908,23 +1060,23 @@ body[data-mode=tour] .tour-scrubber {
   padding: 1px 3px;
   border: 0;
   border-radius: 2px;
-  background: #f8f7f2c9;
-  color: #23343d;
+  background: var(--label-bg);
+  color: var(--label-ink);
   white-space: nowrap;
   pointer-events: auto;
-  box-shadow: 0 0 1px #fff;
+  box-shadow: 0 0 1px var(--label-halo);
 }
 .part-label:hover,
 .part-label.selected {
   z-index: 2;
-  background: #f1bc56;
-  color: #17202a;
+  background: var(--selected-bg);
+  color: var(--selected-ink);
   font-size: 11px;
 }
 .stage[data-view=catalog] .stage-caption,
 .stage[data-view=catalog] .stage-caption b,
 .stage[data-view=catalog] .view-status {
-  color: #c9d2d9;
+  color: var(--separated-text);
 }
 @media (max-width: 480px) {
   .viewbar .segmented {
@@ -949,14 +1101,14 @@ body[data-mode=tour] .tour-scrubber {
 }
 #labelHint {
   font-size: 10px;
-  color: #c9d2d9;
+  color: var(--separated-text);
   padding: 6px;
 }
 .view-tools select {
   font-size: 11px;
   padding: 4px;
   max-width: 155px;
-  background: #ffffffda;
+  background: var(--tool-select);
 }
 .control-hint {
   position: absolute;
@@ -965,8 +1117,8 @@ body[data-mode=tour] .tour-scrubber {
   transform: translateX(-50%);
   padding: 6px 11px;
   border-radius: 6px;
-  background: #172b3dea;
-  color: white;
+  background: var(--hint-bg);
+  color: var(--hint-ink);
   font-size: 12px;
   pointer-events: none;
   z-index: 12;
@@ -1004,8 +1156,8 @@ body[data-mode=tour] .tour-scrubber {
     sans-serif;
   padding: 5px 7px;
   white-space: normal;
-  background: #f8f7f2ed;
-  border: 1px solid #b5c3c8;
+  background: var(--assembly-label-bg);
+  border: 1px solid var(--label-line);
   box-shadow: none;
 }
 .assembly-label:hover {
@@ -1019,14 +1171,14 @@ body[data-mode=tour] .tour-scrubber {
   overflow: visible;
 }
 #labelLeaders line {
-  stroke: #b8cbd7;
+  stroke: var(--leader);
   stroke-width: 1;
   opacity: .65;
 }
 .stage[data-view=exploded] .stage-caption,
 .stage[data-view=exploded] .stage-caption b,
 .stage[data-view=exploded] .view-status {
-  color: #c9d2d9;
+  color: var(--separated-text);
 }
 .controls .slider {
   flex-wrap: nowrap;
@@ -1050,21 +1202,21 @@ body[data-mode=tour] .tour-scrubber {
   grid-template-columns: 1fr 1fr;
   gap: 3px 8px;
   padding: 10px;
-  background: #34424d;
+  background: var(--backdrop-separated);
 }
 .assembly-legend button {
   text-align: left;
   padding: 5px 8px;
-  color: #eaf0f4;
+  color: var(--separated-text);
   border: 0;
   background: transparent;
   font-size: 11px;
 }
 .assembly-legend button:hover {
-  background: #495b69;
+  background: var(--legend-hover);
 }
 #partService section {
-  border-top: 1px solid #d8d2c6;
+  border-top: 1px solid var(--line);
   margin-top: 12px;
   padding-top: 8px;
 }
@@ -1079,7 +1231,7 @@ body[data-mode=tour] .tour-scrubber {
   font-size: 12px;
 }
 #partService dt {
-  color: #67645e;
+  color: var(--detail-muted);
 }
 #partService dd {
   margin: 0;
@@ -1091,7 +1243,7 @@ body[data-mode=tour] .tour-scrubber {
 }
 .part-result:disabled {
   opacity: 1;
-  color: #67645e;
+  color: var(--detail-muted);
   cursor: default;
 }
 
@@ -1161,6 +1313,7 @@ body[data-mode=tour] .tour-scrubber {
   width: 100%;
   max-width: 360px;
   min-width: 0;
+  overflow: hidden;
   padding-top: 4px;
   padding-bottom: 4px;
   font-size: 12px;
@@ -1194,4 +1347,38 @@ body[data-mode=tour] .tour-scrubber {
 }
 .take-part li {
   margin-bottom: 6px;
+}
+
+/* Backdrop tokens share the renderer's instant view change; there is no second animation clock. */
+.stage[data-view=service], .stage[data-view=exploded], .stage[data-view=catalog] {
+  --stage-backdrop: var(--backdrop-separated);
+}
+.loading p { color: var(--stage-text); }
+.loading { color: var(--stage-strong); }
+.stage[data-view=service] .loading, .stage[data-view=exploded] .loading, .stage[data-view=catalog] .loading,
+.stage[data-view=service] .loading p, .stage[data-view=exploded] .loading p, .stage[data-view=catalog] .loading p {
+  color: var(--separated-text);
+}
+a { color: var(--blue); }
+textarea, input:not([type=range]):not([type=checkbox]) {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+canvas:focus-visible { outline: 3px solid var(--focus); outline-offset: -4px; }
+.theme-choice { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.theme-choice select { min-height: 36px; }
+.header-actions { align-items: center; }
+@media (max-width: 720px) {
+  header { height: auto; min-height: 90px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; gap: 10px; }
+  .header-actions { flex-wrap: wrap; }
+  .theme-choice { font-size: 11px; }
+  .theme-choice select { padding: 6px; }
+}
+
+.view-tools button[aria-pressed=true] {
+  background: var(--active);
+  color: var(--on-active);
+  border-color: var(--active);
 }
