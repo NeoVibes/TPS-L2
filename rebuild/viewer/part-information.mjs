@@ -84,3 +84,16 @@ export function formatPartDetails(details, services, target) {
   (target.kind === 'link' ? 'Component/exterior link: ' : 'Part ID: ') + target.text,
   ...(details.part.is_cassette ? ['The component/exterior link does not restore cassette choice. Cassette: ' + details.variant + '.'] : [])].join('\n');
 }
+
+export const partExplanations = {
+ // Sony TPS-L2 service manual, printed pp. 3–4, “Direction of rotation”: motor → flywheel in FWD/FF/REW. config/model.json maps the can to the MNF-1600B assembly.
+ 'MTR-001': 'This metal can is one component of the MNF-1600B motor assembly. The motor supplies rotation to the belt-driven flywheel and transport drive in playback, fast forward and rewind.',
+ // Sony TPS-L2 service manual, printed pp. 3–4: numbered drive sequence and belt path from motor to flywheel and onward to the selected reel drive.
+ 'MEC-011': 'The capstan flywheel receives the motor’s rotation through a belt. The drive path continues from this wheel to the pulleys and gears used by the selected transport mode.',
+ // Sony TPS-L2 service manual, printed p. 8, “Pinch Roller Pressure Measurement”: playback contact diagram labels capstan and pinch roller.
+ 'BAY-052': 'The capstan is the rotating shaft at the tape path. During playback, the pinch roller presses toward it so the tape can be carried through the playing mechanism.',
+ // Sony TPS-L2 service manual, printed p. 8, “Pinch Roller Pressure Measurement”: the roller contacts the capstan in playback and is pulled away for the pressure check.
+ 'BAY-061': 'The pinch roller presses the tape against the capstan during playback. This contact lets the rotating capstan move the tape past the playback head.',
+ // Sony TPS-L2 service manual, printed pp. 10–12: playback-head azimuth adjustment and HP901 L/R connections to the preamplifiers. BAY-060 models the visible housing, not the complete internal head.
+ 'BAY-060': 'This is the visible housing of the playback-head assembly. The head reads the tape’s two recorded channels and feeds their signals to the playback amplifiers; the housing represents only part of that assembly.'
+};

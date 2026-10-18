@@ -35,7 +35,7 @@
     "rebuild/tools/targets.mjs": "7d660efee9d094d697f95b1295a4679867794f0e9738ade47813807e8a32f820",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
     "rebuild/viewer/app-core.mjs": "f684f7f89e1f139d7e9d0316aad250d1921001e2f8a3edfb4c433fb3449dfcbb",
-    "rebuild/viewer/app-inspect.mjs": "1cf841f89e867fe37c8e0cc4c05fcbfb35093edcbced9267504bfe3b458a374e",
+    "rebuild/viewer/app-inspect.mjs": "8559d5b9deacc1ba544e29060c7519cfed8b682573b0555707e2ea35ddc20eca",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "e29b74ba80d422457c5771a5050d072895904847f66baa5edca0360639833bb2",
     "rebuild/viewer/app-packages.mjs": "0feb0dacbe9dd656a670054a344feb05d785fe81168044525132bd5754334941",
@@ -63,8 +63,8 @@
     "rebuild/viewer/operation-indicator.mjs": "8f2aaef6a1269633d2f8215d754a63eea2e4fd2081d688257695b3fc8cfd404b",
     "rebuild/viewer/owner-geometry.mjs": "3314e393e40cca9339cfd93085b2e07cd2f972f32ab8eb55e6ff17f0cfb7b75f",
     "rebuild/viewer/page.css": "0be4094560e8d8c9157e59fb6dddc97747470bbead911ebe3c3bc9477f7302ce",
-    "rebuild/viewer/page.html": "557c73908198b3ce21bbdb8e131ec46ef304429546cb7cf9765a625555a8a925",
-    "rebuild/viewer/part-information.mjs": "aab7a31ea98592d302fab1cccb13a648c195f5402455d6ea3853d1eb708f26e4",
+    "rebuild/viewer/page.html": "0e37b95c458accd133bedbf33983f0e6978ab2acbe3b14597ccc0d238decf806",
+    "rebuild/viewer/part-information.mjs": "f4a8694e49cf6c27cb00463c6ed5ca1f4b615beb28c5bd1db6eb513f0909d05a",
     "rebuild/viewer/preferences.mjs": "63a0bbf76e9234d01ec877943e93a08013a7891cf3c03efbe703da2d84d18894",
     "rebuild/viewer/service-catalog.mjs": "e8d66bc684eb34f0c4dc153ee2f860641d350e3abc916c8f236e9571806823a6",
     "rebuild/viewer/session-diagnostics.mjs": "01b7dd89d2e1799d42521afe0d27d992195a7570ecc43d191dbf9f444e7f635c",
@@ -107,8 +107,8 @@
       "bytes": 2331593
     },
     "index.html": {
-      "sha256": "836e61cdeb3617002da60e1d81e3c4c15121531fa129b16672cf03bf3acae856",
-      "bytes": 890810
+      "sha256": "87eb4e89511917d8943e537f94fcbdfb5fa2791b9a2b2c4c2e193ab72eb78f50",
+      "bytes": 893973
     },
     "master-parts.csv": {
       "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",

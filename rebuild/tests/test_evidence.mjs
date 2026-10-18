@@ -95,3 +95,9 @@ for(const id of ['BLT-001','EXT-030','MEDIA-001'])for(const version of exterior.
  if(id==='BLT-001')assert.equal(formatDimensions(d),'X 66.7 × Y 19.3 × Z 4.5 mm');
 }
 console.log('Selected measurement sources, confirmation identity, precision, missing records and real integration pass');
+
+const {partExplanations}=await import('../viewer/part-information.mjs');
+assert.deepEqual(Object.keys(partExplanations),['MTR-001','MEC-011','BAY-052','BAY-061','BAY-060']);
+for(const id of Object.keys(partExplanations)) assert(model.parts.some(p=>p.id===id));
+assert.equal((template.match(/class="photo-request"/g)||[]).length,4);
+for(const id of [...template.matchAll(/\b(?:EXT|BAY|STP|MEDIA)-\d{3}\b/g)].map(m=>m[0]))assert(model.parts.some(p=>p.id===id),'Photo request ID '+id);

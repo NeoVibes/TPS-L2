@@ -3,7 +3,7 @@
 // It owns the service catalogue and the selection. It is given the camera, views and packages
 // controllers, and three things from the core: clearTour, reset and updateParts.
 import config from "../config/model.json" with { type: "json" };
-import {displayName, finderResults, resolvePartDetails, formatDimensions, detailPrecision, dimensionCaveat, formatPartDetails, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
+import {partExplanations, displayName, finderResults, resolvePartDetails, formatDimensions, detailPrecision, dimensionCaveat, formatPartDetails, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
 import {fitBoxDistance} from "./fit-camera.mjs";
 import {parseServiceCatalog} from "./service-catalog.mjs";
 import serviceCatalogCsv from "../../edit/service-manual-parts.csv";
@@ -175,6 +175,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const data = part.data;
     const details = resolvePartDetails({part: data, meta: stage.model, ...detailsData(), exterior: state.exterior, cassette: state.cassetteVariant});
     selection = {data, rendered: part.group ? part : part.rendered, details};
+    $("partExplanation").textContent = partExplanations[data.id] || "";
+    $("partExplanation").hidden = !partExplanations[data.id];
     showServiceFields(data.id);
     onPartShown(data.id, details);
     $("partMeasure").textContent = formatDimensions(details);
