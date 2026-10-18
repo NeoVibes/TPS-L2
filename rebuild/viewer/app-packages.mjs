@@ -1,7 +1,7 @@
 // Loading the geometry files and turning them into meshes: the three groups of parts, and the
 // detailed cassette that can stand in for the original one.
 // It owns what has been loaded and the meshes it made. It is told what to do afterwards through
-// onLoaded(name) and onVariant(); it does not reach into the rest of the viewer.
+// onLoaded(name), onVariant() and onFailure(error); it does not reach into the rest of the viewer.
 import * as T from "three";
 import {makeCassetteMaterial, applyCassetteUV} from "./cassette-materials.mjs";
 import {makeDriveMaterial} from "./drive-materials.mjs";
@@ -10,7 +10,7 @@ import {createLoader} from "./loading.mjs";
 
 const VARIANT_TEXT = { refined: "Detailed cassette · generated clear shell, spools and tape path", original: "Original cassette · plain shell and hubs from the Blender file" };
 
-export function createPackages({ $, state, parts, stage, metrics, motionCueEnabled, onLoaded, onVariant }) {
+export function createPackages({ $, state, parts, stage, metrics, motionCueEnabled, onLoaded, onVariant, onFailure }) {
   const loaded = new Set(), promises = new Map(), draws = [];   // names loaded; loads in progress; every mesh made
   let queue = Promise.resolve(), loader = null, files = {};
 
@@ -31,6 +31,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
     if (promises.has(name)) return promises.get(name);
     const job = queue.catch(() => {
     }).then(async () => {
+      if (state.graphicsUnavailable) return;
       const raw = await loader.load(name), { materials } = stage;
       if (state.graphicsUnavailable) return;
       for (const p of parts.filter((p2) => p2.data.package === name)) {
@@ -80,8 +81,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
       promises.delete(name);
       metrics.packageErrors.push(String(err));
       if (state.graphicsUnavailable) return;
-      $("packageStatus").textContent = err.message;
-      $("retryAssets").hidden = false;
+      onFailure(err);
     });
     return job;
   }

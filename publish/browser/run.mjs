@@ -5,7 +5,7 @@ import {createReadStream} from 'node:fs';
 import {mkdir, readFile, realpath, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
-import {interactionChecks, preferenceChecks, catalogChecks, failureChecks} from './upgrade.mjs';
+import {interactionChecks, preferenceChecks, catalogChecks, failureChecks, loadingRaceChecks} from './upgrade.mjs';
 import {themeStartup, themeAccessibility, themeRuntime} from './theme.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url)), kit = path.resolve(here, '../..');
@@ -163,6 +163,7 @@ try {
           await preferenceChecks({browser,url,record});
           await catalogChecks({browser,url,record});
           await failureChecks({browser,url,record,output});
+          await loadingRaceChecks({browser,url,record});
         }
         await themeStartup({browser,url,record,output});
       }

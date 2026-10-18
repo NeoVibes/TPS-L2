@@ -27,7 +27,7 @@ export function serviceLabel(entry) {
 
 // onPartShown(partId) lets the master list add the part's confirmation level to the inspector.
 export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown, detailsData }) {
-  let selection = null, opener = null, collapsed = false;
+  let selection = null, opener = null, collapsed = false, inspectionRevision = 0;
   const visible = element => element?.isConnected && element.getClientRects().length && !element.closest('[hidden]') && (element.tagName === 'SUMMARY' || !element.closest('details:not([open])')) && !element.disabled;
   function rememberOpener(source = document.activeElement) {
     if (!$("inspector").contains(source)) opener = [document.body, document.documentElement].includes(source) ? null : source;
@@ -49,6 +49,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
   // Links carry the exterior version when it is not the default one.
   const versionSuffix = () => state.exterior && state.exterior !== stage.model?.exterior?.default ? "&exterior=" + state.exterior : "";
   function clearInspectionContext() {
+    inspectionRevision++;
     $("cassetteEdge").hidden = true;
     state.contextIds = null;
     state.contextKey = null;
@@ -79,8 +80,9 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     views.updateVisibility();
     $("contextStatus").textContent = context.label + " · " + context.partIds.length + " parts in assembled positions. " + context.description;
     $("clearContext").hidden = false;
+    const revision = inspectionRevision;
     await packages.ensureAll();
-    if (state.contextIds !== context.partIds) return;
+    if (state.graphicsUnavailable || inspectionRevision !== revision || state.contextIds !== context.partIds) return;
     updateParts(100, 0);
     scene.updateMatrixWorld(true);
     const selected = parts.find((p) => p.data.id === context.focusPartId) || parts.find((p) => context.partIds.includes(p.data.id));
@@ -216,6 +218,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     }
   }
   function select(part, source) {
+    inspectionRevision++;
     if (part) rememberOpener(source);
     state.selected = part;
     if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
@@ -297,6 +300,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
 
   /** Shows a part's information without the 3D view. */
   function showInformationOnly(data, source) {
+    inspectionRevision++;
     rememberOpener(source);
     state.selected = null;
     $("inspector").hidden = false;

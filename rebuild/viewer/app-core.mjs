@@ -93,6 +93,7 @@ export const theme = createTheme({onChange: syncBackdrop});
 const labels = createLabels({ $, state, parts, stage });
 // What follows a load: the new meshes take their place and the picture is redrawn.
 export const packages = createPackages({ $, state, parts, stage, metrics, motionCueEnabled,
+  onFailure: (error) => markGraphicsUnavailable(error.message),
   onLoaded: (name) => {
     views.updateVisibility();
     if (name !== "cassette") updateParts(10, 0);
@@ -476,6 +477,8 @@ export async function init() {
     $("motionCues").checked = preferences.motionCues;
     $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
+    // A context loss can finish while the initial geometry request is pending.
+    if (state.graphicsUnavailable) return;
     packages.ensureCassette().catch(() => {
     });
     metrics.firstExteriorMs = performance.now() - metrics.started;
@@ -526,7 +529,7 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: true, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);

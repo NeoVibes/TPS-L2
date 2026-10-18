@@ -131,3 +131,106 @@ export async function failureChecks({browser,url,record,output}) {
   }finally{await page.close();}
  }
 }
+
+// Hold real package requests across user actions, so a completed load cannot undo
+// a newer selection or the catalog-only recovery state.
+export async function loadingRaceChecks({browser,url,record}) {
+ record.loadingRaces=[];
+ const waitForRoute=async held=>{
+  let timer;
+  try{return await Promise.race([held,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Expected delayed geometry request did not start')),30000);})]);}
+  finally{clearTimeout(timer);}
+ };
+ const pageErrors=[];
+ const newPage=async()=>{
+  const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+  page.on('pageerror',error=>pageErrors.push(String(error)));
+  await page.addInitScript(()=>{
+   const read=Response.prototype.arrayBuffer;
+   window.__geometryReadsCompleted=0;
+   Response.prototype.arrayBuffer=async function(...args){
+    const result=await read.apply(this,args);window.__geometryReadsCompleted++;return result;
+   };
+  });
+  return page;
+ };
+ const unavailable=async page=>{
+  assert(await page.locator('#loading').isVisible());
+  assert(await page.locator('#loadingRetry').isVisible());
+  assert(await page.locator('#retryAssets').isHidden());
+  assert.equal(await page.locator('#shell').getAttribute('aria-busy'),'false');
+  for(const id of ['tour','projection','focus','audioEnable'])assert(await page.locator('#'+id).isDisabled());
+  assert.equal(await page.evaluate(()=>Boolean(window.portableTapePlayer?.snapshot().ready)),false);
+ };
+ let page=await newPage();
+ try {
+  record.phase='loading-race-startup-context-loss';
+  let release;
+  const held=new Promise(resolve=>{release=resolve;});
+  await page.route('**/geometry/exterior.js',route=>release(route));
+  await page.goto(url,{waitUntil:'domcontentloaded'});
+  const route=await waitForRoute(held);
+  await page.evaluate(()=>{
+   const extension=document.getElementById('canvas').getContext('webgl2').getExtension('WEBGL_lose_context');
+   if(!extension)throw Error('Context loss extension unavailable');
+   extension.loseContext();
+  });
+  await page.waitForFunction(()=>document.getElementById('loading').dataset.unavailable==='true');
+  await unavailable(page);
+  await route.continue();
+  await page.waitForFunction(()=>window.__geometryReadsCompleted>0);
+  await unavailable(page);
+  await select(page,'MTR-001');assert(await page.locator('#inspector').isVisible());
+  await page.unroute('**/geometry/exterior.js');
+  await page.locator('#loadingRetry').click();await ready(page);
+  assert(await page.locator('#loading').isHidden());
+  record.loadingRaces.push({case:'context-lost-during-startup',passed:true});
+ }finally{await page.close();}
+ for(const name of ['mechanism','electronics']) {
+  page=await newPage();
+  try {
+   record.phase='loading-race-'+name+'-failure';
+   let release;
+   const held=new Promise(resolve=>{release=resolve;});
+   await page.route('**/geometry/cassette/cassette.js',route=>release(route));
+   await page.route('**/geometry/'+name+'.js',route=>route.abort('failed'));
+   await page.goto(url,{waitUntil:'domcontentloaded'});await ready(page);const route=await waitForRoute(held);
+   await page.locator('[data-view="exploded"]').click();
+   await page.waitForFunction(()=>window.portableTapePlayer.snapshot().state.graphicsUnavailable);
+   await unavailable(page);
+   const before=await page.evaluate(()=>({frames:window.portableTapePlayer.snapshot().renderedFrames,reads:window.__geometryReadsCompleted}));
+   await route.continue();await page.waitForFunction(reads=>window.__geometryReadsCompleted>reads,before.reads);
+   await unavailable(page);
+   assert.match(await page.locator('#loadingText').innerText(),new RegExp('geometry/'+name+'\\.js'));
+   assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().renderedFrames),before.frames);
+   await select(page,'MTR-001');assert(await page.locator('#inspector').isVisible());
+   await page.unroute('**/geometry/'+name+'.js');await page.unroute('**/geometry/cassette/cassette.js');
+   await page.locator('#loadingRetry').click();await ready(page);
+   await page.locator('[data-view="exploded"]').click();
+   await page.waitForFunction(()=>['exterior','mechanism','electronics','cassette'].every(name=>window.portableTapePlayer.snapshot().loaded.includes(name)));
+   assert.deepEqual(await page.evaluate(()=>window.portableTapePlayer.snapshot().packageErrors),[]);
+   record.loadingRaces.push({case:name+'-failure-after-startup',passed:true});
+  }finally{await page.close();}
+ }
+ page=await newPage();
+ try {
+  record.phase='loading-race-selection';
+  let release;
+  const held=new Promise(resolve=>{release=resolve;});
+  await page.route('**/geometry/mechanism.js',route=>release(route));
+  await page.goto(url);await ready(page);
+  await page.locator('[data-workmode="inspect"]').click();await page.locator('[data-context="motorAssembly"]').click();
+  const route=await waitForRoute(held);await select(page,'MTR-001');
+  const hash=await page.evaluate(()=>location.hash);
+  await route.continue();
+  await page.waitForFunction(()=>['mechanism','electronics'].every(name=>window.portableTapePlayer.snapshot().loaded.includes(name)));
+  assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.selectedId),'MTR-001');
+  assert(await page.locator('#inspector').isVisible());assert.equal(await page.evaluate(()=>location.hash),hash);
+  // The guard must still allow a later, deliberate assembly selection to finish.
+  await page.locator('[data-context="motorAssembly"]').click();
+  await page.waitForFunction(()=>location.hash.startsWith('#context=motorAssembly'));
+  assert(await page.locator('#inspector').isHidden());
+  record.loadingRaces.push({case:'selection-during-context-loading',passed:true});
+ }finally{await page.close();}
+ assert.deepEqual(pageErrors,[],'Delayed and failed loads must not cause uncaught errors');
+}
