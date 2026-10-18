@@ -64,7 +64,7 @@ try {
     const cassette = await rows();
     expect(cassette.some(r => r.includes('original cassette')) && cassette.some(r => r.includes('detailed cassette')), label + 'each row says which cassette it is');
     await clickRow(cassette.findIndex(r => r.includes('original cassette'))); await wait(graphics ? 900 : 200);
-    expect((await text('partConfirmation')).match(/Confirmation level/g)?.length === 2, label + 'the inspector shows both cassettes\' levels');
+    expect(/Original cassette.*Confirmation level/.test(await text('partConfirmation')) && (await text('partConfirmation')).match(/Confirmation level/g)?.length === 1, label + 'the inspector shows the selected cassette level');
 
     if (graphics) {
       const s = await E(`(()=>{const s=window.portableTapePlayer.snapshot();return {selected:s.state.selectedId,variant:s.state.cassetteVariant,mode:s.state.uiMode,select:document.getElementById('cassetteVariant').value}})()`);

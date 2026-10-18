@@ -3,7 +3,7 @@
 // It owns the service catalogue and the selection. It is given the camera, views and packages
 // controllers, and three things from the core: clearTour, reset and updateParts.
 import config from "../config/model.json" with { type: "json" };
-import {displayName, finderResults, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
+import {displayName, finderResults, resolvePartDetails, formatDimensions, detailPrecision, dimensionCaveat, formatPartDetails, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
 import {fitBoxDistance} from "./fit-camera.mjs";
 import {parseServiceCatalog} from "./service-catalog.mjs";
 import serviceCatalogCsv from "../../edit/service-manual-parts.csv";
@@ -26,7 +26,8 @@ export function serviceLabel(entry) {
 }
 
 // onPartShown(partId) lets the master list add the part's confirmation level to the inspector.
-export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown }) {
+export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown, detailsData }) {
+  let selection = null;
   // Links carry the exterior version when it is not the default one.
   const versionSuffix = () => state.exterior && state.exterior !== stage.model?.exterior?.default ? "&exterior=" + state.exterior : "";
   function clearInspectionContext() {
@@ -111,7 +112,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const target = $("partService");
     target.replaceChildren();
     // For a part whose lettering differs between exterior versions, only the manual's entry for the version on screen is shown.
-    const shown = serviceEntriesForPart(serviceCatalog, partId).filter((entry) => !entry.partStates?.[partId] || entry.partStates[partId].some((s) => s.split("+").includes(state.exterior) || s === "original" || s === "detailed"));
+    const shown = serviceEntriesForPart(serviceCatalog, partId, selection?.details.variant);
+
     for (const entry of shown) {
       const block = document.createElement("section"), heading = document.createElement("h3");
       heading.textContent = entry.partIds.length > 1 ? "Service item containing this component" : "Service catalog";
@@ -150,23 +152,38 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     stage.model.inspectionContexts[key] = { label: entry.description, description: serviceLabel(entry), partIds: active, focusPartId: active[0] };
     await focusContext(key);
   }
-  function refreshPartInformation(part) {
-    showServiceFields(part.data.id);
-    onPartShown(part.data.id);
-    const dims = part.data.authoritativeBounds?.dimensions;
-    $("partMeasure").textContent = dims ? "Model extents (assembly axes): " + dims.map((x) => x.toFixed(3)).join(" × ") + " mm." : "";
-    $("copyPartLink").textContent = copyTarget(part.data.id, location, versionSuffix()).label;
+  function refreshPartInformation(part = selection) {
+    if (!part) return;
+    const data = part.data;
+    const details = resolvePartDetails({part: data, meta: stage.model, ...detailsData(), exterior: state.exterior, cassette: state.cassetteVariant});
+    selection = {data, rendered: part.group ? part : part.rendered, details};
+    showServiceFields(data.id);
+    onPartShown(data.id, details);
+    $("partMeasure").textContent = formatDimensions(details);
+    $("partCaveat").textContent = dimensionCaveat;
+    $("partPrecision").textContent = detailPrecision(details);
+    $("copyPartLink").textContent = copyTarget(data.id, location, versionSuffix()).label;
+    $("copyPartDetails").textContent = "Copy part details";
     $("copyFallbackLabel").hidden = true;
+    $("copyFallback").value = "";
+  }
+  function copiedDetails() {
+    return selection ? formatPartDetails(selection.details, serviceCatalog, copyTarget(selection.data.id, location, versionSuffix())) : '';
   }
   function applyPartLink() {
     const params = new URLSearchParams(location.hash.slice(1));
     const context = params.get("context");
-    if (context && stage.model.inspectionContexts?.[context]) {
+    if (!informationOnly && context && stage.model?.inspectionContexts?.[context]) {
       focusContext(context);
       return;
     }
     const id = params.get("part");
     if (id) {
+      if (informationOnly) {
+        const data = stage.model?.parts.find(p => p.id === id);
+        if (data) showInformationOnly(data);
+        return;
+      }
       const p = parts.find((p2) => p2.data.id === id);
       if (p) {
         views.setUIMode("inspect");
@@ -178,7 +195,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
   }
   function select(part) {
     state.selected = part;
-    if (!part) state.isolate = false;
+    if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
     $("inspector").hidden = !part;
     if (part) {
       if (state.contextIds && !state.contextIds.includes(part.data.id)) clearInspectionContext();
@@ -256,20 +273,22 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
 
   /** Shows a part's information without the 3D view. */
   function showInformationOnly(data) {
+    state.selected = null;
     $("inspector").hidden = false;
     $("partId").textContent = data.id;
     $("partName").textContent = displayName(data);
     refreshPartInformation({ data });
     $("focus").disabled = true;
     $("isolate").disabled = true;
-    history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(data.id));
+    history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(data.id) + versionSuffix());
   }
 
   function useFallbackSearch() {
     informationOnly = true;
     $("search").oninput = search;
     search();
+    applyPartLink();
   }
 
-  return { clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
+  return { copiedDetails, clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
 }

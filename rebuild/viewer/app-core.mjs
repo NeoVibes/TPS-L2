@@ -97,7 +97,7 @@ export const packages = createPackages({ $, state, parts, stage, metrics, motion
   },
   onVariant: () => {
     views.updateVisibility();
-    if (state.selected) inspect.refreshPartInformation(state.selected);
+    inspect.refreshPartInformation();
     invalidate();
   } });
 export const transport = createTransport({ $, state, parts, stage, packages, audio, invalidate, clearTour: () => tour.clear(), sync: () => views.sync(),
@@ -117,21 +117,22 @@ export const transport = createTransport({ $, state, parts, stage, packages, aud
 export const cam = createCamera({ $, state, parts, stage, layout: () => explodedLayout, invalidate, reducedMotion, replaceCamera: (next) => { camera = next; } });
 export const views = createViews({ $, state, parts, stage, packages, cam, transport, audio, invalidate, clearTour: () => tour.clear(), tourPosition: () => tour.position, tourSteps: config.viewer.tourSteps,
   clearInspectionContext: () => inspect.clearInspectionContext(), select: (part) => inspect.select(part),
-  onExterior: () => { if (state.selected) inspect.refreshPartInformation(state.selected); } });
-export const inspect = createInspect({ $, state, parts, stage, packages, cam, views, clearTour: () => tour.clear(), reset, updateParts, onPartShown: (id) => masterList.showPart(id) });
+  onExterior: () => { inspect.refreshPartInformation(); } });
+export const inspect = createInspect({ $, state, parts, stage, packages, cam, views, clearTour: () => tour.clear(), reset, updateParts, detailsData: () => ({measured: modelData().measured, rows: masterList.rows, levels: listData().levels}), onPartShown: (id, details) => masterList.showPart(id, details.confirmation) });
 // Picking a modelled row of the parts list shows that part; a cassette row also shows its cassette.
 const masterList = createMasterList({ $, data: listData(), exterior: () => state.exterior, pickPart: (row) => {
   const part = parts.find((p) => p.data.id === row.part_id);
+  const data = part?.data || model?.parts.find(p => p.id === row.part_id);
+  if (data?.is_cassette && row.variant) {
+    state.cassetteVariant = row.variant === "detailed" ? "refined" : "original";
+    $("cassetteVariant").value = state.cassetteVariant;
+    if (renderer) packages.setCassetteVariant(state.cassetteVariant);
+  } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
   if (!renderer || !part) {
-    const data = model?.parts.find((p) => p.id === row.part_id);
     if (data) inspect.showInformationOnly(data);
     return;
   }
   tour.clear();
-  if (part.data.is_cassette && row.variant) {
-    $("cassetteVariant").value = row.variant === "detailed" ? "refined" : "original";
-    packages.setCassetteVariant($("cassetteVariant").value);
-  } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
   views.setUIMode("inspect");
   inspect.select(part);
   inspect.focusPart();
@@ -510,6 +511,7 @@ export async function init() {
     $("catalog").open = true;
     $("loading").querySelector(".spinner").hidden = true;
     if (model) {
+      views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
       inspect.useFallbackSearch();
     }
   }

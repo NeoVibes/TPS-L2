@@ -147,22 +147,28 @@ $("sectionOffset").oninput = (e) => {
   $("sectionValue").textContent = state.sectionOffset + " mm";
   views.applySection();
 };
-$("copyPartLink").onclick = async () => {
+async function copyText(text, button, success) {
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = success;
+    $("copyFallbackLabel").hidden = true;
+    $("copyFallback").value = "";
+  } catch {
+    $("copyFallbackLabel").hidden = false;
+    $("copyFallback").value = text;
+    $("copyFallback").focus();
+    $("copyFallback").select();
+    button.textContent = "Select and copy below";
+  }
+}
+$("copyPartLink").onclick = () => {
   const id = $("partId").textContent;
   if (!id) return;
   const target = copyTarget(id, location, state.exterior && state.exterior !== model?.exterior?.default ? "&exterior=" + state.exterior : "");
-  try {
-    await navigator.clipboard.writeText(target.text);
-    $("copyPartLink").textContent = target.kind === "id" ? "Part ID copied" : "Public link copied";
-    $("copyFallbackLabel").hidden = true;
-  } catch {
-    $("copyFallbackLabel").hidden = false;
-    $("copyFallback").value = target.text;
-    $("copyFallback").focus();
-    $("copyFallback").select();
-    $("copyPartLink").textContent = "Select and copy below";
-  }
+  return copyText(target.text, $("copyPartLink"), target.kind === "id" ? "Part ID copied" : "Public link copied");
 };
+$("copyPartDetails").onclick = () => copyText(inspect.copiedDetails(), $("copyPartDetails"), "Part details copied");
 $("audioEnable").onclick = async () => {
   transport.operation({ type: "audio-enable", enabled: ["blocked", "unavailable"].includes(audio.status.state) || !state.audioEnabled });
   if (state.audioEnabled) await audio.enable(state);

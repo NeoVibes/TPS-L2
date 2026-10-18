@@ -98,9 +98,9 @@ export function createMasterList({ $, data, exterior, pickPart }) {
     return block;
   }
 
-  /** The confirmation block for the part shown in the inspector: both rows of a cassette part; for a part whose lettering differs between exterior versions, the row of the version on screen. */
-  function showPart(partId) {
-    const mine = rows.filter((row) => row.part_id === partId && showsExterior(row, exterior())), target = $("partConfirmation");
+  /** Only the canonical selected variant is shown; the master rows remain individually selectable. */
+  function showPart(partId, row) {
+    const mine = row ? [row] : [], target = $("partConfirmation");
     target.replaceChildren(...mine.map(describe));
     target.hidden = !mine.length;
     $("partSubmission").hidden = true;
