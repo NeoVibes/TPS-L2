@@ -42,7 +42,7 @@ export async function preferenceChecks({browser,url,record}) {
    assert.equal(await page.evaluate(()=>window.__preferenceWrites.length),0);
   };
   await check();await page.locator('#reset').click();await check();
-  await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();await page.locator('#tourSeek').evaluate(e=>{e.value='60';e.dispatchEvent(new Event('input',{bubbles:true}));});await check();
+  await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();await page.locator('#tourSeek').evaluate(e=>{e.value='64';e.dispatchEvent(new Event('input',{bubbles:true}));});assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).view,'exploded');await check();
   await page.locator('[data-workmode="inspect"]').click();await page.locator('[data-context="motorAssembly"]').click();await check();
   await page.locator('#clearContext').click();await check();
   record.preferenceSuccess='passed';

@@ -23,6 +23,7 @@ export function syncUnavailable($, state, model) {
   $("status").textContent = "Transport unavailable";
   $("fps").textContent = "Catalog only";
   $("stageHelp").textContent = "Browse the finder or parts list for component details";
+  $("stageCaptionText").textContent = "Search component IDs and service entries.";
   $("storyTitle").textContent = "Explore the parts catalog";
   $("storyText").textContent = model ? "Search components, select a variant and copy details or contribute evidence." : "Model metadata did not load. The embedded parts list, filters, CSV and contribution actions remain available; component finder and measured details are unavailable.";
   for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) control.disabled = true;

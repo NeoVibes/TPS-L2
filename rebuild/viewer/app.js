@@ -158,12 +158,15 @@ $("sectionOffset").oninput = (e) => {
 };
 async function copyText(text, button, success) {
   if (!text) return;
+  const selectedDetails = inspect.copiedDetails();
   try {
     await navigator.clipboard.writeText(text);
+    if (selectedDetails !== inspect.copiedDetails()) return;
     button.textContent = success;
     $("copyFallbackLabel").hidden = true;
     $("copyFallback").value = "";
   } catch {
+    if (selectedDetails !== inspect.copiedDetails()) return;
     $("copyFallbackLabel").hidden = false;
     $("copyFallback").value = text;
     $("copyFallback").focus();

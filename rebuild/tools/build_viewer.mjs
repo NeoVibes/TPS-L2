@@ -91,10 +91,17 @@ export async function pageFile({masterParts = '', levels = []} = {}) {
   const escapeHTML = v => String(v).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
   // Scripts may come from the page itself and from its own folder (the data files); nothing may be fetched.
   const policy = "default-src 'none'; script-src 'unsafe-inline' 'self'; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
-  const html = template.replace('__STYLES__', () => styles).replace('__CONTENT_POLICY__', () => policy).replace('__STATEMENT__', () => escapeHTML(release.statement)).replace('__SERIAL_NOTICE__', () => escapeHTML(release.serialNotice)).replaceAll('__RELEASE_VERSION__', () => escapeHTML(release.version)).replace('__MASTER_PARTS__', () => JSON.stringify({csv: masterParts, levels, repository: release.repository || '', exteriors: release.exteriors || [], exteriorNote: release.exteriorNote || ''}).replaceAll('<', '\\u003c'))
+  const title = 'Sony TPS-L2 — Interactive Walkman Reconstruction';
+  const description = 'Explore an estimated Sony TPS-L2 Walkman reconstruction: operate the transport, browse every component, and inspect model dimensions and confirmation levels.';
+  const publicUrl = release.publicUrl ? new URL(release.publicUrl) : null;
+  if (publicUrl && !['https:', 'http:'].includes(publicUrl.protocol)) throw Error('publicUrl must use HTTP or HTTPS');
+  const sharing = [['og:type','website'],['og:title',title],['og:description',description],
+    ...(publicUrl ? [['og:url',publicUrl.href],['og:image',new URL('social-preview.png',publicUrl).href],['og:image:width','1200'],['og:image:height','630'],['og:image:alt','Estimated blue and silver Sony TPS-L2 reconstruction, shown assembled on a light background.']] : [])]
+    .map(([property,content]) => '<meta property="' + property + '" content="' + escapeHTML(content) + '">').join('\n');
+  const html = template.replace('__SHARING_METADATA__', () => sharing).replace('__STYLES__', () => styles).replace('__CONTENT_POLICY__', () => policy).replace('__STATEMENT__', () => escapeHTML(release.statement)).replace('__SERIAL_NOTICE__', () => escapeHTML(release.serialNotice)).replaceAll('__RELEASE_VERSION__', () => escapeHTML(release.version)).replace('__MASTER_PARTS__', () => JSON.stringify({csv: masterParts, levels, repository: release.repository || '', exteriors: release.exteriors || [], exteriorNote: release.exteriorNote || ''}).replaceAll('<', '\\u003c'))
     .replace('__APP_JS__', () => app.replaceAll('</script', '<\\/script'));
 
   const dependencies = Object.fromEntries(Object.entries(await dependencyVersions()).map(([name, v]) => [name, v.installed]));
   const themeInit = await readFile(path.join(ROOT, 'viewer/theme-init.js'), 'utf8');
-  return {html, assets: {'theme-init.js': themeInit}, inputs: await viewerInputs(), dependencies};
+  return {html, assets: {'theme-init.js': themeInit, 'social-preview.png': await readFile(path.join(ROOT, 'viewer/social-preview.png'))}, inputs: await viewerInputs(), dependencies};
 }

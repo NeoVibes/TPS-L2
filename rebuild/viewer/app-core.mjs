@@ -363,7 +363,7 @@ export function markGraphicsUnavailable(message) {
   cam.stop();
   if (orbit) orbit.enabled = false;
   audio.setVisibility(false);
-  $("loadingText").textContent = message + " Use the catalog below, or reload to try 3D again.";
+  $("loadingText").textContent = message + " Use the catalog, or reload to try 3D again.";
   $("catalog").open = Boolean(model);
   if (model) {
     views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);

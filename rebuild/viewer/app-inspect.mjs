@@ -187,6 +187,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     $("copyPartDetails").textContent = "Copy part details";
     $("copyFallbackLabel").hidden = true;
     $("copyFallback").value = "";
+    $("inspectorBody").scrollTop = 0;
   }
   function copiedDetails() {
     return selection ? formatPartDetails(selection.details, serviceCatalog, copyTarget(selection.data.id, location, versionSuffix())) : '';

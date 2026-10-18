@@ -3,8 +3,9 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="__CONTENT_POLICY__">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portable Tape Player</title>
-<meta name="description" content="An inspectable TPS-L2 reconstruction: operate the transport, explore the component assembly, and inspect its components.">
+<title>Sony TPS-L2 — Interactive Walkman Reconstruction</title>
+<meta name="description" content="Explore an estimated Sony TPS-L2 Walkman reconstruction: operate the transport, browse every component, and inspect model dimensions and confirmation levels.">
+__SHARING_METADATA__
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23245ec0'/%3E%3Crect x='11' y='19' width='42' height='27' rx='4' fill='%23eee9df'/%3E%3Ccircle cx='23' cy='32' r='7' fill='%2323343d'/%3E%3Ccircle cx='41' cy='32' r='7' fill='%2323343d'/%3E%3C/svg%3E">
 <script src="theme-init.js"></script>
 <style>__STYLES__</style></head>
@@ -64,7 +65,7 @@
 <div class="view-tools" aria-label="Camera angles"><button id="homeCamera">Fit view</button><select id="controlCamera" aria-label="Control close-up"><option value="">Control close-up…</option><option value="transport">Transport &amp; volume</option><option value="hotline">Hot Line button</option><option value="tone">Tone switch</option><option value="battery">Battery door</option></select><button data-angle="front">Front</button><button data-angle="back">Back</button><button data-angle="side">Side</button><button data-angle="top">Top</button><button id="cassetteEdge" data-angle="edge" hidden>Tape edge</button><button id="toggleLabels" aria-pressed="true" hidden>Labels</button><span id="labelHint" hidden>Zoom for component IDs</span></div>
 <div id="partLabels" class="part-labels" hidden aria-label="Exploded component labels"><svg id="labelLeaders" aria-hidden="true"></svg></div>
 <div id="controlHint" class="control-hint" role="status" hidden></div><span id="fps" class="view-status">Ready to explore</span>
-<div class="stage-caption"><b id="stageHelp">Click buttons · drag volume grips · hold Hot Line</b>Explore the model through its controls and component IDs.</div>
+<div class="stage-caption"><b id="stageHelp">Click buttons · drag volume grips · hold Hot Line</b><span id="stageCaptionText">Explore the model through its controls and component IDs.</span></div>
 <section id="inspector" class="inspector" aria-label="Selected component" hidden><div class="inspector-header"><button id="closeInspector" class="close" aria-label="Close component details">×</button>
 <div id="partId" class="eyebrow"></div>
 <h2 id="partName"></h2><button id="toggleInspector" aria-expanded="true" aria-controls="inspectorBody">Collapse details</button></div><div id="inspectorBody"><p id="partExplanation" hidden></p><p id="partMeasure"></p><p id="partCaveat"></p><details><summary>Dimension precision and basis</summary><p id="partPrecision" style="white-space:pre-line"></p></details>
