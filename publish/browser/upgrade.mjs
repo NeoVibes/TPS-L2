@@ -48,17 +48,31 @@ export async function preferenceChecks({browser,url,record,output}) {
   };
   await check();record.phase='upgrade-preferences-reset';await page.locator('#reset').click();await check();
   record.phase='upgrade-preferences-tour';
-  await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();
-  // Preference persistence does not depend on elapsed tour time. Pause before
-  // seeking. Keyboard activation stays on the real button as chapter text moves.
-  record.phase='upgrade-preferences-tour-pause';
-  const pauseTour=page.locator('#tourPause');
-  await pauseTour.waitFor({state:'visible'});assert(await pauseTour.isEnabled());
-  await pauseTour.focus();assert(await pauseTour.evaluate(e=>e===document.activeElement));
-  await page.keyboard.press('Space');
-  assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.paused),true);
-  await page.locator('#tourSeek').evaluate(e=>{e.value='64';e.dispatchEvent(new Event('input',{bubbles:true}));});
-  const tourState=await page.evaluate(()=>window.portableTapePlayer.snapshot().state);
+  await page.locator('[data-workmode="tour"]').click();
+  // This fixture tests persistence across tour changes, not elapsed playback.
+  // Use the real controls in one task so no active tour frame can run between
+  // Start, Pause and seek; native interaction checks remain outside this setup.
+  record.phase='upgrade-preferences-tour-setup';
+  const tourSetup=await page.evaluate(()=>{
+   const control=id=>{
+    const element=document.getElementById(id),style=element&&getComputedStyle(element);
+    if(!element||element.disabled||element.hidden||!element.getClientRects().length||
+      style.visibility==='hidden'||style.visibility==='collapse')throw Error('Tour control unavailable: '+id);
+    return element;
+   };
+   const before=window.portableTapePlayer.snapshot().state;
+   if(before.uiMode!=='tour'||before.tour!==-1)throw Error('Tour setup must start in idle Tour mode');
+   control('tour').click();
+   const started=window.portableTapePlayer.snapshot().state;
+   if(started.tour<0||started.paused)throw Error('Start control did not start the tour');
+   control('tourPause').click();
+   const paused=window.portableTapePlayer.snapshot().state.paused;
+   if(!paused)throw Error('Pause control did not pause the tour');
+   const seek=control('tourSeek');seek.value='64';seek.dispatchEvent(new Event('input',{bubbles:true}));
+   return {started:started.tour,paused,state:window.portableTapePlayer.snapshot().state};
+  });
+  assert(tourSetup.started>=0);assert.equal(tourSetup.paused,true);
+  const tourState=tourSetup.state;
   assert.equal(tourState.view,'exploded');assert.equal(tourState.paused,true);
   record.phase='upgrade-preferences-tour-render';
   // Reload initially prepares only the exterior. Finish the detail load and a
