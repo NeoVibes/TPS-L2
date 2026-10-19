@@ -1,7 +1,7 @@
 // Loading the geometry files and turning them into meshes: the three groups of parts, and the
 // detailed cassette that can stand in for the original one.
 // It owns what has been loaded and the meshes it made. It is told what to do afterwards through
-// onLoaded(name) and onVariant(); it does not reach into the rest of the viewer.
+// onLoaded(name), onVariant() and onFailure(error); it does not reach into the rest of the viewer.
 import * as T from "three";
 import {makeCassetteMaterial, applyCassetteUV} from "./cassette-materials.mjs";
 import {makeDriveMaterial} from "./drive-materials.mjs";
@@ -10,7 +10,7 @@ import {createLoader} from "./loading.mjs";
 
 const VARIANT_TEXT = { refined: "Detailed cassette · generated clear shell, spools and tape path", original: "Original cassette · plain shell and hubs from the Blender file" };
 
-export function createPackages({ $, state, parts, stage, metrics, motionCueEnabled, onLoaded, onVariant }) {
+export function createPackages({ $, state, parts, stage, metrics, motionCueEnabled, onLoaded, onVariant, onFailure }) {
   const loaded = new Set(), promises = new Map(), draws = [];   // names loaded; loads in progress; every mesh made
   let queue = Promise.resolve(), loader = null, files = {};
 
@@ -18,6 +18,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
   function open(table) {
     files = table;
     loader = createLoader({ packages: table }, (text) => {
+      if (state.graphicsUnavailable) return;
       $("loadingText").textContent = text;
       $("packageStatus").textContent = text;
     });
@@ -25,11 +26,14 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
 
   /** Loads one group of parts (exterior, mechanism, electronics) unless it is loaded or loading already. */
   async function ensure(name) {
+    if (state.graphicsUnavailable) return;
     if (loaded.has(name)) return;
     if (promises.has(name)) return promises.get(name);
     const job = queue.catch(() => {
     }).then(async () => {
+      if (state.graphicsUnavailable) return;
       const raw = await loader.load(name), { materials } = stage;
+      if (state.graphicsUnavailable) return;
       for (const p of parts.filter((p2) => p2.data.package === name)) {
         const chunks = [];
         for (const mesh of p.data.meshes) {
@@ -76,17 +80,19 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
     job.catch((err) => {
       promises.delete(name);
       metrics.packageErrors.push(String(err));
-      $("packageStatus").textContent = err.message;
-      $("retryAssets").hidden = false;
+      if (state.graphicsUnavailable) return;
+      onFailure(err);
     });
     return job;
   }
 
   /** Loads the detailed cassette. */
   async function ensureCassette() {
+    if (state.graphicsUnavailable) return;
     if (loaded.has("cassette")) return;
     if (promises.has("cassette")) return promises.get("cassette");
     const job = loader.load("cassette").then((raw) => {
+      if (state.graphicsUnavailable) return;
       const { model, materials, highlightMaterials } = stage, alt = model.alternatives.cassette, offset = materials.length;
       for (const spec of alt.materials) {
         const material = makeCassetteMaterial(spec);
@@ -119,6 +125,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
       promises.delete("cassette");
       $("cassetteVariantStatus").textContent = "Refinement unavailable; original geometry shown. Change the selection to retry.";
       metrics.packageErrors.push(String(err));
+      if (state.graphicsUnavailable) return;
       throw err;
     });
     promises.set("cassette", job);

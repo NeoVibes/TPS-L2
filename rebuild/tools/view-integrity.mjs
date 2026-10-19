@@ -60,6 +60,8 @@ export async function validateView(root, {record = null, geometryOnly = false} =
     if (name === 'index.html') page = bytes.toString('utf8');
   }
   if (!geometryOnly) {
+    if (/<meta\b[^>]*property="og:image"/.test(page) && !expected.includes('social-preview.png'))
+      throw Error('The manifest must include social-preview.png referenced by index.html');
     // Older viewers have no theme bootstrap. Require it when the actual page references it,
     // rather than trusting a version label or allowing both file and manifest entry to vanish.
     const scripts = [...page.matchAll(/<script\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]

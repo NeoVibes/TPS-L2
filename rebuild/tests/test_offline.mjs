@@ -43,3 +43,11 @@ const report = {passed: true, nativeSha256: model.source_sha256, pageSha256: sha
   scope: 'Page parsed; every geometry file loaded through the production loader, hashed and unpacked. Does not show that a browser will open it from disk; that is checked by hand.'};
 writeFileSync('build/test-results/offline-tests.json', JSON.stringify(report, null, 2) + '\n');
 console.log('Offline page verified:', model.parts.length, 'parts,', Object.keys(packages).length, 'geometry files');
+
+assert(html.includes('<title>Sony TPS-L2 — Interactive Walkman Reconstruction</title>'));
+for(const [property,value] of [['og:type','website'],['og:url','https://neovibes.github.io/TPS-L2/'],['og:image','https://neovibes.github.io/TPS-L2/social-preview.png'],['og:image:width','1200'],['og:image:height','630']])assert(html.includes(`property="${property}" content="${value}"`));
+const preview=readFileSync(path.join(VIEW,'social-preview.png'));
+assert.equal(preview.readUInt32BE(16),1200);assert.equal(preview.readUInt32BE(20),630);
+assert.deepEqual(preview,readFileSync('viewer/social-preview.png'));
+const record=JSON.parse(readFileSync(path.join(VIEW,'build-record.json')));
+assert.equal(record.outputs['social-preview.png'].sha256,sha(preview));

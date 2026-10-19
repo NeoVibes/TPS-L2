@@ -6,6 +6,7 @@ const store = () => (globalThis.portableTapePlayerData ||= {});
 const waiting = () => (globalThis.portableTapePlayerWaiting ||= {});
 
 /** The part list, the table of geometry files and the control ranges, from geometry/model.js. */
+export const optionalModelData = () => store().model;
 export function modelData() {
   const model = store().model;
   if (!model) throw new Error('geometry/model.js did not load. Keep index.html and the geometry folder together.');

@@ -6,6 +6,34 @@ import * as T from "three";
 import {cancelStopCycle, cancelAutoStop} from "./operating-state.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
 
+// One availability flag and selector keep controls and their handlers consistent after a graphics failure.
+export const GRAPHICS_CONTROLS = '[data-mode], [data-view], [data-angle], [data-category], [data-context], [data-workmode="tour"], [data-workmode="operate"], #tour, #tourNext, #tourPause, #quickTour, #pause, #reset, #spread, #speed, #motionCues, #toggleLabels, #projection, #section, #sectionOffset, #subsystem, #homeCamera, #controlCamera, #inspectCassette, #batteryDoor, #eject, #door, #cassette, #focus, #isolate, #clearContext, #audioEnable, #hotline, #volumeLeft, #volumeRight, #tone, #tapePosition, #tourSeek, #retryAssets';
+export function syncUnavailable($, state, model) {
+  if (!state.graphicsUnavailable) return false;
+  $("shell").setAttribute("aria-busy", "false");
+  $("loading").hidden = false;
+  $("loading").dataset.unavailable = "true";
+  $("loadingTitle").textContent = "3D unavailable; parts catalog available.";
+  $("loading").querySelector(".spinner").hidden = true;
+  $("loadingRetry").hidden = false;
+  $("retryAssets").hidden = true;
+  $("packageStatus").textContent = "3D unavailable; parts catalog available.";
+  $("partCount").textContent = model ? model.parts.length + " components · catalog only" : "Embedded parts list available";
+  $("cassetteVariantStatus").textContent = model ? "Cassette choice applies to catalog details." : "Cassette metadata unavailable.";
+  $("status").textContent = "Transport unavailable";
+  $("fps").textContent = "Catalog only";
+  $("stageHelp").textContent = "Browse the finder or parts list for component details";
+  $("stageCaptionText").textContent = "Search component IDs and service entries.";
+  $("storyTitle").textContent = "Explore the parts catalog";
+  $("storyText").textContent = model ? "Search components, select a variant and copy details or contribute evidence." : "Model metadata did not load. The embedded parts list, filters, CSV and contribution actions remain available; component finder and measured details are unavailable.";
+  for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) control.disabled = true;
+  for (const id of ["search", "clearSearch", "cassetteVariant", "exteriorVersion"]) $(id).disabled = !model;
+  $("canvas").tabIndex = -1;
+  $("partLabels").hidden = true;
+  $("assemblyLegend").hidden = true;
+  return true;
+}
+
 const descriptions = {
   all: ["A small machine, opened up", "Turn the model with your mouse. Run the transport, open the cassette compartment, or move the covers aside to see how the mechanism fits together."],
   motor: ["01 / The source of motion", "The motor turns the belt-driven flywheel. The large flywheel helps steady the capstan’s rotation. Select any part to inspect it on its own."],
@@ -18,6 +46,10 @@ const descriptions = {
 // onExterior() runs after the exterior version changes, so the inspector can show the part as that version has it.
 export function createViews({ $, state, parts, stage, packages, cam, transport, audio, invalidate, clearTour, tourPosition, tourSteps, clearInspectionContext, select, onExterior }) {
   function setUIMode(mode) {
+    if (state.graphicsUnavailable) {
+      if (mode === "inspect") { state.uiMode = mode; document.body.dataset.mode = mode; }
+      syncUnavailable($, state, stage.model); return;
+    }
     if (!stage.renderer) return;
     transport.cancelControlHold();
     state.uiMode = mode;
@@ -28,11 +60,13 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     sync();
   }
   function applySection() {
+    if (state.graphicsUnavailable || !stage.renderer) return;
     const axis = state.section;
     stage.renderer.clippingPlanes = axis === "off" ? [] : [new T.Plane(new T.Vector3(axis === "x" ? 1 : 0, axis === "y" ? 1 : 0, axis === "z" ? 1 : 0), -state.sectionOffset)];
     invalidate();
   }
   function sync() {
+    if (syncUnavailable($, state, stage.model)) return;
     const { model } = stage;
     invalidate();
     audio.sync(state);
@@ -90,6 +124,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     if (!fromTour) clearTour();
   }
   function setSeparation(value) {
+    if (state.graphicsUnavailable) return;
     const {camera, orbit} = stage;
     if (!camera || !Number.isFinite(value)) return;
     value = Math.max(0, Math.min(1, value));
@@ -104,6 +139,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     sync();
   }
   function setView(view, fromTour = false) {
+    if (state.graphicsUnavailable) return;
     if (!stage.camera) return;
     prepareViewChange(fromTour);
     $("controlCamera").value = "";
@@ -123,7 +159,6 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
       $("section").value = "off";
       applySection();
       select(null);
-      if (view === "exploded") state.labels = true;
     }
     if (view === "assembled") {
       state.isolate = false;
@@ -156,6 +191,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     sync();
   }
   function updateVisibility() {
+    if (syncUnavailable($, state, stage.model)) return;
     const { materials, highlightMaterials } = stage;
     for (const p of parts) {
       const covered = state.view === "assembled" && !state.door && !state.batteryOpen && state.uiMode === "operate" && !state.selected && state.subsystem === "all";
@@ -171,6 +207,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     invalidate();
   }
   function controlCloseup(key) {
+    if (state.graphicsUnavailable) return;
     if (!stage.camera || !key) return;
     $("audioControls").open = true;
     transport.cancelControlHold();

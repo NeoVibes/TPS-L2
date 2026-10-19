@@ -91,3 +91,13 @@ f.theme.dispose(); f.choose('dark'); f.system(true);
 assert.equal(f.theme.preference, 'light'); assert.equal(f.root.getAttribute('data-theme'), 'light');
 assert.equal(f.notifications.length, count, 'Disposal removes both event listeners');
 console.log('Theme: first-paint override, System changes, explicit choices, storage failures and operating-reset separation pass.');
+
+const {readPreferences,savePreferences,VIEWER_PREFERENCES_KEY}=await import('../viewer/preferences.mjs');
+for(const raw of ['{','null','[]','"text"','{"projection":"fish","labels":"false","motionCues":1}'])
+ assert.deepEqual(readPreferences(()=>({getItem:()=>raw})),{projection:'perspective',labels:true,motionCues:true});
+assert.deepEqual(readPreferences(()=>{throw Error('denied');}),{projection:'perspective',labels:true,motionCues:true});
+assert.deepEqual(readPreferences(()=>({getItem:()=>'{"projection":"orthographic","labels":false,"motionCues":false,"mode":"play"}'})),{projection:'orthographic',labels:false,motionCues:false});
+let saved;
+savePreferences({projection:'orthographic',labels:false,motionCues:false,mode:'play'},()=>({setItem(k,v){assert.equal(k,VIEWER_PREFERENCES_KEY);saved=JSON.parse(v);}}));
+assert.deepEqual(Object.keys(saved),['projection','labels','motionCues']);
+assert.doesNotThrow(()=>savePreferences(saved,()=>{throw Error('denied');}));

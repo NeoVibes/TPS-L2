@@ -3,13 +3,16 @@
 import config from "../config/model.json" with { type: "json" };
 import {copyTarget} from "./part-information.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
-import {motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
+import {GRAPHICS_CONTROLS, markGraphicsUnavailable, saveViewerPreferences, motionCueEnabled, $, state, model, camera, V, audio, metrics, invalidate, cam, reset, init, packages, transport, views, inspect, tour} from "./app-core.mjs";
 
 for (const b of document.querySelectorAll("button[data-mode]")) b.onclick = () => transport.operate(b.dataset.mode);
 for (const b of document.querySelectorAll("button[data-view]")) b.onclick = () => views.setView(b.dataset.view);
 for (const b of document.querySelectorAll("[data-category]")) b.onclick = () => views.focusCategory(b.dataset.category);
 $("inspectCassette").onclick = () => inspect.focusContext("cassette");
-$("cassetteVariant").onchange = (e) => packages.setCassetteVariant(e.target.value);
+$("cassetteVariant").onchange = (e) => {
+  if (state.graphicsUnavailable) { state.cassetteVariant = e.target.value; inspect.refreshPartInformation(); }
+  else packages.setCassetteVariant(e.target.value);
+};
 $("batteryDoor").onclick = () => transport.modelAction(config.roles.batteryDoor[0], "click");
 $("eject").onclick = transport.stopEject;
 $("door").onclick = () => {
@@ -34,6 +37,7 @@ $("reset").onclick = reset;
 $("spread").oninput = (e) => views.setSeparation(+e.target.value / 100);
 $("motionCues").onchange = (e) => {
   motionCueEnabled.value = e.target.checked ? 1 : 0;
+  saveViewerPreferences();
   invalidate();
 };
 $("speed").oninput = (e) => {
@@ -52,7 +56,7 @@ $("isolate").onclick = () => {
   views.updateVisibility();
   inspect.focusPart();
 };
-$("closeInspector").onclick = () => inspect.select(null);
+$("closeInspector").onclick = () => inspect.dismiss();
 $("tour").onclick = () => {
   if (state.tour >= 0) {
     tour.clear();
@@ -74,6 +78,7 @@ $("fullscreen").onclick = () => {
 };
 $("toggleLabels").onclick = () => {
   state.labels = !state.labels;
+  saveViewerPreferences();
   $("toggleLabels").setAttribute("aria-pressed", state.labels);
   invalidate();
 };
@@ -96,17 +101,20 @@ for (const b of document.querySelectorAll("[data-angle]")) b.onclick = () => {
   cam.to(target, V(target).add(V(positions[b.dataset.angle])).toArray());
 };
 document.addEventListener("keydown", (e) => {
-  if (/^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY|A)$/.test(e.target.tagName)) return;
-  if (e.code === "Space") {
-    e.preventDefault();
-    transport.operation({ type: "pause" });
-    views.sync();
-  }
+  if (e.defaultPrevented || e.target.tagName === "SELECT") return;
   if (e.key === "Escape") {
     tour.clear();
     state.isolate = false;
-    inspect.select(null);
+    inspect.dismiss();
     views.updateVisibility();
+    views.sync();
+    return;
+  }
+  if (state.graphicsUnavailable) return;
+  if (/^(INPUT|TEXTAREA|BUTTON|SUMMARY|A)$/.test(e.target.tagName)) return;
+  if (e.code === "Space") {
+    e.preventDefault();
+    transport.operation({ type: "pause" });
     views.sync();
   }
   if (e.key === "0") reset();
@@ -123,7 +131,7 @@ $("tourPause").onclick = () => {
   transport.operation({ type: "pause" });
   views.sync();
 };
-$("projection").onchange = (e) => cam.setProjection(e.target.value);
+$("projection").onchange = (e) => { cam.setProjection(e.target.value); saveViewerPreferences(); };
 $("clearContext").onclick = () => {
   inspect.clearInspectionContext();
   inspect.select(null);
@@ -147,22 +155,31 @@ $("sectionOffset").oninput = (e) => {
   $("sectionValue").textContent = state.sectionOffset + " mm";
   views.applySection();
 };
-$("copyPartLink").onclick = async () => {
+async function copyText(text, button, success) {
+  if (!text) return;
+  const selectedDetails = inspect.copiedDetails();
+  try {
+    await navigator.clipboard.writeText(text);
+    if (selectedDetails !== inspect.copiedDetails()) return;
+    button.textContent = success;
+    $("copyFallbackLabel").hidden = true;
+    $("copyFallback").value = "";
+  } catch {
+    if (selectedDetails !== inspect.copiedDetails()) return;
+    $("copyFallbackLabel").hidden = false;
+    $("copyFallback").value = text;
+    $("copyFallback").focus();
+    $("copyFallback").select();
+    button.textContent = "Select and copy below";
+  }
+}
+$("copyPartLink").onclick = () => {
   const id = $("partId").textContent;
   if (!id) return;
   const target = copyTarget(id, location, state.exterior && state.exterior !== model?.exterior?.default ? "&exterior=" + state.exterior : "");
-  try {
-    await navigator.clipboard.writeText(target.text);
-    $("copyPartLink").textContent = target.kind === "id" ? "Part ID copied" : "Public link copied";
-    $("copyFallbackLabel").hidden = true;
-  } catch {
-    $("copyFallbackLabel").hidden = false;
-    $("copyFallback").value = target.text;
-    $("copyFallback").focus();
-    $("copyFallback").select();
-    $("copyPartLink").textContent = "Select and copy below";
-  }
+  return copyText(target.text, $("copyPartLink"), target.kind === "id" ? "Part ID copied" : "Public link copied");
 };
+$("copyPartDetails").onclick = () => copyText(inspect.copiedDetails(), $("copyPartDetails"), "Part details copied");
 $("audioEnable").onclick = async () => {
   transport.operation({ type: "audio-enable", enabled: ["blocked", "unavailable"].includes(audio.status.state) || !state.audioEnabled });
   if (state.audioEnabled) await audio.enable(state);
@@ -194,15 +211,10 @@ window.addEventListener("hashchange", () => {
 window.addEventListener("blur", transport.cancelControlHold);
 $("canvas").addEventListener("webglcontextlost", (e) => {
   e.preventDefault();
-  state.paused = true;
-  audio.setVisibility(false);
-  $("loading").hidden = false;
-  $("loadingTitle").textContent = "Graphics paused";
-  $("loadingText").textContent = "The graphics context was lost. Reload to restore the model. Component information remains available in the finder.";
-  $("loadingRetry").hidden = false;
+  markGraphicsUnavailable("The graphics context was lost.");
 });
 $("canvas").addEventListener("keydown", (e) => {
-  if (cam.handleKey(e.key)) e.preventDefault();
+  if (!state.graphicsUnavailable && cam.handleKey(e.key)) e.preventDefault();
 });
 $("tourSeek").max = TOUR_SECONDS;
 $("tourDuration").textContent = TOUR_SECONDS + "-second tour ";
@@ -210,4 +222,9 @@ for (const key of ["min", "max", "step"]) $("speed")[key] = config.viewer.speedS
 $("speed").value = state.speed;
 $("speedValue").textContent = state.speed.toFixed(2) + "×";
 $("audioDuration").textContent = state.tapeDuration;
+// Guard callbacks as well as native disabled controls, including synthetic events.
+for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) for (const event of ["onclick", "oninput", "onchange"]) {
+  const callback = control[event];
+  if (callback) control[event] = function(e) { if (!state.graphicsUnavailable) return callback.call(this, e); };
+}
 init();

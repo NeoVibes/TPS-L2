@@ -30,19 +30,22 @@ import {createOperatingState, advanceOperating, resetOperating, transportInterva
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
 import {createTransport} from "./app-transport.mjs";
-import {createViews} from "./app-views.mjs";
+import {createViews, syncUnavailable, GRAPHICS_CONTROLS} from "./app-views.mjs";
 import {createInspect, expandVisiblePartBounds} from "./app-inspect.mjs";
 import {createPackages} from "./app-packages.mjs";
 import {createCamera, renderPixelRatio} from "./app-camera.mjs";
 import {createLabels} from "./app-labels.mjs";
 import {createMasterList} from "./app-master-list.mjs";
+import {readPreferences, savePreferences} from "./preferences.mjs";
 import {createTheme} from "./app-theme.mjs";
 
-export const motionCueEnabled = { value: 1 };
+const preferences = readPreferences();
+export {GRAPHICS_CONTROLS};
+export const motionCueEnabled = { value: Number(preferences.motionCues) };
 const indicatorMaterials = [];
 export const $ = (id) => document.getElementById(id);
 const clamp = T.MathUtils.clamp;
-export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: true, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1 };
+export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1 };
 const family = (p) => p.category;
 export let model;
 let parts = [];
@@ -90,6 +93,7 @@ export const theme = createTheme({onChange: syncBackdrop});
 const labels = createLabels({ $, state, parts, stage });
 // What follows a load: the new meshes take their place and the picture is redrawn.
 export const packages = createPackages({ $, state, parts, stage, metrics, motionCueEnabled,
+  onFailure: (error) => markGraphicsUnavailable(error.message),
   onLoaded: (name) => {
     views.updateVisibility();
     if (name !== "cassette") updateParts(10, 0);
@@ -97,7 +101,7 @@ export const packages = createPackages({ $, state, parts, stage, metrics, motion
   },
   onVariant: () => {
     views.updateVisibility();
-    if (state.selected) inspect.refreshPartInformation(state.selected);
+    inspect.refreshPartInformation();
     invalidate();
   } });
 export const transport = createTransport({ $, state, parts, stage, packages, audio, invalidate, clearTour: () => tour.clear(), sync: () => views.sync(),
@@ -117,33 +121,37 @@ export const transport = createTransport({ $, state, parts, stage, packages, aud
 export const cam = createCamera({ $, state, parts, stage, layout: () => explodedLayout, invalidate, reducedMotion, replaceCamera: (next) => { camera = next; } });
 export const views = createViews({ $, state, parts, stage, packages, cam, transport, audio, invalidate, clearTour: () => tour.clear(), tourPosition: () => tour.position, tourSteps: config.viewer.tourSteps,
   clearInspectionContext: () => inspect.clearInspectionContext(), select: (part) => inspect.select(part),
-  onExterior: () => { if (state.selected) inspect.refreshPartInformation(state.selected); } });
-export const inspect = createInspect({ $, state, parts, stage, packages, cam, views, clearTour: () => tour.clear(), reset, updateParts, onPartShown: (id) => masterList.showPart(id) });
+  onExterior: () => { inspect.refreshPartInformation(); } });
+export const inspect = createInspect({ $, state, parts, stage, packages, cam, views, clearTour: () => tour.clear(), reset, updateParts, detailsData: () => ({measured: modelData().measured, rows: masterList.rows, levels: listData().levels}), onPartShown: (id, details) => masterList.showPart(id, details.confirmation) });
 // Picking a modelled row of the parts list shows that part; a cassette row also shows its cassette.
-const masterList = createMasterList({ $, data: listData(), exterior: () => state.exterior, pickPart: (row) => {
+const masterList = createMasterList({ $, data: listData(), exterior: () => state.exterior, pickPart: (row, source) => {
   const part = parts.find((p) => p.data.id === row.part_id);
-  if (!renderer || !part) {
-    const data = model?.parts.find((p) => p.id === row.part_id);
-    if (data) inspect.showInformationOnly(data);
+  const data = part?.data || model?.parts.find(p => p.id === row.part_id);
+  if (data?.is_cassette && row.variant) {
+    state.cassetteVariant = row.variant === "detailed" ? "refined" : "original";
+    $("cassetteVariant").value = state.cassetteVariant;
+    if (!state.graphicsUnavailable && renderer) packages.setCassetteVariant(state.cassetteVariant);
+  } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
+  if (state.graphicsUnavailable || !renderer || !part) {
+    if (data) inspect.showInformationOnly(data, source);
     return;
   }
   tour.clear();
-  if (part.data.is_cassette && row.variant) {
-    $("cassetteVariant").value = row.variant === "detailed" ? "refined" : "original";
-    packages.setCassetteVariant($("cassetteVariant").value);
-  } else if (row.variant && !row.variant.split("+").includes(state.exterior)) views.setExterior(row.variant.split("+")[0]);
   views.setUIMode("inspect");
-  inspect.select(part);
+  inspect.select(part, source);
   inspect.focusPart();
   views.sync();
 } });
 export const tour = createTour({ $, state, parts, steps: config.viewer.tourSteps, views, cam, invalidate });
+export function saveViewerPreferences() {
+  savePreferences({projection:state.projection,labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
+}
 export function invalidate() {
   dirty = true;
   settleUntil = performance.now() + 3e3;
 }
 export function reset() {
-  if (!renderer) return;
+  if (state.graphicsUnavailable || !renderer) return;
   transport.cancelControlHold();
   $("controlCamera").value = "";
   $("audioControls").open = true;
@@ -163,7 +171,6 @@ export function reset() {
   $("sectionOffset").value = 0;
   $("sectionValue").textContent = "0 mm";
   views.applySection();
-  cam.setProjection("perspective");
   inspect.select(null);
   views.updateVisibility();
   displayExplosion = 0;
@@ -276,7 +283,25 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
     p.cueTravel.value = beltTravel(p.data.belt, driver.phase);
   }
 }
+export function markGraphicsUnavailable(message) {
+  transport.cancelControlHold();
+  Object.assign(state, {graphicsUnavailable:true, mode:"stop", paused:true, audioEnabled:false, tour:-1, stopCycle:null});
+  cam.stop();
+  if (orbit) orbit.enabled = false;
+  audio.setVisibility(false);
+  $("loadingText").textContent = message + " Use the catalog, or reload to try 3D again.";
+  $("catalog").open = Boolean(model);
+  if (model) {
+    views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model.exterior?.default);
+    inspect.useFallbackSearch();
+  } else {
+    $("masterList").open = true;
+    $("searchCount").textContent = "Component finder unavailable: model metadata did not load.";
+  }
+  syncUnavailable($, state, model);
+}
 function animate(now) {
+  if (state.graphicsUnavailable) return;
   requestAnimationFrame(animate);
   if (window.portableTapePlayer && performance.now() - lastObservation > 500) {
     lastObservation = performance.now();
@@ -433,6 +458,7 @@ export async function init() {
     orbit.addEventListener("end", invalidate);
     raycaster = new T.Raycaster();
     const resize = () => {
+      if (state.graphicsUnavailable) return;
       const r = $("stage").getBoundingClientRect();
       renderer.setPixelRatio(renderPixelRatio(r.width, r.height, devicePixelRatio));
       renderer.setSize(r.width, r.height, false);
@@ -447,7 +473,12 @@ export async function init() {
     };
     new ResizeObserver(resize).observe($("stage"));
     resize();
+    cam.setProjection(preferences.projection);
+    $("motionCues").checked = preferences.motionCues;
+    $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
+    // A context loss can finish while the initial geometry request is pending.
+    if (state.graphicsUnavailable) return;
     packages.ensureCassette().catch(() => {
     });
     metrics.firstExteriorMs = performance.now() - metrics.started;
@@ -498,25 +529,18 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: true, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);
-    $("loadingTitle").textContent = "The viewer could not start";
-    $("loadingText").textContent = err.message + " — Try opening this file in a current version of Chrome, Safari or Edge.";
-    $("retryAssets").hidden = false;
-    $("loadingRetry").hidden = false;
     Object.defineProperty(window, "portableTapePlayerError", { value: String(err), writable: false });
-    $("catalog").open = true;
-    $("loading").querySelector(".spinner").hidden = true;
-    if (model) {
-      inspect.useFallbackSearch();
-    }
+    markGraphicsUnavailable(err.message);
+
   }
 }
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) transport.cancelControlHold();
   lastTime = performance.now();
-  audio.setVisibility(!document.hidden);
+  audio.setVisibility(!state.graphicsUnavailable && !document.hidden);
   invalidate();
 });

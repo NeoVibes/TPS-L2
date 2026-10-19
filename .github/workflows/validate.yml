@@ -31,8 +31,12 @@ jobs:
           name: software-${{ matrix.os }}
           path: rebuild/build/test-results
   chromium:
+    strategy:
+      fail-fast: false
+      matrix:
+        protocol: [file, hosted]
     runs-on: ubuntu-24.04
-    # The full theme suite renders both protocols with software WebGL on CI.
+    # Each protocol runs the full theme suite with software WebGL on CI.
     timeout-minutes: 30
     env:
       # Hosted runners may define CHROME_BIN; CI must use Playwright's pinned download.
@@ -49,9 +53,9 @@ jobs:
           cache-dependency-path: publish/browser/package-lock.json
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:chromium
+      - run: npm run test:chromium -- --protocol=${{ matrix.protocol }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: chromium-browser-results
+          name: chromium-browser-results-${{ matrix.protocol }}
           path: rebuild/build/browser/regressions

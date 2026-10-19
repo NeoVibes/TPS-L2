@@ -19,11 +19,15 @@ Unofficial project, not affiliated with or endorsed by Sony.
 | `rebuild/` | Turning an edit into a new `view/` | `rebuild/REBUILDING.md`. Needs Blender and Node 24. |
 | `publish/` | Releasing your own version | `publish/PUBLISHING.md`. |
 
-Keep `view/index.html` and `view/geometry/` side by side. Chrome checks and Safari 27.0.1 smoke checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT and keyboard zoom. Playwright WebKit startup checks also passed; Firefox verification is incomplete.
+Keep `view/index.html` and `view/geometry/` side by side. The v0.2.8 automated Chrome checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT, keyboard zoom and recovery from failed geometry loads. The new loading/recovery and inspector checks also passed in Playwright WebKit. Native Safari 27.0.1 smoke checks passed from disk and HTTP, including native-menu Escape, collapse focus, transport interruption and keyboard zoom in both projections. Installed Chrome 155 also passed an interactive HTTP smoke check. Firefox verification was skipped at the project owner's request; no Firefox compatibility result is claimed.
 
 In the viewer: press PLAY, drag the volume grips, open the battery cover. **Exterior version** switches between the three versions of the lettering. **Inspect** lets you search by part name, model part ID, or the service manual's Ref. No. and Part No. (try `8-835-008-11`), and lists every part with its confirmation level.
 
 Choose **System**, **Light** or **Dark** for the interface and model backdrop. System follows your device's appearance setting, including changes while the viewer is open. Light and Dark are remembered when browser storage is available; if storage is blocked, the choice still works for the current page. **Reset** keeps your appearance choice. Changing appearance preserves the model's materials and lighting, your camera and selection, and the transport and audio controls.
+
+Projection, component labels and illustrative motion cues are remembered when browser storage is available. Reset, tours and close-ups preserve those choices. Search results can be expanded with **Show more**. Component dimensions use measured solid extents at the assembled/rest pose; the precision disclosure and **Copy part details** identify the selected variant and basis. Use **Collapse details** to keep the component name visible on a narrow screen, and Escape or Close to dismiss the inspector.
+
+If graphics cannot start, the parts catalog remains available, with one manual **Reload viewer** action. When model metadata is missing too, the embedded master list and its CSV remain available.
 
 ## How sure is it
 
@@ -58,7 +62,7 @@ Known problems:
 Three ways, each fine by itself.
 
 1. **Enjoy it and share it.** It is free to use and share with credit (see Licences).
-2. **Send a measurement.** Pick the part in the viewer's Inspect panel and choose "Confirm a feature". Say which exterior version your player is, what you measured and where the measurement starts and ends, the value and the instrument. Photos or links to photos are enough. The maintainer adjusts the model.
+2. **Send a measurement.** Pick the part in the viewer's Inspect panel and choose "Confirm a feature". Say which exterior version your player is, what you measured and where the measurement starts and ends, the value and the instrument. For photo-only evidence, choose "Report a correction" instead. The maintainer reviews the evidence before adjusting the model.
 3. **Adjust a part yourself.** Edit your own copy in Blender, put it anywhere you like, and send a link to it with the measurement it rests on.
 
 A submission is public: hide serial numbers, leave out your name and address, and remove location data from photographs. Every submission is reviewed, and a part's level rises only when the model matches.

@@ -3137,14 +3137,22 @@
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
   "searchMotor": [
-   "Ref. No.: M1 · Part No.: 8-835-008-11 · Description: Motor, MNF-1600B "
+   "MTR-001 · Motor metal can",
+   "MTR-002 · Drive-end bell",
+   "MTR-003 · Rear end plate",
+   "MTR-004 · Motor shaft",
+   "MTR-005 · Motor pulley",
+   "MTR-010 · Fixed annular motor magnet",
+   "MTR-011 · Motor front bronze bearing",
+   "MTR-012 · Motor inner rear bronze bearing"
   ],
   "searchStop": [
+   "CTL-04 · STOP EJECT cap",
    "Ref. No.: Not listed · Part No.: 3-568-726-00 · Description: Button, S"
   ],
   "inspector": {
    "partId": "CTL-04",
-   "partName": "CTL-04 • STOP EJECT cap"
+   "partName": "STOP EJECT cap"
   },
   "copy": {
    "button": "Part ID copied",

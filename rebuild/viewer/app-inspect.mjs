@@ -3,7 +3,7 @@
 // It owns the service catalogue and the selection. It is given the camera, views and packages
 // controllers, and three things from the core: clearTour, reset and updateParts.
 import config from "../config/model.json" with { type: "json" };
-import {partSearchText, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
+import {partExplanations, displayName, finderResults, resolvePartDetails, formatDimensions, detailPrecision, dimensionCaveat, formatPartDetails, copyTarget, serviceSearchEntries, serviceEntriesForPart, serviceFields} from "./part-information.mjs";
 import {fitBoxDistance} from "./fit-camera.mjs";
 import {parseServiceCatalog} from "./service-catalog.mjs";
 import serviceCatalogCsv from "../../edit/service-manual-parts.csv";
@@ -26,10 +26,31 @@ export function serviceLabel(entry) {
 }
 
 // onPartShown(partId) lets the master list add the part's confirmation level to the inspector.
-export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown }) {
+export function createInspect({ $, state, parts, stage, packages, cam, views, clearTour, reset, updateParts, onPartShown, detailsData }) {
+  let selection = null, opener = null, collapsed = false, inspectionRevision = 0;
+  const visible = element => element?.isConnected && element.getClientRects().length && !element.closest('[hidden]') && (element.tagName === 'SUMMARY' || !element.closest('details:not([open])')) && !element.disabled;
+  function rememberOpener(source = document.activeElement) {
+    if (!$("inspector").contains(source)) opener = [document.body, document.documentElement].includes(source) ? null : source;
+  }
+  function dismiss() {
+    const wasOpen = !$("inspector").hidden;
+    select(null);
+    if (!wasOpen) return;
+    const fallback = $("catalog").querySelector("summary");
+    (visible(opener) ? opener : visible(fallback) ? fallback : $("canvas")).focus();
+  }
+  $("toggleInspector").onclick = () => {
+    collapsed = !collapsed;
+    // Safari blurs the body control before a pointer click without focusing the button.
+    if (collapsed) $("toggleInspector").focus();
+    $("inspectorBody").hidden = collapsed;
+    $("toggleInspector").setAttribute("aria-expanded", String(!collapsed));
+    $("toggleInspector").textContent = collapsed ? "Expand details" : "Collapse details";
+  };
   // Links carry the exterior version when it is not the default one.
   const versionSuffix = () => state.exterior && state.exterior !== stage.model?.exterior?.default ? "&exterior=" + state.exterior : "";
   function clearInspectionContext() {
+    inspectionRevision++;
     $("cassetteEdge").hidden = true;
     state.contextIds = null;
     state.contextKey = null;
@@ -42,6 +63,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     }
   }
   async function focusContext(key) {
+    if (state.graphicsUnavailable) return;
     const { model, scene } = stage, context = model.inspectionContexts[key];
     if (!context) return;
     reset();
@@ -59,8 +81,9 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     views.updateVisibility();
     $("contextStatus").textContent = context.label + " · " + context.partIds.length + " parts in assembled positions. " + context.description;
     $("clearContext").hidden = false;
+    const revision = inspectionRevision;
     await packages.ensureAll();
-    if (state.contextIds !== context.partIds) return;
+    if (state.graphicsUnavailable || inspectionRevision !== revision || state.contextIds !== context.partIds) return;
     updateParts(100, 0);
     scene.updateMatrixWorld(true);
     const selected = parts.find((p) => p.data.id === context.focusPartId) || parts.find((p) => context.partIds.includes(p.data.id));
@@ -111,7 +134,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const target = $("partService");
     target.replaceChildren();
     // For a part whose lettering differs between exterior versions, only the manual's entry for the version on screen is shown.
-    const shown = serviceEntriesForPart(serviceCatalog, partId).filter((entry) => !entry.partStates?.[partId] || entry.partStates[partId].some((s) => s.split("+").includes(state.exterior) || s === "original" || s === "detailed"));
+    const shown = serviceEntriesForPart(serviceCatalog, partId, selection?.details.variant);
+
     for (const entry of shown) {
       const block = document.createElement("section"), heading = document.createElement("h3");
       heading.textContent = entry.partIds.length > 1 ? "Service item containing this component" : "Service catalog";
@@ -150,23 +174,41 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     stage.model.inspectionContexts[key] = { label: entry.description, description: serviceLabel(entry), partIds: active, focusPartId: active[0] };
     await focusContext(key);
   }
-  function refreshPartInformation(part) {
-    showServiceFields(part.data.id);
-    onPartShown(part.data.id);
-    const dims = part.data.authoritativeBounds?.dimensions;
-    $("partMeasure").textContent = dims ? "Model extents (assembly axes): " + dims.map((x) => x.toFixed(3)).join(" × ") + " mm." : "";
-    $("copyPartLink").textContent = copyTarget(part.data.id, location, versionSuffix()).label;
+  function refreshPartInformation(part = selection) {
+    if (!part) return;
+    const data = part.data;
+    const details = resolvePartDetails({part: data, meta: stage.model, ...detailsData(), exterior: state.exterior, cassette: state.cassetteVariant});
+    selection = {data, rendered: part.group ? part : part.rendered, details};
+    $("partExplanation").textContent = partExplanations[data.id] || "";
+    $("partExplanation").hidden = !partExplanations[data.id];
+    showServiceFields(data.id);
+    onPartShown(data.id, details);
+    $("partMeasure").textContent = formatDimensions(details);
+    $("partCaveat").textContent = dimensionCaveat;
+    $("partPrecision").textContent = detailPrecision(details);
+    $("copyPartLink").textContent = copyTarget(data.id, location, versionSuffix()).label;
+    $("copyPartDetails").textContent = "Copy part details";
     $("copyFallbackLabel").hidden = true;
+    $("copyFallback").value = "";
+    $("inspectorBody").scrollTop = 0;
+  }
+  function copiedDetails() {
+    return selection ? formatPartDetails(selection.details, serviceCatalog, copyTarget(selection.data.id, location, versionSuffix())) : '';
   }
   function applyPartLink() {
     const params = new URLSearchParams(location.hash.slice(1));
     const context = params.get("context");
-    if (context && stage.model.inspectionContexts?.[context]) {
+    if (!informationOnly && context && stage.model?.inspectionContexts?.[context]) {
       focusContext(context);
       return;
     }
     const id = params.get("part");
     if (id) {
+      if (informationOnly) {
+        const data = stage.model?.parts.find(p => p.id === id);
+        if (data) showInformationOnly(data);
+        return;
+      }
       const p = parts.find((p2) => p2.data.id === id);
       if (p) {
         views.setUIMode("inspect");
@@ -176,9 +218,11 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
       }
     }
   }
-  function select(part) {
+  function select(part, source) {
+    inspectionRevision++;
+    if (part) rememberOpener(source);
     state.selected = part;
-    if (!part) state.isolate = false;
+    if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
     $("inspector").hidden = !part;
     if (part) {
       if (state.contextIds && !state.contextIds.includes(part.data.id)) clearInspectionContext();
@@ -186,7 +230,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
         state.subsystem = "all";
         $("subsystem").value = "all";
       }
-      $("partName").textContent = part.data.name;
+      $("partName").textContent = displayName(part.data);
       $("partId").textContent = part.data.id;
       refreshPartInformation(part);
       $("copyPartLink").textContent = copyTarget(part.data.id, location, versionSuffix()).label;
@@ -197,6 +241,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     views.updateVisibility();
   }
   function focusPart() {
+    if (state.graphicsUnavailable) return;
     if (!state.selected) return;
     if (!state.selected.loaded) {
       packages.ensure(state.selected.data.package).then(focusPart).catch(() => {
@@ -209,83 +254,72 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const dir = camera.position.clone().sub(orbit.target).normalize();
     cam.to(center.toArray(), center.clone().addScaledVector(dir, Math.max(20, size * 1.7)).toArray());
   }
-  function search() {
-    const query = $("search").value.toLowerCase(), matches = parts.filter((p) => partSearchText(p.data).toLowerCase().includes(query)), services = serviceSearchEntries(serviceCatalog, query);
-    $("searchCount").textContent = matches.length + " components · " + services.length + " service entries";
-    $("results").replaceChildren();
-    for (const entry of services.slice(0, 60)) {
-      const active = entry.partIds.filter((id) => parts.some((p) => p.data.id === id)), b = document.createElement("button");
-      b.className = "part-result";
-      b.type = "button";
-      b.textContent = serviceLabel(entry) + " · " + (active.length ? active.length + " modeled component" + (active.length === 1 ? "" : "s") : "No verified model mapping");
-      b.disabled = !active.length;
-      b.onclick = () => {
-        focusServiceEntry(entry);
-        $("catalog").open = false;
-      };
-      $("results").append(b);
+  let componentLimit = 60, serviceLimit = 60, informationOnly = false;
+  function search(append = false) {
+    if (append !== true) {
+      componentLimit = serviceLimit = 60;
+      $("results").replaceChildren();
+      $("serviceResults").replaceChildren();
     }
-    for (const p of matches.slice(0, 60)) {
+    const {components, services} = finderResults(stage.model?.parts || [], serviceCatalog, $("search").value);
+    const renderGroup = (items, limit, listId, countId, moreId, row, noun) => {
+      const list = $(listId), shown = Math.min(limit, items.length), exhausted = shown === items.length;
+      for (const item of items.slice(list.children.length, shown)) list.append(row(item));
+      $(countId).textContent = `Showing ${shown} of ${items.length} ${noun}`;
+      const more = $(moreId);
+      more.hidden = items.length <= 60;
+      more.setAttribute("aria-disabled", String(exhausted));
+      more.textContent = exhausted ? `All ${items.length} shown` : "Show more " + noun;
+      more.onclick = () => {
+        if (exhausted) return;
+        if (moreId === "moreComponents") componentLimit += 60; else serviceLimit += 60;
+        search(true);
+      };
+    };
+    renderGroup(components, componentLimit, "results", "searchCount", "moreComponents", data => {
       const b = document.createElement("button");
-      b.className = "part-result";
-      b.type = "button";
-      b.textContent = p.data.id + " · " + p.data.name;
+      b.type = "button"; b.className = "part-result";
+      b.textContent = data.id + " · " + displayName(data);
       b.onclick = () => {
-        clearTour();
-        select(p);
-        focusPart();
+        if (informationOnly) showInformationOnly(data, b);
+        else { clearTour(); select(parts.find(p => p.data.id === data.id), b); focusPart(); views.sync(); }
         $("catalog").open = false;
-        views.sync();
       };
-      $("results").append(b);
-    }
-    if (services.length > 60 || matches.length > 60) {
-      const hint = document.createElement("p");
-      hint.textContent = "Showing the first 60 matches in each list. Refine your search to see more.";
-      $("results").append(hint);
-    }
+      return b;
+    }, "components");
+    renderGroup(services, serviceLimit, "serviceResults", "serviceCount", "moreServices", entry => {
+      const active = entry.partIds.filter(id => stage.model?.parts.some(p => p.id === id));
+      const b = document.createElement(informationOnly ? "p" : "button");
+      b.className = "part-result";
+      b.textContent = serviceLabel(entry) + " · " + (active.length ? "Model IDs: " + active.join(", ") : "No verified model mapping");
+      if (!informationOnly) { b.type = "button"; b.disabled = !active.length; b.onclick = () => { focusServiceEntry(entry); $("catalog").open = false; }; }
+      return b;
+    }, "service entries");
+    $("searchEmpty").hidden = Boolean(components.length || services.length);
   }
+  $("clearSearch").onclick = () => { $("search").value = ""; search(); $("search").focus(); };
 
   /** Shows a part's information without the 3D view. */
-  function showInformationOnly(data) {
+  function showInformationOnly(data, source) {
+    inspectionRevision++;
+    rememberOpener(source);
+    state.selected = null;
     $("inspector").hidden = false;
     $("partId").textContent = data.id;
-    $("partName").textContent = data.name;
+    $("partName").textContent = displayName(data);
     refreshPartInformation({ data });
     $("focus").disabled = true;
     $("isolate").disabled = true;
-    history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(data.id));
+    history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(data.id) + versionSuffix());
   }
 
-  /** The search for when the 3D view could not start: results open the part's information only. */
-  function fallbackSearch() {
-    const { model } = stage;
-    const query = $("search").value.toLowerCase(), matches = model.parts.filter((p) => partSearchText(p).toLowerCase().includes(query)), services = serviceSearchEntries(serviceCatalog, query);
-    $("searchCount").textContent = matches.length + " components · " + services.length + " service entries · graphics unavailable";
-    $("results").replaceChildren();
-    for (const entry of services.slice(0, 60)) {
-      const summary = document.createElement("p");
-      summary.textContent = serviceLabel(entry) + " · " + (entry.partIds.length ? "Model IDs: " + entry.partIds.join(", ") : "No verified model mapping");
-      $("results").append(summary);
-      for (const id of entry.partIds) {
-        const part = model.parts.find((p) => p.id === id);
-        if (part && !matches.includes(part)) matches.push(part);
-      }
-    }
-    for (const data of matches.slice(0, 60)) {
-      const b = document.createElement("button");
-      b.className = "part-result";
-      b.textContent = data.id + " · " + data.name;
-      b.onclick = () => {
-        showInformationOnly(data);
-      };
-      $("results").append(b);
-    }
-  }
   function useFallbackSearch() {
-    $("search").oninput = fallbackSearch;
-    fallbackSearch();
+    informationOnly = true;
+    if (selection) showInformationOnly(selection.data);
+    $("search").oninput = search;
+    search();
+    applyPartLink();
   }
 
-  return { clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
+  return { dismiss, copiedDetails, clearInspectionContext, focusContext, fitInspectionContext, focusServiceEntry, refreshPartInformation, applyPartLink, select, focusPart, search, useFallbackSearch, showInformationOnly };
 }

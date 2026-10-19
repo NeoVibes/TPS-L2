@@ -72,7 +72,7 @@ const transport = createTransport({$, state, parts: [], stage, packages, audio, 
 views = createViews({$, state, parts: [], stage, packages, cam, transport, audio, invalidate,
   clearTour: tour.clear, tourPosition: () => 0, tourSteps: [], clearInspectionContext() {}, select() {}, onExterior() {}});
 const harness = {$, state, model: undefined, orbit: stage.orbit, V: values => new T.Vector3().fromArray(values),
-  audio, metrics: {}, invalidate, cam, reset() {}, init() {}, packages, transport, views, inspect: {}, tour,
+  GRAPHICS_CONTROLS: "", markGraphicsUnavailable() {}, saveViewerPreferences() {}, audio, metrics: {}, invalidate, cam, reset() {}, init() {}, packages, transport, views, inspect: {dismiss() {}}, tour,
   motionCueEnabled: {value: 1}, stage};
 const harnessKey = '__portableTapePlayerInputTest';
 globalThis[harnessKey] = harness;

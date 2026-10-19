@@ -2,6 +2,7 @@
 // yet, with its confirmation level. Filter it, pick a row, download it, and start a submission.
 // The rows come from view/master-parts.csv, which the build also embeds in the page. Nothing here
 // needs the 3D view, so the list still works when graphics are unavailable.
+import {displayName} from "./part-information.mjs";
 import {parseCsv} from "./service-catalog.mjs";
 
 const CASSETTE = { original: "original cassette", detailed: "detailed cassette" };
@@ -28,7 +29,7 @@ export function filterRows(rows, { text = "", status = "", level = "" } = {}) {
 
 export function rowLabel(row) {
   const what = row.part_id || row.manual_part_no || row.manual_ref_no || row.manual_catalog_id;
-  return (row.status === "modelled" ? "" : "Not modelled · ") + what + " · " + row.name + (row.variant ? " · " + variantLabel(row.variant) : "") + " · level " + row.confirmation_level;
+  return (row.status === "modelled" ? "" : "Not modelled · ") + what + " · " + displayName({id: row.part_id, name: row.name}) + (row.variant ? " · " + variantLabel(row.variant) : "") + " · level " + row.confirmation_level;
 }
 
 /**
@@ -97,9 +98,9 @@ export function createMasterList({ $, data, exterior, pickPart }) {
     return block;
   }
 
-  /** The confirmation block for the part shown in the inspector: both rows of a cassette part; for a part whose lettering differs between exterior versions, the row of the version on screen. */
-  function showPart(partId) {
-    const mine = rows.filter((row) => row.part_id === partId && showsExterior(row, exterior())), target = $("partConfirmation");
+  /** Only the canonical selected variant is shown; the master rows remain individually selectable. */
+  function showPart(partId, row) {
+    const mine = row ? [row] : [], target = $("partConfirmation");
     target.replaceChildren(...mine.map(describe));
     target.hidden = !mine.length;
     $("partSubmission").hidden = true;
@@ -109,10 +110,18 @@ export function createMasterList({ $, data, exterior, pickPart }) {
   }
 
   /** Redraws the list for the current filters. */
-  function refresh() {
+  let limit = 60;
+  function refresh(append = false) {
+    if (append !== true) { limit = 60; $("masterResults").replaceChildren(); }
     const found = filterRows(rows, { text: $("masterSearch").value, status: $("masterStatus").value, level: $("masterLevel").value });
-    $("masterCount").textContent = found.length + " of " + rows.length + " rows" + (found.length > 80 ? " · showing the first 80" : "");
-    $("masterResults").replaceChildren(...found.slice(0, 80).map((row) => {
+    const shown = Math.min(limit, found.length), exhausted = shown === found.length;
+    $("masterCount").textContent = `Showing ${shown} of ${found.length} rows`;
+    $("masterEmpty").hidden = found.length > 0;
+    $("masterMore").hidden = found.length <= 60;
+    $("masterMore").textContent = exhausted ? `All ${found.length} shown` : "Show more rows";
+    $("masterMore").setAttribute("aria-disabled", String(exhausted));
+    $("masterMore").onclick = () => { if (!exhausted) { limit += 60; refresh(true); } };
+    $("masterResults").append(...found.slice($("masterResults").children.length, shown).map((row) => {
       const b = element("button", rowLabel(row), "master-row");
       b.type = "button";
       b.onclick = () => {
@@ -122,7 +131,7 @@ export function createMasterList({ $, data, exterior, pickPart }) {
         $("masterReport").hidden = false;
         $("masterReport").textContent = row.status === "modelled" ? "Report a correction to this part" : "Report this part";
         $("masterReport").onclick = () => offer("part", row, "masterSubmission");
-        if (row.status === "modelled") pickPart(row);
+        if (row.status === "modelled") pickPart(row, b);
       };
       return b;
     }));
@@ -145,6 +154,12 @@ export function createMasterList({ $, data, exterior, pickPart }) {
   $("exteriorNote").textContent = data.exteriorNote || "";
   $("levelKey").replaceChildren(...data.levels.map((text, level) => element("li", "Level " + level + ": " + text)));
   for (const id of ["masterSearch", "masterStatus", "masterLevel"]) $(id).oninput = refresh;
+  $("masterClear").onclick = () => {
+    for (const id of ["masterSearch", "masterStatus", "masterLevel"]) $(id).value = "";
+    refresh(); $("masterSearch").focus();
+  };
+  for (const id of ["partContributionNote", "masterContributionNote"])
+    $(id).textContent = data.repository ? "Opens GitHub · GitHub account required · Public submission" : "Copy the submission text below to share with the maintainer.";
   $("masterDownload").onclick = download;
   $("masterNew").onclick = () => offer("part", null, "masterSubmission");
   refresh();

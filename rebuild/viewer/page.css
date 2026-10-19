@@ -1382,3 +1382,16 @@ canvas:focus-visible { outline: 3px solid var(--focus); outline-offset: -4px; }
   color: var(--on-active);
   border-color: var(--active);
 }
+
+/* A persistent name and controls above the scrollable detail body. */
+.inspector { display:flex; flex-direction:column; overflow:hidden; }
+.inspector-header { flex:none; position:relative; padding-right:20px; }
+.inspector-header .close { right:-9px; top:-10px; }
+#inspectorBody { overflow:auto; min-height:0; padding:4px; margin:0 -4px; }
+#copyFallback { width:100%; box-sizing:border-box; }
+#toggleInspector { font-size:11px; margin-bottom:6px; }
+#serviceResults { max-height:270px; overflow:auto; }
+
+.loading[data-unavailable="true"] { inset:auto; top:14px; left:14px; right:14px; width:auto; height:auto; padding:14px; border-radius:10px; pointer-events:auto; }
+.loading[data-unavailable="true"] h2 { font-size:16px; margin:0 0 6px; }
+.loading[data-unavailable="true"] p { margin:6px 0; }
