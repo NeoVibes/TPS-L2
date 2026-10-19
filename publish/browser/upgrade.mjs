@@ -29,32 +29,77 @@ export async function interactionChecks({browser,url,record,output}) {
   record.interactionUpgrade='passed';
  } finally {await page.close();}
 }
-export async function preferenceChecks({browser,url,record}) {
+export async function preferenceChecks({browser,url,record,output}) {
  const context=await browser.newContext({reducedMotion:'reduce'});
  await context.addInitScript(()=>{const set=Storage.prototype.setItem;window.__preferenceWrites=[];Storage.prototype.setItem=function(k,v){if(k==='tpsl2-viewer-preferences')window.__preferenceWrites.push(v);return set.call(this,k,v);};});
  const page=await context.newPage();
  try {
+  record.phase='upgrade-preferences-save';
   await page.goto(url);await ready(page);await page.locator('[data-workmode="inspect"]').click();
   await page.locator('#projection').selectOption('orthographic');
   await page.locator('[data-view="exploded"]').click();await page.locator('#toggleLabels').click();await page.locator('#motionCues').uncheck();
   assert.equal(await page.evaluate(()=>window.__preferenceWrites.length),3);
+  record.phase='upgrade-preferences-reload';
   await page.reload();await ready(page);
   const check=async()=>{
    const s=await page.evaluate(()=>window.portableTapePlayer.snapshot().state);
    assert.equal(s.projection,'orthographic');assert.equal(s.labels,false);assert.equal(await page.locator('#motionCues').isChecked(),false);
    assert.equal(await page.evaluate(()=>window.__preferenceWrites.length),0);
   };
-  await check();await page.locator('#reset').click();await check();
-  await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();await page.locator('#tourSeek').evaluate(e=>{e.value='64';e.dispatchEvent(new Event('input',{bubbles:true}));});assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).view,'exploded');await check();
-  await page.locator('[data-workmode="inspect"]').click();await page.locator('[data-context="motorAssembly"]').click();await check();
+  await check();record.phase='upgrade-preferences-reset';await page.locator('#reset').click();await check();
+  record.phase='upgrade-preferences-tour';
+  await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();
+  // Preference persistence does not depend on elapsed tour time. Pause before
+  // seeking so software rendering cannot advance the chapter during assertions.
+  await page.locator('#tourPause').click();
+  assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.paused),true);
+  await page.locator('#tourSeek').evaluate(e=>{e.value='64';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  const tourState=await page.evaluate(()=>window.portableTapePlayer.snapshot().state);
+  assert.equal(tourState.view,'exploded');assert.equal(tourState.paused,true);
+  record.phase='upgrade-preferences-tour-render';
+  // Reload initially prepares only the exterior. Finish the detail load and a
+  // real exploded render before this persistence check dispatches another click.
+  await page.waitForFunction(()=>{
+   const snapshot=window.portableTapePlayer.snapshot();
+   const text=document.getElementById('stage').dataset.test,render=text&&JSON.parse(text);
+   return snapshot.ready&&['exterior','mechanism','electronics','cassette'].every(name=>snapshot.loaded.includes(name))&&
+    render?.view==='exploded'&&render.draws>0&&render.triangles>0;
+  });
+  await check();
+  record.phase='upgrade-preferences-inspect';
+  await page.locator('[data-workmode="inspect"]').click();
+  await page.waitForFunction(()=>{const state=window.portableTapePlayer.snapshot().state;return state.uiMode==='inspect'&&state.tour===-1;});
+  record.phase='upgrade-preferences-context';
+  await page.locator('[data-context="motorAssembly"]').click();await check();
+  record.phase='upgrade-preferences-clear-context';
   await page.locator('#clearContext').click();await check();
   record.preferenceSuccess='passed';
+  record.phase='upgrade-preferences-invalid';
   await page.evaluate(()=>localStorage.setItem('tpsl2-viewer-preferences','{bad'));await page.reload();await ready(page);
   assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).projection,'perspective');
+  record.phase='upgrade-preferences-denied';
   await context.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw Error('storage denied');}});});
   await page.goto(url+'#part=BLT-001');await ready(page);await page.locator('[data-workmode="inspect"]').click();await page.locator('#projection').selectOption('orthographic');
   assert.equal(await page.locator('#partId').textContent(),'BLT-001');assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).projection,'orthographic');
   record.preferenceInvalidDenied='passed';
+ } catch(error) {
+  // The outer runner has no reference to this helper's page. Preserve bounded
+  // failure evidence before closing it, without replacing the original error.
+  let timer;
+  try {
+   record.preferenceFailure=await Promise.race([
+    page.evaluate(()=>{
+     const snapshot=window.portableTapePlayer?.snapshot();
+     return {ready:snapshot?.ready,state:snapshot?.state,loaded:snapshot?.loaded,packageErrors:snapshot?.packageErrors,
+      renderedFrames:snapshot?.renderedFrames,render:document.getElementById('stage')?.dataset.test||null,
+      preferenceWrites:window.__preferenceWrites?.length,hash:location.hash,
+      focusedControl:document.activeElement?.id||document.activeElement?.dataset?.workmode||null};
+    }).catch(captureError=>({captureError:String(captureError)})),
+    new Promise(resolve=>{timer=setTimeout(()=>resolve({timedOut:true}),5000);})
+   ]);
+  } finally {clearTimeout(timer);}
+  if(output)await page.screenshot({path:path.join(output,`${record.browser}-${record.protocol}-preferences-failure.png`),timeout:5000}).catch(()=>{});
+  throw error;
  } finally {await context.close();}
 }
 
