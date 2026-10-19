@@ -19,7 +19,7 @@ Unofficial project, not affiliated with or endorsed by Sony.
 | `rebuild/` | Turning an edit into a new `view/` | `rebuild/REBUILDING.md`. Needs Blender and Node 24. |
 | `publish/` | Releasing your own version | `publish/PUBLISHING.md`. |
 
-Keep `view/index.html` and `view/geometry/` side by side. The v0.2.8 automated Chrome checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT, keyboard zoom and recovery from failed geometry loads. The new loading/recovery cases also passed in Playwright WebKit. A successful Safari opening smoke was reported by the project owner; the remaining native-browser interaction checks and Firefox verification are incomplete. Automated WebKit is not a substitute for native Safari testing.
+Keep `view/index.html` and `view/geometry/` side by side. The v0.2.8 automated Chrome checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT, keyboard zoom and recovery from failed geometry loads. The new loading/recovery and inspector checks also passed in Playwright WebKit. Native Safari 27.0.1 smoke checks passed from disk and HTTP, including native-menu Escape, collapse focus, transport interruption and keyboard zoom in both projections. Installed Chrome 155 also passed an interactive HTTP smoke check. Firefox verification was skipped at the project owner's request; no Firefox compatibility result is claimed.
 
 In the viewer: press PLAY, drag the volume grips, open the battery cover. **Exterior version** switches between the three versions of the lettering. **Inspect** lets you search by part name, model part ID, or the service manual's Ref. No. and Part No. (try `8-835-008-11`), and lists every part with its confirmation level.
 
