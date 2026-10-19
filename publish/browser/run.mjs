@@ -13,9 +13,13 @@ const view = await realpath(path.join(kit, 'view'));
 const args = process.argv.slice(2), feasibility = args.includes('--feasibility');
 const output = path.join(kit, 'rebuild/build/browser', feasibility ? 'feasibility' : 'regressions');
 const browserArgument = args.find(arg => arg.startsWith('--browser='));
-if (args.some(arg => arg !== '--feasibility' && !arg.startsWith('--browser='))) throw Error('Use --feasibility and/or --browser=chromium|firefox|webkit.');
+const protocolArguments = args.filter(arg => arg.startsWith('--protocol='));
+if (args.some(arg => arg !== '--feasibility' && !arg.startsWith('--browser=') && !arg.startsWith('--protocol='))) throw Error('Use --feasibility, --browser=chromium|firefox|webkit and/or --protocol=file|hosted.');
 const names = browserArgument ? [browserArgument.split('=')[1]] : ['chromium', 'firefox', 'webkit'];
 if (names.some(name => !['chromium', 'firefox', 'webkit'].includes(name))) throw Error('Unknown browser.');
+if (protocolArguments.length > 1) throw Error('Use --protocol only once.');
+const protocols = protocolArguments.length ? [protocolArguments[0].slice('--protocol='.length)] : ['file', 'hosted'];
+if (protocols.some(protocol => !['file', 'hosted'].includes(protocol))) throw Error('Unknown protocol; use file or hosted.');
 const moduleName = process.env.PTP_PLAYWRIGHT_MODULE || 'playwright';
 const playwright = await import(moduleName);
 const playwrightPackage = JSON.parse(await readFile(path.join(path.dirname(fileURLToPath(import.meta.resolve(moduleName))), 'package.json'), 'utf8'));
@@ -147,7 +151,7 @@ async function interruptedAction(page, kind, record) {
 }
 
 try {
-  for (const name of names) for (const [protocol, url] of Object.entries(urls)) {
+  for (const name of names) for (const [protocol, url] of Object.entries(urls).filter(([protocol]) => protocols.includes(protocol))) {
     const record = {browser: name, protocol, playwrightVersion: playwrightPackage.version, platform: process.platform, architecture: process.arch,
       test: feasibility ? 'startup-feasibility' : 'startup-and-regressions', phase: 'launch', passed: false,
       pageErrors: [], consoleErrors: [], failedRequests: [], externalRequests: []};
@@ -160,7 +164,7 @@ try {
       if (!feasibility) {
         if (name === 'chromium' || name === 'webkit') await interactionChecks({browser,url,record,output});
         if (name === 'chromium') {
-          await preferenceChecks({browser,url,record});
+          await preferenceChecks({browser,url,record,output});
           await catalogChecks({browser,url,record});
           await failureChecks({browser,url,record,output});
           await loadingRaceChecks({browser,url,record});
