@@ -41,7 +41,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
   }
   $("toggleInspector").onclick = () => {
     collapsed = !collapsed;
-    if (collapsed && $("inspectorBody").contains(document.activeElement)) $("toggleInspector").focus();
+    // Safari blurs the body control before a pointer click without focusing the button.
+    if (collapsed) $("toggleInspector").focus();
     $("inspectorBody").hidden = collapsed;
     $("toggleInspector").setAttribute("aria-expanded", String(!collapsed));
     $("toggleInspector").textContent = collapsed ? "Expand details" : "Collapse details";

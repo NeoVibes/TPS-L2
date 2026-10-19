@@ -35,7 +35,7 @@
     "rebuild/tools/targets.mjs": "7d660efee9d094d697f95b1295a4679867794f0e9738ade47813807e8a32f820",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
     "rebuild/viewer/app-core.mjs": "94e62b545c8ab09763bc80c930b0449ee0e7ca80d83a8a037b784111d5440c08",
-    "rebuild/viewer/app-inspect.mjs": "0b4d7bc0f473bc03591c5239b3c78fefcc0df0fae6dbb6cdaa46a5be6fc18ad6",
+    "rebuild/viewer/app-inspect.mjs": "c1996eae4bbb8766886c619c39f8f2b01e6677d93d95bfd00a8996793492ed52",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "e29b74ba80d422457c5771a5050d072895904847f66baa5edca0360639833bb2",
     "rebuild/viewer/app-packages.mjs": "14f6acd61d037b82844bb8e05baa8b65cffcc5ffb0f4b063418c0741a1adcb10",
@@ -108,8 +108,8 @@
       "bytes": 2331593
     },
     "index.html": {
-      "sha256": "7b5ace40b14ff561c9213e70a13fff7e0aaf0e2894a970ad0d95052455149dba",
-      "bytes": 898339
+      "sha256": "94d21a646fd830d11c355ca99f75e90e4edcd15e2c67303213ba32e9a904d170",
+      "bytes": 898286
     },
     "master-parts.csv": {
       "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",

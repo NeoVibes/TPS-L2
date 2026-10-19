@@ -18,6 +18,9 @@ export async function interactionChecks({browser,url,record,output}) {
   await select(page,'BAY-052');assert(await page.locator('#inspectorBody').isHidden());assert.equal(await page.locator('#toggleInspector').getAttribute('aria-expanded'),'false');
   await page.locator('#closeInspector').click();await select(page,'BLT-001');assert(await page.locator('#inspectorBody').isHidden());
   await page.locator('#toggleInspector').click();assert(await page.locator('#inspectorBody').isVisible());
+  await page.locator('#copyPartDetails').focus();await page.locator('#toggleInspector').click();
+  assert(await page.locator('#toggleInspector').evaluate(e=>e===document.activeElement),'A pointer collapse must retain focus even when the browser blurs the body control before click');
+  await page.locator('#toggleInspector').click();
   for(const theme of ['light','dark']) {
    await page.locator('#theme-select').selectOption(theme);await page.locator('#copyPartDetails').focus();
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
