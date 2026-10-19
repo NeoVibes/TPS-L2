@@ -50,8 +50,12 @@ export async function preferenceChecks({browser,url,record,output}) {
   record.phase='upgrade-preferences-tour';
   await page.locator('[data-workmode="tour"]').click();await page.locator('#tour').click();
   // Preference persistence does not depend on elapsed tour time. Pause before
-  // seeking so software rendering cannot advance the chapter during assertions.
-  await page.locator('#tourPause').click();
+  // seeking. Keyboard activation stays on the real button as chapter text moves.
+  record.phase='upgrade-preferences-tour-pause';
+  const pauseTour=page.locator('#tourPause');
+  await pauseTour.waitFor({state:'visible'});assert(await pauseTour.isEnabled());
+  await pauseTour.focus();assert(await pauseTour.evaluate(e=>e===document.activeElement));
+  await page.keyboard.press('Space');
   assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.paused),true);
   await page.locator('#tourSeek').evaluate(e=>{e.value='64';e.dispatchEvent(new Event('input',{bubbles:true}));});
   const tourState=await page.evaluate(()=>window.portableTapePlayer.snapshot().state);
@@ -90,10 +94,16 @@ export async function preferenceChecks({browser,url,record,output}) {
    record.preferenceFailure=await Promise.race([
     page.evaluate(()=>{
      const snapshot=window.portableTapePlayer?.snapshot();
+     const pause=document.getElementById('tourPause'),rect=pause?.getBoundingClientRect(),aside=document.querySelector('aside');
+     const hit=rect&&document.elementFromPoint(rect.left+rect.width/2,rect.top+rect.height/2);
      return {ready:snapshot?.ready,state:snapshot?.state,loaded:snapshot?.loaded,packageErrors:snapshot?.packageErrors,
       renderedFrames:snapshot?.renderedFrames,render:document.getElementById('stage')?.dataset.test||null,
       preferenceWrites:window.__preferenceWrites?.length,hash:location.hash,
-      focusedControl:document.activeElement?.id||document.activeElement?.dataset?.workmode||null};
+      focusedControl:document.activeElement?.id||document.activeElement?.dataset?.workmode||null,
+      tourPause:{text:pause?.textContent,rect:rect?{x:rect.x,y:rect.y,width:rect.width,height:rect.height}:null,
+       centerHit:hit?{tag:hit.tagName,id:hit.id||null}:null},
+      tourClock:document.getElementById('tourClock')?.textContent,
+      sidebar:aside?{scrollTop:aside.scrollTop,clientHeight:aside.clientHeight,scrollHeight:aside.scrollHeight}:null};
     }).catch(captureError=>({captureError:String(captureError)})),
     new Promise(resolve=>{timer=setTimeout(()=>resolve({timedOut:true}),5000);})
    ]);
