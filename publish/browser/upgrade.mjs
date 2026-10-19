@@ -108,7 +108,13 @@ export async function failureChecks({browser,url,record,output}) {
    await page.goto(url+'#part=BLT-001&exterior=early');
    let frames;
    if(failure==='context') {
-    await ready(page);await page.locator('#closeInspector').click();await page.locator('[data-workmode="operate"]').click();
+    await ready(page);
+    // Dismissal only replaces the URL fragment; verify it directly instead of waiting for a document navigation.
+    await page.locator('#closeInspector').click({noWaitAfter:true});
+    await page.locator('#inspector').waitFor({state:'hidden'});
+    assert.equal(new URL(page.url()).hash,'#exterior=early');
+    assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.selectedId),null);
+    await page.locator('[data-workmode="operate"]').click();
     await page.locator('#audioEnable').click();await page.locator('[data-mode="play"]').click();
     assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.audioEnabled),true);
     assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.mode),'play');

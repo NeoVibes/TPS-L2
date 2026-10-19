@@ -234,6 +234,7 @@ try {
     results.push(record);
     await writeFile(path.join(output, `${name}-${protocol}.json`), JSON.stringify(record, null, 2) + '\n');
     console.log(`${record.passed ? 'PASS' : 'FAIL'} ${name} ${protocol}${record.error ? ': ' + record.error.split('\n')[0] : ''}`);
+    if (record.error) console.error(`Phase: ${record.phase}\n${record.error}`);
   }
 } finally { await new Promise(resolve => server.close(resolve)); }
 await writeFile(path.join(output, 'summary.json'), JSON.stringify({passed: results.every(result => result.passed), results}, null, 2) + '\n');
