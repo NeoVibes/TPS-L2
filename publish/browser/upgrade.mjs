@@ -215,7 +215,15 @@ export async function loadingRaceChecks({browser,url,record}) {
    await select(page,'MTR-001');assert(await page.locator('#inspector').isVisible());
    await page.unroute('**/geometry/'+name+'.js');await page.unroute('**/geometry/cassette/cassette.js');
    await page.locator('#loadingRetry').click();await ready(page);
-   await page.locator('[data-view="exploded"]').click();
+   assert.equal(await page.evaluate(()=>window.portableTapePlayer.snapshot().state.selectedId),'MTR-001');
+   assert.equal(new URL(page.url()).hash,'#part=MTR-001');
+   // This view change clears the part fragment without loading a new document.
+   await page.locator('[data-view="exploded"]').click({noWaitAfter:true});
+   await page.waitForFunction(()=>{
+    const snapshot=window.portableTapePlayer.snapshot();
+    return snapshot.ready&&snapshot.state.view==='exploded'&&snapshot.state.selectedId===null&&location.hash==='';
+   });
+   await page.locator('#inspector').waitFor({state:'hidden'});
    await page.waitForFunction(()=>['exterior','mechanism','electronics','cassette'].every(name=>window.portableTapePlayer.snapshot().loaded.includes(name)));
    assert.deepEqual(await page.evaluate(()=>window.portableTapePlayer.snapshot().packageErrors),[]);
    record.loadingRaces.push({case:name+'-failure-after-startup',passed:true});
