@@ -4,7 +4,7 @@ The release tools prepare and check a ZIP; they never rebuild or upload it. **Co
 
 ## Before you share
 
-1. During development, in `rebuild/`, use `npm run build` when the native model, model settings or export tools changed. For viewer-only changes such as the 0.2.8 theme, use `npm run build:viewer`; it verifies the existing geometry against its build record before reusing it. Run `npm run test:release` against current native/reference working files in either case. Run `npm run accept` only after reviewing intentional geometry or assessment changes. Normal tests never update accepted or reference baselines. `accepted.json` records reviewed part content, target definitions/outcomes and assessment levels; it is not a claim that every software test passed.
+1. During development, in `rebuild/`, use `npm run build` when the native model, model settings or export tools changed. For viewer-only changes such as a theme change, use `npm run build:viewer`; it verifies the existing geometry against its build record before reusing it. Run `npm run test:release` against current native/reference working files in either case. Run `npm run accept` only after reviewing intentional geometry or assessment changes. Normal tests never update accepted or reference baselines. `accepted.json` records reviewed part content, target definitions/outcomes and assessment levels; it is not a claim that every software test passed.
 2. Check the Blender file for your computer's folder paths (Blender keeps them in its screen layout). Preserve a previously reviewed native file when it is unchanged. If the check finds private paths, remove them before publishing. From the kit folder:
 
    ```sh
@@ -71,6 +71,6 @@ Validate the candidate before packaging; use disposable copies for rebuild/edit 
 
 `view/` is a complete static site and works from any web host or subfolder. `publish/github/pages.yml` is a GitHub Actions workflow that validates and publishes the committed files when you trigger it by hand; copy it to `.github/workflows/` in your repository. It never rebuilds. The repository's merge workflow checks integrity, freshness and fast tests on the contributor platform matrix. Native release checks run where the supported Blender executable and the checked-in `.blend` source are available; generated working files are recreated there and are not shipped.
 
-For 0.2.8, the completion gate retains D1–D7 regression coverage and requires integrity/freshness, zero unexpected software/native skips, Chromium file/hosted automation, the appearance and browser smoke checks above, and ZIP hash comparison. The dark-mode requirements are recorded in `FOLLOW_UPS.md`. Further publication automation and new collision calibration remain separate tracks.
+The completion gate retains D1–D7 regression coverage and requires integrity/freshness, zero unexpected software/native skips, Chromium file/hosted automation, the appearance and browser smoke checks above, and ZIP hash comparison. The dark-mode requirements are recorded in `FOLLOW_UPS.md`. Further publication automation and new collision calibration remain separate tracks.
 
 Do not publish Chrome network logs, build logs or anything from your home folder.

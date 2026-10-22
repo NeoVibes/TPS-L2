@@ -19,6 +19,7 @@ import * as T from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
 import {RoomEnvironment} from "three/examples/jsm/environments/RoomEnvironment.js";
 import {beltTravel, advancePartAngle} from "./drive-motion.mjs";
+import {spinStopped, shutOffStaged} from "./motion-rules.mjs";
 import {updateOperationIndicator} from "./operation-indicator.mjs";
 import {batterySequence} from "./operating-pose.mjs";
 import {createDoorMotion, applyHingePose} from "./door-motion.mjs";
@@ -181,11 +182,10 @@ export function reset() {
   cam.preset("assembled");
   views.sync();
 }
-// Automatic shut-off: which parts take part, and where each stands. In PLAY the cam on the third gear pushes the
-// shut-off lever out once a turn. When the reel stalls the detection lever falls back and the lever's teeth
-// mesh with the gear; the gear then carries the lever along and it turns release lever C.
+// Automatic shut-off: which parts take part, and where each stands. The cam on the third gear pushes the shut-off
+// lever out once a turn, in every mode (motion-rules.mjs). In PLAY, when the reel stalls, the detection lever falls
+// back and the lever's teeth mesh with the gear; the gear then carries the lever along and it turns release lever C.
 const shutOff = config.roles.autoStop, shutOffRole = Object.fromEntries(["lever", "detector", "release"].flatMap((role) => shutOff[role].map((id) => [id, role])));
-const reelDriven = new Set(config.roles.reelDriven);
 function shutOffWeights(role) {
   const stage = autoStopProgress(state), cam = parts.find((q) => q.data.id === shutOff.cam);
   const rock = role === "lever" && cam ? (1 - Math.cos(cam.phase)) / 2 * (1 - stage.mesh) : 0;
@@ -225,7 +225,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
       base.p.z += cassetteLift(contact, eject);
     }
     if (config.roles.stopTranslation.includes(p.data.id)) base = { ...base, p: p.poses.stop.p.clone().lerp(p.poses.eject.p, state.stopTravel || 0) };
-    const staged = shutOffRole[p.data.id] && state.mode === "play" && p.poses.shutoff_tripped ? shutOffWeights(shutOffRole[p.data.id]) : null;
+    const staged = shutOffRole[p.data.id] && shutOffStaged(shutOffRole[p.data.id], state.mode) && p.poses.shutoff_tripped ? shutOffWeights(shutOffRole[p.data.id]) : null;
     if (staged && !p.links) base = mixPoses(p, staged, base.s);
     if (p.batteryHinge) {
       const q = p.poses.stop.q.clone().slerp(p.poses.battery_open.q, battery.open);
@@ -241,7 +241,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
     else if (config.roles.instantTranslation.includes(p.data.id) || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
     else if (!p.links) p.baseP.lerp(base.p, smoothing);
     p.group.scale.copy(base.s);
-    const sp = state.autoStop && reelDriven.has(p.data.id) ? null : p.spin[spinMode];   // a stalled reel and what turns with it stand still
+    const sp = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
     p.phase = advancePartAngle(p.phase, p.data, sp, { ...state, displayExplosion, displayRadial }, spinDt);
     const a = p.reference;
     if (a) {
