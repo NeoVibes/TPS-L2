@@ -19,7 +19,7 @@ Unofficial project, not affiliated with or endorsed by Sony.
 | `rebuild/` | Turning an edit into a new `view/` | `rebuild/REBUILDING.md`. Needs Blender and Node 24. |
 | `publish/` | Releasing your own version | `publish/PUBLISHING.md`. |
 
-Keep `view/index.html` and `view/geometry/` side by side. The v0.2.8 automated Chrome checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT, keyboard zoom and recovery from failed geometry loads. The new loading/recovery and inspector checks also passed in Playwright WebKit. Native Safari 27.0.1 smoke checks passed from disk and HTTP, including native-menu Escape, collapse focus, transport interruption and keyboard zoom in both projections. Installed Chrome 155 also passed an interactive HTTP smoke check. Firefox verification was skipped at the project owner's request; no Firefox compatibility result is claimed.
+Keep `view/index.html` and `view/geometry/` side by side. The v0.2.9 automated Chrome checks passed from disk and a web server, including rendered geometry, transport, interrupted STOP/EJECT, keyboard zoom and recovery from failed geometry loads. Safari and Firefox were not checked for this version; no Safari or Firefox result is claimed.
 
 In the viewer: press PLAY, drag the volume grips, open the battery cover. **Exterior version** switches between the three versions of the lettering. **Inspect** lets you search by part name, model part ID, or the service manual's Ref. No. and Part No. (try `8-835-008-11`), and lists every part with its confirmation level.
 
@@ -50,9 +50,12 @@ Known problems:
 
 - **Body:** the front is about 88 mm wide in the model; the target is 85 mm. Depth, window shape and margins are uncertain.
 - **Cassette bay:** a standard cassette does not yet seat with proper clearance.
-- **Cassette-bay rail and lid:** the new blue headphone-end rail (BAY-073) intersects the folded end rim of the cassette lid (EXT-030) when the lid is closed or partly open. The closed-lid overlap runs across the rail's 63.6 mm width and involves a 0.55 mm thick section of the lid rim.
-- **Cassette-bay rail and EJECT lever:** the folded EJECT lever (STP-003) also intersects BAY-073 near full eject with the lid open. At full stroke the measured maximum vertex penetration into the rail is approximately 0.059 mm. Both rail collisions remain known geometry errors; their dimensions are unchanged pending better reference evidence for a correction.
 - **Drive:** the flywheel's depth remains about 1 mm away from the photographed target; its belt-groove width now meets the target. Belts and springs are shown only.
+- **Drive train:** S gear A (DRV-010) is not joined to the supply reel, so rewind drive does not reach it; in REW the large tier of FR gear A (DRV-012) lies flat on S gear B's face; and an illustrative idler (PRX-001) turns while touching nothing.
+- **Moving parts:** the head carriage's slot runs about 0.5 mm into its guide pin outside PLAY, and the carriage grazes two plates on its way to PLAY; the EJECT lever's tongue runs into the cassette and the cassette-bay rail; the long FF/REW bar passes through the chassis, the bearing carrier and a screw; the FWD lever meets release lever C; some springs cross their neighbours or stand off their seats; the lid's hinge edge crosses the cabinet and a plate when open, and its top flap passes through the rail (BAY-073) when closed or partly open.
+- **Cassettes:** in the detailed cassette the tape ribbon kinks where it leaves the pack and runs through a guide wall, and the front shell's ribs run into the rear shell; the original cassette has an unintended opening in its lid-side face and is not a single closed solid.
+- **Servo board:** its parts hang down into the lever layer, so the FF and REW levers and the lock plate pass through L601, RV601, Q603, C606 and some wires. It waits for better evidence of where the parts sit.
+- **Other overlaps:** the headphone socket meets the POWER switch and its screws, the control base meets the switch parts, the lock spring and counter bracket run into the motor, a few structural parts overlap by up to 2 mm, the cassette-facing liner covers two screws, and some small parts stand a little off what holds them.
 - **Solids:** many parts are not single closed solids; the master list says which and why.
 - **Early exterior:** its white STEREO and dark key legends are printed over the moulded letters of the shared shells; a real early player is flat there. The older lettering is placed by eye from one photograph.
 - **Separated views** are illustrations, not removal instructions.

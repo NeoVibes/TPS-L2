@@ -13,7 +13,7 @@ npm run test:chromium
 
 On Linux, use `npx playwright install --with-deps chromium firefox webkit` to install required system libraries too. CI should use the lockfile and matching Playwright browser downloads; no container image is assumed by these scripts.
 
-The Chromium pull-request job uses `ubuntu-24.04`, Node 24.19.0, the exact package lockfile and Playwright's matching Chromium revision. It clears any runner-provided `CHROME_BIN` override so the installed revision is actually used. An immutable container digest remains a separate infrastructure follow-up; a versioned runner label is not an immutable OS image.
+The Chromium pull-request job uses `ubuntu-24.04`, Node 24.22.0, the exact package lockfile and Playwright's matching Chromium revision. It clears any runner-provided `CHROME_BIN` override so the installed revision is actually used. An immutable container digest remains a separate infrastructure follow-up; a versioned runner label is not an immutable OS image.
 
 The feasibility run opens all six combinations of Chromium, Firefox and WebKit with `file://` and an HTTP subfolder. It requires viewer startup, a rendered frame, successful local packages, no runtime network requests outside the viewer and no document/CSP errors. A launch or capability failure fails that combination and the command; it is never counted as a pass.
 

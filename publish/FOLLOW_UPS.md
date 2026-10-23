@@ -8,7 +8,7 @@ Keep committed `view/` as the sole artifact. Validate once, pass that immutable 
 
 Prove all six Chromium/Firefox/WebKit × file/hosted combinations first: actual viewer, WebGL2, geometry and one control. Pin both the Playwright npm package and matching official container image by digest. Start PR browser checks with Chromium and expand only after measuring stability/runtime. Releases retain the full matrix and a real Safari smoke check while Safari support is advertised. Infrastructure failures are distinct from viewer defects.
 
-## Dark mode for 0.2.8
+## Dark mode
 
 The appearance control offers System, Light and Dark. System follows `prefers-color-scheme`, including device preference changes while the viewer is open. Light and Dark override that preference. Remember an explicit choice only when browser storage is available; unavailable storage must leave the control usable for the current page. Returning to System removes the override, and Reset preserves the appearance choice.
 

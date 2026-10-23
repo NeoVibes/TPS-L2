@@ -912,7 +912,32 @@
       "MEDIA-004",
       "MEDIA-005",
       "MEDIA-006"
-    ]
+    ],
+    "tapeDragged": {
+      "play": [
+        "BAY-021",
+        "BAY-031",
+        "DRV-010",
+        "DRV-011"
+      ],
+      "ff": [
+        "BAY-021",
+        "BAY-031",
+        "DRV-010",
+        "DRV-011"
+      ],
+      "rew": [
+        "BAY-020",
+        "BAY-030",
+        "CLT-010",
+        "CLT-030",
+        "CLT-031",
+        "CLT-032",
+        "DRV-014",
+        "DRV-017",
+        "DRV-104"
+      ]
+    }
   },
   "deformation": {
     "animated": [

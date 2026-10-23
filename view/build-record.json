@@ -1,13 +1,13 @@
 {
   "what": "Build record for this folder. Written by \"npm run build\" in rebuild/; checked by \"npm test\".",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "built_with": {
     "blender": "5.2.1",
-    "node": "v24.19.0"
+    "node": "v24.22.0"
   },
   "model_inputs": {
-    "edit/Portable Tape Player.blend": "ed1f1b36243edf6f9d357488eb28fad99a3d318887c2ec5df225d38366bedecc",
-    "rebuild/config/model.json": "3f91b99b866b536514e1a7e7de27d201c0d5e5907a313b0bf9299a0b7b9213ce",
+    "edit/Portable Tape Player.blend": "6be92c42a9db0362c5527605278e28298b8c22867d8d8bfa3ca487142f1b39aa",
+    "rebuild/config/model.json": "1c54d94a81ba930242b66b2f2d9b552563ff73fbb0e00a7929ae46d69efb152c",
     "rebuild/config/part-ids.json": "e271e6bf44b96bc09a3df7d3afb01ca33284588b44fe2b62a7916028ddddcfe7",
     "rebuild/tools/belt_geometry.py": "4d6bba80c7975be1c86d165d76cb6be17e2d0767efdea0891684bafd0d17eaf8",
     "rebuild/tools/build_io.py": "9a9f9fca8bd6bb29592accc3a72b6f0752aa49fa1dad8e4619ca198efa57c216",
@@ -24,17 +24,17 @@
   "viewer_inputs": {
     "edit/assessments.json": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
     "edit/service-manual-parts.csv": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a",
-    "edit/targets.json": "30f183511d9eba8c6c6cb41332c838db26bd6ea835884f7a03f1ad0fdbeb17cb",
-    "rebuild/config/model.json": "3f91b99b866b536514e1a7e7de27d201c0d5e5907a313b0bf9299a0b7b9213ce",
-    "rebuild/config/release.json": "16469c717d3057b4f7c97cc53940e86e88646c2a17e9107e515fcb2b749c83a7",
-    "rebuild/package-lock.json": "a937543281fb9ee44ce3a64cc3bf3018fffb5b492160a03b753bd3f702367431",
-    "rebuild/package.json": "d1c97f14b7fbe83e218520d82b0f4106486acbbbb445c602c780c78e81d53e9c",
+    "edit/targets.json": "e2bf8779a787a92a7dcbe5b043f07b8626fa6d8417e3ae376301b3e012b778cd",
+    "rebuild/config/model.json": "1c54d94a81ba930242b66b2f2d9b552563ff73fbb0e00a7929ae46d69efb152c",
+    "rebuild/config/release.json": "8b0e712048b49e2a52a5c786d38d28197680815997a506bdd2149aa8f3056d3e",
+    "rebuild/package-lock.json": "fed3bf6f63aaa0b477e2ace1d7699e62e220ae469bd40a741e840b6e4720f8ff",
+    "rebuild/package.json": "aab86f1efe0576f40cc00d095782aa49f9f6dd7b6f4f9ac989e1afc192046f73",
     "rebuild/tools/build_viewer.mjs": "8f19b3e3b4c8774ddd78ad3aa21e714b30c4011acfd3140b2ced65f1ed740933",
     "rebuild/tools/compare.mjs": "83f13d1ce0f72b6dd99cc300a1c8c45b7bd9cdbb107e89837d51dc75040bd822",
     "rebuild/tools/confirmation.mjs": "29f0467b5eecaeb3faaf0ba80d1f6c8bd7cbec15d93e8f0df3c05b17d868fa40",
-    "rebuild/tools/targets.mjs": "7d660efee9d094d697f95b1295a4679867794f0e9738ade47813807e8a32f820",
+    "rebuild/tools/targets.mjs": "41c95587439f4ce38e3d301d0b2af6201cf3235ba29031796a79ab43eab92a75",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
-    "rebuild/viewer/app-core.mjs": "94e62b545c8ab09763bc80c930b0449ee0e7ca80d83a8a037b784111d5440c08",
+    "rebuild/viewer/app-core.mjs": "7d537a8bc52c183c8d10f90a66ab0e7eededb86dcd05f7481a4c3746e96ea306",
     "rebuild/viewer/app-inspect.mjs": "c1996eae4bbb8766886c619c39f8f2b01e6677d93d95bfd00a8996793492ed52",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "e29b74ba80d422457c5771a5050d072895904847f66baa5edca0360639833bb2",
@@ -57,6 +57,7 @@
     "rebuild/viewer/fit-camera.mjs": "6e2eb42f7890c90c22938de1a48709d37a91f97d1c941e756a78ea5f2f8d58e6",
     "rebuild/viewer/loading.mjs": "99b13fb91b3ef540bc0969a8795a51506baa05f7efa4e10d578be5ec6bc4bf2c",
     "rebuild/viewer/model-controls.mjs": "a9dbe4cb4e30f3d178d646bb9409f612d26f0c5d9fd942735e4569081a403e76",
+    "rebuild/viewer/motion-rules.mjs": "0a8fbd01fab29d369f2a36f61a31058d348ae70b5d9b3f034cfc852e0222fd38",
     "rebuild/viewer/native-deformation.mjs": "a755457330b88f77886abeb83d52ee94d3a1b4bbc5cbd47fa35a703038fb4278",
     "rebuild/viewer/operating-pose.mjs": "fa21daef32b81e41e0230c6abb56dc4ed2e581280d56dbe3e942d6d8ce28eea7",
     "rebuild/viewer/operating-state.mjs": "1b13560713184fb84865b67104ed57ba75e61e337ca0192418a63c7039cba71d",
@@ -80,11 +81,11 @@
   "parts": 507,
   "outputs": {
     "TARGETS.md": {
-      "sha256": "7ed77943caa68d67537157f096121bbc40146fc87037ed53a8658fbbfde61b3d",
-      "bytes": 40761
+      "sha256": "834bd2ab0f769d834b7ee7848bbb1e2cd262c6db7a613b4197a2146548c32d89",
+      "bytes": 40091
     },
     "assessment-results.json": {
-      "sha256": "9ed7e82197823e70b867043c7cb13c74da4faeb82fe8bf2675927c84cdc20c30",
+      "sha256": "82bc80a0528fc656e3a41c911b151c510b0e8a9c94e9cf6ad93789b1b4679923",
       "bytes": 243697
     },
     "geometry/cassette/cassette.js": {
@@ -104,12 +105,12 @@
       "bytes": 23013282
     },
     "geometry/model.js": {
-      "sha256": "19f70f0577d7c72f7ab470b6c44c97921bddc89e056782be68b04c08a0873a95",
-      "bytes": 2331593
+      "sha256": "ffd1144cad78a3be2453de3d998233a685ee4a4fa781171b3baf130d4a9ece93",
+      "bytes": 2331597
     },
     "index.html": {
-      "sha256": "94d21a646fd830d11c355ca99f75e90e4edcd15e2c67303213ba32e9a904d170",
-      "bytes": 898286
+      "sha256": "6080d7d90138a9693a24e323cb2ae2323d78e4bc59d537c4255791a9cbac2095",
+      "bytes": 898712
     },
     "master-parts.csv": {
       "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",

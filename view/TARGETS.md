@@ -1,6 +1,6 @@
 # Targets
 
-Version 0.2.8. Written by the build from `edit/targets.json`; edit that file, not this one.
+Version 0.2.9. Written by the build from `edit/targets.json`; edit that file, not this one.
 
 **These are the numbers the model is meant to match, and how the model compares today.** Most come from photographs, videos, Sony's service manual and published standards. A target is not a measurement of a real unit unless its class is `measured`. Where the model fails a target, the model is wrong or the target is in doubt; both are shown rather than hidden.
 
@@ -56,7 +56,7 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `cassette.height` | 63.8 | ± 0.3 | mm | standard | ECMA-34 Fig. 4 |  | 63.8 | pass |
 | `cassette.thickness_body` | 8.6 | ± 0.3 | mm | standard | ECMA-34 Fig. 4 |  | 8.6 | pass |
 | `cassette.thickness_head_end` | 12 | ± 0.3 | mm | standard | ECMA-34 Fig. 4 | MEDIA-001 MEDIA-002 | 12 | pass |
-| `tape.plane_above_carriage_plate` | 6 | ± 1 | mm | photo-measured | second Walkman Clinic set, photo 15 (side view): the head sits on the carriage plate and stands about twice as tall as the 6.5 mm pinch roller, so the tape plane at its middle is about 6 mm above the plate; a standard cassette's head band needs 6.0 (ECMA-34 Fig. 4) | MEDIA-004 HDC-001 | 6.1 | pass |
+| `tape.plane_above_carriage_plate` | 6 | ± 1 | mm | photo-measured | imagery of a real unit, side view: the head sits on the carriage plate and stands about twice as tall as the 6.5 mm pinch roller, so the tape plane at its middle is about 6 mm above the plate; a standard cassette's head band needs 6.0 (ECMA-34 Fig. 4) | MEDIA-004 HDC-001 | 6.1 | pass |
 | `cassette.reel_pitch` | 42.5 | ± 0.3 | mm | standard | ECMA-34 Fig. 4 |  | 42.5 | pass |
 | `cassette.capstan_pitch` | 48 | ± 0.2 | mm | standard | ECMA-34 Fig. 4 |  | 48 | pass |
 | `cassette.capstan_row_to_reel_row` | 31.3 | ± 0.25 | mm | standard | ECMA-34 Fig. 4: reel row 27.9 behind the reference line, capstan row 3.4 ahead of it |  | 31.3 | pass |
@@ -74,12 +74,12 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `torque.back_tension` | 2 to 3.5 |  | g.cm | documented | Sony service manual p.6 |  | 2.7363 | pass |
 | `pinch.pressure` | 200 to 300 |  | g | documented | Sony service manual p.6 |  | 255.9427 | pass |
 | `motor.never_reverses` | true | not stated |  | documented | Sony service manual p.3: the motor arrow is the same in FWD, FF and REW |  | true | pass |
-| `body.height` | 133.5 | ± 0.5 | mm | documented | Sony service manual p.2: approx. 133.5; the third-party dimensioned sketch of a real unit (Imgur album tps-l2-dimensions-wD2kVLQ) agrees | EXT-010 EXT-020 EXT-030 GRL-001 | 133.3 | pass |
-| `body.front_width` | 85 | ± 0.6 | mm | reported | third-party dimensioned sketch of a real unit (Imgur album tps-l2-dimensions-wD2kVLQ); photographs of two units read 84.1 to 84.9 | EXT-010 EXT-020 EXT-030 GRL-001 | 87.802 | **fail** |
+| `body.height` | 133.5 | ± 0.5 | mm | documented | Sony service manual p.2: approx. 133.5; reported measurements of a real unit agree | EXT-010 EXT-020 EXT-030 GRL-001 | 133.3 | pass |
+| `body.front_width` | 85 | ± 0.6 | mm | reported | reported measurements of a real unit; imagery of two units reads 84.1 to 84.9 | EXT-010 EXT-020 EXT-030 GRL-001 | 87.802 | **fail** |
 | `body.width` | 88 | ± 0.6 | mm | documented | Sony service manual p.2: approx. 88 (w) x 133.5 (h) x 29 (d) mm, not including projecting parts and controls. It disagrees with body.front_width (85.0: a third party's measurement and photo readings of 84 to 86), which is the same width; the original workspace left the two open side by side (D-NUMBERED-GRID-ENVELOPE) until a unit is measured | EXT-010 EXT-020 EXT-030 GRL-001 | 87.802 | pass |
-| `body.depth` | 29.75 | ± 0.75 | mm | reported | third-party dimensioned sketch of a real unit (Imgur album tps-l2-dimensions-wD2kVLQ). Sony gives approx. 29; photographs suggest 27.6 to 28.7, so this target is in doubt |  | 29.774 | pass |
-| `body.depth_over_width` | 0.324 | ± 0.005 | ratio | photo-measured | published turntable video of a unit of this variant |  | 0.3391 | **fail** |
-| `control.listen_key_proud_of_side` | 1.4 | ± 0.3 | mm | photo-measured | published turntable video, front square-on, key unpressed |  | 1.3218 | pass |
+| `body.depth` | 29.75 | ± 0.75 | mm | reported | reported measurements of a real unit. Sony gives approx. 29; imagery suggests 27.6 to 28.7, so this target is in doubt |  | 29.774 | pass |
+| `body.depth_over_width` | 0.324 | ± 0.005 | ratio | photo-measured | video imagery of a unit of this variant turned through a full circle |  | 0.3391 | **fail** |
+| `control.listen_key_proud_of_side` | 1.4 | ± 0.3 | mm | photo-measured | video imagery of a unit turned through a full circle, front square-on, key unpressed |  | 1.3218 | pass |
 | `front.silver_strip` | 15.7 | ± 0.7 | mm | photo-measured | front-on photographs of several units, scaled to the body (five units) |  | 15.018 | pass |
 | `front.top_band` | 20.4 | ± 0.7 | mm | photo-measured | front-on photographs of several units, scaled to the body (six units) | EXT-020 | 20.494 | pass |
 | `window.opening_width` | 27.3 | ± 0.6 | mm | photo-measured | front-on photographs of several units, scaled to the body: outer edge of the bevelled opening | EXT-031 EXT-032 | 24.51 | **fail** |
@@ -87,23 +87,23 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `window.right_edge_to_strip` | 26.75 | ± 0.7 | mm | photo-measured | front-on photographs of several units, scaled to the body |  | 26.904 | pass |
 | `window.bottom_to_body_bottom` | 23.75 | ± 0.5 | mm | photo-measured | front-on photographs of several units, scaled to the body |  | 23.62 | pass |
 | `window.left_margin` | 14.9 | ± 0.8 | mm | photo-measured | front-on photographs of several units, scaled to the body: to the outer edge of the opening |  | 21.37 | **fail** |
-| `capstan.diameter` | 2 | ± 0.05 | mm | documented | nominal size: Sony service manual exploded view 6-2 puts a 'Washer, plastic 2mm dia.' on the flywheel shaft. That names the shaft's size without measuring it; a published video of a running unit has the flywheel at 7.77 rev/s, which at 47.6 mm/s would be a 1.95 mm capstan | BAY-052 | 2 | pass |
+| `capstan.diameter` | 2 | ± 0.05 | mm | documented | nominal size: Sony service manual exploded view 6-2 puts a 'Washer, plastic 2mm dia.' on the flywheel shaft. That names the shaft's size without measuring it; video imagery of a running unit has the flywheel at 7.77 rev/s, which at 47.6 mm/s would be a 1.95 mm capstan | BAY-052 | 2 | pass |
 | `flywheel.rate_play` | 7.58 | ± 2 % | rev/s | designed | tape.speed / (pi x capstan.diameter) | MEC-011 | 7.5758 | pass |
 | `shaft.fr_gears` | 1.2 | not stated | mm | documented | Sony service manual exploded view 6-4: FF/REW gears A and B and the secondary gear are held by 'Washer, plastic 1.2mm dia. (t=0.25)'. Gear B's stack also has a 1.6 mm washer under that one, so 1.2 mm is the neck at the shaft's top that the washer seats on, not the shaft | DRV-012 DRV-013 DRV-016 | 1.1996 | pass |
 | `shaft.pulleys_third_gear` | 1.6 | not stated | mm | documented | Sony service manual exploded view 6-4: FF/REW pulley, middle pulley and third gear take 'Washer, plastic 1.6mm dia.' | DRV-020 DRV-023 CAM-010 | 1.6004 | pass |
 | `shaft.levers` | 2 | not stated | mm | documented | Sony service manual exploded views 6-2 and 6-3: stop lever, release lever and head board posts take the 2 mm washer |  | 2 | pass |
-| `gear.module` | 0.3 | not stated | mm | photo-measured | published teardown photographs: S gears A and B are 15.10 mm apart and have 40 and 60 teeth |  | 0.3 | pass |
-| `gear.s_gear_b.teeth` | 60 | ± 0 |  | photo-measured | published teardown photographs: counted round the whole gear | DRV-011 | 60 | pass |
-| `gear.s_gear_a.teeth` | 40 | ± 0 |  | photo-measured | published teardown photographs: counted round the whole gear | DRV-010 | 40 | pass |
-| `gear.fr_gear_b.teeth` | 36 | ± 0 |  | photo-measured | published teardown photographs: counted round the whole gear | DRV-013 | 36 | pass |
-| `gear.takeup.teeth` | 60 | ± 0 |  | photo-measured | published teardown photographs: counted on the felt-faced gear | DRV-014 | 60 | pass |
-| `gear.takeup.step_teeth` | 42 | ± 1 |  | photo-measured | provisional: read on two loose gears seen from the stepped face in published teardown photographs, not counted tooth by tooth. Supported by the gear it meshes with (gear.takeup.step_mate): 79.7 teeth between the two at the 0.3 module, of which that gear's own size takes 37.6 | DRV-014 | 42 | pass |
-| `gear.takeup.step_mate` | 11.95 | ± 0.4 | mm | photo-measured | what the 42-tooth ring meshes with: the gear beside the take-up spindle (the tape-counter gear of Sony's FWD sequence, p.4), fitted in the published square-on photograph of the gear plate: its axis 11.95 mm from the take-up axis. Too near for the 60-tooth ring, which would need 13.5 or more | DRV-017 DRV-014 | 12 | pass |
+| `gear.module` | 0.3 | not stated | mm | photo-measured | imagery of a dismantled unit: S gears A and B are 15.10 mm apart and have 40 and 60 teeth |  | 0.3 | pass |
+| `gear.s_gear_b.teeth` | 60 | ± 0 |  | photo-measured | imagery of a dismantled unit: counted round the whole gear | DRV-011 | 60 | pass |
+| `gear.s_gear_a.teeth` | 40 | ± 0 |  | photo-measured | imagery of a dismantled unit: counted round the whole gear | DRV-010 | 40 | pass |
+| `gear.fr_gear_b.teeth` | 36 | ± 0 |  | photo-measured | imagery of a dismantled unit: counted round the whole gear | DRV-013 | 36 | pass |
+| `gear.takeup.teeth` | 60 | ± 0 |  | photo-measured | imagery of a dismantled unit: counted on the felt-faced gear | DRV-014 | 60 | pass |
+| `gear.takeup.step_teeth` | 42 | ± 1 |  | photo-measured | provisional: read on two loose gears seen from the stepped face in imagery of a dismantled unit, not counted tooth by tooth. Supported by the gear it meshes with (gear.takeup.step_mate): 79.7 teeth between the two at the 0.3 module, of which that gear's own size takes 37.6 | DRV-014 | 42 | pass |
+| `gear.takeup.step_mate` | 11.95 | ± 0.4 | mm | photo-measured | what the 42-tooth ring meshes with: the gear beside the take-up spindle (the tape-counter gear of Sony's FWD sequence, p.4), fitted in square-on imagery of the gear plate: its axis 11.95 mm from the take-up axis. Too near for the 60-tooth ring, which would need 13.5 or more | DRV-017 DRV-014 | 12 | pass |
 | `gear.step_mate.teeth` | 38 | ± 1 |  | photo-measured | the same photograph: 5.94 mm to its tooth tips (37.6 teeth at the 0.3 module) and 11.95 mm from the take-up axis (37.7 teeth against the ring's 42). An earlier automatic count read 33, which neither size allows | DRV-017 | 38 | pass |
-| `gear.takeup.tip_diameter` | 18.6 | ± 0.7 | mm | photo-measured | nominal size: 60 teeth at the 0.3 module of S gear B give 18.6. The published teardown photograph of the gear plate, seen square-on and scaled to the 42.5 mm reel pitch, reads about 19.3 (the ring stands above the plate) and S gear B 18.5 | DRV-014 | 18.597 | pass |
+| `gear.takeup.tip_diameter` | 18.6 | ± 0.7 | mm | photo-measured | nominal size: 60 teeth at the 0.3 module of S gear B give 18.6. Square-on imagery of the gear plate, scaled to the 42.5 mm reel pitch, reads about 19.3 (the ring stands above the plate) and S gear B 18.5 | DRV-014 | 18.597 | pass |
 | `clutch.drum.diameter` | 17 | ± 0.6 | mm | photo-measured | the same square-on photograph: 16.5 to 17.3 | CLT-030 | 16.5 | pass |
-| `clutch.felt.outer_diameter` | 15.9 | ± 0.6 | mm | photo-measured | published teardown photograph of the felt in its seat: 0.857 of the gear's tip diameter | CLT-010 | 15.9 | pass |
-| `clutch.spring.outer_diameter` | 7.2 | ± 0.8 | mm | photo-measured | published teardown photographs: the loose spring beside gears of known size, and the coil seen in the drum's well | CLT-031 | 7.197 | pass |
+| `clutch.felt.outer_diameter` | 15.9 | ± 0.6 | mm | photo-measured | imagery of the felt in its seat: 0.857 of the gear's tip diameter | CLT-010 | 15.9 | pass |
+| `clutch.spring.outer_diameter` | 7.2 | ± 0.8 | mm | photo-measured | imagery of a dismantled unit: the loose spring beside gears of known size, and the coil seen in the drum's well | CLT-031 | 7.197 | pass |
 | `clutch.spring.free_length` | 8.3 | not stated | mm | designed | chosen so that the spring as modelled (0.4 mm wire, 6.8 mm mean coil), compressed into its 2.3 mm space, squeezes the felt hard enough for the middle of Sony's PLAY torque; no spring has been measured | CLT-031 |  | no check |
 | `clutch.spring.active_coils` | 2.75 | not stated |  | designed | the spring as modelled: 4.25 turns, three quarters of a turn closed at each end | CLT-031 |  | no check |
 | `clutch.felt.friction` | 0.3 | not stated |  | designed | assumed coefficient for wool felt on moulded plastic (usual range 0.2 to 0.4); not measured | CLT-010 |  | no check |
@@ -115,21 +115,21 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `lever_b.spring.free_length` | 5.53 | not stated | mm | designed | chosen so that lever (B)'s spring as modelled (0.18 mm wire, 0.9 mm mean coil, 20 coils, 6.0 mm long in FF) presses the FF/REW tyre on the flywheel hard enough for 60 g.cm at the take-up, 10 per cent over Sony's least 55; no spring has been measured | FRL-021 |  | no check |
 | `lever_b.spring.active_coils` | 20 | not stated |  | designed | the spring as modelled | FRL-021 |  | no check |
 | `fr_tyre.friction` | 0.8 | not stated |  | designed | assumed coefficient for rubber on brass; not measured | DRV-023 MEC-011 |  | no check |
-| `gear.fr_gear_a.teeth` | 26 | ± 0 |  | photo-measured | published teardown photographs: counted on the large tier | DRV-012 | 26 | pass |
-| `gear.fr_pulley_pinion.teeth` | 28 | ± 2 |  | photo-measured | published teardown photographs: about 15 teeth across the visible half, and the gear is 0.73 of the 12 mm tyre across (27 to 29 teeth at the 0.3 module) | DRV-021 | 28 | pass |
+| `gear.fr_gear_a.teeth` | 26 | ± 0 |  | photo-measured | imagery of a dismantled unit: counted on the large tier | DRV-012 | 26 | pass |
+| `gear.fr_pulley_pinion.teeth` | 28 | ± 2 |  | photo-measured | imagery of a dismantled unit: about 15 teeth across the visible half, and the gear is 0.73 of the 12 mm tyre across (27 to 29 teeth at the 0.3 module) | DRV-021 | 28 | pass |
 | `belt.main.inner_diameter` | 44 | not stated | mm | reported | replacement-belt suppliers' listed sizes | BLT-001 |  | no check |
 | `belt.main.section` | 0.8 | not stated | mm | reported | replacement-belt suppliers' listed sizes | BLT-001 |  | no check |
 | `belt.main.free_length` | 140.7 | not stated | mm | reported | pi x (44.0 + 0.8), from the supplier sizes | BLT-001 | 7.7989 | pass |
 | `belt.second.free_length` | 115.9 | not stated | mm | reported | pi x (36.0 + 0.9), from the supplier sizes | BLT-002 | 7.6514 | pass |
 | `belt.stretch_range` | 4 to 8 |  | % | designed | usual installed stretch for small square-section drive belts |  |  | no check |
-| `ratio.reverse_wheel_to_flywheel` | 2.68 | ± 0.08 |  | photo-measured | published repair video, measured frame by frame: reverse wheel 20.82 rev/s against flywheel 7.774 rev/s on a running unit | DRV-022 MEC-011 | 2.68 | pass |
-| `tyre.fr_pulley.od` | 12 | ± 0.3 | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | DRV-023 | 12 | pass |
-| `tyre.fr_pulley.id` | 7 | not stated | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | DRV-023 | 6.9918 | pass |
-| `tyre.fr_pulley.width` | 2.25 | not stated | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | DRV-023 | 2.25 | pass |
-| `tyre.fwd_pulley.od` | 8 | ± 0.3 | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | FWD-021 | 8 | pass |
-| `pinch_roller.od` | 9 | ± 0.3 | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | BAY-061 | 9 | pass |
-| `pinch_roller.width` | 6.5 | ± 0.2 | mm | reported | third-party measurements of the rubber parts of a real unit (reddit.com/r/walkman/comments/15uetfj) | BAY-061 | 6.5 | pass |
-| `flywheel.rim_diameter` | 25.4 | ± 0.8 | mm | photo-measured | two readings of the front disc: a published repair video, measured frame by frame, gives 24.0 for a WM-3 flywheel, which Sony lists as the same part family; Sony's FF and REW photographs put the FF/REW tyre's axle 19.2 mm from the capstan axis, which with the reported 12.0 mm tyre makes the disc it runs on 26.4. The value is their weighted mean | MEC-011 | 25.8 | pass |
+| `ratio.reverse_wheel_to_flywheel` | 2.68 | ± 0.08 |  | photo-measured | video imagery of a real unit, measured frame by frame: reverse wheel 20.82 rev/s against flywheel 7.774 rev/s on a running unit | DRV-022 MEC-011 | 2.68 | pass |
+| `tyre.fr_pulley.od` | 12 | ± 0.3 | mm | reported | reported measurements of the rubber parts of a real unit | DRV-023 | 12 | pass |
+| `tyre.fr_pulley.id` | 7 | not stated | mm | reported | reported measurements of the rubber parts of a real unit | DRV-023 | 6.9918 | pass |
+| `tyre.fr_pulley.width` | 2.25 | not stated | mm | reported | reported measurements of the rubber parts of a real unit | DRV-023 | 2.25 | pass |
+| `tyre.fwd_pulley.od` | 8 | ± 0.3 | mm | reported | reported measurements of the rubber parts of a real unit | FWD-021 | 8 | pass |
+| `pinch_roller.od` | 9 | ± 0.3 | mm | reported | reported measurements of the rubber parts of a real unit | BAY-061 | 9 | pass |
+| `pinch_roller.width` | 6.5 | ± 0.2 | mm | reported | reported measurements of the rubber parts of a real unit | BAY-061 | 6.5 | pass |
+| `flywheel.rim_diameter` | 25.4 | ± 0.8 | mm | photo-measured | two readings of the front disc: video imagery of a real unit, measured frame by frame, gives 24.0 for a WM-3 flywheel, which Sony lists as the same part family; Sony's FF and REW photographs put the FF/REW tyre's axle 19.2 mm from the capstan axis, which with the reported 12.0 mm tyre makes the disc it runs on 26.4. The value is their weighted mean | MEC-011 | 25.8 | pass |
 | `axis.reverse_wheel` | (-5.3, 12.7) | ± 1 | mm | photo-measured | Sony's photographs of the mechanism in each mode, scaled to the 42.5 mm reel pitch (mean of four readings) | u toward the supply reel, v toward the capstan row, origin on the take-up axis; DRV-022 | 0 off | pass |
 | `axis.fr_pulley_engaged` | (6.65, 14.55) | ± 0.7 | mm | photo-measured | Sony's photographs of the mechanism in each mode, scaled to the 42.5 mm reel pitch (mean of FF and REW) | u toward the supply reel, v toward the capstan row, origin on the take-up axis; in FF, REW; DRV-023 | 0.6534 off, 0.6534 off | pass |
 | `axis.fr_pulley_released` | (6.73, 12.83) | ± 0.7 | mm | photo-measured | Sony's photographs of the mechanism in each mode, scaled to the 42.5 mm reel pitch (FWD) | u toward the supply reel, v toward the capstan row, origin on the take-up axis; in PLAY; DRV-023 | 0.6109 off | pass |
@@ -143,15 +143,15 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `axis.fwd_pulley_engaged` | (8.95, -9.3) | ± 0.8 | mm | photo-measured | Sony's FWD photograph, scaled to the 42.5 mm reel pitch, read twice: (9.23, -9.55) in the first study and (8.67, -9.05) from the centre of the dashed circle Sony draws for the pulley; the value is their mean. The place also follows from the tyre touching both the drum and the middle pulley | u toward the supply reel, v toward the capstan row, origin on the take-up axis; in PLAY; FWD-021 | 0.7741 off | pass |
 | `axis.middle_pulley` | (4.19, -14.26) | ± 0.6 | mm | photo-measured | Sony's photographs of the mechanism in each mode, scaled to the 42.5 mm reel pitch: (4.24, -14.29) in FWD, (4.11, -14.26) in FF, (4.22, -14.22) in REW. The axle's end stands above the gears, so the true place may be 0.1 to 0.4 nearer the reel row | u toward the supply reel, v toward the capstan row, origin on the take-up axis; DRV-020 | 0.0608 off | pass |
 | `clearance.third_gear_to_motor_pulley` | 0.5 | ± 0.1 | mm | documented | Sony service manual p.7, Caution when installing motor: the gap between the third gear's rim and the end face of the motor pulley is to be just 0.5 mm, or the automatic shut-off may work before the tape ends | CAM-010 MTR-005 | 0.5 | pass |
-| `gear.fr_gear_a_small_tier.teeth` | 15 | ± 2 |  | photo-measured | published teardown photographs: radius about 0.6 of the 26-tooth tier | DRV-012 | 15 | pass |
-| `gear.third.teeth` | 44 | ± 1 |  | photo-measured | counted on the unrolled rim in a repair close-up (stereo2go thread 9534, photo 3): 41 teeth seen, 3 hidden under the lever; published teardown photographs counted by program and by eye agree within 3 | CAM-010 | 44 | pass |
-| `gear.secondary.teeth` | 30 | ± 1 |  | photo-measured | counted in two repair close-ups (stereo2go thread 9534, photos 4 and 6): the wheel the middle pulley's pinion drives | DRV-016 | 30 | pass |
-| `gear.secondary_pinion.teeth` | 13 | ± 2 |  | photo-measured | the black pinion on top of the second gear, which drives the third gear (repair close-ups 1, 3 and 4): read from the centre distance to the third gear, about 8.5 mm, not counted | DRV-016 | 13 | pass |
+| `gear.fr_gear_a_small_tier.teeth` | 15 | ± 2 |  | photo-measured | imagery of a dismantled unit: radius about 0.6 of the 26-tooth tier | DRV-012 | 15 | pass |
+| `gear.third.teeth` | 44 | ± 1 |  | photo-measured | counted on the unrolled rim in close-up imagery: 41 teeth seen, 3 hidden under the lever; counts by program and by eye in other imagery agree within 3 | CAM-010 | 44 | pass |
+| `gear.secondary.teeth` | 30 | ± 1 |  | photo-measured | counted in two close-up images: the wheel the middle pulley's pinion drives | DRV-016 | 30 | pass |
+| `gear.secondary_pinion.teeth` | 13 | ± 2 |  | photo-measured | the black pinion on top of the second gear, which drives the third gear (three close-up images): read from the centre distance to the third gear, about 8.5 mm, not counted | DRV-016 | 13 | pass |
 | `gear.third_pinion.teeth` | 9 | not stated | teeth | designed | Sony service manual p.3: the shut-off lever's teeth mesh with the teeth of the third gear; the close-ups show a coarse-toothed piece low beside the third gear's shaft, so a small pinion under the gear is assumed; 9 teeth of 0.4 module are designed | CAM-010 STF-012 | 9 | pass |
-| `axis.third_gear` | (-0.7, -23.5) | ± 0.6 | mm | photo-measured | Sony service manual p.7, square-on photograph scaled by the 60-tooth gear: 9.3 mm from the middle pulley's axis across the body and 4.9 mm along it. Repair close-ups agree within about 1.5 mm. The motor is then placed by the 0.5 mm gap | u toward the supply reel, v toward the capstan row, origin on the take-up axis; CAM-010 | 0 off | pass |
-| `axis.shutoff_post` | (-0.65, -13.35) | ± 0.8 | mm | photo-measured | three repair close-ups (stereo2go thread 9534, photos 1 and 4, auto-stop 2): the shut-off lever's post stands 4.6 to 5.4 mm from the middle pulley's shaft, nearly along the body; oblique views | u toward the supply reel, v toward the capstan row, origin on the take-up axis; STF-101 STF-010 | 0 off | pass |
-| `flywheel.upper_flange_diameter` | 21.6 | ± 1 | mm | photo-measured | published repair video, measured frame by frame: 0.92 of the main disc | MEC-011 | 22.6 | pass |
-| `flywheel.hub_flange_diameter` | 7.2 | ± 0.4 | mm | photo-measured | published repair video, measured frame by frame: 0.33 of the upper flange | MEC-011 | 7.2 | pass |
+| `axis.third_gear` | (-0.7, -23.5) | ± 0.6 | mm | photo-measured | Sony service manual p.7, square-on photograph scaled by the 60-tooth gear: 9.3 mm from the middle pulley's axis across the body and 4.9 mm along it. Close-up imagery agrees within about 1.5 mm. The motor is then placed by the 0.5 mm gap | u toward the supply reel, v toward the capstan row, origin on the take-up axis; CAM-010 | 0 off | pass |
+| `axis.shutoff_post` | (-0.65, -13.35) | ± 0.8 | mm | photo-measured | three oblique close-up images: the shut-off lever's post stands 4.6 to 5.4 mm from the middle pulley's shaft, nearly along the body | u toward the supply reel, v toward the capstan row, origin on the take-up axis; STF-101 STF-010 | 0 off | pass |
+| `flywheel.upper_flange_diameter` | 21.6 | ± 1 | mm | photo-measured | video imagery of a real unit, measured frame by frame: 0.92 of the main disc | MEC-011 | 22.6 | pass |
+| `flywheel.hub_flange_diameter` | 7.2 | ± 0.4 | mm | photo-measured | video imagery of a real unit, measured frame by frame: 0.33 of the upper flange | MEC-011 | 7.2 | pass |
 | `reel_table.cap_top_above_flange` | 8.86 | ± 0.15 | mm | photo-measured | depth stack worked out from photographs of the open cassette bay |  | 8.86 | pass |
 | `pin.locating_tip_above_reel_cap` | 2.04 | ± 0.4 | mm | photo-measured | depth stack worked out from photographs of the open cassette bay |  | 2.04 | pass |
 | `capstan.tip_above_reel_cap` | 1.15 | ± 0.4 | mm | photo-measured | depth stack worked out from photographs of the open cassette bay |  | 1.15 | pass |
@@ -161,17 +161,17 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `flywheel.upper_flange_thickness` | 0.96 | ± 0.15 | mm | photo-measured | depth stack worked out from photographs of the open cassette bay |  | 0.82 | pass |
 | `flywheel.front_face_behind_pin_flange` | 3.34 | ± 0.5 | mm | photo-measured | depth stack worked out from photographs of the open cassette bay |  | 4.66 | **fail** |
 | `body.depth_minimum_from_stack` | 27.9 | not stated | mm | designed | cassette 10.3 + AA cell 14.5, plus the thinnest conceivable lid, separator and door |  | 29.774 | pass |
-| `reverse_wheel.outer_diameter` | 10.1 | ± 0.4 | mm | photo-measured | published repair video, measured frame by frame | DRV-022 | 10.1 | pass |
-| `bay.cassette_rear_edge_to_frame_edge` | 3.4 | ± 2.5 | mm | photo-measured | published repair video, measured frame by frame, read across about 10 mm of height without correction | BAY-010 MEDIA-001 |  | no check |
-| `bay.cassette_to_chassis_end_battery` | 6.1 | ± 1 | mm | photo-measured | published repair video, measured frame by frame; the second set of published teardown photographs agrees | MEDIA-001 | 6.45 | pass |
-| `bay.hook_far_edge_behind_cassette_rear_edge` | 0.7 | ± 0.8 | mm | photo-measured | second set of published teardown photographs |  |  | no check |
-| `bay.hook_height_above_cassette_top_face` | 3.1 | ± 0.8 | mm | photo-measured | second set of published teardown photographs: 2.7 at the far edge, 3.6 at the near edge |  |  | no check |
-| `bay.top_rail_outer_edge_beyond_cassette_end` | 6.2 | ± 0.6 | mm | photo-measured | second set of published teardown photographs |  | 6.2 | pass |
-| `bay.top_rail_top_above_cassette_top_face` | 1.5 | ± 0.6 | mm | photo-measured | second set of published teardown photographs |  | 1.5 | pass |
-| `cover.control_side_face_width` | 27.6 | ± 0.6 | mm | photo-measured | second set of published teardown photographs, taking the cover as 133.5 long |  | 27.5472 | pass |
-| `lid.window_centre_fraction_of_lid_width` | 0.426 | ± 0.01 | ratio | photo-measured | second set of published teardown photographs: from the plain-side edge |  | 0.462 | **fail** |
-| `lid.height_over_width` | 1.62 | ± 0.05 | ratio | photo-measured | second set of published teardown photographs |  | 1.547 | **fail** |
-| `belt.length_ratio_main_to_second` | 1.2 | ± 0.05 | ratio | photo-measured | second set of published teardown photographs; supplier sizes give 1.21 |  | 1.2156 | pass |
+| `reverse_wheel.outer_diameter` | 10.1 | ± 0.4 | mm | photo-measured | video imagery of a real unit, measured frame by frame | DRV-022 | 10.1 | pass |
+| `bay.cassette_rear_edge_to_frame_edge` | 3.4 | ± 2.5 | mm | photo-measured | video imagery of a real unit, measured frame by frame, read across about 10 mm of height without correction | BAY-010 MEDIA-001 |  | no check |
+| `bay.cassette_to_chassis_end_battery` | 6.1 | ± 1 | mm | photo-measured | video imagery of a real unit, measured frame by frame; imagery of a second dismantled unit agrees | MEDIA-001 | 6.45 | pass |
+| `bay.hook_far_edge_behind_cassette_rear_edge` | 0.7 | ± 0.8 | mm | photo-measured | imagery of a second dismantled unit |  |  | no check |
+| `bay.hook_height_above_cassette_top_face` | 3.1 | ± 0.8 | mm | photo-measured | imagery of a second dismantled unit: 2.7 at the far edge, 3.6 at the near edge |  |  | no check |
+| `bay.top_rail_outer_edge_beyond_cassette_end` | 6.2 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit |  | 6.2 | pass |
+| `bay.top_rail_top_above_cassette_top_face` | 1.5 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit |  | 1.5 | pass |
+| `cover.control_side_face_width` | 27.6 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit, taking the cover as 133.5 long |  | 27.5472 | pass |
+| `lid.window_centre_fraction_of_lid_width` | 0.426 | ± 0.01 | ratio | photo-measured | imagery of a second dismantled unit: from the plain-side edge |  | 0.462 | **fail** |
+| `lid.height_over_width` | 1.62 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit |  | 1.547 | **fail** |
+| `belt.length_ratio_main_to_second` | 1.2 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit; listed replacement belt sizes give 1.21 |  | 1.2156 | pass |
 
 ## Other checks
 

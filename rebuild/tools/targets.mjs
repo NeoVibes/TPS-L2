@@ -283,7 +283,7 @@ export function runChecks(file, measured) {
     () => { const d = k => [fr()[k].bar_centre_xz[0] - fr().rest.bar_centre_xz[0], fr()[k].bar_centre_xz[1] - fr().rest.bar_centre_xz[1]], a = d('ff'), b = d('rew');
       return {value: Math.acos(Math.max(-1, Math.min(1, (a[0] * b[0] + a[1] * b[1]) / Math.hypot(...a) / Math.hypot(...b)))) * 180 / Math.PI, lo: 179,
         note: 'FF slides it ' + Math.hypot(...a).toFixed(3) + ' mm, REW ' + Math.hypot(...b).toFixed(3) + ' mm, opposite ways along its length.'}; });
-  // What stands up into the cassette (g.depth_stack, Y in mm, the lid side negative), against the depth stack fitted to two teardown photographs.
+  // What stands up into the cassette (g.depth_stack, Y in mm, the lid side negative), against the depth stack fitted to two images of a dismantled unit.
   const ds = () => g.depth_stack, mean = a => a.reduce((x, y) => x + y, 0) / a.length, capY = () => mean(ds().caps), DEPTH = ['BAY-030', 'BAY-031', 'BAY-020', 'BAY-021', 'BAY-050', 'BAY-051', 'BAY-052'];
   direct('axes', 'reel_table.cap_top_above_flange', 'reel_table.cap_top_above_flange', () => mean(ds().flanges) - capY(), {parts: DEPTH, note: 'Reel spindle cap above the brass reel flange\'s top face, both reels averaged.'});
   direct('axes', 'pin.locating_tip_above_reel_cap', 'pin.locating_tip_above_reel_cap', () => capY() - mean(ds().pin_tips), {parts: DEPTH});
