@@ -27,7 +27,7 @@ for (const part of movingDoorParts) {
   const landmarks = [new Vector3(0,0,0),new Vector3(28.7,45.9,14.8),new Vector3(-23.45,-43.85,15.22)];
   for (let i=0;i<reference.doors.length;i++) {
     // Native Door is a control value, not the viewer's interpolation fraction:
-    // its current driver reaches the 95° limit at 0.95. Compare the same
+    // its current driver reaches the lid's 92.5° limit at 0.925. Compare the same
     // evaluated orientation so viewer timing remains independent of native travel.
     const progress=reference.doors[i].progress, referenceMatrix=new Matrix4().set(...reference.doors[i].matrices[part.id].flat());
     const q=new Quaternion(),referenceScale=new Vector3();referenceMatrix.decompose(new Vector3(),q,referenceScale);q.normalize();
@@ -63,7 +63,7 @@ for (const part of movingDoorParts) {
   }
   result.push({partId:part.id,pivotMm:motion.pivot.toArray(),axis:motion.axis.toArray(),openAngleDegrees:motion.angle*180/Math.PI,endpointResidualMm:motion.endpointResidualMm,samples});
 }
-assert.ok(oldMaximumAxisDriftMm>14,'The regression exposes the former detached-hinge motion');
+assert.ok(oldMaximumAxisDriftMm>12,'The regression exposes the former detached-hinge motion');   // 13.8 mm at the lid's 92.5°
 assert.ok(maximumAxisDriftMm<1e-9);
 assert.ok(maximumEndpointErrorMm<toleranceMm);
 assert.ok(maximumReferenceErrorMm<toleranceMm);

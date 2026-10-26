@@ -75,6 +75,12 @@ else: result['exterior'] = {'parts': ext, 'union': None, 'front_face_x': None}
 bm.free()
 for part_id in ('BAY-010', 'MEDIA-001', 'MEDIA-002', 'BAY-071', 'BAY-073'):
     bm = world_bmesh([o for n, o in meshes_of(part_id)]); result['exterior'][part_id] = bounds(bm); bm.free()
+# The lid's end flaps: how far each folds in from the lid's front face (away from the hinge side, whose curl reaches further).
+if 'EXT-030' in owners:
+    bm = world_bmesh([o for n, o in meshes_of('EXT-030') if not n.startswith('ART ')]); pts = [v.co * MM for v in bm.verts]; bm.free()
+    front, x0, z0, z1 = min(q.y for q in pts), min(q.x for q in pts), min(q.z for q in pts), max(q.z for q in pts)
+    reach = lambda inside: round(max(q.y for q in pts if inside(q) and q.x > x0 + 3.0) - front, 4)
+    result['exterior']['lid_flaps'] = {'top': reach(lambda q: q.z > z1 - 0.7), 'bottom': reach(lambda q: q.z < z0 + 0.7)}
 
 # The pivots the motion rig turns things on, and the centres and sizes of the round parts.
 for key, name in PIVOTS.items():

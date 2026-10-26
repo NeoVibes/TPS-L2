@@ -10,7 +10,7 @@ const model=read('build/exports/model.json'),native=read('build/exports/native-c
 assert.equal(native.native_sha256,model.source_sha256);assert.equal(native.model_sha256,createHash('sha256').update(readFileSync('build/exports/model.json')).digest('hex'));assert(native.native_unchanged);
 const raw=gunzipSync(readFileSync('build/exports/model.bin.gz')),compressed=gunzipSync(readFileSync('build/exports/model-packed.bin.gz'));
 const parts=model.parts.filter(p=>p.meshes.some(m=>m.deformation));
-assert.deepEqual(parts.map(p=>p.id).sort(),['BCL-030','FCR-030','JNT-010','JNT-020','STP-020','TNE-040']);
+assert.deepEqual(parts.map(p=>p.id).sort(),['BCL-030','FCR-030','FRL-020','JNT-010','JNT-020','STF-030','STP-020','TNE-040']);
 let scalarComparisons=0,weightComparisons=0,maximumPackingAndMorphErrorMm=0,maximumWeightError=0;
 for(const sample of native.deformations)for(const part of parts){
  const data=part.meshes.find(m=>m.deformation).deformation;
@@ -23,8 +23,8 @@ for(const sample of native.deformations)for(const part of parts){
   assert(error<.0005,part.id+'/'+sample.tone+'/'+sample.mode+': native curve mismatch '+error);weightComparisons++;
  }
  for(const view of ['service','exploded','catalog']){
-  if(['BCL-030','STP-020'].includes(part.id)&&view==='service')continue;
-  if(!['BCL-030','STP-020'].includes(part.id))assert(part.rest_when_separated);
+  if(['BCL-030','STP-020','STF-030'].includes(part.id)&&view==='service')continue;
+  if(!['BCL-030','STP-020','STF-030'].includes(part.id))assert(part.rest_when_separated);
   for(const value of deformationWeights(data,{...state,view}))assert(Math.abs(value)<1e-6,part.id+': separated deformation');
  }
  for(let mi=0;mi<part.meshes.length;mi++){

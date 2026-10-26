@@ -10,7 +10,7 @@ const model = JSON.parse((await readFile(new URL('../../view/geometry/model.js',
 const parts = Object.fromEntries(model.meta.parts.map((p) => [p.id, p]));
 const modes = ['play', 'ff', 'rew'];
 const turning = (mode) => model.meta.parts.filter((p) => p.spin?.[mode] && !p.is_cassette).map((p) => p.id);
-const supply = ['BAY-021', 'BAY-031', 'DRV-010', 'DRV-011'];
+const supply = ['BAY-021', 'BAY-031', 'DRV-010', 'DRV-011', 'DRV-100'];
 const takeUp = ['BAY-020', 'BAY-030', 'CLT-010', 'CLT-030', 'CLT-031', 'CLT-032', 'DRV-014', 'DRV-017', 'DRV-104'];
 assert.deepEqual(config.roles.tapeDragged, { play: supply, ff: supply, rew: takeUp }, 'the supply side is tape-turned in PLAY and FF, the take-up side in REW');
 for (const mode of modes) {

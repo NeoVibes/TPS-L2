@@ -1,10 +1,10 @@
 # Targets
 
-Version 0.2.9. Written by the build from `edit/targets.json`; edit that file, not this one.
+Version 0.2.10. Written by the build from `edit/targets.json`; edit that file, not this one.
 
 **These are the numbers the model is meant to match, and how the model compares today.** Most come from photographs, videos, Sony's service manual and published standards. A target is not a measurement of a real unit unless its class is `measured`. Where the model fails a target, the model is wrong or the target is in doubt; both are shown rather than hidden.
 
-Of 120 targets, the model passes 95, fails 8 and has no check yet for 17.
+Of 124 targets, the model passes 99, fails 8 and has no check yet for 17.
 
 ## The three exterior versions
 
@@ -168,9 +168,13 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `bay.hook_height_above_cassette_top_face` | 3.1 | ± 0.8 | mm | photo-measured | imagery of a second dismantled unit: 2.7 at the far edge, 3.6 at the near edge |  |  | no check |
 | `bay.top_rail_outer_edge_beyond_cassette_end` | 6.2 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit |  | 6.2 | pass |
 | `bay.top_rail_top_above_cassette_top_face` | 1.5 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit |  | 1.5 | pass |
+| `bay.top_rail_inner_face_beyond_cassette_end` | 1.65 | ± 0.02 | mm | designed | the EJECT lever's fold stands flush beside the rail, not under it (imagery of a second dismantled unit) | MEDIA-001 BAY-073 | 1.65 | pass |
+| `bay.battery_end_block_inner_face_beyond_cassette_end` | 1 | ± 0.02 | mm | designed | imagery shows a solid block close to the cassette's battery end; the gap was not measured | MEDIA-001 BAY-071 | 1 | pass |
 | `cover.control_side_face_width` | 27.6 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit, taking the cover as 133.5 long |  | 27.5472 | pass |
 | `lid.window_centre_fraction_of_lid_width` | 0.426 | ± 0.01 | ratio | photo-measured | imagery of a second dismantled unit: from the plain-side edge |  | 0.462 | **fail** |
 | `lid.height_over_width` | 1.62 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit |  | 1.547 | **fail** |
+| `lid.flap_depth` | 1.42 | ± 0.02 | mm | designed | chosen so that the closed lid's top flap rests on the top-end rail, 0.02 mm off it as at the lid's opening stop. Imagery did not establish its fold depth | EXT-030 | 1.42 | pass |
+| `lid.bottom_flap_depth` | 6.42 | ± 0.02 | mm | designed | the original model fold is retained to close the bottom against the rear cabinet return; the depth has not been physically verified | EXT-030 | 6.4242 | pass |
 | `belt.length_ratio_main_to_second` | 1.2 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit; listed replacement belt sizes give 1.21 |  | 1.2156 | pass |
 
 ## Other checks
@@ -179,7 +183,7 @@ Checks that have no target of their own: they test that the model is consistent 
 
 | Check | Group | Model | Allowed | Outcome | Note |
 |---|---|---|---|---|---|
-| `solids.single_closed_shell` | solids | 41 parts | 0 to 0 | **fail** | 507 parts: 466 are one closed solid, 41 are not. Vertices closer than 0.001 mm are joined; lettering is left out. |
+| `solids.single_closed_shell` | solids | 40 parts | 0 to 0 | **fail** | 506 parts: 466 are one closed solid, 40 are not. Vertices closer than 0.001 mm are joined; lettering is left out. |
 | `cassette.head_band_clears_the_carriage_plate` | envelope | 0.1 mm | 0.05 to … | pass | Gap between the back of the cassette's head band and the head-carriage plate under it, at rest. |
 | `cassette.left_wall_room_at_registered_width` | envelope | 1.398 mm | 2 to … | **fail** | Room left of the cassette if the width surplus is removed from the left side. Needs a wall plus clearance; 2 mm is a working minimum. |
 | `flywheel_on_capstan_axis` | axes | 0 mm | -0.05 to 0.05 | pass | Centre of the part against the axis it turns on; both faces of the chassis must share it. |
@@ -220,7 +224,7 @@ Checks that have no target of their own: they test that the model is consistent 
 | `ffrew.rew_lever_drives_lever_a` | motion | 0.02 mm | 0 to 0.05 | pass | Gap between the REW lever's cam and its post on Lever (A) with REW pressed (0.02 designed). |
 | `ffrew.cams_clear_otherwise` | motion | 0.1298 mm | 0.08 to … | pass | Smallest gap between either cam and either post at rest and with the other button pressed: a lever must not move the bar unless its own button is pressed. |
 | `ffrew.selector_pin_rides_in_its_slot` | motion | 0.05 mm | 0.02 to 0.08 | pass | Smallest gap between Lever (A)'s pin and the walls of the selector plate's slot, at rest, in FF and in REW: the pin stays in the slot as the bar slides and gear A's arm swings (0.05 a side designed). |
-| `ffrew.lever_a_slides_opposite_ways` | motion | 179.9905 deg | 179 to … | pass | FF slides it 0.835 mm, REW 0.307 mm, opposite ways along its length. |
+| `ffrew.lever_a_slides_opposite_ways` | motion | 179.987 deg | 179 to … | pass | FF slides it 0.835 mm, REW 0.307 mm, opposite ways along its length. |
 | `cassette.rests_on_locating_pins` | axes | 0.01 mm | 0 to 0.05 | pass | Gap between the cassette's head band and the locating pins' base flanges at rest: the standard supports a cassette on rings round its reference holes (ECMA-34 Fig. 5), and the depth stack puts the flanges at the band. 0.01 is shown. |
 | `tape.runs_within_roller_capstan_head_and_guide` | motion | 0.1 mm | 0.05 to … | pass | Least overlap, at either edge of the 3.81 mm tape, of the pinch roller, the capstan, the head face and the tape guide: the tape must lie wholly on each. |
 | `gear.s_gear_b_ratio` | motion | 0.6667  | 0.666 to 0.6673 | pass | Speed against S gear A; tooth ratio 40/60. Motion rig: -u*(40/60) |
@@ -242,4 +246,4 @@ Checks that have no target of their own: they test that the model is consistent 
 | `fr_gear_a.swings_between_ff_and_rew` | motion | 3.688 mm | 0.5 to … | pass | FF sends drive to the take-up side, REW to the supply side, by swinging this gear. |
 | `pinch_roller.meets_capstan_in_play` | motion | -0.1 mm | -0.5 to 0 | pass | Roller-to-capstan gap in PLAY at the target roller and capstan sizes. |
 
-Totals by group: solids 0 pass, 1 fail; envelope 19 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 4 pass, 0 fail.
+Totals by group: solids 0 pass, 1 fail; envelope 23 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 4 pass, 0 fail.

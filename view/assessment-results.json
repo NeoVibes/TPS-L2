@@ -1,9 +1,9 @@
 {
  "what": "Results of checking the model against edit/targets.json and edit/assessments.json. Written by \"npm run build\"; do not edit. Issue numbers refer to this project's GitHub issues.",
- "version": "0.2.9",
+ "version": "0.2.10",
  "bound_to": {
-  "model": "6be92c42a9db0362c5527605278e28298b8c22867d8d8bfa3ca487142f1b39aa",
-  "targets": "e2bf8779a787a92a7dcbe5b043f07b8626fa6d8417e3ae376301b3e012b778cd",
+  "model": "aa5a7c2397226926089235bf6cb1a0930f1dc384e565699e086cd60bdff6d1ff",
+  "targets": "bc359fdafdfe733359cd591eced1d2c619417ea13726b55ae41ef516c1e1424d",
   "assessments": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
   "service_list": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a"
  },
@@ -18,7 +18,7 @@
  ],
  "rows_at_each_level": {
   "0": 143,
-  "1": 519
+  "1": 518
  },
  "check_totals": {
   "solids": {
@@ -28,7 +28,7 @@
    "no data": 0
   },
   "envelope": {
-   "pass": 19,
+   "pass": 23,
    "fail": 8,
    "info": 0,
    "no data": 0
@@ -839,6 +839,20 @@
     "bay.top_rail_top_above_cassette_top_face"
    ]
   },
+  "bay.top_rail_inner_face_beyond_cassette_end": {
+   "definition": "7f73e756ae751400",
+   "outcome": "pass",
+   "checks": [
+    "bay.top_rail_inner_face_beyond_cassette_end"
+   ]
+  },
+  "bay.battery_end_block_inner_face_beyond_cassette_end": {
+   "definition": "d541f81a718046e1",
+   "outcome": "pass",
+   "checks": [
+    "bay.battery_end_block_inner_face_beyond_cassette_end"
+   ]
+  },
   "cover.control_side_face_width": {
    "definition": "46b87d0d6ca72124",
    "outcome": "pass",
@@ -860,6 +874,20 @@
     "lid.height_over_width"
    ]
   },
+  "lid.flap_depth": {
+   "definition": "6d8fb685828ad321",
+   "outcome": "pass",
+   "checks": [
+    "lid.flap_depth"
+   ]
+  },
+  "lid.bottom_flap_depth": {
+   "definition": "ea45e1efbcb07e2a",
+   "outcome": "pass",
+   "checks": [
+    "lid.bottom_flap_depth"
+   ]
+  },
   "belt.length_ratio_main_to_second": {
    "definition": "e72805bad0a7c457",
    "outcome": "pass",
@@ -875,7 +903,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 41,
+   "value": 40,
    "expected": 0,
    "allowed": [
     0,
@@ -917,7 +945,6 @@
     "MB-201",
     "MB-202",
     "MEC-010",
-    "MEDIA-002",
     "MEDIA-003",
     "MEDIA-005",
     "RES-103",
@@ -927,7 +954,7 @@
     "SWT-003"
    ],
    "status": "fail",
-   "note": "507 parts: 466 are one closed solid, 41 are not. Vertices closer than 0.001 mm are joined; lettering is left out."
+   "note": "506 parts: 466 are one closed solid, 40 are not. Vertices closer than 0.001 mm are joined; lettering is left out."
   },
   {
    "group": "envelope",
@@ -1252,6 +1279,46 @@
   },
   {
    "group": "envelope",
+   "id": "lid.flap_depth",
+   "target": "lid.flap_depth",
+   "uses": [],
+   "variant": null,
+   "value": 1.42,
+   "expected": 1.42,
+   "allowed": [
+    1.4,
+    1.44
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "EXT-030"
+   ],
+   "status": "pass",
+   "note": "How far the lid's top flap folds in from its front face, to rest above the top-end rail."
+  },
+  {
+   "group": "envelope",
+   "id": "lid.bottom_flap_depth",
+   "target": "lid.bottom_flap_depth",
+   "uses": [],
+   "variant": null,
+   "value": 6.4242,
+   "expected": 6.42,
+   "allowed": [
+    6.4,
+    6.44
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "EXT-030"
+   ],
+   "status": "pass",
+   "note": "The bottom flap retains its original fold to close the bottom against the rear cabinet return."
+  },
+  {
+   "group": "envelope",
    "id": "lid.window_centre_fraction_of_lid_width",
    "target": "lid.window_centre_fraction_of_lid_width",
    "uses": [],
@@ -1417,6 +1484,48 @@
    ],
    "status": "pass",
    "note": "Above the cassette's thin face, toward the lid."
+  },
+  {
+   "group": "envelope",
+   "id": "bay.top_rail_inner_face_beyond_cassette_end",
+   "target": "bay.top_rail_inner_face_beyond_cassette_end",
+   "uses": [],
+   "variant": "original",
+   "value": 1.65,
+   "expected": 1.65,
+   "allowed": [
+    1.63,
+    1.67
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "MEDIA-001",
+    "BAY-073"
+   ],
+   "status": "pass",
+   "note": "From the cassette's top end to the rail's cassette-side face."
+  },
+  {
+   "group": "envelope",
+   "id": "bay.battery_end_block_inner_face_beyond_cassette_end",
+   "target": "bay.battery_end_block_inner_face_beyond_cassette_end",
+   "uses": [],
+   "variant": "original",
+   "value": 1,
+   "expected": 1,
+   "allowed": [
+    0.98,
+    1.02
+   ],
+   "unit": "mm",
+   "class": "designed",
+   "parts": [
+    "MEDIA-001",
+    "BAY-071"
+   ],
+   "status": "pass",
+   "note": "From the cassette's battery end to the battery-end block's cassette-side face."
   },
   {
    "group": "envelope",
@@ -3097,7 +3206,7 @@
    "target": null,
    "uses": [],
    "variant": null,
-   "value": 179.9905,
+   "value": 179.987,
    "expected": null,
    "allowed": [
     179,
@@ -9554,21 +9663,6 @@
    ]
   },
   "MTR-204": {
-   "level": 1,
-   "checklist": "placeholder",
-   "features": [
-    {
-     "name": "overall geometry",
-     "required": true,
-     "level": 1,
-     "why": [
-      "not assessed: this part has no reviewed feature checklist yet"
-     ],
-     "assessments": []
-    }
-   ]
-  },
-  "PRX-001": {
    "level": 1,
    "checklist": "placeholder",
    "features": [

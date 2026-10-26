@@ -210,12 +210,12 @@
    ]
   },
   "BAY-012": {
-   "shape": "4e5304ef87ff0b04",
+   "shape": "a1809ab4dc9994be",
    "poses": "76882d797709ad00",
    "spin": "34e88fe9323c5187",
    "other": "9f15c0c6fb9d0ccc",
-   "vertices": 1802,
-   "triangles": 1210,
+   "vertices": 1612,
+   "triangles": 1084,
    "size_mm": [
     16.7,
     69,
@@ -225,7 +225,7 @@
   "BAY-020": {
    "shape": "eeacb794ec14cd75",
    "poses": "e960bd934af5b646",
-   "spin": "004c2cffbb0800fa",
+   "spin": "4411165ee0e0b7b7",
    "other": "5010a05c981181c9",
    "vertices": 2269,
    "triangles": 3058,
@@ -236,9 +236,9 @@
    ]
   },
   "BAY-021": {
-   "shape": "d5044cf55543fec0",
+   "shape": "f3e07ad2afca415d",
    "poses": "4c0527ecb3d41d44",
-   "spin": "00a8142197c27022",
+   "spin": "769296f2b97852cf",
    "other": "a00a16215b25264c",
    "vertices": 3072,
    "triangles": 1728,
@@ -251,7 +251,7 @@
   "BAY-030": {
    "shape": "74b9d364f1404f3e",
    "poses": "9b6d8b706a398a34",
-   "spin": "8846dfcee54ffc83",
+   "spin": "7e4e1a397176daf7",
    "other": "d17c15769595fdf1",
    "vertices": 1776,
    "triangles": 2272,
@@ -262,9 +262,9 @@
    ]
   },
   "BAY-031": {
-   "shape": "b365adfd18aa1a72",
+   "shape": "e5774f0b5218a472",
    "poses": "4c0527ecb3d41d44",
-   "spin": "596eb516d2409dab",
+   "spin": "becb1dfce93fd31b",
    "other": "7819f9b53c64504e",
    "vertices": 3048,
    "triangles": 1740,
@@ -355,7 +355,7 @@
   "BAY-052": {
    "shape": "5915c0f5732fa6f6",
    "poses": "87373ba4c7ecee1b",
-   "spin": "9f6fe4ca8a3408d6",
+   "spin": "8034d03cd178333b",
    "other": "326e1dfa938421a0",
    "vertices": 800,
    "triangles": 956,
@@ -394,7 +394,7 @@
   "BAY-061": {
    "shape": "6b8246cb48f5f2a5",
    "poses": "f6a045b8a1c7165b",
-   "spin": "85a175f9d76838c1",
+   "spin": "9801c33fbea8bd79",
    "other": "c3e4e4da3d1eb134",
    "vertices": 3092,
    "triangles": 1732,
@@ -418,7 +418,7 @@
    ]
   },
   "BAY-071": {
-   "shape": "4d521186830e6e42",
+   "shape": "0165c97a5d5f4b15",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "cc258051e58e3b00",
@@ -426,8 +426,8 @@
    "triangles": 188,
    "size_mm": [
     55.9,
-    1.4,
-    6.78
+    5.45,
+    12.28
    ]
   },
   "BAY-072": {
@@ -453,7 +453,7 @@
    "size_mm": [
     63.6,
     2.6,
-    6.05
+    4.55
    ]
   },
   "BCL-010": {
@@ -499,7 +499,7 @@
    "shape": "2a4077fa593a8dd6",
    "poses": "e89f600bce8ba3db",
    "spin": "34e88fe9323c5187",
-   "other": "b104c8799441f5ef",
+   "other": "10d20a1bc6dccbc0",
    "vertices": 20910,
    "triangles": 21984,
    "size_mm": [
@@ -524,7 +524,7 @@
   "CAM-010": {
    "shape": "566d362ff62b8627",
    "poses": "b1b1e3828562b254",
-   "spin": "6ba5a2d5aa392a4c",
+   "spin": "60c5f591e72880bc",
    "other": "f3bf82e6f7e90942",
    "vertices": 2352,
    "triangles": 1920,
@@ -1135,7 +1135,7 @@
   "CLT-010": {
    "shape": "d4d5c960fb7f1920",
    "poses": "6a8cb3edef6d32c0",
-   "spin": "c2b9b827f1590b79",
+   "spin": "09c1b9f303a03bec",
    "other": "9cdd1f23bbff8703",
    "vertices": 768,
    "triangles": 768,
@@ -1174,7 +1174,7 @@
   "CLT-030": {
    "shape": "fff9fc5347512bf0",
    "poses": "39389eaed4045380",
-   "spin": "d0162a366a73698e",
+   "spin": "5496e7fd75844a35",
    "other": "1f87b6a2d870c9a1",
    "vertices": 2560,
    "triangles": 2560,
@@ -1187,7 +1187,7 @@
   "CLT-031": {
    "shape": "4649e5f074b6b01e",
    "poses": "39389eaed4045380",
-   "spin": "846c8dcbb8e2f8ae",
+   "spin": "f40199d11abf469d",
    "other": "8acdb295d18c3a7b",
    "vertices": 3440,
    "triangles": 3416,
@@ -1200,7 +1200,7 @@
   "CLT-032": {
    "shape": "7011b1c64db1f5d2",
    "poses": "39389eaed4045380",
-   "spin": "846c8dcbb8e2f8ae",
+   "spin": "f40199d11abf469d",
    "other": "504e7efbbc6d6d21",
    "vertices": 1280,
    "triangles": 1280,
@@ -1384,12 +1384,12 @@
    ]
   },
   "DRV-001": {
-   "shape": "7875d3755280531b",
+   "shape": "6b9d25fdebdc1e2a",
    "poses": "2bcf5e6b3f9b5646",
    "spin": "34e88fe9323c5187",
    "other": "1d9f6a8f3396ef84",
-   "vertices": 6870,
-   "triangles": 7104,
+   "vertices": 8238,
+   "triangles": 8234,
    "size_mm": [
     40.85,
     59.7,
@@ -1397,9 +1397,9 @@
    ]
   },
   "DRV-010": {
-   "shape": "5f97403d9a92b11c",
+   "shape": "617144f9827e8798",
    "poses": "56a850d9cd2727ce",
-   "spin": "47e6583757bf449c",
+   "spin": "cd47e5a7861c5a5d",
    "other": "968b4868521bf81a",
    "vertices": 3992,
    "triangles": 4052,
@@ -1410,12 +1410,12 @@
    ]
   },
   "DRV-011": {
-   "shape": "96dd424557d91887",
+   "shape": "be29c10f8e827183",
    "poses": "245b6446a213028f",
-   "spin": "d6f7932f539d9ef1",
+   "spin": "9066debe4c28c0a7",
    "other": "c4d5c3066af77e97",
-   "vertices": 6103,
-   "triangles": 5856,
+   "vertices": 8505,
+   "triangles": 6876,
    "size_mm": [
     18.583,
     18.583,
@@ -1425,7 +1425,7 @@
   "DRV-012": {
    "shape": "f6e0bfd0c2761911",
    "poses": "b22756a56d43eeb4",
-   "spin": "249b7fdb172afcc8",
+   "spin": "9aeb77b5d0248356",
    "other": "0b58aa256cd65568",
    "vertices": 1440,
    "triangles": 1112,
@@ -1438,7 +1438,7 @@
   "DRV-013": {
    "shape": "d655e2c306b2a104",
    "poses": "f707b893f4e1f316",
-   "spin": "69dbc238aee60484",
+   "spin": "732825942832166e",
    "other": "a45340ecfef86a9b",
    "vertices": 3176,
    "triangles": 3128,
@@ -1451,7 +1451,7 @@
   "DRV-014": {
    "shape": "3849445e04262443",
    "poses": "6a8cb3edef6d32c0",
-   "spin": "c2b9b827f1590b79",
+   "spin": "09c1b9f303a03bec",
    "other": "9eb4259b83165793",
    "vertices": 5024,
    "triangles": 4208,
@@ -1464,7 +1464,7 @@
   "DRV-015": {
    "shape": "f1d60b360aadbe50",
    "poses": "9657589201f382e2",
-   "spin": "014a6a4929756394",
+   "spin": "a70ca2d6179747e7",
    "other": "ca2ec5930a52210f",
    "vertices": 1440,
    "triangles": 1424,
@@ -1477,7 +1477,7 @@
   "DRV-016": {
    "shape": "99ec11ec58475a72",
    "poses": "27edda8fdccfe335",
-   "spin": "debb6c0f0995811e",
+   "spin": "702467dee32225b7",
    "other": "2732b7a5f7dc68dd",
    "vertices": 1504,
    "triangles": 1160,
@@ -1490,7 +1490,7 @@
   "DRV-017": {
    "shape": "95d6748021a38010",
    "poses": "d498e05973a60a5f",
-   "spin": "919ac2d451251b27",
+   "spin": "9996dcdb9e486319",
    "other": "0db2c09ecd94f218",
    "vertices": 1600,
    "triangles": 1296,
@@ -1503,7 +1503,7 @@
   "DRV-020": {
    "shape": "2272ca25718f4896",
    "poses": "19281042ea0de6c6",
-   "spin": "37cc54aea7bc649d",
+   "spin": "f1bd8513dcaeba36",
    "other": "07a0f6f4d26cb01d",
    "vertices": 2542,
    "triangles": 3328,
@@ -1516,7 +1516,7 @@
   "DRV-021": {
    "shape": "821fa2f5f5fefad2",
    "poses": "205fc8921ba9750a",
-   "spin": "47cd09fab31bf70e",
+   "spin": "e98a6587b49d759e",
    "other": "892038cc06a12230",
    "vertices": 1408,
    "triangles": 1184,
@@ -1529,7 +1529,7 @@
   "DRV-022": {
    "shape": "8520bd25ca2447d0",
    "poses": "e05c84e6618edc79",
-   "spin": "b53d2f6df0359012",
+   "spin": "df151c07873a85f7",
    "other": "b282bf81546b13d4",
    "vertices": 1728,
    "triangles": 1920,
@@ -1542,7 +1542,7 @@
   "DRV-023": {
    "shape": "295d3e7efa1a3486",
    "poses": "205fc8921ba9750a",
-   "spin": "47cd09fab31bf70e",
+   "spin": "e98a6587b49d759e",
    "other": "89af378677457a83",
    "vertices": 1152,
    "triangles": 1152,
@@ -1554,8 +1554,8 @@
   },
   "DRV-100": {
    "shape": "7521dc2380fb0da8",
-   "poses": "e89f600bce8ba3db",
-   "spin": "34e88fe9323c5187",
+   "poses": "b54902f68f3d97ee",
+   "spin": "8fa22fc1899784ed",
    "other": "745137e34c8863c5",
    "vertices": 1154,
    "triangles": 1152,
@@ -1607,7 +1607,7 @@
   "DRV-104": {
    "shape": "0f4eba55dbb0f8a2",
    "poses": "e89f600bce8ba3db",
-   "spin": "3bdd65ecb1f2e3e3",
+   "spin": "d549a71b05bc4c00",
    "other": "c816ca3da2c39fb3",
    "vertices": 258,
    "triangles": 256,
@@ -1943,12 +1943,12 @@
    ]
   },
   "EXT-030": {
-   "shape": "a2df651efc301ed7",
-   "poses": "9b7968cf48a89e4b",
+   "shape": "6980491a88c90cd8",
+   "poses": "b090e4996b3106ba",
    "spin": "bd5ded21cdeef867",
    "other": "e413d944ebae2dbb",
-   "vertices": 4679,
-   "triangles": 4678,
+   "vertices": 4451,
+   "triangles": 4428,
    "size_mm": [
     72.784,
     112.6,
@@ -1957,7 +1957,7 @@
   },
   "EXT-031": {
    "shape": "a0c95dc2a4a6af8a",
-   "poses": "04b8b54f467b74f3",
+   "poses": "dfbb10d126d82594",
    "spin": "34e88fe9323c5187",
    "other": "ecb869b9c458b886",
    "vertices": 216,
@@ -1970,7 +1970,7 @@
   },
   "EXT-032": {
    "shape": "c6d614944248e69e",
-   "poses": "04b8b54f467b74f3",
+   "poses": "dfbb10d126d82594",
    "spin": "34e88fe9323c5187",
    "other": "fe60515a6cd84e74",
    "vertices": 436,
@@ -2060,12 +2060,12 @@
    ]
   },
   "FCL-001": {
-   "shape": "9094409c9ae7354a",
+   "shape": "b7f0f55245f4b065",
    "poses": "eae60159e7481cb6",
    "spin": "34e88fe9323c5187",
    "other": "114d12e3ebd5f83a",
-   "vertices": 6573,
-   "triangles": 9432,
+   "vertices": 5978,
+   "triangles": 8774,
    "size_mm": [
     61.79,
     11.499,
@@ -2242,12 +2242,12 @@
    ]
   },
   "FRL-010": {
-   "shape": "eb9fc281e55ec160",
+   "shape": "e59546904dbfd31c",
    "poses": "5fd4ed216e902e9d",
    "spin": "34e88fe9323c5187",
    "other": "7f3f10291f432555",
-   "vertices": 1599,
-   "triangles": 1782,
+   "vertices": 2100,
+   "triangles": 2114,
    "size_mm": [
     13.6,
     63.3,
@@ -2307,16 +2307,16 @@
    ]
   },
   "FRL-020": {
-   "shape": "83ef657a26a8adb6",
+   "shape": "34942455d98aba6e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
+   "spin": "9d4c2dc544af3442",
    "other": "c7d5657cbc66eb1f",
    "vertices": 6100,
    "triangles": 3056,
    "size_mm": [
-    8.478,
+    8.502,
     6.383,
-    2.182
+    2.261
    ]
   },
   "FRL-021": {
@@ -2374,7 +2374,7 @@
   "FWD-020": {
    "shape": "42cafe6908db2f59",
    "poses": "57a60b45b94bb1ca",
-   "spin": "80f7b6715a82cdd4",
+   "spin": "097f53cf5a3eab5a",
    "other": "a57161e86a5333ad",
    "vertices": 2164,
    "triangles": 2048,
@@ -2387,7 +2387,7 @@
   "FWD-021": {
    "shape": "3a5ecf3dda9104ff",
    "poses": "57a60b45b94bb1ca",
-   "spin": "80f7b6715a82cdd4",
+   "spin": "097f53cf5a3eab5a",
    "other": "5d32a91a5aae527c",
    "vertices": 2072,
    "triangles": 2048,
@@ -2567,16 +2567,16 @@
    ]
   },
   "HDC-001": {
-   "shape": "81011c8b784892fb",
+   "shape": "61a292b4e7d8609c",
    "poses": "748b87a2aff31a67",
    "spin": "34e88fe9323c5187",
    "other": "85e3fc826db60c5f",
-   "vertices": 3244,
-   "triangles": 3434,
+   "vertices": 3391,
+   "triangles": 3516,
    "size_mm": [
     37.18,
     87.789,
-    3.55
+    3.4
    ]
   },
   "HDC-002": {
@@ -2710,14 +2710,14 @@
    ]
   },
   "HDC-024": {
-   "shape": "18eecbe409afd243",
+   "shape": "6859f1e6d3e5024d",
    "poses": "748b87a2aff31a67",
    "spin": "34e88fe9323c5187",
    "other": "65d664f30fb56f38",
    "vertices": 1300,
    "triangles": 1276,
    "size_mm": [
-    3.24,
+    2.989,
     3.008,
     1.059
    ]
@@ -3573,7 +3573,7 @@
   "MEC-011": {
    "shape": "61a8a77c61640d80",
    "poses": "ca0299f7b21560e2",
-   "spin": "4a9e6214f635d376",
+   "spin": "decbac4fed4dd5da",
    "other": "12ace8bd6ab80653",
    "vertices": 5888,
    "triangles": 6400,
@@ -3649,12 +3649,12 @@
    ]
   },
   "MEDIA-001": {
-   "shape": "f4b0858fb4f643a5",
+   "shape": "3decae96ac7d7447",
    "poses": "0de1528b68fd40f8",
    "spin": "34e88fe9323c5187",
    "other": "4c77135adbe6c3e4",
-   "vertices": 2094,
-   "triangles": 1420,
+   "vertices": 2411,
+   "triangles": 1648,
    "size_mm": [
     63.8,
     100.4,
@@ -3662,12 +3662,12 @@
    ]
   },
   "MEDIA-002": {
-   "shape": "beebbc8c424146f8",
+   "shape": "065e71370b523f16",
    "poses": "0de1528b68fd40f8",
    "spin": "34e88fe9323c5187",
    "other": "a6d1f64f0266199d",
-   "vertices": 1734,
-   "triangles": 1154,
+   "vertices": 1801,
+   "triangles": 1216,
    "size_mm": [
     63.8,
     100.4,
@@ -3677,7 +3677,7 @@
   "MEDIA-003": {
    "shape": "919fdbdc1b24b067",
    "poses": "2e8c8c7af0f8cfe8",
-   "spin": "ee7e9668970af2c1",
+   "spin": "4eb174dfdd505539",
    "other": "3c57397d0a05168c",
    "vertices": 3254,
    "triangles": 2048,
@@ -3690,7 +3690,7 @@
   "MEDIA-004": {
    "shape": "20abe5dab6949197",
    "poses": "2e8c8c7af0f8cfe8",
-   "spin": "f2384a21dcce3ef8",
+   "spin": "817ef90aac57ad59",
    "other": "c0500e5f4118755d",
    "vertices": 768,
    "triangles": 512,
@@ -3703,7 +3703,7 @@
   "MEDIA-005": {
    "shape": "ea78fb22e6e50300",
    "poses": "de852a49c587f096",
-   "spin": "8b6eef10bbf45bc1",
+   "spin": "fa64099b90b276de",
    "other": "3102d7f5cadb8a6d",
    "vertices": 3236,
    "triangles": 2048,
@@ -3716,7 +3716,7 @@
   "MEDIA-006": {
    "shape": "0abe892fc52d8976",
    "poses": "de852a49c587f096",
-   "spin": "1fe455cd76c974a7",
+   "spin": "3df155600d83efda",
    "other": "b0fc0a5fee9766cb",
    "vertices": 768,
    "triangles": 512,
@@ -3885,8 +3885,8 @@
   "MTR-004": {
    "shape": "208554159aa6e512",
    "poses": "de3848d36a065f84",
-   "spin": "4b4bbea9450efbf6",
-   "other": "87fb6ddbee4ab0d9",
+   "spin": "d931408598324ce1",
+   "other": "564161ebc936a5be",
    "vertices": 2604,
    "triangles": 2588,
    "size_mm": [
@@ -3898,8 +3898,8 @@
   "MTR-005": {
    "shape": "207904ac7e0c0198",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
-   "other": "47176b959ccac974",
+   "spin": "b472b1b6e67e2edc",
+   "other": "4553a4f283161a0b",
    "vertices": 1514,
    "triangles": 1920,
    "size_mm": [
@@ -3976,7 +3976,7 @@
   "MTR-020": {
    "shape": "9d3ff5b6f52ac4a2",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "72376d5939295474",
    "vertices": 82704,
    "triangles": 155136,
@@ -3989,7 +3989,7 @@
   "MTR-021": {
    "shape": "90d5ba4b942e593c",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "dfdf3bddc75638cb",
    "vertices": 2338,
    "triangles": 2342,
@@ -4002,7 +4002,7 @@
   "MTR-022": {
    "shape": "b9fbeb7f571a661c",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "1ddd80fa99f2a8eb",
    "vertices": 1806,
    "triangles": 1536,
@@ -4015,7 +4015,7 @@
   "MTR-023": {
    "shape": "0c7afc2357e1e631",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "f259151ae15cbb19",
    "vertices": 512,
    "triangles": 512,
@@ -4028,7 +4028,7 @@
   "MTR-024": {
    "shape": "092e3f83167d1c7f",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "894cb70d39cd2a2d",
    "vertices": 2346,
    "triangles": 1918,
@@ -4041,7 +4041,7 @@
   "MTR-025": {
    "shape": "97c534a07b219073",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "9d6a3ea659f2442d",
    "vertices": 328,
    "triangles": 324,
@@ -4054,7 +4054,7 @@
   "MTR-026": {
    "shape": "2f54986a148dfe50",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "b022fa7655e5269b",
    "vertices": 336,
    "triangles": 324,
@@ -4067,7 +4067,7 @@
   "MTR-027": {
    "shape": "8081b58605d377ea",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "d36f955b7b33c0e7",
    "vertices": 328,
    "triangles": 324,
@@ -4080,7 +4080,7 @@
   "MTR-028": {
    "shape": "f46b63fcc0310641",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "4b3a210959bc0f55",
    "vertices": 336,
    "triangles": 324,
@@ -4093,7 +4093,7 @@
   "MTR-029": {
    "shape": "25dc27f43041a3a7",
    "poses": "de3848d36a065f84",
-   "spin": "a7c2fa23cee7c625",
+   "spin": "b472b1b6e67e2edc",
    "other": "cec9c186525eef07",
    "vertices": 328,
    "triangles": 324,
@@ -4270,19 +4270,6 @@
     1.8,
     0.15,
     1.8
-   ]
-  },
-  "PRX-001": {
-   "shape": "c5ea042b0ec0f199",
-   "poses": "f2838755adb11e13",
-   "spin": "d119737b52ff0cae",
-   "other": "1b3f163dc892d7af",
-   "vertices": 288,
-   "triangles": 188,
-   "size_mm": [
-    1.81,
-    1.81,
-    1.1
    ]
   },
   "RES-101": {
@@ -5235,7 +5222,7 @@
    ]
   },
   "SRL-021": {
-   "shape": "196ad37ad0fb2793",
+   "shape": "32419d32a6bc866f",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "e38bd781bd5812d7",
@@ -5244,7 +5231,7 @@
    "size_mm": [
     6.2,
     6.2,
-    1.94
+    2.04
    ]
   },
   "STF-010": {
@@ -5287,16 +5274,16 @@
    ]
   },
   "STF-030": {
-   "shape": "27405ed262855b0d",
+   "shape": "a72c937f03e8c84a",
    "poses": "39389eaed4045380",
-   "spin": "34e88fe9323c5187",
+   "spin": "625daf57be9a0d1d",
    "other": "65bac7f5415f68ad",
    "vertices": 16140,
    "triangles": 32276,
    "size_mm": [
-    8.855,
-    4.205,
-    0.719
+    8.847,
+    4.207,
+    0.734
    ]
   },
   "STF-101": {
@@ -5365,12 +5352,12 @@
    ]
   },
   "STP-003": {
-   "shape": "e306a7420613f1f8",
+   "shape": "93ce023e85af4557",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
-   "other": "d3126c57a508cdcb",
-   "vertices": 2497,
-   "triangles": 1718,
+   "other": "2cbdfedbe7da8f3e",
+   "vertices": 2539,
+   "triangles": 1748,
    "size_mm": [
     20.837,
     13.471,
@@ -6648,12 +6635,12 @@
    ]
   },
   "exterior intermediate+early EXT-030": {
-   "shape": "e68a88c8bf90389d",
-   "poses": "9b7968cf48a89e4b",
+   "shape": "666f5b922ac733f4",
+   "poses": "b090e4996b3106ba",
    "spin": "fa17432f63e87349",
    "other": "3ab270c152a5a7c0",
-   "vertices": 9774,
-   "triangles": 6507,
+   "vertices": 9546,
+   "triangles": 6257,
    "size_mm": [
     72.784,
     112.6,
@@ -6687,7 +6674,7 @@
    ]
   },
   "cassette alternative MEDIA-001": {
-   "shape": "794f78b436428d21",
+   "shape": "828fa8820df710b5",
    "poses": "74234e98afe7498f",
    "spin": "4257f8c12b177ee4",
    "other": "7c9cb0abf7c6c61a",
@@ -6700,16 +6687,16 @@
    ]
   },
   "cassette alternative MEDIA-002": {
-   "shape": "58506073c0ba44a2",
+   "shape": "55f3c8da8a98df0d",
    "poses": "74234e98afe7498f",
    "spin": "4421ccba95d35b25",
-   "other": "623bbe773ab50732",
-   "vertices": 68112,
-   "triangles": 56134,
+   "other": "1be00025240a3161",
+   "vertices": 69294,
+   "triangles": 56758,
    "size_mm": [
     63.8,
     100.4,
-    11.274
+    9.873
    ]
   },
   "cassette alternative MEDIA-003": {
@@ -6765,7 +6752,7 @@
    ]
   }
  },
- "settings": "58f26b57f5f0b429",
+ "settings": "5b1d3d20e5b2b4a2",
  "controls": "583882ea602c67e2",
  "targets": {
   "cassette.width": {
@@ -7232,6 +7219,14 @@
    "definition": "1e4204e4ae04ca4e",
    "outcome": "pass"
   },
+  "bay.top_rail_inner_face_beyond_cassette_end": {
+   "definition": "7f73e756ae751400",
+   "outcome": "pass"
+  },
+  "bay.battery_end_block_inner_face_beyond_cassette_end": {
+   "definition": "d541f81a718046e1",
+   "outcome": "pass"
+  },
   "cover.control_side_face_width": {
    "definition": "46b87d0d6ca72124",
    "outcome": "pass"
@@ -7243,6 +7238,14 @@
   "lid.height_over_width": {
    "definition": "5b367be125e0e6eb",
    "outcome": "fail"
+  },
+  "lid.flap_depth": {
+   "definition": "6d8fb685828ad321",
+   "outcome": "pass"
+  },
+  "lid.bottom_flap_depth": {
+   "definition": "ea45e1efbcb07e2a",
+   "outcome": "pass"
   },
   "belt.length_ratio_main_to_second": {
    "definition": "e72805bad0a7c457",

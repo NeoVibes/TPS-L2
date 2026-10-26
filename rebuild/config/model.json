@@ -855,7 +855,9 @@
       "STP-002"
     ],
     "smoothDeformation": [
-      "FCR-030"
+      "FCR-030",
+      "FRL-020",
+      "STF-030"
     ],
     "serviceStaticControls": [
       "VOL-019",
@@ -907,6 +909,7 @@
       "DRV-010",
       "DRV-011",
       "DRV-014",
+      "DRV-100",
       "DRV-104",
       "MEDIA-003",
       "MEDIA-004",
@@ -918,13 +921,15 @@
         "BAY-021",
         "BAY-031",
         "DRV-010",
-        "DRV-011"
+        "DRV-011",
+        "DRV-100"
       ],
       "ff": [
         "BAY-021",
         "BAY-031",
         "DRV-010",
-        "DRV-011"
+        "DRV-011",
+        "DRV-100"
       ],
       "rew": [
         "BAY-020",
@@ -944,6 +949,8 @@
       "JNT-010",
       "JNT-020",
       "FCR-030",
+      "FRL-020",
+      "STF-030",
       "TNE-040",
       "BCL-030",
       "STP-020"
@@ -969,7 +976,13 @@
         "JNT-010",
         "JNT-020"
       ],
-      "transport": "FCR-030"
+      "transport": [
+        "FCR-030",
+        "FRL-020"
+      ],
+      "shutoff": [
+        "STF-030"
+      ]
     }
   },
   "belts": {
@@ -1097,7 +1110,7 @@
         "cat": "motor",
         "mode": "play",
         "title": "Drive and tape path",
-        "text": "The motor, belts and capstan coordinate motion. Speeds and ratios are estimates; the amber transfer idler is an added demonstration substitute.",
+        "text": "The motor, belts and capstan coordinate motion. Speeds and ratios are estimates.",
         "duration": 12
       },
       {
@@ -1487,7 +1500,7 @@
           0.016
         ],
         "metalness": 0,
-        "roughness": 0.38,
+        "roughness": 0.6,
         "alpha": 1
       },
       {

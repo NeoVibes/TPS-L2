@@ -1,20 +1,20 @@
 {
   "what": "Build record for this folder. Written by \"npm run build\" in rebuild/; checked by \"npm test\".",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "built_with": {
     "blender": "5.2.1",
     "node": "v24.22.0"
   },
   "model_inputs": {
-    "edit/Portable Tape Player.blend": "6be92c42a9db0362c5527605278e28298b8c22867d8d8bfa3ca487142f1b39aa",
-    "rebuild/config/model.json": "1c54d94a81ba930242b66b2f2d9b552563ff73fbb0e00a7929ae46d69efb152c",
+    "edit/Portable Tape Player.blend": "aa5a7c2397226926089235bf6cb1a0930f1dc384e565699e086cd60bdff6d1ff",
+    "rebuild/config/model.json": "98bba922b25c56df525f427e4b0165068f9093c05cb23dcd8530582b96753bd9",
     "rebuild/config/part-ids.json": "e271e6bf44b96bc09a3df7d3afb01ca33284588b44fe2b62a7916028ddddcfe7",
     "rebuild/tools/belt_geometry.py": "4d6bba80c7975be1c86d165d76cb6be17e2d0767efdea0891684bafd0d17eaf8",
     "rebuild/tools/build_io.py": "9a9f9fca8bd6bb29592accc3a72b6f0752aa49fa1dad8e4619ca198efa57c216",
-    "rebuild/tools/export_cassette.py": "15dfe68323155a3fc5d749b950158c5670219042c41e230c0fe1635fb01c8dac",
-    "rebuild/tools/export_model.py": "7d9daaa14f7e27b38e9c397a40a69c6cea4e7bb7cebb3cdeb9c4f773c3542f08",
+    "rebuild/tools/export_cassette.py": "f56c65b507f9bd85a625d59924b8c110e074b3ac9c6d998b6a7f3aa7c6e4247c",
+    "rebuild/tools/export_model.py": "9269adc33cd3bd03f6673d6bc0c315ed399849819b914624c30f00088f818b1c",
     "rebuild/tools/measure_parts.py": "c5e8dde34626f31fbf802a07d490a8f0680e9ba7991aee236518b9f9946d405b",
-    "rebuild/tools/measure_targets.py": "fc771c9cf77d8c359d78be9a662c91e813987dc6269d59d8adc33ac78652c513",
+    "rebuild/tools/measure_targets.py": "8de718f72356daada26b842d03377399a4faefb6d97af164082b2f4c6dc259d5",
     "rebuild/tools/motion_samples.py": "a329cb5fd5e67b32ecd8fc40b39e463794a4e3505c0419c884b87e749fc01101",
     "rebuild/tools/native_regression.py": "01c3711acc4ce2c2dc82cd31b785a8bd77d8a0dff1ec667224591370498c60b2",
     "rebuild/tools/pack_geometry.py": "fd6e070fa33dda016483b476c223c03f9ce0ceecfd67174541797f545d8b09f9",
@@ -24,17 +24,17 @@
   "viewer_inputs": {
     "edit/assessments.json": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
     "edit/service-manual-parts.csv": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a",
-    "edit/targets.json": "e2bf8779a787a92a7dcbe5b043f07b8626fa6d8417e3ae376301b3e012b778cd",
-    "rebuild/config/model.json": "1c54d94a81ba930242b66b2f2d9b552563ff73fbb0e00a7929ae46d69efb152c",
-    "rebuild/config/release.json": "8b0e712048b49e2a52a5c786d38d28197680815997a506bdd2149aa8f3056d3e",
-    "rebuild/package-lock.json": "fed3bf6f63aaa0b477e2ace1d7699e62e220ae469bd40a741e840b6e4720f8ff",
-    "rebuild/package.json": "aab86f1efe0576f40cc00d095782aa49f9f6dd7b6f4f9ac989e1afc192046f73",
+    "edit/targets.json": "bc359fdafdfe733359cd591eced1d2c619417ea13726b55ae41ef516c1e1424d",
+    "rebuild/config/model.json": "98bba922b25c56df525f427e4b0165068f9093c05cb23dcd8530582b96753bd9",
+    "rebuild/config/release.json": "676614a8624f82e7a162631309b55ecdf8b44d687634adfbfe83740f0c146131",
+    "rebuild/package-lock.json": "5f69d840b114e1f545c33adc69de9567e6e69bdf1d5052ebc1d8b0a349d1d331",
+    "rebuild/package.json": "f2c848e261cffe2ce2137023116c8494dbd361926c48fe255cc88bfc29fb5545",
     "rebuild/tools/build_viewer.mjs": "8f19b3e3b4c8774ddd78ad3aa21e714b30c4011acfd3140b2ced65f1ed740933",
     "rebuild/tools/compare.mjs": "83f13d1ce0f72b6dd99cc300a1c8c45b7bd9cdbb107e89837d51dc75040bd822",
     "rebuild/tools/confirmation.mjs": "29f0467b5eecaeb3faaf0ba80d1f6c8bd7cbec15d93e8f0df3c05b17d868fa40",
-    "rebuild/tools/targets.mjs": "41c95587439f4ce38e3d301d0b2af6201cf3235ba29031796a79ab43eab92a75",
+    "rebuild/tools/targets.mjs": "04ed8fa48e4e45dc059f89b5ce25bf856ea53041c457d30f60e171126f8628b1",
     "rebuild/viewer/app-camera.mjs": "a7e7a89fa72c77ec4833cdbe285e9e51f97e1ef8390c506980b7d7c720a22057",
-    "rebuild/viewer/app-core.mjs": "7d537a8bc52c183c8d10f90a66ab0e7eededb86dcd05f7481a4c3746e96ea306",
+    "rebuild/viewer/app-core.mjs": "1313a91e871f6b43642b2b85931e62f470e62891f88e567f4fb06b11ee73cc18",
     "rebuild/viewer/app-inspect.mjs": "c1996eae4bbb8766886c619c39f8f2b01e6677d93d95bfd00a8996793492ed52",
     "rebuild/viewer/app-labels.mjs": "acee6c5586720a86442d5bb1449faa8211bf79fe0afd62b33b379b8456f93018",
     "rebuild/viewer/app-master-list.mjs": "e29b74ba80d422457c5771a5050d072895904847f66baa5edca0360639833bb2",
@@ -58,7 +58,7 @@
     "rebuild/viewer/loading.mjs": "99b13fb91b3ef540bc0969a8795a51506baa05f7efa4e10d578be5ec6bc4bf2c",
     "rebuild/viewer/model-controls.mjs": "a9dbe4cb4e30f3d178d646bb9409f612d26f0c5d9fd942735e4569081a403e76",
     "rebuild/viewer/motion-rules.mjs": "0a8fbd01fab29d369f2a36f61a31058d348ae70b5d9b3f034cfc852e0222fd38",
-    "rebuild/viewer/native-deformation.mjs": "a755457330b88f77886abeb83d52ee94d3a1b4bbc5cbd47fa35a703038fb4278",
+    "rebuild/viewer/native-deformation.mjs": "15da932fb43ae6dca7167c0b781c771d12ed07556c879aa86d9d2118cb8a0904",
     "rebuild/viewer/operating-pose.mjs": "fa21daef32b81e41e0230c6abb56dc4ed2e581280d56dbe3e942d6d8ce28eea7",
     "rebuild/viewer/operating-state.mjs": "1b13560713184fb84865b67104ed57ba75e61e337ca0192418a63c7039cba71d",
     "rebuild/viewer/operation-indicator.mjs": "8f2aaef6a1269633d2f8215d754a63eea2e4fd2081d688257695b3fc8cfd404b",
@@ -78,43 +78,43 @@
     "esbuild": "0.28.1",
     "three": "0.185.1"
   },
-  "parts": 507,
+  "parts": 506,
   "outputs": {
     "TARGETS.md": {
-      "sha256": "834bd2ab0f769d834b7ee7848bbb1e2cd262c6db7a613b4197a2146548c32d89",
-      "bytes": 40091
+      "sha256": "d2121f0f7d4b77849880e4a2120b335ea41456b2614bf6389668b739e956409b",
+      "bytes": 40981
     },
     "assessment-results.json": {
-      "sha256": "82bc80a0528fc656e3a41c911b151c510b0e8a9c94e9cf6ad93789b1b4679923",
-      "bytes": 243697
+      "sha256": "be44d5c6d9f3316df964a46c573dd49b325cbf75c171ae70f48ac3ca9bd45ebc",
+      "bytes": 245821
     },
     "geometry/cassette/cassette.js": {
-      "sha256": "5b514e02c3e74f3791437d5931e85b5794a05a1c14006d054dffdc323dbaf2b5",
-      "bytes": 4687461
+      "sha256": "48a4288b0779346906f5bce26f3c9694c58de813011416ae2dc835b6dc7a64a0",
+      "bytes": 4696421
     },
     "geometry/electronics.js": {
       "sha256": "1748a703068b2f5a262a5892ced6c5c05c9f60bf31dc0f1fcf7e5d27cfdd35d8",
       "bytes": 9556368
     },
     "geometry/exterior.js": {
-      "sha256": "f360968bbbdc6e4c2d14debed989a00499b3b10507fb23fc3ddeeae734dcdf05",
-      "bytes": 9052153
+      "sha256": "ad87af401af496f16ed2a3e8ca67b50da85da951a7c1ff7bbe705047e03391d9",
+      "bytes": 9053329
     },
     "geometry/mechanism.js": {
-      "sha256": "c683478b8acc4a5b66d8a76cbf45dc8ce85896bad69cce8067a2d6834782515d",
-      "bytes": 23013282
+      "sha256": "a2df4ff2cdc2272be7fbfcf2cef7db0b502089a55d1bc6fa0cc32497563fb248",
+      "bytes": 23319178
     },
     "geometry/model.js": {
-      "sha256": "ffd1144cad78a3be2453de3d998233a685ee4a4fa781171b3baf130d4a9ece93",
-      "bytes": 2331597
+      "sha256": "6f2b887f6a1085323f1651a4fc45469707e5554239bd41caf9a049dc7b833bc1",
+      "bytes": 2330619
     },
     "index.html": {
-      "sha256": "6080d7d90138a9693a24e323cb2ae2323d78e4bc59d537c4255791a9cbac2095",
-      "bytes": 898712
+      "sha256": "9b2c8a2a3952e730cf67e38fa0e132404a287f3d7c3a42e21b1e2b1388e9929e",
+      "bytes": 899263
     },
     "master-parts.csv": {
-      "sha256": "6d1c4b0a5736165c4489fde97388e7ba2957613c501e4e0b4f11d83dba5009bf",
-      "bytes": 138634
+      "sha256": "12e03084344c55c1f38c7524812d71cccbacb381525dcffcd0295654c7ed7f4d",
+      "bytes": 138887
     },
     "social-preview.png": {
       "sha256": "b3fb92f7722dd8ea3944770109e33e23238a4e4e6013280ae5a7940538b831e0",

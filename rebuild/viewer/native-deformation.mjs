@@ -3,7 +3,7 @@ import {interpolateSamples} from './model-controls.mjs';
 // Native shape-key displacements in owner coordinates. These are reconstructed
 // spring paths; they do not simulate force, compliance or contact pressure.
 const clamp = value => Math.max(0, Math.min(1, value));
-export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0}={}){
+export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0,shutoff=null}={}){
  const disconnected=['exploded','catalog','service'].includes(view);
  return deformation.targets.map(target=>{
   let weight;const curve=target.controlCurve;
@@ -11,7 +11,9 @@ export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='h
    const values={tone:disconnected||!toneTouched?.5:tone==='low'?0:1,play:disconnected?0:clamp(playTravel),stop:['exploded','catalog'].includes(view)?0:clamp(stopTravel),battery:['exploded','catalog'].includes(view)?0:clamp(batteryRelease)};
    if(!(curve.channel in values))throw Error('Unknown native control curve '+curve.channel);
    weight=interpolateSamples(curve.samples,values[curve.channel],'weight');
-  }else if(deformation.owner===config.deformation.channels.transport)weight=target.weights[disconnected?'stop':pose];
+  }else if(config.deformation.channels.transport.includes(deformation.owner))weight=target.weights[disconnected?'stop':pose];
+  // A spring on the shut-off lever takes the lever's own mix of poses (its rock on the cam and its shut-off stages).
+  else if(config.deformation.channels.shutoff.includes(deformation.owner))weight=['exploded','catalog'].includes(view)?target.weights.stop:(shutoff||[[pose,1]]).reduce((sum,[name,w])=>sum+w*target.weights[name],0);
   else throw Error('Missing native deformation curve for '+deformation.owner);
   if(!Number.isFinite(weight))throw Error('Missing native deformation weight for '+deformation.owner+'/'+target.name);
   return weight-target.initial;

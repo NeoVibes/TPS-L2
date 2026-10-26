@@ -172,8 +172,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -202,7 +202,7 @@
      "axis": null
     }
    },
-   "positions": "d4f65deb9627",
+   "positions": "7e854b6e44f4",
    "status": "Stopped",
    "packageStatus": "Loading cassette…"
   },
@@ -381,8 +381,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 971.3833,
-     "y": 407.3743,
+     "x": 971.6205,
+     "y": 407.5585,
      "inFrustum": true,
      "axis": null
     },
@@ -411,7 +411,7 @@
      "axis": null
     }
    },
-   "positions": "d01d8451500e",
+   "positions": "fb6478dd3ef1",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -590,8 +590,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 741.5234,
-     "y": 418.3788,
+     "x": 742.1025,
+     "y": 418.2218,
      "inFrustum": true,
      "axis": null
     },
@@ -620,7 +620,7 @@
      "axis": null
     }
    },
-   "positions": "e835c5a1a4aa",
+   "positions": "c00a3795eca0",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -799,8 +799,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 792.6502,
-     "y": 522.2011,
+     "x": 792.6689,
+     "y": 522.1508,
      "inFrustum": true,
      "axis": null
     },
@@ -829,7 +829,7 @@
      "axis": null
     }
    },
-   "positions": "b312386a97c8",
+   "positions": "5e6d99a5d74b",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1008,8 +1008,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -1038,7 +1038,7 @@
      "axis": null
     }
    },
-   "positions": "c353483a0b2f",
+   "positions": "f88047de9396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1217,8 +1217,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -1247,7 +1247,7 @@
      "axis": null
     }
    },
-   "positions": "c353483a0b2f",
+   "positions": "f88047de9396",
    "status": "Stopped · Open cover, then press STOP / EJECT",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1384,20 +1384,20 @@
      ]
     },
     "EXT-030": {
-     "x": 766.4503,
-     "y": 324.4451,
+     "x": 767.8452,
+     "y": 324.893,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 766.1559,
-     "y": 322.0921,
+     "x": 767.3091,
+     "y": 322.5485,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 765.5969,
-     "y": 321.935,
+     "x": 766.7248,
+     "y": 322.4005,
      "inFrustum": true,
      "axis": null
     },
@@ -1426,8 +1426,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -1456,7 +1456,7 @@
      "axis": null
     }
    },
-   "positions": "9234c9a059ee",
+   "positions": "0a0aee42d616",
    "status": "Stopped · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1593,20 +1593,20 @@
      ]
     },
     "EXT-030": {
-     "x": 766.4503,
-     "y": 324.4451,
+     "x": 767.8452,
+     "y": 324.893,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 766.1559,
-     "y": 322.0921,
+     "x": 767.3091,
+     "y": 322.5485,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 765.5969,
-     "y": 321.935,
+     "x": 766.7248,
+     "y": 322.4005,
      "inFrustum": true,
      "axis": null
     },
@@ -1629,43 +1629,43 @@
      "axis": null
     },
     "MEDIA-001": {
-     "x": 831.139,
-     "y": 319.2069,
+     "x": 831.1391,
+     "y": 319.2068,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 834.4065,
-     "y": 317.3838,
+     "x": 834.8795,
+     "y": 317.12,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 831.0813,
-     "y": 341.9819,
+     "x": 831.0814,
+     "y": 341.9818,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 831.2906,
-     "y": 341.8514,
+     "x": 831.2907,
+     "y": 341.8513,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 830.4436,
+     "x": 830.4437,
      "y": 291.2349,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
      "x": 830.6604,
-     "y": 291.1317,
+     "y": 291.1316,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "5f48a74b629c",
+   "positions": "9bfac356fbd1",
    "status": "Stopped · No engaged cassette · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1844,8 +1844,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -1874,7 +1874,7 @@
      "axis": null
     }
    },
-   "positions": "c353483a0b2f",
+   "positions": "f88047de9396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2053,8 +2053,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -2083,7 +2083,7 @@
      "axis": null
     }
    },
-   "positions": "7884541abadd",
+   "positions": "4c9b125bd0ed",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2262,8 +2262,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -2292,7 +2292,7 @@
      "axis": null
     }
    },
-   "positions": "c353483a0b2f",
+   "positions": "f88047de9396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2471,8 +2471,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -2501,7 +2501,7 @@
      "axis": null
     }
    },
-   "positions": "052c77831c78",
+   "positions": "be11379f9c41",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2684,8 +2684,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -2714,7 +2714,7 @@
      "axis": null
     }
    },
-   "positions": "98c127788d97",
+   "positions": "6c5b8d356214",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2767,163 +2767,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 883.6301,
-     "y": 405.6876,
+     "x": 883.6292,
+     "y": 405.6883,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 884.0793,
-     "y": 407.3016,
+     "x": 884.0781,
+     "y": 407.3025,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 884.3664,
-     "y": 409.9807,
+     "x": 884.3648,
+     "y": 409.982,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 887.2645,
-     "y": 410.8907,
+     "x": 887.2627,
+     "y": 410.8921,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 888.5471,
-     "y": 419.1428,
+     "x": 888.5451,
+     "y": 419.1451,
      "inFrustum": true,
      "axis": [
       {
-       "x": 888.5471,
-       "y": 419.1428
+       "x": 888.5451,
+       "y": 419.1451
       },
       {
-       "x": 888.5471,
-       "y": 414.3472
+       "x": 888.5451,
+       "y": 414.3495
       }
      ]
     },
     "CTL-06": {
-     "x": 889.2085,
-     "y": 418.9567,
+     "x": 889.2063,
+     "y": 418.959,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.2085,
-       "y": 418.9567
+       "x": 889.2063,
+       "y": 418.959
       },
       {
-       "x": 889.2085,
-       "y": 414.1698
+       "x": 889.2063,
+       "y": 414.1722
       }
      ]
     },
     "CTL-07": {
-     "x": 851.0518,
-     "y": 377.9911,
+     "x": 851.0242,
+     "y": 378.036,
      "inFrustum": true,
      "axis": [
       {
-       "x": 851.0518,
-       "y": 377.9911
+       "x": 851.0242,
+       "y": 378.036
       },
       {
-       "x": 851.0518,
-       "y": 378.1687
+       "x": 851.0242,
+       "y": 378.2136
       }
      ]
     },
     "CTL-08": {
-     "x": 842.4238,
-     "y": 419.916,
+     "x": 842.4171,
+     "y": 419.9182,
      "inFrustum": true,
      "axis": [
       {
-       "x": 842.4238,
-       "y": 419.916
+       "x": 842.4171,
+       "y": 419.9182
       },
       {
-       "x": 842.4238,
-       "y": 419.4652
+       "x": 842.4171,
+       "y": 419.4674
       }
      ]
     },
     "EXT-030": {
-     "x": 831.4161,
-     "y": 419.4984,
+     "x": 831.4187,
+     "y": 419.5989,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 846.968,
-     "y": 419.3584,
+     "x": 846.9716,
+     "y": 419.4575,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 847.5218,
-     "y": 419.5184,
+     "x": 847.5212,
+     "y": 419.6181,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 837.181,
-     "y": 443.0146,
+     "x": 837.1911,
+     "y": 443.0065,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
      "x": 846.9542,
-     "y": 459.3506,
+     "y": 459.3288,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 826.6956,
-     "y": 424.3232,
+     "x": 826.6978,
+     "y": 424.3246,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 832.7981,
-     "y": 427.2103,
+     "x": 832.7984,
+     "y": 427.2104,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 837.6057,
-     "y": 427.0112,
+     "x": 837.6101,
+     "y": 426.9719,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 840.2648,
-     "y": 433.6558,
+     "x": 840.265,
+     "y": 433.6559,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 842.4551,
-     "y": 433.0492,
+     "x": 842.4553,
+     "y": 433.0494,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 844.6358,
+     "x": 844.6359,
      "y": 426.0065,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
      "x": 846.8104,
-     "y": 425.3981,
+     "y": 425.3982,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "7d63a2dae3e3",
+   "positions": "2353dbb3e873",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3102,8 +3102,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 836.7527,
-     "y": 316.0749,
+     "x": 837.2192,
+     "y": 315.8147,
      "inFrustum": true,
      "axis": null
     },
@@ -3132,7 +3132,7 @@
      "axis": null
     }
    },
-   "positions": "98c127788d97",
+   "positions": "6c5b8d356214",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3337,8 +3337,8 @@
      "axis": null
     },
     "MEDIA-002": {
-     "x": 560.3589,
-     "y": 549.3426,
+     "x": 564.7183,
+     "y": 546.3525,
      "inFrustum": false,
      "axis": null
     },
@@ -3367,7 +3367,7 @@
      "axis": null
     }
    },
-   "positions": "cc13d67228b3",
+   "positions": "141b38cd4e64",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3576,7 +3576,7 @@
      "axis": null
     }
    },
-   "positions": "cc13d67228b3",
+   "positions": "141b38cd4e64",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },

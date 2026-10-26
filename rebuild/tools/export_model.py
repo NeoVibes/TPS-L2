@@ -181,7 +181,7 @@ for name,mode,door,media,eject in pose_cases:
  for deformation,keys in legacy_shape_sources:
   assert all(abs(t['weights'][name]-t['initial'])<1e-8 for t in deformation['targets']),('Legacy deformation changed in exported transport',deformation['owner'],name)
  if name in {'play','ff','rew'}:
-  # Frame 0→1 aliases rotations exceeding pi (PRX-001 nearly makes one
+  # Frame 0→1 aliases rotations exceeding pi (a fast part can nearly make one
   # complete turn). Bound native raw Euler increments before matrix sampling.
   euler0={o:tuple(o.rotation_euler) for o in bpy.data.objects if o.animation_data};step=.125
   while True:
