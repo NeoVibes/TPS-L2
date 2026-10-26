@@ -182,9 +182,13 @@
   {"id": "bay.hook_height_above_cassette_top_face", "value": 3.1, "tol": 0.8, "unit": "mm", "class": "photo-measured", "basis": "imagery of a second dismantled unit: 2.7 at the far edge, 3.6 at the near edge"},
   {"id": "bay.top_rail_outer_edge_beyond_cassette_end", "value": 6.2, "tol": 0.6, "unit": "mm", "class": "photo-measured", "basis": "imagery of a second dismantled unit"},
   {"id": "bay.top_rail_top_above_cassette_top_face", "value": 1.5, "tol": 0.6, "unit": "mm", "class": "photo-measured", "basis": "imagery of a second dismantled unit"},
+  {"id": "bay.top_rail_inner_face_beyond_cassette_end", "value": 1.65, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["MEDIA-001", "BAY-073"], "basis": "the EJECT lever's fold stands flush beside the rail, not under it (imagery of a second dismantled unit)"},
+  {"id": "bay.battery_end_block_inner_face_beyond_cassette_end", "value": 1.0, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["MEDIA-001", "BAY-071"], "basis": "imagery shows a solid block close to the cassette's battery end; the gap was not measured"},
   {"id": "cover.control_side_face_width", "value": 27.6, "tol": 0.6, "unit": "mm", "class": "photo-measured", "basis": "imagery of a second dismantled unit, taking the cover as 133.5 long"},
   {"id": "lid.window_centre_fraction_of_lid_width", "value": 0.426, "tol": 0.01, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit: from the plain-side edge"},
   {"id": "lid.height_over_width", "value": 1.62, "tol": 0.05, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit"},
+  {"id": "lid.flap_depth", "value": 1.42, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["EXT-030"], "basis": "chosen so that the closed lid's top flap rests on the top-end rail, 0.02 mm off it as at the lid's opening stop. Imagery did not establish its fold depth"},
+  {"id": "lid.bottom_flap_depth", "value": 6.42, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["EXT-030"], "basis": "the original model fold is retained to close the bottom against the rear cabinet return; the depth has not been physically verified"},
   {"id": "belt.length_ratio_main_to_second", "value": 1.2, "tol": 0.05, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit; listed replacement belt sizes give 1.21"}
  ]
 }

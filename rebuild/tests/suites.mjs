@@ -6,7 +6,7 @@ const fast = [
   'operating_seek', 'parts_list_view', 'release_zip', 'render_observation', 'render_quality', 'rig_links', 'stale_detection', 'stop_eject', 'test_runner', 'theme', 'viewer_inputs', 'viewer_modules',
 ];
 const geometry = [
-  'battery_attachments', 'control_geometry', 'door_motion', 'drive_motion', 'eject_motion', 'exploded_layout',
+  'battery_attachments', 'control_geometry', 'door_motion', 'drive_motion', 'drive_repairs', 'eject_motion', 'exploded_layout',
   'math', 'native_deformation', 'operability', 'operation_indicator', 'owner_geometry', 'stop_eject_geometry', 'workbench',
 ];
 export const TEST_SUITES = [

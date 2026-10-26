@@ -94,7 +94,7 @@ def interface_cuts(obj,hub_radius=8.15,front_apron=False):
 
 rear=box('clear deck-facing half',shell['assembled_xy_bounds_mm'],3.55,4.0,2.1)
 interface_cuts(rear);add(rear,spec['ownerRoles']['backShell'],'shell','rear_shell',.10)
-wall=box('rounded molded perimeter',shell['assembled_xy_bounds_mm'],4.0,10.42,2.1)
+wall=box('rounded molded perimeter',shell['assembled_xy_bounds_mm'],4.0,10.30,2.1)   # stops where the clear face and apron begin (0.02 under their bevels)
 boolean(wall,box('interior cavity',[-38.65,-56.5,22.85,41.6],3.7,11,1.2))
 interface_cuts(wall);add(wall,spec['ownerRoles']['backShell'],'edge','perimeter_wall',.12)
 roof=box('clear front face',shell['assembled_xy_bounds_mm'],10.32,10.78,2.1)
@@ -111,16 +111,18 @@ for cx,cy,cz in centers:
     for ri,ro,a,b in [(8.16,8.75,10.70,11.20),(8.74,9.15,10.52,10.85)]:
         add(ring('clear molded reel collar',cx,cy,ri,ro,a,b),spec['ownerRoles']['frontShell'],'edge','reel_access_collar',.09,True)
 # Thin integral stiffening ribs are visible through the clear face.
-for b in [[-36.0,-52.9,-34.95,37.9],[-33.8,-53.6,7.9,-52.75],[-33.8,37.85,7.9,38.7],[8.,-49.8,8.8,34.9]]:
+# The long rib ends 0.1 mm short of the corner screw bosses (r 2.5) at both ends.
+for b in [[-36.0,-51.8,-34.95,36.9],[-33.8,-53.6,7.9,-52.75],[-33.8,37.85,7.9,38.7],[8.,-49.8,8.8,34.9]]:
     add(box('internal molded reinforcement rib',b,9.15,10.32,.2),spec['ownerRoles']['frontShell'],'edge','internal_rib',.10)
-for y in [-50.8,35.9]:
+# The walls stand 1.1 mm further out than first drawn, clear of the tape's run to each corner roller [designed].
+for y in [-51.9,37.0]:
     add(box('corner roller guide wall',[10.5,y-.3,15.2,y+.3],4.05,9.1,.18),spec['ownerRoles']['backShell'],'edge','internal_guide_rib',.09)
 # Five real counterbored screw stations: four corners and the apron center.
 for idx,(cx,cy) in enumerate(shell['screw_centers_xy_mm']):
     face=11.95 if idx==4 else 10.78
     target=apron if idx==4 else roof
     boolean(target,cylinder('screw counterbore',cx,cy,1.92,face-.7,face+1))
-    boss=ring('molded screw boss',cx,cy,.85,2.5,4.02,face-.5)
+    boss=ring('molded screw boss',cx,cy,.85,2.5,4.02,min(face-.5,10.28))   # each boss stops under the front shell, the apron's included
     add(boss,spec['ownerRoles']['backShell'],'edge','screw_boss',.12,True)
     washer=ring('counterbore seat',cx,cy,1.37,1.9,face-.7,face-.36)
     add(washer,spec['ownerRoles']['frontShell'],'seam','screw_seat',.06,True)
@@ -201,18 +203,34 @@ for c in rollers:
     add(ring('corner tape guide roller',cx,cy,.8,r,4.08,8.05),spec['ownerRoles']['backShell'],'roller','guide_roller',.14,True)
     add(ring('guide roller face ring',cx,cy,1.25,r-.2,8.04,8.32),spec['ownerRoles']['backShell'],'hub','guide_roller_rim',.08,True)
     add(cylinder('guide roller axle',cx,cy,.70,4.02,8.40,48),spec['ownerRoles']['backShell'],'screw','guide_roller_axle',.10,True)
-# Continuous thin tape ribbon: tangent runs and arcs wrap the two corner rollers.
-# Its static route is an explicit visual proxy, not a flexible transport simulation.
-left=Vector(rollers[0]['center_xy_mm']);right=Vector(rollers[1]['center_xy_mm']);radius=rollers[0]['radius_mm']
-path=[]
-# Tangent to supply pack and left guide, then clockwise around the lower-left guide.
-for p in [(-4.8,-47.45),(12.5,-51.15)]:path.append(p)
-for i in range(41):
-    a=math.radians(-100+100*i/40);path.append((left.x+radius*math.cos(a),left.y+radius*math.sin(a)))
-path.append((right.x+radius,right.y))
-for i in range(1,41):
-    a=math.radians(100*i/40);path.append((right.x+radius*math.cos(a),right.y+radius*math.sin(a)))
-path.extend([(12.5,36.25),(-4.8,32.55)])
+# Continuous thin tape ribbon: from each pack along the outer tangent to its corner roller, round the roller, and
+# straight across the head side between them. Its static route is an explicit visual proxy, not a flexible transport
+# simulation. The centreline radii are the surfaces' plus half the tape's thickness, so its inner face lies on them.
+def corner(pack,roller,rp,rr,side,steps=80):
+    """Centreline from the pack along the outer tangent to the roller, then round the roller to its head side (angle 0).
+    side +1: a corner above its pack (take-up), -1: below (supply). Returns the points and the common outward normal's angle."""
+    P,C=Vector(pack),Vector(roller);d=C-P
+    a=math.atan2(d.y,d.x)+side*math.acos((rp-rr)/d.length)
+    n=Vector((math.cos(a),math.sin(a)))
+    return [P+rp*n]+[C+rr*Vector((math.cos(a*(1-i/steps)),math.sin(a*(1-i/steps)))) for i in range(steps+1)],a
+half=spec['tape']['ribbon_thickness_mm']/2+.001   # +0.001: the faceted ribbon then stays off the faceted roller and pack
+rp=spec['tape']['pack_radii_mm'][1]+half;rr=rollers[0]['radius_mm']+half
+supply_pack,takeup_pack=sorted(centers,key=lambda c:c[1])
+low,a_low=corner(supply_pack[:2],rollers[0]['center_xy_mm'],rp,rr,-1)
+high,a_high=corner(takeup_pack[:2],rollers[1]['center_xy_mm'],rp,rr,+1)
+path=[tuple(p) for p in low]+[tuple(p) for p in reversed(high)]
+# Checks of the route, independent of how it was drawn: tangent at both ends of each run, on the roller all round its
+# wrap, the two corners mirror images, the same under another pack radius, and the plan's figures (surface contacts).
+def check_corner(pts,a,pack,roller,rp,rr):   # mathutils vectors are single precision: 1e-5 mm
+    P,C=Vector(pack),Vector(roller);n=Vector((math.cos(a),math.sin(a)));run=pts[1]-pts[0]
+    assert abs((pts[0]-P).length-rp)<1e-5 and abs((pts[1]-C).length-rr)<1e-5 and abs(run.dot(n))<1e-5,'not tangent'
+    assert all(abs((q-C).length-rr)<1e-5 for q in pts[1:]) and abs(pts[-1].y-C.y)<1e-5 and pts[-1].x>C.x,'off the roller'
+for pts,a,pack,k in [(low,a_low,supply_pack,0),(high,a_high,takeup_pack,1)]:check_corner(pts,a,pack[:2],rollers[k]['center_xy_mm'],rp,rr)
+mirror=-7.45;assert all(abs(p.x-q.x)<1e-5 and abs(p.y+q.y-2*mirror)<1e-5 for p,q in zip(low,high)),'corners not mirror images'
+for other in (12.0,19.7):
+    pts,a=corner(takeup_pack[:2],rollers[1]['center_xy_mm'],other,rr,+1);check_corner(pts,a,takeup_pack[:2],rollers[1]['center_xy_mm'],other,rr)
+pts,a=corner(takeup_pack[:2],rollers[1]['center_xy_mm'],spec['tape']['pack_radii_mm'][1],rollers[1]['radius_mm'],+1)
+assert abs(math.degrees(a)-95.55)<.01 and (pts[0]-Vector((-12.71,33.41))).length<.01 and (pts[1]-Vector((16.87,36.28))).length<.01,(math.degrees(a),pts[:2])
 # Ribbon mesh is a closed extruded strip with nominal .035mm thickness.
 verts=[];width=.035
 for i,p in enumerate(path):

@@ -2,6 +2,34 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 const ready = page => page.waitForFunction(()=>window.portableTapePlayer?.snapshot().ready,null,{timeout:90000});
+// ready() exposes the controls after the exterior opens; it does not mean that
+// cassette/detail decoding or the resulting WebGL frame has finished. These
+// fixtures test preferences and recovery after startup, not input during loads.
+// Keep the early-loading race checks below on their original readiness gates.
+async function renderedView(page,record,packages,view='assembled') {
+ await page.waitForFunction(packages=>{
+  const snapshot=window.portableTapePlayer?.snapshot();
+  if(window.portableTapePlayerError)throw Error(window.portableTapePlayerError);
+  if(snapshot?.packageErrors.length)throw Error(snapshot.packageErrors.join('\n'));
+  return snapshot?.ready&&packages.every(name=>snapshot.loaded.includes(name));
+ },packages,{timeout:90000});
+ // onLoaded invalidates synchronously. Give its queued render a chance to finish
+ // before dispatching another native action, even if a previous frame was valid.
+ // An already idle view need not produce an extra geometry frame.
+ await page.waitForFunction(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(true)))),null,{timeout:90000});
+ const observed=await page.evaluate(()=>{
+  const snapshot=window.portableTapePlayer.snapshot(),text=document.getElementById('stage').dataset.test;
+  return {ready:snapshot.ready,loaded:snapshot.loaded,packageErrors:snapshot.packageErrors,
+   view:snapshot.state.view,frames:snapshot.renderedFrames,render:text&&JSON.parse(text)};
+ });
+ assert.equal(observed.ready,true);assert.deepEqual(observed.packageErrors,[]);
+ assert(packages.every(name=>observed.loaded.includes(name)));
+ assert.equal(observed.view,view);assert.equal(observed.render?.view,view);
+ assert.equal(observed.render.frames,observed.frames);
+ assert(observed.frames>0&&observed.render.draws>0&&observed.render.triangles>0,'The fixture must have rendered its loaded geometry');
+ (record.upgradeReadiness ||= []).push({phase:record.phase,loaded:observed.loaded,view,
+  frames:observed.frames,draws:observed.render.draws,triangles:observed.render.triangles});
+}
 async function select(page,id) {
  await page.locator('#catalog').evaluate(e=>e.open=true);await page.locator('#search').fill(id);
  await page.locator('#results button').filter({hasText:new RegExp('^'+id+' ·')}).click();
@@ -34,13 +62,19 @@ export async function preferenceChecks({browser,url,record,output}) {
  await context.addInitScript(()=>{const set=Storage.prototype.setItem;window.__preferenceWrites=[];Storage.prototype.setItem=function(k,v){if(k==='tpsl2-viewer-preferences')window.__preferenceWrites.push(v);return set.call(this,k,v);};});
  const page=await context.newPage();
  try {
+  record.phase='upgrade-preferences-startup';
+  await page.goto(url);await renderedView(page,record,['exterior','cassette']);
+  await page.locator('[data-workmode="inspect"]').click();
+  record.phase='upgrade-preferences-details';
+  await renderedView(page,record,['exterior','cassette','mechanism','electronics']);
   record.phase='upgrade-preferences-save';
-  await page.goto(url);await ready(page);await page.locator('[data-workmode="inspect"]').click();
   await page.locator('#projection').selectOption('orthographic');
-  await page.locator('[data-view="exploded"]').click();await page.locator('#toggleLabels').click();await page.locator('#motionCues').uncheck();
+  await page.locator('[data-view="exploded"]').click();
+  await renderedView(page,record,['exterior','cassette','mechanism','electronics'],'exploded');
+  await page.locator('#toggleLabels').click();await page.locator('#motionCues').uncheck();
   assert.equal(await page.evaluate(()=>window.__preferenceWrites.length),3);
   record.phase='upgrade-preferences-reload';
-  await page.reload();await ready(page);
+  await page.reload();await renderedView(page,record,['exterior','cassette']);
   const check=async()=>{
    const s=await page.evaluate(()=>window.portableTapePlayer.snapshot().state);
    assert.equal(s.projection,'orthographic');assert.equal(s.labels,false);assert.equal(await page.locator('#motionCues').isChecked(),false);
@@ -93,11 +127,18 @@ export async function preferenceChecks({browser,url,record,output}) {
   await page.locator('#clearContext').click();await check();
   record.preferenceSuccess='passed';
   record.phase='upgrade-preferences-invalid';
-  await page.evaluate(()=>localStorage.setItem('tpsl2-viewer-preferences','{bad'));await page.reload();await ready(page);
+  await page.evaluate(()=>localStorage.setItem('tpsl2-viewer-preferences','{bad'));await page.reload();
+  await renderedView(page,record,['exterior','cassette']);
   assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).projection,'perspective');
   record.phase='upgrade-preferences-denied';
   await context.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw Error('storage denied');}});});
-  await page.goto(url+'#part=BLT-001');await ready(page);await page.locator('[data-workmode="inspect"]').click();await page.locator('#projection').selectOption('orthographic');
+  await page.goto(url+'#part=BLT-001');
+  // A fragment-only goto keeps the current document and would skip the new
+  // init script. Reload, then prove this fixture really denies storage access.
+  await page.reload();
+  assert.equal(await page.evaluate(()=>{try{void window.localStorage;return false;}catch{return true;}}),true,'Storage access must be denied in this fixture');
+  await renderedView(page,record,['exterior','cassette','mechanism','electronics']);
+  await page.locator('[data-workmode="inspect"]').click();await page.locator('#projection').selectOption('orthographic');
   assert.equal(await page.locator('#partId').textContent(),'BLT-001');assert.equal((await page.evaluate(()=>window.portableTapePlayer.snapshot().state)).projection,'orthographic');
   record.preferenceInvalidDenied='passed';
  } catch(error) {
@@ -177,7 +218,9 @@ export async function failureChecks({browser,url,record,output}) {
    await page.goto(url+'#part=BLT-001&exterior=early');
    let frames;
    if(failure==='context') {
-    await ready(page);
+    // The part link enters Inspect and starts detail loads. Finish that setup
+    // before testing dismissal and intentional loss of an established context.
+    await renderedView(page,record,['exterior','cassette','mechanism','electronics']);
     // Dismissal only replaces the URL fragment; verify it directly instead of waiting for a document navigation.
     await page.locator('#closeInspector').click({noWaitAfter:true});
     await page.locator('#inspector').waitFor({state:'hidden'});

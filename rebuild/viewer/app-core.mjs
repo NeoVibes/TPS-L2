@@ -266,7 +266,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
       const g = mesh.geometry, deformation = g?.userData.nativeDeformation;
       if (g?.userData.nativeArticulation) applyArticulation(mesh, g.userData.nativeArticulation, eject);
       if (!deformation) continue;
-      const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel }), previous = mesh.userData.deformationWeights;
+      const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel, shutoff: config.deformation.channels.shutoff.includes(deformation.owner) ? shutOffWeights("lever") : null }), previous = mesh.userData.deformationWeights;
       const weights = target.map((v, i) => config.roles.smoothDeformation.includes(deformation.owner) && previous ? T.MathUtils.lerp(previous[i], v, smoothing) : v);
       if (!previous || weights.some((v, i) => Math.abs(v - previous[i]) > 1e-7)) {
         applyDeformationPositions(g.userData.nativeBasePositions, deformation.targets, weights, g.attributes.position.array);
