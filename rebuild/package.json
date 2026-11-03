@@ -1,6 +1,6 @@
 {
   "name": "portable-tape-player",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Editable research reconstruction and self-contained viewer",
@@ -19,5 +19,8 @@
   "dependencies": {
     "esbuild": "0.28.1",
     "three": "0.185.1"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0"
   }
 }

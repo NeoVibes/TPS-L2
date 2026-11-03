@@ -24,9 +24,11 @@ import {updateOperationIndicator} from "./operation-indicator.mjs";
 import {batterySequence} from "./operating-pose.mjs";
 import {createDoorMotion, applyHingePose} from "./door-motion.mjs";
 import {createExplodedLayout} from "./exploded-layout.mjs";
-import {deformationWeights, applyDeformationPositions} from "./native-deformation.mjs";
+import {deformationWeights} from "./native-deformation.mjs";
+import {reelSystem} from "./tape.mjs";
 import {CONTROL_BINDINGS, controlVisualOffset} from "./model-controls.mjs";
 import {modelData, listData} from "./data.mjs";
+import {createLoader} from "./loading.mjs";
 import {createOperatingState, advanceOperating, resetOperating, transportInterval, autoStopProgress} from "./operating-state.mjs";
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
@@ -50,6 +52,7 @@ export const state = { ...createOperatingState(), uiMode: "operate", cassetteVar
 const family = (p) => p.category;
 export let model;
 let parts = [];
+let reels = reelSystem(() => null);   // replaced once the parts are made (below)
 let scene;
 export let camera;
 let renderer;
@@ -75,6 +78,12 @@ export const metrics = { started: performance.now(), firstExteriorMs: null, fram
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 export const audio = createAudioEngine({ onStatus: (message) => {
   $("audioStatus").textContent = typeof message === "string" ? message : message.message;
+}, loadMusic: async () => {
+  // Only when sound is enabled with the music chosen: the data file is read, checked against the part list and
+  // handed to a media element as a Blob address (the page may not fetch anything).
+  const entry = modelData().meta.music, bytes = await createLoader({ packages: { music: entry } }).load("music");
+  const url = URL.createObjectURL(new Blob([bytes], { type: entry.type }));
+  return { url, duration: entry.durationSeconds, title: entry.title, release: () => URL.revokeObjectURL(url) };
 } });
 // The three.js objects, for the controllers. They are made in init(), and the camera is replaced when the
 // projection changes, so controllers read them through this object when they need them.
@@ -145,7 +154,7 @@ const masterList = createMasterList({ $, data: listData(), exterior: () => state
 } });
 export const tour = createTour({ $, state, parts, steps: config.viewer.tourSteps, views, cam, invalidate });
 export function saveViewerPreferences() {
-  savePreferences({projection:state.projection,labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
+  savePreferences({labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
 }
 export function invalidate() {
   dirty = true;
@@ -241,7 +250,8 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
     else if (config.roles.instantTranslation.includes(p.data.id) || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
     else if (!p.links) p.baseP.lerp(base.p, smoothing);
     p.group.scale.copy(base.s);
-    const sp = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
+    const spin = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
+    const reel = spin ? reels.scale(p.data.id, spinMode, state) : 1, sp = reel === 1 ? spin : { ...spin, rate: spin.rate * reel };   // reels turn with their packs (tape.mjs)
     p.phase = advancePartAngle(p.phase, p.data, sp, { ...state, displayExplosion, displayRadial }, spinDt);
     const a = p.reference;
     if (a) {
@@ -269,11 +279,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
       const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel, shutoff: config.deformation.channels.shutoff.includes(deformation.owner) ? shutOffWeights("lever") : null }), previous = mesh.userData.deformationWeights;
       const weights = target.map((v, i) => config.roles.smoothDeformation.includes(deformation.owner) && previous ? T.MathUtils.lerp(previous[i], v, smoothing) : v);
       if (!previous || weights.some((v, i) => Math.abs(v - previous[i]) > 1e-7)) {
-        applyDeformationPositions(g.userData.nativeBasePositions, deformation.targets, weights, g.attributes.position.array);
-        g.attributes.position.needsUpdate = true;
-        g.computeVertexNormals();
-        g.computeBoundingSphere();
-        g.computeBoundingBox();
+        weights.forEach((w, i) => { mesh.morphTargetInfluences[i] = w; });   // blended on the GPU (app-packages.mjs)
         mesh.userData.deformationWeights = weights;
       }
     }
@@ -373,7 +379,7 @@ function appearanceSnapshot() {
     materials: [...materialSet].map(material => material.toJSON(materialMeta)), assignments, lights,
     renderer: {toneMapping: renderer.toneMapping, toneMappingExposure: renderer.toneMappingExposure, outputColorSpace: renderer.outputColorSpace},
     environment: {id: scene.environment?.uuid, intensity: scene.environmentIntensity, rotation: scene.environmentRotation.toArray()},
-    audio: {...audio.status}
+    audio: {...audio.status, source: state.audioSource}
   };
 }
 export async function init() {
@@ -442,6 +448,7 @@ export async function init() {
       p.labelPoint = center.applyMatrix4(inverse);
       parts.push(p);
     }
+    reels = reelSystem((id) => parts.find((p) => p.data.id === id)?.data.spin);   // the model's rates: part.spin carries rotationScale
     orbit = new OrbitControls(camera, $("canvas"));
     orbit.enableDamping = true;
     orbit.dampingFactor = 0.09;
@@ -473,7 +480,7 @@ export async function init() {
     };
     new ResizeObserver(resize).observe($("stage"));
     resize();
-    cam.setProjection(preferences.projection);
+    cam.setProjection("perspective");
     $("motionCues").checked = preferences.motionCues;
     $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
@@ -529,7 +536,7 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), audio: { ...audio.status, source: state.audioSource, music: audio.music, level: audio.level() }, ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);

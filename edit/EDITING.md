@@ -43,6 +43,10 @@ In Blender's Python console, load `../rebuild/tools/authoring.py` and use:
 
 Keep the scene properties that begin `release_serial_` and the "12345" marking together: they record that the serial number is made up.
 
+## The tape's music
+
+`music/canon-in-d.mp3` is the recording on the tape, from the start of side A. To use another, replace that file with an MPEG-1 Layer III file that starts with an Info frame and carries no tags (no title, artist or cover art: the build refuses them, since they can hold names). Then run a full build in `../rebuild/`.
+
 ## The three lists
 
 After changing one, run `npm run build:viewer` in `../rebuild/`; Blender is not needed.

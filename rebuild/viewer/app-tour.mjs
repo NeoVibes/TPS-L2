@@ -1,11 +1,11 @@
 // The guided tour: a timeline of steps, each with a view, a transport mode and a caption.
 // It owns where the tour is. Showing a step is done through the views and camera controllers.
-import * as T from "three";
 import {TOUR_SECONDS, tourLocation, tourMotion} from "./tour-timeline.mjs";
+import {reelSystem} from "./tape.mjs";
 
-const clamp = T.MathUtils.clamp;
 
 export function createTour({ $, state, parts, steps, views, cam, invalidate }) {
+  const reels = reelSystem((id) => parts.find((p) => p.data.id === id)?.data.spin);   // the model's rates: part.spin carries rotationScale
   let position = 0;   // seconds from the start of the tour
 
   /** Ends the tour and leaves everything else as it is. */
@@ -20,12 +20,12 @@ export function createTour({ $, state, parts, steps, views, cam, invalidate }) {
     const location2 = tourLocation(seconds);
     position = Math.min(TOUR_SECONDS, Math.max(0, seconds));
     if (state.tour !== location2.index) step(location2.index, true);
-    const motion = tourMotion(position, steps);
+    const motion = tourMotion(position, steps, state.speed);
     for (const p of parts) {
-      const modes = p.data.is_cassette ? motion.mediaModeSeconds : motion.modeSeconds;
-      p.phase = Object.entries(modes).reduce((sum, [mode, seconds2]) => sum + (p.spin[mode]?.rate || 0) * seconds2, 0) * state.speed;
+      const modes = p.data.is_cassette ? motion.mediaModeSeconds : motion.modeSeconds, angles = p.data.is_cassette ? motion.mediaReelAngle : motion.reelAngle;
+      p.phase = Object.entries(modes).reduce((sum, [mode, seconds2]) => sum + reels.phase(p.data.id, p.spin[mode], mode, seconds2 * state.speed, angles[mode]), 0);
     }
-    state.tapePosition = clamp(motion.tapeSeconds * state.speed / state.tapeDuration, 0, 1);
+    state.tapePosition = motion.tapePosition;
     $("tourSeek").value = position;
     $("tourClock").textContent = Math.floor(position) + " / " + TOUR_SECONDS + " s";
     if (location2.ended) {

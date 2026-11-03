@@ -1,13 +1,17 @@
 import config from '../config/model.json' with {type:'json'};
 import {interpolateSamples} from './model-controls.mjs';
+import {tapeKeyWeights} from './tape.mjs';
 // Native shape-key displacements in owner coordinates. These are reconstructed
 // spring paths; they do not simulate force, compliance or contact pressure.
 const clamp = value => Math.max(0, Math.min(1, value));
-export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0,shutoff=null}={}){
+export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0,shutoff=null,tapePosition=0}={}){
  const disconnected=['exploded','catalog','service'].includes(view);
- return deformation.targets.map(target=>{
+ // Tape keys (the packs, the ribbon's runs) follow the tape position in every view.
+ const tape=deformation.targets.some(t=>t.tape)?tapeKeyWeights(deformation.targets,tapePosition):null;
+ return deformation.targets.map((target,index)=>{
   let weight;const curve=target.controlCurve;
-  if(curve){
+  if(target.tape)weight=tape[index];
+  else if(curve){
    const values={tone:disconnected||!toneTouched?.5:tone==='low'?0:1,play:disconnected?0:clamp(playTravel),stop:['exploded','catalog'].includes(view)?0:clamp(stopTravel),battery:['exploded','catalog'].includes(view)?0:clamp(batteryRelease)};
    if(!(curve.channel in values))throw Error('Unknown native control curve '+curve.channel);
    weight=interpolateSamples(curve.samples,values[curve.channel],'weight');

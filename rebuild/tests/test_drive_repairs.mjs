@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {Matrix4,Quaternion,Vector3,Object3D} from 'three';
 import {cassetteLift,applyArticulation} from '../viewer/eject-motion.mjs';
-// The drive-train repairs of v0.2.10, on the full-detail export (packed frame: x across, y along the body, z = -depth).
+// The drive-train repairs, on the full-detail export (packed frame: x across, y along the body, z = -depth).
 const model=JSON.parse(fs.readFileSync('build/exports/model.json')),raw=gunzipSync(fs.readFileSync('build/exports/model.bin.gz')),part=Object.fromEntries(model.parts.map(p=>[p.id,p]));
 const f32=r=>new Float32Array(raw.buffer,raw.byteOffset+r[0],r[1]),u32=r=>new Uint32Array(raw.buffer,raw.byteOffset+r[0],r[1]);
 const pose=(p,name)=>{const [t,q,s]=p.poses[name];return new Matrix4().compose(new Vector3(...t),new Quaternion(...q),new Vector3(...s));};

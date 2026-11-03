@@ -96,5 +96,11 @@ if (!process.env.PTP_INTEGRITY_FIXTURE) {
   try { await symlink(path.join(view, 'index.html'), linked); await assert.rejects(() => validateView(view), /Links/); }
   catch (error) { if (process.platform !== 'win32' || error.code !== 'EPERM') throw error; }
   finally { await rm(linked, {force: true}); }
+  // Scan failures must block publishing even when the view and its build record are readable.
+  const {checkKit} = await import('../tools/check.mjs');
+  const settings = JSON.parse(await readFile(path.join(ROOT, 'config/model.json'), 'utf8'));
+  await writeFile(path.join(ROOT, settings.native), 'not a native file');
+  const checked = await checkKit();
+  assert.ok(checked.errors.some(message => message.startsWith('Blender privacy scan:')));
   console.log('Build integrity: metadata, poses, every package, inventory, copied bytes, source freshness and concurrent edits checked.');
 }

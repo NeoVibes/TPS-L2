@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { createOperatingState, dispatchOperating, advanceOperating, resetOperating, OPERATING_POLICY } from '../viewer/operating-state.mjs';
 import { createAudioEngine, generateTestSignal } from '../viewer/audio.mjs';
+import { SIDE_SECONDS } from '../viewer/tape.mjs';
 
 const act = (state, type, values = {}) => dispatchOperating(state, { type, ...values });
 const approx = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-10, `${actual} != ${expected}`);
@@ -15,12 +16,12 @@ act(smooth, 'transport', { mode: 'play' }); act(slow, 'transport', { mode: 'play
 for (let frame = 0; frame < 600; frame++) advanceOperating(smooth, 1 / 60);
 for (let frame = 0; frame < 10; frame++) advanceOperating(slow, 1);
 approx(smooth.tapePosition, slow.tapePosition);
-approx(slow.tapePosition, 8 / 120);
-act(slow, 'pause'); advanceOperating(slow, 60); approx(slow.tapePosition, 8 / 120);
+approx(slow.tapePosition, 8 / SIDE_SECONDS);
+act(slow, 'pause'); advanceOperating(slow, 60); approx(slow.tapePosition, 8 / SIDE_SECONDS);
 act(slow, 'seek', { position: .7 }); advanceOperating(slow, 60); approx(slow.tapePosition, .7);
 act(slow, 'pause'); act(slow, 'transport', { mode: 'rew' }); advanceOperating(slow, 120);
 assert.equal(slow.mode, 'stop'); assert.equal(slow.tapePosition, 0);
-act(slow, 'transport', { mode: 'ff' }); advanceOperating(slow, 120);
+act(slow, 'transport', { mode: 'ff' }); advanceOperating(slow, 140);   // a whole side winds in about 104 s at speed 1
 assert.equal(slow.mode, 'stop'); assert.equal(slow.tapePosition, 1);
 
 const state = createOperatingState({ tapePosition: .35 });
@@ -33,7 +34,7 @@ act(state, 'transport', { mode: 'play' }); assert.equal(state.mode, 'play');
 act(state, 'cassette'); assert.equal(state.media, 'removed');
 act(state, 'door'); act(state, 'cassette'); assert.equal(state.media, 'removed', 'Cannot load through closed cover');
 act(state, 'door'); act(state, 'cassette'); act(state, 'door'); act(state, 'transport', { mode: 'play' });
-assert.equal(state.mode, 'play'); approx(state.tapePosition, .35+.18/120);
+assert.equal(state.mode, 'play'); approx(state.tapePosition, .35+.18/SIDE_SECONDS);
 act(state, 'door'); assert.equal(state.mode, 'play');
 act(state, 'volume', { channel: 'left', value: 0 }); assert.equal(state.volumeLeft, 0); assert.equal(state.volumeRight, .5);
 state.view = 'service'; state.explode = .7; resetOperating(state);
@@ -92,7 +93,7 @@ class MockContext {
   async close() { this.state = 'closed'; this.active.clear(); }
 }
 
-const soundState = createOperatingState({ mode: 'play', tapePosition: .3, speed: .7 });
+const soundState = createOperatingState({ mode: 'play', tapePosition: .3, speed: .7, audioSource: 'tone' });   // the generated test signal (music: test_music.mjs)
 const statuses = [], audio = createAudioEngine({ AudioContextClass: MockContext, onStatus: s => statuses.push(s.state) });
 audio.sync(soundState); assert.equal(MockContext.instances.length, 0, 'sync must not initialize audio before gesture');
 MockContext.rejectNext = true; await audio.enable(soundState);
@@ -100,7 +101,7 @@ const context = MockContext.instances.at(-1);
 assert.equal(audio.status.state, 'blocked'); assert.equal(context.active.size, 0);
 await audio.enable(soundState); assert.equal(MockContext.instances.length, 1, 'Retry must reuse the existing context');
 assert.equal(audio.status.state, 'playing'); assert.equal(context.active.size, 2);
-const firstSource = [...context.active][0]; approx(firstSource.playbackRate.value, .7); approx(firstSource.offset, 0);
+const firstSource = [...context.active][0]; approx(firstSource.playbackRate.value, .7); approx(firstSource.offset, (.3 * SIDE_SECONDS) % 4);   // tape time, round the 4 s tone
 const signal = generateTestSignal(context, 1);
 assert.notDeepEqual(signal.getChannelData(0), signal.getChannelData(1), 'Stereo channels carry distinct generated tones');
 assert.ok(signal.getChannelData(0).every(sample => Number.isFinite(sample) && Math.abs(sample) <= .15));
@@ -111,7 +112,7 @@ const [direct, filter, filtered, duck, room, , left, right] = context.nodes;
 assert.equal(direct.gain.value, 0); assert.equal(filtered.gain.value, 1); assert.equal(filter.frequency.value, 2400);
 assert.equal(duck.gain.value, .16); assert.equal(room.gain.value, 1); assert.equal(left.gain.value, 0); assert.equal(right.gain.value, 1);
 act(soundState, 'seek', { position: .325 }); audio.sync(soundState);
-assert.equal(firstSource.stopped, true); approx([...context.active][0].offset, 3);
+assert.equal(firstSource.stopped, true); approx([...context.active][0].offset, (.325 * SIDE_SECONDS) % 4);
 act(soundState, 'pause'); audio.sync(soundState); assert.equal(context.active.size, 0); assert.equal(audio.status.state, 'ready');
 act(soundState, 'pause'); audio.sync(soundState); assert.equal(context.active.size, 2);
 await audio.setVisibility(false); assert.equal(context.active.size, 0); assert.equal(audio.status.state, 'background');
@@ -137,7 +138,7 @@ class FailedInitContext extends MockContext {
   static fail = true;
   createBuffer(...args) { if (FailedInitContext.fail) { FailedInitContext.fail = false; throw new Error('Temporary buffer initialization failure'); } return super.createBuffer(...args); }
 }
-const retryInitState = createOperatingState({ mode: 'play' }), retryInit = createAudioEngine({ AudioContextClass: FailedInitContext });
+const retryInitState = createOperatingState({ mode: 'play', audioSource: 'tone' }), retryInit = createAudioEngine({ AudioContextClass: FailedInitContext });
 await retryInit.enable(retryInitState); assert.equal(retryInit.status.state, 'unavailable');
 assert.equal(MockContext.instances.at(-1).state, 'closed', 'Failed initialization must release its context');
 await retryInit.enable(retryInitState); assert.equal(retryInit.status.state, 'playing'); await retryInit.dispose();

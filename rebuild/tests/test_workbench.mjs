@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto';
 import * as T from 'three';
 import { TOUR_SECONDS, TOUR_DURATIONS, tourLocation, tourMotion } from '../viewer/tour-timeline.mjs';
 import { createLoader } from '../viewer/loading.mjs';
-import { TRANSPORT_RATES } from '../viewer/operating-state.mjs';
+import { advanceTape, SIDE_SECONDS, TAPE } from '../viewer/tape.mjs';
 
 const json = async path => JSON.parse(await readFile(path, 'utf8'));
 const hash = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -27,13 +27,14 @@ const tourFixture = [
 ];
 const finalMotion = tourMotion(80,tourFixture);
 assert.deepEqual(finalMotion.modeSeconds,{stop:46,play:24,ff:10,rew:0});
-assert.equal(finalMotion.tapeSeconds,0,'Service cassette is physically separated from the running transport');
+assert.equal(finalMotion.tapePosition,0,'Service cassette is physically separated from the running transport');
 assert.equal(finalMotion.mediaModeSeconds.play,0);
 assert.equal(finalMotion.mediaModeSeconds.ff,0);
 const rewindFixture = [{duration:4,mode:'play',view:'assembled'},{duration:1,mode:'rew',view:'assembled'}];
-assert.equal(tourMotion(5,rewindFixture).tapeSeconds,4+TRANSPORT_RATES.rew,'Reverse winding contributes the shared negative transport rate');
-assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'assembled',door:true}]).tapeSeconds,10,'An open cover permits seated tape playback');
-assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'exploded'}]).tapeSeconds,0,'Separated geometry cannot advance transport');
+assert.equal(tourMotion(5,rewindFixture).tapePosition,advanceTape(4/SIDE_SECONDS,'rew',1,TAPE.windRadPerS).position,'Reverse winding takes the tape back as the tape model winds it');
+assert.equal(tourMotion(5,rewindFixture).tapePosition,0,'One second of REW is more than four of PLAY');
+assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'assembled',door:true}]).tapePosition,10/SIDE_SECONDS,'An open cover permits seated tape playback');
+assert.equal(tourMotion(10,[{duration:10,mode:'play',view:'exploded'}]).tapePosition,0,'Separated geometry cannot advance transport');
 assert.deepEqual(tourMotion(41.5,tourFixture),tourMotion(41.5,tourFixture),'Repeated seek has no retained integration state');
 for (const [time, index, offset, ended] of [[-4,0,0,false],[0,0,0,false],[7.5,0,7.5,false],[8,1,0,false],[18,2,0,false],[42,4,0,false],[53,5,1,false],[74,7,0,false],[80,7,6,true],[120,7,6,true]]) {
   assert.deepEqual(tourLocation(time), { index, offset, ended });
@@ -49,7 +50,7 @@ for (const frameSeconds of [1/60, 1/30, .25, 3, 17]) {
     // This independent piecewise tape oracle catches chapter boundary errors:
     // 18 seconds stopped, 24 seconds play, 10 seconds fast wind, then stopped.
     const expectedTape=0; // All running chapters have their cassette removed for service.
-    close(motion.tapeSeconds,expectedTape,1e-10,'Tour tape time independent of frame segmentation');
+    close(motion.tapePosition,expectedTape,1e-10,'Tour tape position independent of frame segmentation');
     assert.ok(elapsed > previous);
   }
   assert.equal(tourLocation(elapsed).ended, true);

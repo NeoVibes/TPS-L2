@@ -953,7 +953,9 @@
       "STF-030",
       "TNE-040",
       "BCL-030",
-      "STP-020"
+      "STP-020",
+      "MEDIA-004",
+      "MEDIA-006"
     ],
     "inspectionOnly": [
       "BAT-010",
@@ -982,7 +984,11 @@
       ],
       "shutoff": [
         "STF-030"
-      ]
+      ],
+      "tape": {
+        "MEDIA-004": "supply",
+        "MEDIA-006": "takeup"
+      }
     }
   },
   "belts": {
@@ -1034,7 +1040,7 @@
     "explodedGapMm": 28,
     "explodedSideGapMm": 28,
     "beltStripeWidthMm": 1.6,
-    "defaultSpeed": 0.55,
+    "defaultSpeed": 1,
     "rotationScale": 0.3,
     "controlCameras": {
       "transport": [
@@ -1158,10 +1164,7 @@
     "operatingPolicy": {
       "id": "independent-cover-and-transport-v2",
       "confidence": "illustrative",
-      "description": "The transport runs with an open or closed cover and with or without a cassette. Only seated, connected media advances or produces program audio. A side is shown in tapeDurationSeconds; fast winding is quicker by the ratio the model's drive gives (a 30-minute side winds in about 139 s forward and 161 s back). At the end of a side in PLAY the reel stalls and the automatic shut-off releases the transport.",
-      "tapeDurationSeconds": 120,
-      "fastForwardRatio": 12.9,
-      "rewindRatio": 11.2
+      "description": "The transport runs with an open or closed cover and with or without a cassette. Only seated, connected media advances or produces program audio. The tape (see \"tape\") sets how long a side plays and how fast it winds. At the end of a side in PLAY the reel stalls and the automatic shut-off releases the transport."
     },
     "stopCycle": {
       "press": 0.18,
@@ -1243,6 +1246,11 @@
     "autoStop": {
       "detect": 6.7,
       "trip": 4.5
+    },
+    "music": {
+      "title": "Canon in D",
+      "file": "music/canon-in-d.js",
+      "description": "The recording the tape holds, from the start of side A; edit/music/canon-in-d.mp3 is its source. Played through the same volume, tone and Hot Line as the generated test signal, at the motion speed, and silent past its end while the tape runs on."
     }
   },
   "sampling": {
@@ -1277,6 +1285,59 @@
     "positionToleranceMm": 2e-05,
     "weightTolerance": 0.0005,
     "weightToleranceBasis": "Native float32 driver inputs and retained keyframe snap produce sub-millipercent steps near the detent boundary; 0.0005 weight is below 0.000061 mm of cam surface travel. Sample endpoints remain evaluated native values."
+  },
+  "tape": {
+    "description": "One side of tape wound between the two cassette hubs. A pack holding a share s of the tape has radius r, with r² = empty² + s·(full² − empty²); the side is the area between an empty and a full pack over the tape thickness, and it plays at the capstan surface speed. In PLAY each reel turns at tape speed over its own pack radius: the supply reel is pulled by the tape, the take-up reel slips on its clutch behind a faster drum. In FF the take-up reel turns at the drive rate, in REW the supply reel does; the tape and the other reel follow, so winding speeds up as the driven pack grows (by one thickness a turn). With no cassette the take-up reel turns with its drum in PLAY.",
+    "basis": {
+      "hubRadiusMm": "photo-measured: 10.4 to 10.9 mm on a compact cassette seen face-on, scaled by the 42.5 mm hub pitch (ECMA-34 Fig. 4); ECMA-34 fixes only the bore",
+      "emptyPackRadiusMm": "designed: the hub plus a few turns of leader",
+      "fullPackRadiusMm": "designed: the generated cassette's pack",
+      "thicknessMm": "designed within ECMA-34 4.1.3.1 (overall 15 to 19 µm), as a C60 measures",
+      "speedMmPerS": "model: the capstan, 2 mm across, at its 47.6 rad/s",
+      "windRadPerS": "model: the reel spindles' exported rates while winding (FF take-up, REW supply); a test keeps them equal",
+      "drumRadPerS": "model: the take-up drive drum's exported rate in PLAY; a test keeps it equal"
+    },
+    "hubRadiusMm": 10.55,
+    "emptyPackRadiusMm": 10.6,
+    "fullPackRadiusMm": 19.7,
+    "thicknessMm": 0.016,
+    "speedMmPerS": 47.6,
+    "reels": {
+      "supply": [
+        "BAY-021",
+        "BAY-031",
+        "DRV-010",
+        "DRV-011",
+        "DRV-100",
+        "MEDIA-003",
+        "MEDIA-004"
+      ],
+      "takeup": [
+        "BAY-020",
+        "BAY-030",
+        "CLT-010",
+        "CLT-031",
+        "CLT-032",
+        "DRV-014",
+        "DRV-017",
+        "DRV-104",
+        "MEDIA-005",
+        "MEDIA-006"
+      ],
+      "drum": [
+        "CLT-030"
+      ],
+      "reference": {
+        "supply": "BAY-031",
+        "takeup": "BAY-030"
+      },
+      "note": "Parts that turn with each reel (S gear B and the gear beside the take-up spindle at their own ratios). The drum keeps its own rate in PLAY and turns with the take-up reel only when the tape drags it (REW)."
+    },
+    "windRadPerS": {
+      "ff": 34.386239913490265,
+      "rew": 29.75731072706153
+    },
+    "drumRadPerS": 4.9851929464790254
   },
   "cassette": {
     "schema_version": 2,
@@ -1397,7 +1458,8 @@
         "radius_mm": 1.1,
         "pitch_radius_mm": 8.4,
         "depth_mm": 0.085
-      }
+      },
+      "winding_radius_mm": 10.55
     },
     "scope_limits": [
       "A generic clear-shell reconstruction, not an exact branded cassette product or device-specific replica.",
@@ -1405,7 +1467,7 @@
       "Body 8.6 mm and 12.0 mm across the head band on both faces (ECMA-34 Fig. 4), with the tape plane where the native model now has it; the band outline and its openings are estimates, not manufacturer measurements.",
       "Six existing MEDIA owners and their poses/spin metadata are preserved. Screws, guide rollers, tape ribbon and pressure-pad features are separately manufactured subcomponents grouped under shell owners only for the visual alternative.",
       "Only cassette hubs have six internal engagement teeth; the player spindles remain unchanged.",
-      "The illustrated tape ribbon is static and has an approximately 0.95mm PLAY head gap; fixed equal pack radii do not simulate winding transfer."
+      "The illustrated tape ribbon has an approximately 0.95mm PLAY head gap; the packs and the ribbon runs to the corner rollers follow the tape position (shape keys)."
     ],
     "materials": [
       {
@@ -1661,7 +1723,7 @@
     ],
     "tape": {
       "pack_radii_mm": [
-        8,
+        10.55,
         19.7
       ],
       "pack_z_mm": [
@@ -1691,7 +1753,7 @@
       ],
       "ribbon_thickness_mm": 0.035,
       "ribbon_front_x_mm": 21.15,
-      "route_status": "Static illustrative ribbon and fixed equal winding radii; no flexible tape transport or conservation simulation.",
+      "route_status": "Ribbon runs from each pack to its corner roller; packs grow and shrink with the tape and the runs follow them through shape keys at sampled radii (see \"tape\").",
       "rear_winding_relief_rings": 32,
       "rear_winding_recess_depth_mm": 0.035
     },

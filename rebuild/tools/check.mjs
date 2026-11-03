@@ -75,8 +75,10 @@ export async function checkKit() {
   });
 
   // Blender stores its screen layout in the file, and the layout remembers folders on the computer that saved it.
-  facts.computer_paths_in_model = await computerPathsIn(path.join(ROOT, config.native)).catch(() => []);
-  if (facts.computer_paths_in_model.length) warnings.push('The Blender file contains a folder path from this computer (' + facts.computer_paths_in_model[0] + '). That is harmless while editing. Before sharing the file, remove it: see publish/PUBLISHING.md.');
+  await rule('Blender privacy scan', async () => {
+    facts.computer_paths_in_model = await computerPathsIn(path.join(ROOT, config.native));
+    if (facts.computer_paths_in_model.length) warnings.push('The Blender file contains a private folder path. Before sharing the file, remove it: see publish/PUBLISHING.md.');
+  });
 
   // Is view/ still what the current model and viewer source would produce?
   // Every input is compared, wherever it lives in the kit: files added, removed or changed since the build.

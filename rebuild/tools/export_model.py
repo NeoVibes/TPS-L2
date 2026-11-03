@@ -54,6 +54,8 @@ belt_paths={r['id']:recover_belt(o,C@o.matrix_world,CONFIG['belts'][r['id']]['se
 
 witness_points={}
 groups=geometry_groups(canonical);unowned=[];cue_substitutions=inventory['native_cues']
+# A tape pack's key 'empty' says which pack it is and how small it gets; the viewer blends it from the tape position.
+tape_key=lambda owner,name:{'tape':{'side':CONFIG['deformation']['channels']['tape'][owner],'radius':CONFIG['tape']['emptyPackRadiusMm']}} if name=='empty' and owner in CONFIG['deformation']['channels'].get('tape',{}) else {}
 buf=bytearray();materials=[];matids={};late_materials=[];parts=[];deformation_sources=[];legacy_shape_sources=[];dg=bpy.context.evaluated_depsgraph_get();totaltri=0
 # Binary buffers reduce file size and JS parse overhead. Float32 geometry, Uint32 indices.
 def append(a,dtype):
@@ -154,7 +156,7 @@ for i,(root,r) in enumerate(roots.items()):
     chunk['articulation']=json.loads(ob['eject_articulation'])|{'source_object':ob.name,'source_vertices':source_vertices}
    if belt_path:chunk['beltS']=append(belt_distances,'<f4')
    if deform:
-    chunk['deformation']={'owner':deform['owner'],'source_geometry_index':geometry_index,'source_object':ob.name,'source_vertices':source_vertices,'targets':[{'name':t['name'],'initial':t['initial'],'positions':[component for vid in source_vertices for component in t['delta'][vid]],'weights':t['weights']} for t in deform['targets']]}
+    chunk['deformation']={'owner':deform['owner'],'source_geometry_index':geometry_index,'source_object':ob.name,'source_vertices':source_vertices,'targets':[{'name':t['name'],'initial':t['initial'],'positions':[component for vid in source_vertices for component in t['delta'][vid]],'weights':t['weights'],**tape_key(deform['owner'],t['name'])} for t in deform['targets']]}
     deformation_sources.append((chunk['deformation'],shape_keys))
    chunks.append(chunk);totaltri+=triangle_count
   ev.to_mesh_clear()

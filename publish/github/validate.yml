@@ -1,0 +1,62 @@
+name: Validate committed viewer
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  software:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: rebuild
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.0'
+          cache: npm
+          cache-dependency-path: rebuild/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test:fast
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: software-${{ matrix.os }}
+          path: rebuild/build/test-results/summary.json
+  chromium:
+    strategy:
+      fail-fast: false
+      matrix:
+        protocol: [file, hosted]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.0'
+          cache: npm
+          cache-dependency-path: rebuild/package-lock.json
+      - run: npm ci
+        working-directory: rebuild
+      - name: Configure the runner's Chrome for software WebGL
+        shell: bash
+        run: |
+          chrome_path=$(command -v google-chrome)
+          "$chrome_path" --version
+          printf '#!/bin/sh\nexec "%s" --use-angle=swiftshader --enable-unsafe-swiftshader "$@"\n' "$chrome_path" > "$RUNNER_TEMP/ptp-chrome"
+          chmod +x "$RUNNER_TEMP/ptp-chrome"
+          echo "CHROME_BIN=$RUNNER_TEMP/ptp-chrome" >> "$GITHUB_ENV"
+      - run: node publish/walkthrough/run.mjs --${{ matrix.protocol }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chromium-browser-results-${{ matrix.protocol }}
+          path: rebuild/build/walkthrough/summary.json

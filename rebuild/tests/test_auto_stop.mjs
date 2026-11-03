@@ -1,7 +1,8 @@
 import './test_setup.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { createOperatingState, dispatchOperating, advanceOperating, autoStopProgress, isTapeMoving, AUTO_STOP, TRANSPORT_RATES } from '../viewer/operating-state.mjs';
+import { createOperatingState, dispatchOperating, advanceOperating, autoStopProgress, isTapeMoving, AUTO_STOP } from '../viewer/operating-state.mjs';
+import { advanceTape, SIDE_SECONDS, TAPE } from '../viewer/tape.mjs';
 import config from '../config/model.json' with {type:'json'};
 
 // Automatic shut-off. A side that runs out in PLAY stalls the reel; the mechanism then releases the
@@ -56,7 +57,8 @@ advanceOperating(service, whole * 1.1); assert.equal(service.mode, 'stop');
 // Fast winding ends a side at once, as before, and winds faster than playing by what the model's drive gives.
 const wind = createOperatingState({ tapePosition: .9 }); act(wind, 'transport', { mode: 'ff' }); advanceOperating(wind, 600);
 assert.equal(wind.mode, 'stop'); assert.equal(wind.autoStop, null);
-assert.ok(TRANSPORT_RATES.ff > 10 && TRANSPORT_RATES.ff < 15 && -TRANSPORT_RATES.rew > 9 && -TRANSPORT_RATES.rew < 13 && TRANSPORT_RATES.ff > -TRANSPORT_RATES.rew, 'forward winding is the quicker of the two');
+const sideWound = mode => advanceTape(mode === 'ff' ? 0 : 1, mode, 1e9, TAPE.windRadPerS).used;
+assert.ok(sideWound('ff') < sideWound('rew') && sideWound('rew') * 8 < SIDE_SECONDS, 'forward winding is the quicker of the two, both far quicker than playing');
 
 // The model carries the positions the sequence passes through, and they differ where they should.
 const model = JSON.parse((await readFile(new URL('../../view/geometry/model.js', import.meta.url), 'utf8')).replace(/^[^{]*/, '').replace(/\);?\s*$/, ''));

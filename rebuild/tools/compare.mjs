@@ -72,18 +72,39 @@ function decodeMesh(mesh, buffer) {
     const q = array(buffer, mesh.p, 'u16'), n = array(buffer, mesh.n, 'i16');
     out.positions = Float64Array.from(q, (v, i) => v * mesh.pscale[i % 3] + mesh.pmin[i % 3]);
     out.normals = Float64Array.from(n, v => v / 32767);
-    out.indices = array(buffer, mesh.i, indexType);
-    out.exact = [q, n, out.indices];
   } else {
     out.positions = array(buffer, mesh.p, 'f32'); out.normals = array(buffer, mesh.n, 'f32');
-    out.indices = array(buffer, mesh.i, indexType);
-    out.exact = [out.positions, out.normals, out.indices];
   }
-  if (mesh.beltS) { out.beltS = array(buffer, mesh.beltS, 'f32'); out.exact.push(out.beltS); }
+  out.indices = array(buffer, mesh.i, indexType);
+  if (mesh.beltS) out.beltS = array(buffer, mesh.beltS, 'f32');
+  // Shape-key offsets the viewer adds as they are: binary float32, or the numbers written in the part list.
   out.targets = (mesh.deformation?.targets || []).map(t =>
-    Array.isArray(t.positions) && t.encoding === 'float32' ? array(buffer, t.positions, 'f32') : Float32Array.from(t.positions));
-  out.exact.push(...out.targets);
+    Array.isArray(t.positions) && t.encoding === 'float32' ? array(buffer, t.positions, 'f32') : Float64Array.from(t.positions));
   return out;
+}
+
+// Shape content, fingerprint format 2: the decoded values the viewer draws, not how they are packed.
+// Each array is written as a kind byte, a uint32 count and its values (float64, or uint32 for indices),
+// little-endian; -0 is written as 0 and a value that is not finite is an error. So a 16-bit mesh whose
+// scale or offset changes reads as a new shape, while the same values packed differently (other offsets,
+// index width, compression) read as the same shape. Order is kept: renumbering vertices is a change.
+export const FINGERPRINT_FORMAT = 2;
+if (new Uint8Array(new Uint16Array([1]).buffer)[0] !== 1) throw new Error('Fingerprints assume a little-endian computer');
+export function meshContent(mesh) {
+  const pieces = [];
+  const put = (kind, values, integer = false) => {
+    const head = Buffer.alloc(5); head.writeUInt8(kind, 0); head.writeUInt32LE(values.length, 1);
+    const body = integer ? Uint32Array.from(values) : Float64Array.from(values);
+    if (!integer) for (let k = 0; k < body.length; k++) {
+      if (!Number.isFinite(body[k])) throw new Error('Geometry holds a value that is not a finite number');
+      if (body[k] === 0) body[k] = 0;   // -0 becomes 0
+    }
+    pieces.push(head, Buffer.from(body.buffer, body.byteOffset, body.byteLength));
+  };
+  put(1, mesh.positions); put(2, mesh.normals); put(3, mesh.indices, true);
+  if (mesh.beltS) put(4, mesh.beltS);
+  for (const target of mesh.targets) put(5, target);
+  return sha(Buffer.concat(pieces));
 }
 
 // The part list with byte offsets replaced by fingerprints of the decoded content, so two kits
@@ -94,10 +115,10 @@ function describeParts(parts, bufferFor) {
     const meshes = part.meshes.map(mesh => decodeMesh(mesh, bufferFor(part)));
     decoded[part.id] = meshes;
     described[part.id] = {...part, meshes: part.meshes.map((mesh, k) => {
-      const {p, n, i, beltS, ...rest} = mesh;
+      const {p, n, i, beltS, pmin, pscale, indexType, ...rest} = mesh;   // how values are packed: the content below covers them
       if (rest.deformation) rest.deformation = {...rest.deformation, targets: rest.deformation.targets.map(({positions, encoding, ...t}) => t)};
       return {...rest, vertices: meshes[k].positions.length / 3, triangles: meshes[k].indices.length / 3,
-        content: meshes[k].exact.map(a => sha(Buffer.from(a.buffer, a.byteOffset, a.byteLength)))};
+        content: meshContent(meshes[k])};
     })};
   }
   return {described, decoded};
@@ -220,7 +241,7 @@ export async function fingerprintView(viewDir) {
 
 /** The same, from a view that has already been read. */
 export function fingerprint(view) {
-  const state = {parts: {}}, materials = view.meta.materials ?? [];
+  const state = {format: FINGERPRINT_FORMAT, parts: {}}, materials = view.meta.materials ?? [];
   const describe = (parts, bufferFor, table = materials) => {
     const {described, decoded} = describeParts(parts, bufferFor);
     for (const [id, part] of Object.entries(described)) {
@@ -228,7 +249,7 @@ export function fingerprint(view) {
       for (const mesh of decoded[id]) for (let i = 0; i < mesh.positions.length; i++) { const v = mesh.positions[i]; if (v < lo[i % 3]) lo[i % 3] = v; if (v > hi[i % 3]) hi[i % 3] = v; }
       const {poses, spin, authoritativeBounds, ...other} = rest;   // the bounds follow the shape
       state.parts[id] = {shape: sha(JSON.stringify(meshes.map(m => m.content))), poses: sha(JSON.stringify(poses ?? null)), spin: sha(JSON.stringify([spin ?? null, meshes.map(m => m.deformation ?? null)])),
-        other: sha(JSON.stringify([other, meshes.map(({content, deformation, vertices, triangles, pmin, pscale, indexType, m, ...rest}) => ({...rest, material: table[m] ?? null}))])),   // how the coordinates are packed follows the shape; materials by what they are, not by their number
+        other: sha(JSON.stringify([other, meshes.map(({content, deformation, vertices, triangles, m, ...rest}) => ({...rest, material: table[m] ?? null}))])),   // materials by what they are, not by their number
         vertices: meshes.reduce((n, m) => n + m.vertices, 0), triangles: meshes.reduce((n, m) => n + m.triangles, 0), size_mm: hi.map((v, i) => Math.round((v - lo[i]) * 1000) / 1000)};
     }
   };
@@ -249,6 +270,9 @@ export function fingerprint(view) {
 
 /** What differs between two fingerprints, in words. An empty list means the same model. */
 export function describeChanges(before, after) {
+  // Records in another fingerprint format cannot be compared part by part: say so instead of listing every part.
+  if ((before.format ?? 1) !== (after.format ?? 1)) return ['fingerprint format ' + (before.format ?? 1) + ' cannot be compared with format ' + (after.format ?? 1) +
+    ': check the model with tools/compare.mjs against the kit that record came from, then record it again'];
   const lines = [];
   for (const id of new Set([...Object.keys(before.parts), ...Object.keys(after.parts)])) {
     const a = before.parts[id], b = after.parts[id];

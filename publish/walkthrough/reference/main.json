@@ -8,9 +8,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -19,6 +19,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -46,56 +47,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -115,17 +116,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -136,8 +137,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -202,7 +203,7 @@
      "axis": null
     }
    },
-   "positions": "7e854b6e44f4",
+   "positions": "6f008d8a2db1",
    "status": "Stopped",
    "packageStatus": "Loading cassette…"
   },
@@ -213,9 +214,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -224,6 +225,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -255,163 +257,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 807.4357,
-     "y": 363.4999,
+     "x": 808.0132,
+     "y": 363.7309,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 807.5939,
-     "y": 374.9366,
+     "x": 808.1674,
+     "y": 375.0964,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 807.8559,
-     "y": 393.8782,
+     "x": 807.6917,
+     "y": 393.9627,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 803.5676,
-     "y": 381.8425,
+     "x": 803.8313,
+     "y": 381.9442,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 804.2497,
-     "y": 440.7374,
+     "x": 803.4838,
+     "y": 440.599,
      "inFrustum": true,
      "axis": [
       {
-       "x": 804.2497,
-       "y": 440.7374
+       "x": 803.4838,
+       "y": 440.599
       },
       {
-       "x": 803.943,
-       "y": 420.6219
+       "x": 803.1754,
+       "y": 420.5924
       }
      ]
     },
     "CTL-06": {
-     "x": 805.0649,
-     "y": 442.5281,
+     "x": 804.2792,
+     "y": 442.3724,
      "inFrustum": true,
      "axis": [
       {
-       "x": 805.0649,
-       "y": 442.5281
+       "x": 804.2792,
+       "y": 442.3724
       },
       {
-       "x": 804.7615,
-       "y": 422.281
+       "x": 803.9739,
+       "y": 422.2354
       }
      ]
     },
     "CTL-07": {
-     "x": 876.9296,
-     "y": 184.9839,
+     "x": 876.6965,
+     "y": 186.4595,
      "inFrustum": true,
      "axis": [
       {
-       "x": 876.9296,
-       "y": 184.9839
+       "x": 876.6965,
+       "y": 186.4595
       },
       {
-       "x": 876.9222,
-       "y": 185.8735
+       "x": 876.6893,
+       "y": 187.3426
       }
      ]
     },
     "CTL-08": {
-     "x": 889.8718,
-     "y": 435.317,
+     "x": 889.6503,
+     "y": 435.2654,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.8718,
-       "y": 435.317
+       "x": 889.6503,
+       "y": 435.2654
       },
       {
-       "x": 889.8963,
-       "y": 433.4723
+       "x": 889.6744,
+       "y": 433.4306
       }
      ]
     },
     "EXT-030": {
-     "x": 963.6938,
-     "y": 397.1414,
+     "x": 963.3297,
+     "y": 397.4058,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 965.1059,
-     "y": 395.9338,
+     "x": 964.6943,
+     "y": 396.1716,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 964.9199,
-     "y": 395.7938,
+     "x": 964.5578,
+     "y": 396.0686,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 1040.8016,
-     "y": 490.9616,
+     "x": 1039.6597,
+     "y": 490.5851,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
-     "x": 1039.4102,
-     "y": 506.5053,
+     "x": 1038.288,
+     "y": 506.0528,
      "inFrustum": true,
      "axis": null
     },
     "BCL-010": {
-     "x": 1039.4484,
-     "y": 474.9771,
+     "x": 1038.289,
+     "y": 474.6722,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 969.7722,
-     "y": 406.1236,
+     "x": 969.2842,
+     "y": 406.3038,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 971.6205,
-     "y": 407.5585,
+     "x": 971.1116,
+     "y": 407.7268,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 972.9191,
-     "y": 425.9752,
+     "x": 972.4158,
+     "y": 426.0591,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 973.0246,
-     "y": 426.0636,
+     "x": 972.5201,
+     "y": 426.1467,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 974.4749,
-     "y": 387.8133,
+     "x": 973.949,
+     "y": 388.0815,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 974.5824,
-     "y": 387.8885,
+     "x": 974.0552,
+     "y": 388.1561,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "fb6478dd3ef1",
+   "positions": "80bcbb48e5c0",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -422,9 +424,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -433,6 +435,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -464,163 +467,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 833.3464,
-     "y": 353.6716,
+     "x": 832.7472,
+     "y": 353.6389,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 833.4245,
-     "y": 363.5345,
+     "x": 832.828,
+     "y": 363.4858,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 833.5535,
-     "y": 379.8272,
+     "x": 833.3436,
+     "y": 379.9362,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 824.5676,
-     "y": 375.3875,
+     "x": 824.0141,
+     "y": 375.4345,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 863.6461,
-     "y": 413.2673,
+     "x": 863.7537,
+     "y": 413.5132,
      "inFrustum": true,
      "axis": [
       {
-       "x": 863.6461,
-       "y": 413.2673
+       "x": 863.7537,
+       "y": 413.5132
       },
       {
-       "x": 863.7587,
-       "y": 396.3969
+       "x": 863.8672,
+       "y": 396.6509
       }
      ]
     },
     "CTL-06": {
-     "x": 867.379,
-     "y": 412.1542,
+     "x": 867.4849,
+     "y": 412.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 867.379,
-       "y": 412.1542
+       "x": 867.4849,
+       "y": 412.3995
       },
       {
-       "x": 867.522,
-       "y": 395.3358
+       "x": 867.6286,
+       "y": 395.5893
       }
      ]
     },
     "CTL-07": {
-     "x": 884.7107,
-     "y": 317.0611,
+     "x": 884.8186,
+     "y": 317.0268,
      "inFrustum": true,
      "axis": [
       {
-       "x": 884.7107,
-       "y": 317.0611
+       "x": 884.8186,
+       "y": 317.0268
       },
       {
-       "x": 884.7009,
-       "y": 317.6637
+       "x": 884.8088,
+       "y": 317.6284
       }
      ]
     },
     "CTL-08": {
-     "x": 792.9589,
-     "y": 398.3355,
+     "x": 792.6234,
+     "y": 398.3629,
      "inFrustum": true,
      "axis": [
       {
-       "x": 792.9589,
-       "y": 398.3355
+       "x": 792.6234,
+       "y": 398.3629
       },
       {
-       "x": 792.9171,
-       "y": 396.8249
+       "x": 792.5813,
+       "y": 396.8541
       }
      ]
     },
     "EXT-030": {
-     "x": 709.7569,
-     "y": 429.7233,
+     "x": 709.4914,
+     "y": 429.6623,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 705.9481,
-     "y": 429.1487,
+     "x": 705.5524,
+     "y": 429.1253,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 705.423,
-     "y": 429.2916,
+     "x": 705.1633,
+     "y": 429.2312,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 942.6223,
-     "y": 392.6734,
+     "x": 942.6303,
+     "y": 392.5248,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
-     "x": 942.1081,
-     "y": 403.8402,
+     "x": 942.1169,
+     "y": 403.675,
      "inFrustum": true,
      "axis": null
     },
     "BCL-010": {
-     "x": 927.0162,
-     "y": 386.4823,
+     "x": 927.0494,
+     "y": 386.3393,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 737.5502,
-     "y": 419.4564,
+     "x": 737.2537,
+     "y": 419.4104,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 742.1025,
-     "y": 418.2218,
+     "x": 741.8011,
+     "y": 418.1776,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 740.5459,
-     "y": 435.7986,
+     "x": 740.2498,
+     "y": 435.7319,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 740.8017,
-     "y": 435.7255,
+     "x": 740.5053,
+     "y": 435.6589,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 738.5665,
-     "y": 399.2422,
+     "x": 738.2676,
+     "y": 399.223,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 738.8273,
-     "y": 399.176,
+     "x": 738.5282,
+     "y": 399.1569,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "c00a3795eca0",
+   "positions": "6667c4d1f2b7",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -631,9 +634,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -642,6 +645,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -673,55 +677,55 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 913.9149,
+     "x": 913.8078,
      "y": 494.6248,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 920.1822,
+     "x": 920.0751,
      "y": 494.6248,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 926.4495,
+     "x": 926.5842,
      "y": 492.9318,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 932.0715,
-     "y": 491.688,
+     "x": 932.0782,
+     "y": 491.6981,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 936.8938,
+     "x": 937.2393,
      "y": 488.5267,
      "inFrustum": true,
      "axis": [
       {
-       "x": 936.8938,
+       "x": 937.2393,
        "y": 488.5267
       },
       {
-       "x": 936.8938,
+       "x": 937.2393,
        "y": 481.5477
       }
      ]
     },
     "CTL-06": {
-     "x": 941.4233,
+     "x": 941.7688,
      "y": 488.5267,
      "inFrustum": true,
      "axis": [
       {
-       "x": 941.4233,
+       "x": 941.7688,
        "y": 488.5267
       },
       {
-       "x": 941.4233,
+       "x": 941.7688,
        "y": 481.5477
       }
      ]
@@ -743,16 +747,16 @@
     },
     "CTL-08": {
      "x": 946.8251,
-     "y": 493.5883,
+     "y": 493.6073,
      "inFrustum": true,
      "axis": [
       {
        "x": 946.8251,
-       "y": 493.5883
+       "y": 493.6073
       },
       {
        "x": 946.8251,
-       "y": 492.9318
+       "y": 492.9508
       }
      ]
     },
@@ -763,8 +767,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 836.6589,
-     "y": 279.2969,
+     "x": 836.658,
+     "y": 279.2905,
      "inFrustum": true,
      "axis": null
     },
@@ -829,7 +833,7 @@
      "axis": null
     }
    },
-   "positions": "5e6d99a5d74b",
+   "positions": "c1a8215e8873",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -840,9 +844,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -851,6 +855,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -882,56 +887,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -951,17 +956,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -972,8 +977,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -1038,7 +1043,7 @@
      "axis": null
     }
    },
-   "positions": "f88047de9396",
+   "positions": "61185fa0a629",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1049,9 +1054,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -1060,6 +1065,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": true,
@@ -1091,56 +1097,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -1160,17 +1166,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -1181,8 +1187,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -1247,7 +1253,7 @@
      "axis": null
     }
    },
-   "positions": "f88047de9396",
+   "positions": "61185fa0a629",
    "status": "Stopped · Open cover, then press STOP / EJECT",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1258,9 +1264,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -1269,6 +1275,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -1300,56 +1307,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -1369,17 +1376,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -1390,8 +1397,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 767.3091,
-     "y": 322.5485,
+     "x": 767.158,
+     "y": 322.5102,
      "inFrustum": true,
      "axis": null
     },
@@ -1456,7 +1463,7 @@
      "axis": null
     }
    },
-   "positions": "0a0aee42d616",
+   "positions": "e8c7a5951747",
    "status": "Stopped · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1467,9 +1474,9 @@
     "batteryOpen": false,
     "media": "ejected",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -1478,6 +1485,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -1509,56 +1517,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -1578,17 +1586,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -1599,8 +1607,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 767.3091,
-     "y": 322.5485,
+     "x": 767.158,
+     "y": 322.5102,
      "inFrustum": true,
      "axis": null
     },
@@ -1665,7 +1673,7 @@
      "axis": null
     }
    },
-   "positions": "9bfac356fbd1",
+   "positions": "fc6e4153acad",
    "status": "Stopped · No engaged cassette · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1676,9 +1684,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -1687,6 +1695,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -1718,56 +1727,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -1787,17 +1796,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -1808,8 +1817,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -1874,7 +1883,7 @@
      "axis": null
     }
    },
-   "positions": "f88047de9396",
+   "positions": "61185fa0a629",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1885,9 +1894,9 @@
     "batteryOpen": true,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -1896,6 +1905,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -1927,56 +1937,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -1996,17 +2006,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -2017,8 +2027,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -2083,7 +2093,7 @@
      "axis": null
     }
    },
-   "positions": "4c9b125bd0ed",
+   "positions": "66efd94d1899",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2094,9 +2104,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.5,
     "volumeRight": 0.5,
@@ -2105,6 +2115,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -2136,56 +2147,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.6164,
-     "y": 333.3448,
+     "x": 903.8041,
+     "y": 333.5912,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.6164,
-       "y": 333.3448
+       "x": 903.8041,
+       "y": 333.5912
       },
       {
-       "x": 903.4811,
-       "y": 308.461
+       "x": 904.6894,
+       "y": 308.6815
       }
      ]
     },
     "CTL-06": {
-     "x": 905.5161,
-     "y": 331.1582,
+     "x": 906.6946,
+     "y": 331.3995,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.5161,
-       "y": 331.1582
+       "x": 906.6946,
+       "y": 331.3995
       },
       {
-       "x": 906.4187,
-       "y": 306.5052
+       "x": 907.6175,
+       "y": 306.721
       }
      ]
     },
@@ -2205,17 +2216,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -2226,8 +2237,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -2292,7 +2303,7 @@
      "axis": null
     }
    },
-   "positions": "f88047de9396",
+   "positions": "61185fa0a629",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2303,9 +2314,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -2314,6 +2325,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -2345,56 +2357,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.9158,
-     "y": 324.7275,
+     "x": 904.1106,
+     "y": 324.9651,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.9158,
-       "y": 324.7275
+       "x": 904.1106,
+       "y": 324.9651
       },
       {
-       "x": 903.7905,
-       "y": 299.5573
+       "x": 905.0061,
+       "y": 299.7683
       }
      ]
     },
     "CTL-06": {
-     "x": 905.2509,
-     "y": 338.401,
+     "x": 906.4235,
+     "y": 338.6496,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.2509,
-       "y": 338.401
+       "x": 906.4235,
+       "y": 338.6496
       },
       {
-       "x": 906.1448,
-       "y": 313.9849
+       "x": 907.3375,
+       "y": 314.2085
       }
      ]
     },
@@ -2414,17 +2426,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7603,
-     "y": 313.6887,
+     "x": 812.7618,
+     "y": 313.7499,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7603,
-       "y": 313.6887
+       "x": 812.7618,
+       "y": 313.7499
       },
       {
-       "x": 812.7089,
-       "y": 311.5719
+       "x": 812.7104,
+       "y": 311.6333
       }
      ]
     },
@@ -2435,8 +2447,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -2501,7 +2513,7 @@
      "axis": null
     }
    },
-   "positions": "be11379f9c41",
+   "positions": "d0a9b4712087",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2516,9 +2528,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -2527,6 +2539,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -2558,56 +2571,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.9158,
-     "y": 324.7275,
+     "x": 904.1106,
+     "y": 324.9651,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.9158,
-       "y": 324.7275
+       "x": 904.1106,
+       "y": 324.9651
       },
       {
-       "x": 903.7905,
-       "y": 299.5573
+       "x": 905.0061,
+       "y": 299.7683
       }
      ]
     },
     "CTL-06": {
-     "x": 905.2509,
-     "y": 338.401,
+     "x": 906.4235,
+     "y": 338.6496,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.2509,
-       "y": 338.401
+       "x": 906.4235,
+       "y": 338.6496
       },
       {
-       "x": 906.1448,
-       "y": 313.9849
+       "x": 907.3375,
+       "y": 314.2085
       }
      ]
     },
@@ -2627,17 +2640,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7346,
-     "y": 312.6311,
+     "x": 812.7361,
+     "y": 312.6923,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7346,
-       "y": 312.6311
+       "x": 812.7361,
+       "y": 312.6923
       },
       {
-       "x": 812.6831,
-       "y": 310.5114
+       "x": 812.6846,
+       "y": 310.5728
       }
      ]
     },
@@ -2648,8 +2661,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -2714,7 +2727,7 @@
      "axis": null
     }
    },
-   "positions": "6c5b8d356214",
+   "positions": "b2e7bff209d5",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2725,9 +2738,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -2736,6 +2749,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -2767,55 +2781,55 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 883.6292,
+     "x": 883.5561,
      "y": 405.6883,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 884.0781,
+     "x": 884.0052,
      "y": 407.3025,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 884.3648,
+     "x": 884.4562,
      "y": 409.982,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 887.2627,
-     "y": 410.8921,
+     "x": 887.2657,
+     "y": 410.9005,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 888.5451,
+     "x": 888.7825,
      "y": 419.1451,
      "inFrustum": true,
      "axis": [
       {
-       "x": 888.5451,
+       "x": 888.7825,
        "y": 419.1451
       },
       {
-       "x": 888.5451,
+       "x": 888.7825,
        "y": 414.3495
       }
      ]
     },
     "CTL-06": {
-     "x": 889.2063,
+     "x": 889.4433,
      "y": 418.959,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.2063,
+       "x": 889.4433,
        "y": 418.959
       },
       {
-       "x": 889.2063,
+       "x": 889.4433,
        "y": 414.1722
       }
      ]
@@ -2837,16 +2851,16 @@
     },
     "CTL-08": {
      "x": 842.4171,
-     "y": 419.9182,
+     "y": 419.9312,
      "inFrustum": true,
      "axis": [
       {
        "x": 842.4171,
-       "y": 419.9182
+       "y": 419.9312
       },
       {
        "x": 842.4171,
-       "y": 419.4674
+       "y": 419.4804
       }
      ]
     },
@@ -2857,8 +2871,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 846.9716,
-     "y": 419.4575,
+     "x": 846.9714,
+     "y": 419.4657,
      "inFrustum": true,
      "axis": null
     },
@@ -2923,7 +2937,7 @@
      "axis": null
     }
    },
-   "positions": "2353dbb3e873",
+   "positions": "f4b5aca578b4",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2934,9 +2948,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -2945,6 +2959,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -2976,56 +2991,56 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 902.9014,
-     "y": 233.3971,
+     "x": 902.5137,
+     "y": 233.3554,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 902.4148,
-     "y": 248.2429,
+     "x": 902.0309,
+     "y": 248.1959,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 901.6206,
-     "y": 272.4747,
+     "x": 902.0963,
+     "y": 272.5446,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 896.8356,
-     "y": 265.5171,
+     "x": 896.7297,
+     "y": 265.5698,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 902.9158,
-     "y": 324.7275,
+     "x": 904.1106,
+     "y": 324.9651,
      "inFrustum": true,
      "axis": [
       {
-       "x": 902.9158,
-       "y": 324.7275
+       "x": 904.1106,
+       "y": 324.9651
       },
       {
-       "x": 903.7905,
-       "y": 299.5573
+       "x": 905.0061,
+       "y": 299.7683
       }
      ]
     },
     "CTL-06": {
-     "x": 905.2509,
-     "y": 338.401,
+     "x": 906.4235,
+     "y": 338.6496,
      "inFrustum": true,
      "axis": [
       {
-       "x": 905.2509,
-       "y": 338.401
+       "x": 906.4235,
+       "y": 338.6496
       },
       {
-       "x": 906.1448,
-       "y": 313.9849
+       "x": 907.3375,
+       "y": 314.2085
       }
      ]
     },
@@ -3045,17 +3060,17 @@
      ]
     },
     "CTL-08": {
-     "x": 812.7346,
-     "y": 312.6311,
+     "x": 812.7361,
+     "y": 312.6923,
      "inFrustum": true,
      "axis": [
       {
-       "x": 812.7346,
-       "y": 312.6311
+       "x": 812.7361,
+       "y": 312.6923
       },
       {
-       "x": 812.6831,
-       "y": 310.5114
+       "x": 812.6846,
+       "y": 310.5728
       }
      ]
     },
@@ -3066,8 +3081,8 @@
      "axis": null
     },
     "EXT-031": {
-     "x": 829.2448,
-     "y": 321.1726,
+     "x": 829.1381,
+     "y": 321.2324,
      "inFrustum": true,
      "axis": null
     },
@@ -3132,7 +3147,7 @@
      "axis": null
     }
    },
-   "positions": "6c5b8d356214",
+   "positions": "b2e7bff209d5",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3169,9 +3184,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -3180,6 +3195,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -3211,20 +3227,20 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 904.5251,
-     "y": 38.8158,
+     "x": 902.1894,
+     "y": 39.3535,
      "inFrustum": false,
      "axis": null
     },
     "CTL-02": {
-     "x": 900.67,
-     "y": 166.694,
+     "x": 898.5207,
+     "y": 166.4584,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 895.3112,
-     "y": 344.4528,
+     "x": 899.3283,
+     "y": 344.6252,
      "inFrustum": true,
      "axis": null
     },
@@ -3235,139 +3251,139 @@
      "axis": null
     },
     "CTL-05": {
-     "x": 904.1532,
-     "y": 656.0183,
+     "x": 912.1441,
+     "y": 658.766,
      "inFrustum": false,
      "axis": [
       {
-       "x": 904.1532,
-       "y": 656.0183
+       "x": 912.1441,
+       "y": 658.766
       },
       {
-       "x": 910.1738,
-       "y": 523.555
+       "x": 919.0929,
+       "y": 525.8469
       }
      ]
     },
     "CTL-06": {
-     "x": 916.9851,
-     "y": 693.651,
+     "x": 924.1056,
+     "y": 696.2516,
      "inFrustum": false,
      "axis": [
       {
-       "x": 916.9851,
-       "y": 693.651
+       "x": 924.1056,
+       "y": 696.2516
       },
       {
-       "x": 923.4866,
-       "y": 581.6608
+       "x": 931.3343,
+       "y": 583.9522
       }
      ]
     },
     "CTL-07": {
-     "x": 414.773,
-     "y": 3.6169,
+     "x": 416.481,
+     "y": 3.8902,
      "inFrustum": false,
      "axis": [
       {
-       "x": 414.773,
-       "y": 3.6169
+       "x": 416.481,
+       "y": 3.8902
       },
       {
-       "x": 416.4279,
-       "y": 10.6281
+       "x": 418.1257,
+       "y": 10.8847
       }
      ]
     },
     "CTL-08": {
-     "x": 535.3093,
-     "y": 473.6218,
+     "x": 536.199,
+     "y": 473.3916,
      "inFrustum": false,
      "axis": [
       {
-       "x": 535.3093,
-       "y": 473.6218
+       "x": 536.199,
+       "y": 473.3916
       },
       {
-       "x": 533.5265,
-       "y": 465.8388
+       "x": 534.424,
+       "y": 465.6188
       }
      ]
     },
     "EXT-030": {
-     "x": 537.3998,
-     "y": 584.7655,
+     "x": 538.5746,
+     "y": 583.9236,
      "inFrustum": false,
      "axis": null
     },
     "EXT-031": {
-     "x": 505.6935,
-     "y": 588.7816,
+     "x": 505.8369,
+     "y": 588.6828,
      "inFrustum": false,
      "axis": null
     },
     "EXT-032": {
-     "x": 501.3635,
-     "y": 591.7641,
+     "x": 502.6322,
+     "y": 590.8902,
      "inFrustum": false,
      "axis": null
     },
     "EXT-040": {
-     "x": 666.1173,
-     "y": 644.2155,
+     "x": 666.7665,
+     "y": 643.5578,
      "inFrustum": false,
      "axis": null
     },
     "EXT-041": {
-     "x": 673.9608,
-     "y": 698.2551,
+     "x": 674.5741,
+     "y": 697.5584,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 679.5772,
-     "y": 579.6308,
+     "x": 680.2404,
+     "y": 579.0268,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 528.8168,
-     "y": 570.979,
+     "x": 530.0264,
+     "y": 570.1493,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 564.7183,
-     "y": 546.3525,
+     "x": 565.7979,
+     "y": 545.612,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 568.2342,
-     "y": 647.1471,
+     "x": 569.2214,
+     "y": 646.3029,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 569.9948,
-     "y": 645.6415,
+     "x": 570.9763,
+     "y": 644.8021,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 516.0021,
-     "y": 424.6347,
+     "x": 517.2722,
+     "y": 424.0612,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 518.2667,
-     "y": 423.6121,
+     "x": 519.5281,
+     "y": 423.0425,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "141b38cd4e64",
+   "positions": "997ca90c50c6",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3378,9 +3394,9 @@
     "batteryOpen": false,
     "media": "loaded",
     "paused": false,
-    "speed": 0.55,
+    "speed": 1,
     "tapePosition": 0,
-    "tapeDuration": 120,
+    "tapeDuration": 1137.3836,
     "tapeRevision": 0,
     "volumeLeft": 0.85,
     "volumeRight": 0.2,
@@ -3389,6 +3405,7 @@
     "hotline": false,
     "audioEnabled": false,
     "muted": false,
+    "audioSource": "music",
     "stopCycle": null,
     "stopTravel": 0,
     "ejectNeedsOpenCover": false,
@@ -3420,20 +3437,20 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 904.5251,
-     "y": 38.8158,
+     "x": 902.1894,
+     "y": 39.3535,
      "inFrustum": false,
      "axis": null
     },
     "CTL-02": {
-     "x": 900.67,
-     "y": 166.694,
+     "x": 898.5207,
+     "y": 166.4584,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 895.3112,
-     "y": 344.4528,
+     "x": 899.3283,
+     "y": 344.6252,
      "inFrustum": true,
      "axis": null
     },
@@ -3444,139 +3461,139 @@
      "axis": null
     },
     "CTL-05": {
-     "x": 904.1532,
-     "y": 656.0183,
+     "x": 912.1441,
+     "y": 658.766,
      "inFrustum": false,
      "axis": [
       {
-       "x": 904.1532,
-       "y": 656.0183
+       "x": 912.1441,
+       "y": 658.766
       },
       {
-       "x": 910.1738,
-       "y": 523.555
+       "x": 919.0929,
+       "y": 525.8469
       }
      ]
     },
     "CTL-06": {
-     "x": 916.9851,
-     "y": 693.651,
+     "x": 924.1056,
+     "y": 696.2516,
      "inFrustum": false,
      "axis": [
       {
-       "x": 916.9851,
-       "y": 693.651
+       "x": 924.1056,
+       "y": 696.2516
       },
       {
-       "x": 923.4866,
-       "y": 581.6608
+       "x": 931.3343,
+       "y": 583.9522
       }
      ]
     },
     "CTL-07": {
-     "x": 414.773,
-     "y": 3.6169,
+     "x": 416.481,
+     "y": 3.8902,
      "inFrustum": false,
      "axis": [
       {
-       "x": 414.773,
-       "y": 3.6169
+       "x": 416.481,
+       "y": 3.8902
       },
       {
-       "x": 416.4279,
-       "y": 10.6281
+       "x": 418.1257,
+       "y": 10.8847
       }
      ]
     },
     "CTL-08": {
-     "x": 535.3093,
-     "y": 473.6218,
+     "x": 536.199,
+     "y": 473.3916,
      "inFrustum": false,
      "axis": [
       {
-       "x": 535.3093,
-       "y": 473.6218
+       "x": 536.199,
+       "y": 473.3916
       },
       {
-       "x": 533.5265,
-       "y": 465.8388
+       "x": 534.424,
+       "y": 465.6188
       }
      ]
     },
     "EXT-030": {
-     "x": 537.3998,
-     "y": 584.7655,
+     "x": 538.5746,
+     "y": 583.9236,
      "inFrustum": false,
      "axis": null
     },
     "EXT-031": {
-     "x": 505.6935,
-     "y": 588.7816,
+     "x": 505.8369,
+     "y": 588.6828,
      "inFrustum": false,
      "axis": null
     },
     "EXT-032": {
-     "x": 501.3635,
-     "y": 591.7641,
+     "x": 502.6322,
+     "y": 590.8902,
      "inFrustum": false,
      "axis": null
     },
     "EXT-040": {
-     "x": 666.1173,
-     "y": 644.2155,
+     "x": 666.7665,
+     "y": 643.5578,
      "inFrustum": false,
      "axis": null
     },
     "EXT-041": {
-     "x": 673.9608,
-     "y": 698.2551,
+     "x": 674.5741,
+     "y": 697.5584,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 679.5772,
-     "y": 579.6308,
+     "x": 680.2404,
+     "y": 579.0268,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 538.5324,
-     "y": 564.3139,
+     "x": 539.706,
+     "y": 563.5089,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 576.4558,
-     "y": 538.3015,
+     "x": 577.4945,
+     "y": 537.5891,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 570.2054,
-     "y": 645.4614,
+     "x": 571.1863,
+     "y": 644.6226,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 570.486,
-     "y": 645.2214,
+     "x": 571.4659,
+     "y": 644.3834,
      "inFrustum": false,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 518.5373,
-     "y": 423.4899,
+     "x": 519.7977,
+     "y": 422.9207,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 518.8979,
-     "y": 423.327,
+     "x": 520.1569,
+     "y": 422.7585,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "141b38cd4e64",
+   "positions": "997ca90c50c6",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },

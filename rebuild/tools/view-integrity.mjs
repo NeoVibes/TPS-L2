@@ -77,6 +77,10 @@ export async function validateView(root, {record = null, geometryOnly = false} =
     if (!safePath(entry.file)) throw Error('Unsafe geometry package path');
     geometry.push('geometry/' + entry.file);
   }
+  if (model.meta?.music) {   // the music, written beside the geometry
+    if (!safePath(model.meta.music.file)) throw Error('Unsafe music path');
+    geometry.push('geometry/' + model.meta.music.file);
+  }
   if (new Set(geometry).size !== geometry.length || JSON.stringify(geometry.sort()) !== JSON.stringify(expected.filter(name => name.startsWith('geometry/')))) throw Error('Geometry package inventory does not match its manifest');
   return {record, view: await readView(root)};
 }

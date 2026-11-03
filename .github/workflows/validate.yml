@@ -29,33 +29,34 @@ jobs:
         if: always()
         with:
           name: software-${{ matrix.os }}
-          path: rebuild/build/test-results
+          path: rebuild/build/test-results/summary.json
   chromium:
     strategy:
       fail-fast: false
       matrix:
         protocol: [file, hosted]
     runs-on: ubuntu-24.04
-    # Each protocol runs the full theme suite with software WebGL on CI.
     timeout-minutes: 30
-    env:
-      # Hosted runners may define CHROME_BIN; CI must use Playwright's pinned download.
-      CHROME_BIN: ''
-    defaults:
-      run:
-        working-directory: publish/browser
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24.22.0'
           cache: npm
-          cache-dependency-path: publish/browser/package-lock.json
+          cache-dependency-path: rebuild/package-lock.json
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:chromium -- --protocol=${{ matrix.protocol }}
+        working-directory: rebuild
+      - name: Configure the runner's Chrome for software WebGL
+        shell: bash
+        run: |
+          chrome_path=$(command -v google-chrome)
+          "$chrome_path" --version
+          printf '#!/bin/sh\nexec "%s" --use-angle=swiftshader --enable-unsafe-swiftshader "$@"\n' "$chrome_path" > "$RUNNER_TEMP/ptp-chrome"
+          chmod +x "$RUNNER_TEMP/ptp-chrome"
+          echo "CHROME_BIN=$RUNNER_TEMP/ptp-chrome" >> "$GITHUB_ENV"
+      - run: node publish/walkthrough/run.mjs --${{ matrix.protocol }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: chromium-browser-results-${{ matrix.protocol }}
-          path: rebuild/build/browser/regressions
+          path: rebuild/build/walkthrough/summary.json
