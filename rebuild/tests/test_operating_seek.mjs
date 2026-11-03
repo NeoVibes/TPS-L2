@@ -1,6 +1,7 @@
 // Pure transport regression checks: no exported or packed geometry is needed.
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+import {SIDE_SECONDS} from '../viewer/tape.mjs';
 import {createOperatingState, dispatchOperating, advanceOperating, AUTO_STOP, OPERATING_POLICY} from '../viewer/operating-state.mjs';
 
 const act = (state, type, values = {}) => dispatchOperating(state, {type, ...values});
@@ -18,7 +19,7 @@ function stalled(speed = 1) {
 
 test('Seeking away from automatic shut-off integrates the entire next second', () => {
   const state = stalled();
-  assert.equal(state.tapeDuration, OPERATING_POLICY.tapeDurationSeconds);
+  assert.equal(state.tapeDuration, SIDE_SECONDS);
   act(state, 'seek', {position: .5});
   advanceOperating(state, 1);
   tapeTimeEqual(state, .5 + 1 / state.tapeDuration);

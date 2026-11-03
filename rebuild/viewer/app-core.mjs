@@ -24,9 +24,11 @@ import {updateOperationIndicator} from "./operation-indicator.mjs";
 import {batterySequence} from "./operating-pose.mjs";
 import {createDoorMotion, applyHingePose} from "./door-motion.mjs";
 import {createExplodedLayout} from "./exploded-layout.mjs";
-import {deformationWeights, applyDeformationPositions} from "./native-deformation.mjs";
+import {deformationWeights} from "./native-deformation.mjs";
+import {reelSystem} from "./tape.mjs";
 import {CONTROL_BINDINGS, controlVisualOffset} from "./model-controls.mjs";
 import {modelData, listData} from "./data.mjs";
+import {createLoader} from "./loading.mjs";
 import {createOperatingState, advanceOperating, resetOperating, transportInterval, autoStopProgress} from "./operating-state.mjs";
 import {createAudioEngine} from "./audio.mjs";
 import {createTour} from "./app-tour.mjs";
@@ -50,6 +52,7 @@ export const state = { ...createOperatingState(), uiMode: "operate", cassetteVar
 const family = (p) => p.category;
 export let model;
 let parts = [];
+let reels = reelSystem(() => null);   // replaced once the parts are made (below)
 let scene;
 export let camera;
 let renderer;
@@ -75,6 +78,12 @@ export const metrics = { started: performance.now(), firstExteriorMs: null, fram
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 export const audio = createAudioEngine({ onStatus: (message) => {
   $("audioStatus").textContent = typeof message === "string" ? message : message.message;
+}, loadMusic: async () => {
+  // Only when sound is enabled with the music chosen: the data file is read, checked against the part list and
+  // handed to a media element as a Blob address (the page may not fetch anything).
+  const entry = modelData().meta.music, bytes = await createLoader({ packages: { music: entry } }).load("music");
+  const url = URL.createObjectURL(new Blob([bytes], { type: entry.type }));
+  return { url, duration: entry.durationSeconds, title: entry.title, release: () => URL.revokeObjectURL(url) };
 } });
 // The three.js objects, for the controllers. They are made in init(), and the camera is replaced when the
 // projection changes, so controllers read them through this object when they need them.
@@ -145,7 +154,7 @@ const masterList = createMasterList({ $, data: listData(), exterior: () => state
 } });
 export const tour = createTour({ $, state, parts, steps: config.viewer.tourSteps, views, cam, invalidate });
 export function saveViewerPreferences() {
-  savePreferences({projection:state.projection,labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
+  savePreferences({labels:state.labels,motionCues:Boolean(motionCueEnabled.value)});
 }
 export function invalidate() {
   dirty = true;
@@ -206,9 +215,9 @@ function followLinks(p, weights, smoothing) {
   }
   linkM.multiply(p.stopMatrix).decompose(p.baseP, p.baseQ, linkS);
 }
-function updateParts(dt, spinDt = dt, spinMode = state.mode) {
+function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
   updateOperationIndicator(indicatorMaterials, state);
-  const smoothing = 1 - Math.exp(-dt * config.viewer.poseSmoothingRate), pose = transport.poseName();
+  const smoothing = snapPose ? 1 : 1 - Math.exp(-dt * config.viewer.poseSmoothingRate), pose = transport.poseName();
   displayService = T.MathUtils.lerp(displayService, state.view === "service" ? 1 : 0, smoothing);
   displayExplosion = T.MathUtils.lerp(displayExplosion, state.explode, smoothing);
   displayRadial = T.MathUtils.lerp(displayRadial, state.radial, smoothing);
@@ -241,7 +250,8 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
     else if (config.roles.instantTranslation.includes(p.data.id) || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
     else if (!p.links) p.baseP.lerp(base.p, smoothing);
     p.group.scale.copy(base.s);
-    const sp = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
+    const spin = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
+    const reel = spin ? reels.scale(p.data.id, spinMode, state) : 1, sp = reel === 1 ? spin : { ...spin, rate: spin.rate * reel };   // reels turn with their packs (tape.mjs)
     p.phase = advancePartAngle(p.phase, p.data, sp, { ...state, displayExplosion, displayRadial }, spinDt);
     const a = p.reference;
     if (a) {
@@ -269,11 +279,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode) {
       const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel, shutoff: config.deformation.channels.shutoff.includes(deformation.owner) ? shutOffWeights("lever") : null }), previous = mesh.userData.deformationWeights;
       const weights = target.map((v, i) => config.roles.smoothDeformation.includes(deformation.owner) && previous ? T.MathUtils.lerp(previous[i], v, smoothing) : v);
       if (!previous || weights.some((v, i) => Math.abs(v - previous[i]) > 1e-7)) {
-        applyDeformationPositions(g.userData.nativeBasePositions, deformation.targets, weights, g.attributes.position.array);
-        g.attributes.position.needsUpdate = true;
-        g.computeVertexNormals();
-        g.computeBoundingSphere();
-        g.computeBoundingBox();
+        weights.forEach((w, i) => { mesh.morphTargetInfluences[i] = w; });   // blended on the GPU (app-packages.mjs)
         mesh.userData.deformationWeights = weights;
       }
     }
@@ -311,9 +317,11 @@ function animate(now) {
   const wallDt = Math.max(0, (now - lastTime) / 1e3 || 0);
   lastTime = now;
   if (document.hidden) return;
-  const active = state.stopCycle && !state.paused || state.mode !== "stop" && !state.paused && (state.explode === 0 && state.radial === 0) || state.tour >= 0 && !state.paused || cam.moving || now < settleUntil;
-  if (!dirty && !active) return;
-  const start = performance.now(), dt = Math.min(wallDt, 0.1);
+  const moving = !state.paused && (Boolean(state.stopCycle) || state.tour >= 0 || (state.mode !== "stop" && state.explode === 0 && state.radial === 0));
+  const active = moving || cam.moving || now < settleUntil;
+  // Keep one final render even if the previous frame ran past the deadline.
+  if (!dirty && !active && !settleUntil) return;
+  const start = performance.now();
   const transportStep = transportInterval(state, wallDt);
   if (state.explode === 0 && state.radial === 0 && state.tour < 0) {
     const before = [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join();
@@ -321,8 +329,12 @@ function animate(now) {
     if (before !== [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join()) views.sync();
   }
   if (state.tour >= 0 && !state.paused) tour.seek(tour.position + wallDt);
-  updateParts(reducedMotion.matches ? 10 : dt, state.tour >= 0 ? 0 : transportStep.seconds, transportStep.mode);
-  cam.step(dt);
+  // Pose interpolation is exponential and the camera glide has a bounded duration.
+  // Both take visible wall time, including a long gap on a slow renderer.
+  const finalPose = settleUntil > 0 && now >= settleUntil;
+  if (finalPose) settleUntil = 0;
+  updateParts(wallDt, state.tour >= 0 ? 0 : transportStep.seconds, transportStep.mode, reducedMotion.matches || (finalPose && !moving));
+  cam.step(wallDt);
   orbit.update();
   cam.updateClipRange();
   renderer.render(scene, camera);
@@ -345,7 +357,7 @@ function animate(now) {
   audio.sync(state);
   // Publish every completed render: a slow renderer can become idle before
   // the throttled UI update reaches its fifteenth frame.
-  $("stage").dataset.test = JSON.stringify({ mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
+  $("stage").dataset.test = JSON.stringify({ settled: !settleUntil && !moving && !cam.moving, mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
   if (frameNumber % 15 === 0 || !active) {
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";
@@ -373,7 +385,7 @@ function appearanceSnapshot() {
     materials: [...materialSet].map(material => material.toJSON(materialMeta)), assignments, lights,
     renderer: {toneMapping: renderer.toneMapping, toneMappingExposure: renderer.toneMappingExposure, outputColorSpace: renderer.outputColorSpace},
     environment: {id: scene.environment?.uuid, intensity: scene.environmentIntensity, rotation: scene.environmentRotation.toArray()},
-    audio: {...audio.status}
+    audio: {...audio.status, source: state.audioSource}
   };
 }
 export async function init() {
@@ -442,6 +454,7 @@ export async function init() {
       p.labelPoint = center.applyMatrix4(inverse);
       parts.push(p);
     }
+    reels = reelSystem((id) => parts.find((p) => p.data.id === id)?.data.spin);   // the model's rates: part.spin carries rotationScale
     orbit = new OrbitControls(camera, $("canvas"));
     orbit.enableDamping = true;
     orbit.dampingFactor = 0.09;
@@ -473,7 +486,7 @@ export async function init() {
     };
     new ResizeObserver(resize).observe($("stage"));
     resize();
-    cam.setProjection(preferences.projection);
+    cam.setProjection("perspective");
     $("motionCues").checked = preferences.motionCues;
     $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
@@ -529,7 +542,7 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), audio: { ...audio.status, source: state.audioSource, music: audio.music, level: audio.level() }, ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);

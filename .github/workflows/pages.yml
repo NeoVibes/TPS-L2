@@ -26,9 +26,14 @@ jobs:
           npm run check
           npm run test:fast
       - uses: actions/configure-pages@v5
+      - name: Stage the viewer with its license notices
+        run: |
+          mkdir "$RUNNER_TEMP/ptp-pages"
+          cp -R view/. "$RUNNER_TEMP/ptp-pages/"
+          cp LICENSE LICENSES.md "$RUNNER_TEMP/ptp-pages/"
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: view
+          path: ${{ runner.temp }}/ptp-pages
       - name: Deploy committed files
         id: deployment
         uses: actions/deploy-pages@v4

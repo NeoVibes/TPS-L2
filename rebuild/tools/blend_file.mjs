@@ -5,7 +5,8 @@ import {readFile} from 'node:fs/promises';
 /** The uncompressed bytes of a .blend file. Blender saves a series of zstd frames plus a seek table. */
 export async function readBlend(file) {
   const data = await readFile(file);
-  if (data.subarray(0, 7).toString('latin1') === 'BLENDER') return data;
+  const hasHeader = bytes => bytes.length >= 12 && bytes.subarray(0, 7).toString('latin1') === 'BLENDER';
+  if (hasHeader(data)) return data;
   const out = []; let offset = 0;
   while (offset + 8 <= data.length) {
     const magic = data.readUInt32LE(offset);
@@ -22,7 +23,10 @@ export async function readBlend(file) {
     out.push(zlib.zstdDecompressSync(data.subarray(offset, p)));
     offset = p;
   }
-  return Buffer.concat(out);
+  if (offset !== data.length) throw Error('Incomplete or unexpected data after a Blender file frame.');
+  const native = Buffer.concat(out);
+  if (!hasHeader(native)) throw Error('No Blender header found in the native file.');
+  return native;
 }
 
 /** Home or temporary folder paths from the computer that saved the file. Empty when there are none. */

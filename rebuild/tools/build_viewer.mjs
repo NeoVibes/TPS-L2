@@ -8,12 +8,25 @@ import {readFile} from 'node:fs/promises';
 import {gzipSync, gunzipSync} from 'node:zlib';
 import path from 'node:path';
 import * as T from 'three';
-import {ROOT, hash, json, verifyExports, fileHash, serviceCatalog, viewerInputs, dependencyVersions} from './integrity.mjs';
+import {ROOT, hash, json, verifyExports, fileHash, serviceCatalog, viewerInputs, dependencyVersions, MUSIC} from './integrity.mjs';
 import {validateServiceCatalog} from '../viewer/part-information.mjs';
 import {defaultMeshes} from '../viewer/exterior.mjs';
 
 const GEOMETRY_NOTE = 'Full detail; coordinate packing bounded to 0.002 mm';
 const dataFile = (name, payload) => 'portableTapePlayerLoaded(' + JSON.stringify(name) + ',' + JSON.stringify(payload) + ');\n';
+
+// The music ships as bare MPEG-1 Layer III frames: a tag (ID3, APE or the old end tag) can carry names, addresses
+// or other identity, so the build refuses one. The duration comes from the encoder's Info frame (frames x 1152).
+export function mp3Facts(bytes) {
+  const text = (a, b) => bytes.subarray(a, b).toString('latin1');
+  if (text(0, 3) === 'ID3' || text(bytes.length - 128, bytes.length - 125) === 'TAG' || bytes.includes('APETAGEX'))
+    throw Error('edit/music: remove the tags from the MP3 (title, artist and the like) before building');
+  const h = bytes.readUInt32BE(0);
+  if (h >>> 21 !== 0x7ff || ((h >>> 19) & 3) !== 3 || ((h >>> 17) & 3) !== 1) throw Error('edit/music: the file must start with an MPEG-1 Layer III frame');
+  const rate = [44100, 48000, 32000][(h >>> 10) & 3], channels = ((h >>> 6) & 3) === 3 ? 1 : 2, info = 4 + (channels === 1 ? 17 : 32);
+  if (!rate || !['Xing', 'Info'].includes(text(info, info + 4)) || !(bytes.readUInt32BE(info + 4) & 1)) throw Error('edit/music: the first frame needs an Info frame with a frame count');
+  return {sampleRate: rate, channels, durationSeconds: bytes.readUInt32BE(info + 8) * 1152 / rate};
+}
 
 /** The data files for view/geometry/, as [path inside view/, text] pairs, plus the part list they describe. */
 export async function geometryFiles() {
@@ -69,6 +82,11 @@ export async function geometryFiles() {
   packages.cassette = {kind: 'alternative', file: 'cassette/cassette.js', sha256: hash(cassetteBytes), bytes: cassetteBytes.length, rawBytes: cassette.geometry.uncompressed_bytes, components: cassette.parts.length, detail: 'Generic cassette visual alternative; original geometry stays selectable'};
   writes.push(['geometry/cassette/cassette.js', dataFile('cassette', cassetteBytes.toString('base64'))]);
 
+  // The music, loaded only when sound is enabled with it selected. Gzip barely changes an MP3, but lets it use the same loader.
+  const mp3 = await readFile(path.join(ROOT, MUSIC)), music = gzipSync(mp3, {level: 6}), musicConfig = (await json('config/model.json')).viewer.music;
+  meta.music = {title: musicConfig.title, file: musicConfig.file, type: 'audio/mpeg', sha256: hash(music), bytes: music.length, rawBytes: mp3.length, ...mp3Facts(mp3)};
+  writes.push(['geometry/' + musicConfig.file, dataFile('music', music.toString('base64'))]);
+
   // The part list, the table of geometry files, and the control ranges and moving parts sampled from the Blender file.
   // "measured" is what Blender measured on the model: each part's size and solidity, and the quantities the targets
   // are checked against. It travels with the geometry so the parts list and the checks can be redone without Blender.
@@ -90,7 +108,7 @@ export async function pageFile({masterParts = '', levels = []} = {}) {
   const styles = (await transform(await readFile(path.join(ROOT, 'viewer/page.css'), 'utf8'), {loader: 'css', minify: true})).code.trim();
   const escapeHTML = v => String(v).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
   // Scripts may come from the page itself and from its own folder (the data files); nothing may be fetched.
-  const policy = "default-src 'none'; script-src 'unsafe-inline' 'self'; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
+  const policy = "default-src 'none'; script-src 'unsafe-inline' 'self'; style-src 'unsafe-inline'; img-src data: blob:; media-src blob:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'";
   const title = 'Sony TPS-L2 — Interactive Walkman Reconstruction';
   const description = 'Explore an estimated Sony TPS-L2 Walkman reconstruction: operate the transport, browse every component, and inspect model dimensions and confirmation levels.';
   const publicUrl = release.publicUrl ? new URL(release.publicUrl) : null;

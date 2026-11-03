@@ -132,13 +132,14 @@ for part_id, pivot in PROFILES.items():
     for x, y, z in points_of(part_id)[0]: levels.setdefault(round(y, 2), []).append(math.hypot(x - axis[0], z - axis[2]))
     result['profiles'][part_id] = [[y, round(min(r), 4), round(max(r), 4)] for y, r in sorted(levels.items())]
 # The pinch lever's torsion spring, about its spindle at rest: wire thickness and mean coil from the coil's least and greatest radius (the
-# median over 10-degree sectors, so the legs do not count), and its height (close-wound, legs in the end coils' planes).
+# median over 10-degree sectors, so the legs do not count), and its height over the coil alone (close-wound; a leg can leave the coil's plane).
 if 'HDC-024' in owners and 'HDC-022' in owners:
     sp = points_of('HDC-022')[0]; cx, cz = (min(q[0] for q in sp) + max(q[0] for q in sp)) / 2, (min(q[2] for q in sp) + max(q[2] for q in sp)) / 2
     pts = points_of('HDC-024')[0]; sectors = {}
     for q in pts: sectors.setdefault(int(math.degrees(math.atan2(q[2] - cz, q[0] - cx)) // 10), []).append(math.hypot(q[0] - cx, q[2] - cz))
     med = lambda xs: sorted(xs)[len(xs) // 2]; inner, outer = med([min(r) for r in sectors.values()]), med([max(r) for r in sectors.values()])   # the legs reach only a few sectors
-    result['pinch_spring'] = {'wire': round(outer - inner, 4), 'mean_coil': round(outer + inner, 4), 'height': round(max(q[1] for q in pts) - min(q[1] for q in pts), 4)}
+    coil = [q[1] for q in pts if math.hypot(q[0] - cx, q[2] - cz) <= outer + 0.02]
+    result['pinch_spring'] = {'wire': round(outer - inner, 4), 'mean_coil': round(outer + inner, 4), 'height': round(max(coil) - min(coil), 4)}
 # S gear B's back-tension spring (wire and mean coil by sector medians, installed height) and its brake felt's radii, about S gear B's axis.
 if 'SBT-010' in owners and 'SBT-011' in owners and result['pivots'].get('s_gear_b'):
     ax = result['pivots']['s_gear_b']; pts = points_of('SBT-010')[0]; sectors = {}
@@ -184,8 +185,10 @@ if all(p in owners for p in ('CTL-03', 'GRL-001')):
     side = [q[0] for q in points_of('GRL-001')[0] if -60 < q[2] < 15 and 2.5 < q[1] < 14.5]
     result['controls'] = {'listen_key_x': round(max(q[0] for q in points_of('CTL-03')[0]), 4), 'side_face_x': round(max(side), 4) if side else None}
     # the control-side face's flat width across the body: from where the front edge's round starts to where the rear edge's starts
-    grl = points_of('GRL-001')[0]
-    front = [q[1] for q in grl if q[0] > 43.78 and q[1] < -10 and abs(q[2]) < 66.0]; rear = [q[1] for q in grl if q[0] > 44.69 and q[1] > 10 and abs(q[2]) < 66.0]   # end caps left out
+    # on the body alone (no printed marks): each edge's round starts where the face leaves its own flat top, found, not assumed
+    bm = world_bmesh([o for n, o in meshes_of('GRL-001') if o.get('part_id') == 'GRL-001']); grl = [tuple(c * MM for c in v.co) for v in bm.verts if abs(v.co.z * MM) < 66.0]; bm.free()   # end caps left out
+    tops = [max(q[0] for q in grl if side(q[1])) for side in (lambda y: y < -10, lambda y: y > 10)]
+    front = [q[1] for q in grl if q[0] > tops[0] - 0.002 and q[1] < -10]; rear = [q[1] for q in grl if q[0] > tops[1] - 0.002 and q[1] > 10]
     result['controls']['side_face_y'] = [round(min(front), 4), round(max(rear), 4)] if front and rear else None
 
 # Battery bay: the cells' axes (the positive terminals' centres), the room round them along the cell's body between the springs' tips and

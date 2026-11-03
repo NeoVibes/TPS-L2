@@ -52,26 +52,55 @@ function frameLoop() {
 test('A first render that exhausts the settling window publishes geometry before going idle', () => {
   const loop = frameLoop();
   loop.tick(1000, {cost: 2500});
-  loop.tick(4000);
-  assert.equal(loop.renders, 1, 'The idle callback must not render again');
   const observation = loop.observation();
   assert.ok(observation, 'A successful render must publish diagnostics even before frame 15');
   assert.equal(observation.frames, 1);
   assert.equal(observation.draws, 12);
   assert.equal(observation.triangles, 2400);
+  loop.tick(4000);
+  assert.equal(loop.observation().settled, true);
+  loop.tick(4100);
+  assert.equal(loop.renders, 2, 'One final frame settles the model, then rendering stops');
 });
 
 test('Geometry arriving after an empty first frame remains observable after a slow second frame', () => {
   const loop = frameLoop();
   loop.tick(1000, {cost: 1200, draws: 0, triangles: 0});
   loop.tick(2400, {cost: 1200, draws: 20, triangles: 5000});
-  loop.tick(4000);
-  assert.equal(loop.renders, 2);
+  loop.tick(4000, {draws: 20, triangles: 5000});
+  loop.tick(4500);
+  assert.equal(loop.renders, 3);
   const observation = loop.observation();
   assert.ok(observation, 'The last rendered geometry must remain observable when animation becomes idle');
-  assert.equal(observation.frames, 2);
+  assert.equal(observation.frames, 3);
   assert.equal(observation.draws, 20);
   assert.equal(observation.triangles, 5000);
+});
+
+test('Slow frames advance the pose and camera with visible wall time, then finish the idle pose once', () => {
+  const loop = frameLoop(), poseSteps = [], cameraSteps = [];
+  loop.context.reducedMotion.matches = false;
+  loop.context.updateParts = (dt, spinDt, mode, snapPose) => poseSteps.push([dt, snapPose]);
+  loop.context.cam.step = dt => cameraSteps.push(dt);
+  loop.tick(750);
+  loop.tick(750); // A frozen clock must not move either transition.
+  assert.equal(loop.observation().settled, false);
+  loop.tick(3200);
+  loop.tick(5000);
+  assert.deepEqual(poseSteps, [[0.75, false], [0, false], [2.45, true]]);
+  assert.deepEqual(cameraSteps, [0.75, 0, 2.45]);
+  assert.equal(loop.observation().settled, true);
+});
+
+test('The end of pose settling does not stop or snap moving transport', () => {
+  const loop = frameLoop(), snaps = [];
+  loop.context.reducedMotion.matches = false;
+  loop.context.state.mode = 'play';
+  loop.context.updateParts = (dt, spinDt, mode, snapPose) => snaps.push(snapPose);
+  loop.tick(3100);
+  loop.tick(3350);
+  assert.deepEqual(snaps, [false, false]);
+  assert.equal(loop.observation().settled, false);
 });
 
 test('Every rendered frame refreshes diagnostics while visible tape and FPS text stay throttled', () => {

@@ -30,11 +30,11 @@
       "status": "pass"
     },
     "cover.control_side_face_width": {
-      "value": 27.5472,
+      "value": 27.28,
       "status": "pass"
     },
     "control.listen_key_proud_of_side": {
-      "value": 1.3218,
+      "value": 1.4018,
       "status": "pass"
     },
     "window.opening_width": {
@@ -69,6 +69,10 @@
       "value": 1.42,
       "status": "pass"
     },
+    "lid.bottom_flap_depth": {
+      "value": 6.4242,
+      "status": "pass"
+    },
     "lid.window_centre_fraction_of_lid_width": {
       "value": 0.462,
       "status": "fail"
@@ -99,6 +103,14 @@
     },
     "bay.top_rail_top_above_cassette_top_face": {
       "value": 1.5,
+      "status": "pass"
+    },
+    "bay.top_rail_inner_face_beyond_cassette_end": {
+      "value": 1.65,
+      "status": "pass"
+    },
+    "bay.battery_end_block_inner_face_beyond_cassette_end": {
+      "value": 1,
       "status": "pass"
     },
     "cassette.thickness_head_end": {
@@ -306,7 +318,7 @@
       "status": "pass"
     },
     "pinch.pressure": {
-      "value": 255.9427,
+      "value": 252.6944,
       "status": "pass"
     },
     "torque.back_tension": {
@@ -669,20 +681,12 @@
       "value": 15.9,
       "status": "pass"
     },
+    "size.cassette.hub.winding_diameter": {
+      "value": 21.1,
+      "status": "pass"
+    },
     "size.clutch.spring.outer_diameter": {
       "value": 7.197,
-      "status": "pass"
-    },
-    "bay.top_rail_inner_face_beyond_cassette_end": {
-      "value": 1.65,
-      "status": "pass"
-    },
-    "bay.battery_end_block_inner_face_beyond_cassette_end": {
-      "value": 1,
-      "status": "pass"
-    },
-    "lid.bottom_flap_depth": {
-      "value": 6.4242,
       "status": "pass"
     }
   }

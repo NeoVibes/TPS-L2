@@ -1,10 +1,10 @@
 # Targets
 
-Version 0.2.10. Written by the build from `edit/targets.json`; edit that file, not this one.
+Version 0.3.0. Written by the build from `edit/targets.json`; edit that file, not this one.
 
 **These are the numbers the model is meant to match, and how the model compares today.** Most come from photographs, videos, Sony's service manual and published standards. A target is not a measurement of a real unit unless its class is `measured`. Where the model fails a target, the model is wrong or the target is in doubt; both are shown rather than hidden.
 
-Of 124 targets, the model passes 99, fails 8 and has no check yet for 17.
+Of 125 targets, the model passes 100, fails 8 and has no check yet for 17.
 
 ## The three exterior versions
 
@@ -72,14 +72,14 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `torque.takeup_play` | 22.5 to 45 |  | g.cm | documented | Sony service manual p.6 |  | 33.835 | pass |
 | `torque.fast_wind_min` | 55 | not stated | g.cm | documented | Sony service manual p.6 |  | 62.0194 | pass |
 | `torque.back_tension` | 2 to 3.5 |  | g.cm | documented | Sony service manual p.6 |  | 2.7363 | pass |
-| `pinch.pressure` | 200 to 300 |  | g | documented | Sony service manual p.6 |  | 255.9427 | pass |
+| `pinch.pressure` | 200 to 300 |  | g | documented | Sony service manual p.6 |  | 252.6944 | pass |
 | `motor.never_reverses` | true | not stated |  | documented | Sony service manual p.3: the motor arrow is the same in FWD, FF and REW |  | true | pass |
 | `body.height` | 133.5 | ± 0.5 | mm | documented | Sony service manual p.2: approx. 133.5; reported measurements of a real unit agree | EXT-010 EXT-020 EXT-030 GRL-001 | 133.3 | pass |
 | `body.front_width` | 85 | ± 0.6 | mm | reported | reported measurements of a real unit; imagery of two units reads 84.1 to 84.9 | EXT-010 EXT-020 EXT-030 GRL-001 | 87.802 | **fail** |
 | `body.width` | 88 | ± 0.6 | mm | documented | Sony service manual p.2: approx. 88 (w) x 133.5 (h) x 29 (d) mm, not including projecting parts and controls. It disagrees with body.front_width (85.0: a third party's measurement and photo readings of 84 to 86), which is the same width; the original workspace left the two open side by side (D-NUMBERED-GRID-ENVELOPE) until a unit is measured | EXT-010 EXT-020 EXT-030 GRL-001 | 87.802 | pass |
 | `body.depth` | 29.75 | ± 0.75 | mm | reported | reported measurements of a real unit. Sony gives approx. 29; imagery suggests 27.6 to 28.7, so this target is in doubt |  | 29.774 | pass |
 | `body.depth_over_width` | 0.324 | ± 0.005 | ratio | photo-measured | video imagery of a unit of this variant turned through a full circle |  | 0.3391 | **fail** |
-| `control.listen_key_proud_of_side` | 1.4 | ± 0.3 | mm | photo-measured | video imagery of a unit turned through a full circle, front square-on, key unpressed |  | 1.3218 | pass |
+| `control.listen_key_proud_of_side` | 1.4 | ± 0.3 | mm | photo-measured | video imagery of a unit turned through a full circle, front square-on, key unpressed |  | 1.4018 | pass |
 | `front.silver_strip` | 15.7 | ± 0.7 | mm | photo-measured | front-on photographs of several units, scaled to the body (five units) |  | 15.018 | pass |
 | `front.top_band` | 20.4 | ± 0.7 | mm | photo-measured | front-on photographs of several units, scaled to the body (six units) | EXT-020 | 20.494 | pass |
 | `window.opening_width` | 27.3 | ± 0.6 | mm | photo-measured | front-on photographs of several units, scaled to the body: outer edge of the bevelled opening | EXT-031 EXT-032 | 24.51 | **fail** |
@@ -103,6 +103,7 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `gear.takeup.tip_diameter` | 18.6 | ± 0.7 | mm | photo-measured | nominal size: 60 teeth at the 0.3 module of S gear B give 18.6. Square-on imagery of the gear plate, scaled to the 42.5 mm reel pitch, reads about 19.3 (the ring stands above the plate) and S gear B 18.5 | DRV-014 | 18.597 | pass |
 | `clutch.drum.diameter` | 17 | ± 0.6 | mm | photo-measured | the same square-on photograph: 16.5 to 17.3 | CLT-030 | 16.5 | pass |
 | `clutch.felt.outer_diameter` | 15.9 | ± 0.6 | mm | photo-measured | imagery of the felt in its seat: 0.857 of the gear's tip diameter | CLT-010 | 15.9 | pass |
+| `cassette.hub.winding_diameter` | 21.3 | ± 0.5 | mm | photo-measured | where the tape winds: a compact cassette seen face-on, scaled by the 42.5 mm hub pitch, reads 20.8 to 21.8 (ECMA-34 fixes only the bore). At this radius the take-up reel turns slower than the drum that drives it through its clutch | MEDIA-003 | 21.1 | pass |
 | `clutch.spring.outer_diameter` | 7.2 | ± 0.8 | mm | photo-measured | imagery of a dismantled unit: the loose spring beside gears of known size, and the coil seen in the drum's well | CLT-031 | 7.197 | pass |
 | `clutch.spring.free_length` | 8.3 | not stated | mm | designed | chosen so that the spring as modelled (0.4 mm wire, 6.8 mm mean coil), compressed into its 2.3 mm space, squeezes the felt hard enough for the middle of Sony's PLAY torque; no spring has been measured | CLT-031 |  | no check |
 | `clutch.spring.active_coils` | 2.75 | not stated |  | designed | the spring as modelled: 4.25 turns, three quarters of a turn closed at each end | CLT-031 |  | no check |
@@ -170,7 +171,7 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `bay.top_rail_top_above_cassette_top_face` | 1.5 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit |  | 1.5 | pass |
 | `bay.top_rail_inner_face_beyond_cassette_end` | 1.65 | ± 0.02 | mm | designed | the EJECT lever's fold stands flush beside the rail, not under it (imagery of a second dismantled unit) | MEDIA-001 BAY-073 | 1.65 | pass |
 | `bay.battery_end_block_inner_face_beyond_cassette_end` | 1 | ± 0.02 | mm | designed | imagery shows a solid block close to the cassette's battery end; the gap was not measured | MEDIA-001 BAY-071 | 1 | pass |
-| `cover.control_side_face_width` | 27.6 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit, taking the cover as 133.5 long |  | 27.5472 | pass |
+| `cover.control_side_face_width` | 27.6 | ± 0.6 | mm | photo-measured | imagery of a second dismantled unit, taking the cover as 133.5 long |  | 27.28 | pass |
 | `lid.window_centre_fraction_of_lid_width` | 0.426 | ± 0.01 | ratio | photo-measured | imagery of a second dismantled unit: from the plain-side edge |  | 0.462 | **fail** |
 | `lid.height_over_width` | 1.62 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit |  | 1.547 | **fail** |
 | `lid.flap_depth` | 1.42 | ± 0.02 | mm | designed | chosen so that the closed lid's top flap rests on the top-end rail, 0.02 mm off it as at the lid's opening stop. Imagery did not establish its fold depth | EXT-030 | 1.42 | pass |
@@ -246,4 +247,4 @@ Checks that have no target of their own: they test that the model is consistent 
 | `fr_gear_a.swings_between_ff_and_rew` | motion | 3.688 mm | 0.5 to … | pass | FF sends drive to the take-up side, REW to the supply side, by swinging this gear. |
 | `pinch_roller.meets_capstan_in_play` | motion | -0.1 mm | -0.5 to 0 | pass | Roller-to-capstan gap in PLAY at the target roller and capstan sizes. |
 
-Totals by group: solids 0 pass, 1 fail; envelope 23 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 4 pass, 0 fail.
+Totals by group: solids 0 pass, 1 fail; envelope 23 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 5 pass, 0 fail.

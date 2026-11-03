@@ -1,6 +1,6 @@
 # Releasing your own version
 
-The release tools prepare and check a ZIP; they never rebuild or upload it. **Committed `view/` is the shipping artifact.** Pages uploads that same directory after validation. Build during development, commit the resulting output with its sources, then validate and package those exact bytes.
+The release tools prepare and check a ZIP; they never rebuild or upload it. **Committed `view/` is the shipping artifact.** Pages serves those same files alongside the license notices. Build during development, commit the resulting output with its sources, then validate and package those exact bytes.
 
 ## Before you share
 
@@ -13,7 +13,7 @@ The release tools prepare and check a ZIP; they never rebuild or upload it. **Co
 
    Run a full rebuild after changing the native file; `npm test` warns while a home or temporary profile path is still there. Only the exact neutral folder above (and its macOS `/private/tmp/` spelling) is exempt; temporary folders can also reveal user or tool information.
 3. Set the new version in `rebuild/config/release.json`, `rebuild/package.json` and `rebuild/package-lock.json`, then `npm run build:viewer`.
-4. On the final candidate, run `npm run check`, `npm run test:fast`, and `npm run test:release`. The fast suite must have zero skips. The release suite needs current native/reference working files and allows no unexpected skips. Run the Chromium walkthrough in both file and hosted modes, plus the focused runtime browser checks. Smoke-test startup, geometry, transport, separation, interrupted STOP/EJECT and keyboard zoom in Chrome, Firefox and real Safari on macOS; Playwright WebKit does not establish branded Safari support. Record unavailable checks as incomplete, not passed. Keep logs, traces, screenshots and temporary fixtures in `rebuild/build/` or outside the kit.
+4. On the final candidate, run `npm run check`, `npm run test:fast`, and `npm run test:release`. The fast suite must have zero skips. The release suite needs current native/reference working files and allows no unexpected skips. Run `node publish/walkthrough/run.mjs` (Chrome, from disk and hosted). Check real Safari by hand from disk and hosted: startup, geometry, transport, separation, interrupted STOP/EJECT, keyboard zoom and sound. Firefox is not tested; say so in the README. Record unavailable checks as incomplete, not passed. Keep logs, traces, screenshots and temporary fixtures in `rebuild/build/` or outside the kit.
 
    For appearance changes, check System, Light and Dark during loading and after startup, including delayed or failed geometry, live device preference changes, blocked storage and Reset. Verify that a theme switch preserves the current selection, camera, transport, tape position and audio, including a pending STOP/EJECT stroke. Check text, controls, keyboard focus, canvas labels and selection highlights at desktop and narrow widths. Keep the existing light assembled and separated backdrops and the model's materials, lighting and exposure. Use the intended explicit theme when creating screenshots for comparison or publication.
 
@@ -43,15 +43,14 @@ If you publish with git, use a public name and a no-reply address: every commit 
 
 Validate the candidate before packaging; use disposable copies for rebuild/edit experiments:
 
-- double-click the candidate's `view/index.html` in Chrome, Safari and Firefox
-- let Chrome walk through every control and compare with the recorded behaviour, opened from disk and then served from a subfolder:
+- double-click the candidate's `view/index.html` in Chrome and Safari
+- let Chrome check the viewer, opened from disk and served from a subfolder (about 3 minutes):
 
   ```sh
   node publish/walkthrough/run.mjs
-  node publish/walkthrough/run.mjs --hosted
   ```
 
-  It needs Chrome (set `CHROME_BIN` if it is somewhere unusual). It also switches the exterior version in every state, uses the parts list with and without 3D graphics, and checks that damaged geometry files are reported. After an intended change to the viewer's behaviour, review the differences, then record them with `--update-reference`.
+  It walks through every control and compares with the recorded behaviour, switches the exterior version in every state, uses the parts list with and without 3D graphics, checks damaged and delayed geometry files, preferences, themes and contrast, keyboard zoom and interrupted STOP/EJECT. It needs Chrome (set `CHROME_BIN` if it is somewhere unusual) and the packages from `npm ci` in `rebuild/`. `--file` or `--hosted` runs one protocol, `--only=races,theme-startup` named checks. After an intended change to the viewer's behaviour, review the differences, then record them with `--update-reference`.
 - in `rebuild/`: `npm ci`, `npm run build`, `npm test`
 - `node rebuild/tools/compare.mjs "/path/to/previous kit" .` lists every part, pose and motion sample that differs from the previous release
 - try real edits on throwaway copies:
@@ -69,7 +68,7 @@ Validate the candidate before packaging; use disposable copies for rebuild/edit 
 
 ## A live copy on the web
 
-`view/` is a complete static site and works from any web host or subfolder. `publish/github/pages.yml` is a GitHub Actions workflow that validates and publishes the committed files when you trigger it by hand; copy it to `.github/workflows/` in your repository. It never rebuilds. The repository's merge workflow checks integrity, freshness and fast tests on the contributor platform matrix. Native release checks run where the supported Blender executable and the checked-in `.blend` source are available; generated working files are recreated there and are not shipped.
+`view/` is a complete static site and works from any web host or subfolder. Serve `LICENSE` and `LICENSES.md` alongside it. Copy `publish/github/validate.yml` and `publish/github/pages.yml` to `.github/workflows/` in your repository. The validation workflow checks integrity, freshness and fast tests on macOS, Linux and Windows, and runs Chrome against local files and a hosted subfolder on Linux. The manually triggered Pages workflow validates the committed files and includes both license notices without rebuilding. Native release checks run where the supported Blender executable and the checked-in `.blend` source are available; generated working files are recreated there and are not shipped.
 
 The completion gate retains D1–D7 regression coverage and requires integrity/freshness, zero unexpected software/native skips, Chromium file/hosted automation, the appearance and browser smoke checks above, and ZIP hash comparison. The dark-mode requirements are recorded in `FOLLOW_UPS.md`. Further publication automation and new collision calibration remain separate tracks.
 

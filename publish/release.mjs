@@ -20,7 +20,7 @@ import {verifyZip} from './verify-zip.mjs';
 import {acquireBuildLock} from '../rebuild/tools/build-lock.mjs';
 
 const stop = reasons => { throw Error(reasons.join('\n') + '\nNo ZIP was made.'); };
-const SCRATCH = new Set(['rebuild/build', 'rebuild/node_modules', 'publish/browser/node_modules', 'view.staging', 'view.previous']);   // recreated by installation and builds
+const SCRATCH = new Set(['rebuild/build', 'rebuild/node_modules', 'view.staging', 'view.previous']);   // recreated by installation and builds
 const LEFT_OUT = /(^|\/)\.|(^|\/)__pycache__$|\.(pyc|blend\d+|zip|log)$/;                              // hidden files and folders, caches, Blender backups, archives, logs
 
 /** The files that ship, relative to the kit folder, and the things lying in it that do not. */

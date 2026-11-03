@@ -153,7 +153,7 @@ for i in range(n):
     degrees=360*i/n;d=abs((degrees+30)%60-30);t=max(0,min(1,(d-9)/4))
     inner.append(4.2+1.05*t)
 for pid,(cx,cy,cz) in zip([spec['ownerRoles']['hubs'][0],spec['ownerRoles']['hubs'][1]],centers):
-    core=cylinder('six-tooth hub barrel',cx,cy,7.95,3.65,8.55,96)
+    core=cylinder('six-tooth hub barrel',cx,cy,hub['winding_radius_mm']-.05,3.65,8.55,96)   # 0.05 inside the wound tape
     tooth_loop=[(cx+inner[i]*math.cos(math.tau*i/n),cy+inner[i]*math.sin(math.tau*i/n)) for i in range(n)]
     boolean(core,prism('six tooth open bore',tooth_loop,3,10))
     # Reverse-side pockets are outside the spindle bore and remove material only.
@@ -195,7 +195,13 @@ for pid,(cx,cy,cz) in zip([spec['ownerRoles']['packs'][0],spec['ownerRoles']['pa
     # Weld profile closure/occasional duplicate radius so the winding remains closed.
     obj=mesh_object('concentric wound magnetic tape',vertices,faces)
     bm=bmesh.new();bm.from_mesh(obj.data);bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.00001);bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(obj.data);bm.free()
+    # Key 'empty': every radius r in [ri, ro] goes to ri + (r - ri)(empty - ri)/(ro - ri); the viewer blends it from the tape position.
+    empty=CONFIG['tape']['emptyPackRadiusMm'];delta=[]
+    for v in obj.data.vertices:
+        r=math.hypot(v.co.x-cx,v.co.y-cy);k=(ri+(r-ri)*(empty-ri)/(ro-ri)-r)/r if r>1e-9 else 0
+        delta.append(((v.co.x-cx)*k,(v.co.y-cy)*k,0.0))
     add(obj,pid,'tape','wound_tape_pack',0,True)
+    features[-1]['keys']=[{'name':'empty','tape':{'side':CONFIG['deformation']['channels']['tape'][pid],'radius':empty},'delta':delta}]
 # Two corner guide rollers, stepped clear/ivory, with a metal center axle.
 rollers=spec['tape']['guide_rollers']
 for c in rollers:
@@ -232,16 +238,37 @@ for other in (12.0,19.7):
 pts,a=corner(takeup_pack[:2],rollers[1]['center_xy_mm'],spec['tape']['pack_radii_mm'][1],rollers[1]['radius_mm'],+1)
 assert abs(math.degrees(a)-95.55)<.01 and (pts[0]-Vector((-12.71,33.41))).length<.01 and (pts[1]-Vector((16.87,36.28))).length<.01,(math.degrees(a),pts[:2])
 # Ribbon mesh is a closed extruded strip with nominal .035mm thickness.
-verts=[];width=.035
-for i,p in enumerate(path):
-    before=Vector(path[max(0,i-1)]);after=Vector(path[min(len(path)-1,i+1)]);t=(after-before).normalized();nrm=Vector((-t.y,t.x))
-    for z in [4.12,7.88]:
-        for side in [-.5,.5]:verts.append((p[0]+side*width*nrm.x,p[1]+side*width*nrm.y,z))
+def strip(path,width=.035):
+    verts=[]
+    for i,p in enumerate(path):
+        before=Vector(path[max(0,i-1)]);after=Vector(path[min(len(path)-1,i+1)]);t=(after-before).normalized();nrm=Vector((-t.y,t.x))
+        for z in [4.12,7.88]:
+            for side in [-.5,.5]:verts.append((p[0]+side*width*nrm.x,p[1]+side*width*nrm.y,z))
+    return verts
+verts=strip(path)
+# The two runs follow their packs as the tape winds: keys at evenly spaced radii from full to empty (the viewer blends
+# the two nearest), each the whole strip with one side's pack at that radius. Blending cuts chords on the roller; 16
+# keys a side keep every point within 0.005 mm of the exact route.
+def ribbon_at(supply_r,takeup_r):
+    a,_=corner(supply_pack[:2],rollers[0]['center_xy_mm'],supply_r+half,rr,-1);b,_=corner(takeup_pack[:2],rollers[1]['center_xy_mm'],takeup_r+half,rr,+1)
+    return strip([tuple(p) for p in a]+[tuple(p) for p in reversed(b)])
+full,empty=spec['tape']['pack_radii_mm'][1],CONFIG['tape']['emptyPackRadiusMm'];KEYS=16
+radii=[full+(empty-full)*j/KEYS for j in range(1,KEYS+1)];ribbon_keys=[]
+for side in ('supply','takeup'):
+    at=lambda r:ribbon_at(r,full) if side=='supply' else ribbon_at(full,r)
+    shapes=[verts]+[at(r) for r in radii]
+    for j,rad in enumerate(radii):ribbon_keys.append({'name':side+' %.4f'%rad,'tape':{'side':side,'radius':rad},'delta':[tuple(q[c]-p[c] for c in range(3)) for p,q in zip(verts,shapes[j+1])]})
+    for j in range(KEYS):
+        R0=full if j==0 else radii[j-1];R1=radii[j]
+        for t in (.25,.5,.75):
+            exact=at(R0+(R1-R0)*t);worst=max(abs(shapes[j][i][c]+(shapes[j+1][i][c]-shapes[j][i][c])*t-exact[i][c]) for i in range(len(verts)) for c in range(2))
+            assert worst<.005,('ribbon keys too coarse',side,R0,R1,worst)
+assert all(len(k['delta'])==len(verts) for k in ribbon_keys)
 faces=[]
 for k in range(len(path)-1):
     a=4*k;b=a+4;faces.extend([(a,b,b+2,a+2),(a+1,a+3,b+3,b+1),(a,a+1,b+1,b),(a+2,b+2,b+3,a+3)])
 faces.extend([(0,2,3,1),(len(verts)-4,len(verts)-3,len(verts)-1,len(verts)-2)])
-add(mesh_object('continuous illustrated tape ribbon',verts,faces),spec['ownerRoles']['backShell'],'ribbon','tape_ribbon')
+add(mesh_object('continuous illustrated tape ribbon',verts,faces),spec['ownerRoles']['backShell'],'ribbon','tape_ribbon');features[-1]['keys']=ribbon_keys
 # The center pressure pad and bowed spring sit behind the exposed tape span.
 add(box('felt pressure pad',[19.85,-10.20,20.9,-4.7],4.36,7.64,.18),spec['ownerRoles']['backShell'],'felt','pressure_pad',.1)
 add(box('pressure pad spring',[19.4,-17.0,19.65,2.1],4.65,7.35,.08),spec['ownerRoles']['backShell'],'spring','pad_spring',.06)
@@ -280,7 +307,7 @@ for pid in spec['owners']:
     if pid not in transforms:continue
     inv=transforms[pid].inverted();selected=[f for f in features if f['pid']==pid];chunks=[];allpoints=[]
     for material in sorted({f['m'] for f in selected}):
-        positions=[];normals=[];indices=[];ranges=[]
+        positions=[];normals=[];indices=[];ranges=[];sources=[]
         for f in [f for f in selected if f['m']==material]:
             mesh=f['obj'].data;mesh.calc_loop_triangles();box_mm=bounds(mesh)
             assert all(box_mm[0][i]>=[x0,y0,z0][i]-.002 and box_mm[1][i]<=[x1,y1,z1][i]+.002 for i in range(3)),(f['name'],'external bound',box_mm)
@@ -291,12 +318,23 @@ for pid in spec['owners']:
                 for vi,li in zip(tri.vertices,tri.loops):
                     normal=inv.to_3x3()@mesh.corner_normals[li].vector;normal.normalize();key=(vi,*(round(c,6) for c in normal))
                     if key not in lookup:
-                        lookup[key]=len(positions)//3;p=inv@mesh.vertices[vi].co;positions.extend(p);normals.extend(normal);allpoints.append(p)
+                        lookup[key]=len(positions)//3;p=inv@mesh.vertices[vi].co;positions.extend(p);normals.extend(normal);allpoints.append(p);sources.append((f,vi))
                     indices.append(lookup[key])
             ranges.append({'name':f['name'],'kind':f['kind'],'indexStart':start,'indexCount':len(indices)-start})
             feature_checks.append({'owner':pid,'name':f['name'],'kind':f['kind'],'assembled_bounds_mm':box_mm,'triangles':len(mesh.loop_triangles),'nonmanifold_edges':bad,'volume_mm3':vol})
         assert all(math.isfinite(v) for v in positions+normals)
         chunks.append({'p':append(positions,'f'),'n':append(normals,'f'),'i':append(indices,'I'),'m':material,'indexType':'u32','features':ranges})
+        # Tape keys (packs and ribbon): one offset per exported vertex, zero for features without that key.
+        keyed={k['name']:k for f in [f for f in selected if f['m']==material] for k in f.get('keys') or []}
+        if keyed:
+            R3=inv.to_3x3();targets=[]
+            for name,k in keyed.items():
+                offsets=[]
+                for f,vi in sources:
+                    own=next((x for x in f.get('keys') or [] if x['name']==name),None)
+                    offsets.extend(R3@Vector(own['delta'][vi]) if own else (0.0,0.0,0.0))
+                targets.append({'name':name,'initial':0.0,'tape':k['tape'],'encoding':'float32','positions':append(offsets,'f'),'weights':{}})
+            chunks[-1]['deformation']={'owner':pid,'targets':targets}
     local_bounds=[[min(p[i] for p in allpoints) for i in range(3)],[max(p[i] for p in allpoints) for i in range(3)]]
     checks.append({'part_id':pid,'alternative_local_bounds_mm':local_bounds,'feature_count':len(selected),'triangles':sum(f['triangles'] for f in feature_checks if f['owner']==pid)})
     whole=bmesh.new()

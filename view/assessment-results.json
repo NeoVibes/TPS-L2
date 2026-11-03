@@ -1,9 +1,9 @@
 {
  "what": "Results of checking the model against edit/targets.json and edit/assessments.json. Written by \"npm run build\"; do not edit. Issue numbers refer to this project's GitHub issues.",
- "version": "0.2.10",
+ "version": "0.3.0",
  "bound_to": {
-  "model": "aa5a7c2397226926089235bf6cb1a0930f1dc384e565699e086cd60bdff6d1ff",
-  "targets": "bc359fdafdfe733359cd591eced1d2c619417ea13726b55ae41ef516c1e1424d",
+  "model": "556692b578e2c243f00b553945c7a9ef8de425dd119562e8c23c41a910f01b8f",
+  "targets": "18977a21fa0b52d99a2f985b00f77a501a60c9bb49f2e09d3178d7c9bb274462",
   "assessments": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
   "service_list": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a"
  },
@@ -52,7 +52,7 @@
    "no data": 0
   },
   "size": {
-   "pass": 4,
+   "pass": 5,
    "fail": 0,
    "info": 0,
    "no data": 0
@@ -415,6 +415,13 @@
    "outcome": "pass",
    "checks": [
     "size.clutch.felt.outer_diameter"
+   ]
+  },
+  "cassette.hub.winding_diameter": {
+   "definition": "151cb1da270e4dd8",
+   "outcome": "pass",
+   "checks": [
+    "size.cassette.hub.winding_diameter"
    ]
   },
   "clutch.spring.outer_diameter": {
@@ -1094,7 +1101,7 @@
    "target": "cover.control_side_face_width",
    "uses": [],
    "variant": null,
-   "value": 27.5472,
+   "value": 27.28,
    "expected": 27.6,
    "allowed": [
     27,
@@ -1114,7 +1121,7 @@
    "target": "control.listen_key_proud_of_side",
    "uses": [],
    "variant": null,
-   "value": 1.3218,
+   "value": 1.4018,
    "expected": 1.4,
    "allowed": [
     1.1,
@@ -2598,7 +2605,7 @@
     "spring.steel_youngs_modulus"
    ],
    "variant": null,
-   "value": 255.9427,
+   "value": 252.6944,
    "expected": null,
    "allowed": [
     200,
@@ -2612,7 +2619,7 @@
     "BAY-061"
    ],
    "status": "pass",
-   "note": "Spring 0.45 mm wire, 2.33 mm mean coil, 1.35 turns, wound 24.8 degrees in PLAY; arm 7.20 mm; wire stress 2.02 GPa."
+   "note": "Spring 0.45 mm wire, 2.32 mm mean coil, 1.36 turns, wound 24.8 degrees in PLAY; arm 7.20 mm; wire stress 2.01 GPa."
   },
   {
    "group": "motion",
@@ -4554,6 +4561,26 @@
    ],
    "status": "pass",
    "note": "Width along the model's axes of CLT-010."
+  },
+  {
+   "group": "size",
+   "id": "size.cassette.hub.winding_diameter",
+   "target": "cassette.hub.winding_diameter",
+   "uses": [],
+   "variant": "original",
+   "value": 21.1,
+   "expected": 21.3,
+   "allowed": [
+    20.8,
+    21.8
+   ],
+   "unit": "mm",
+   "class": "photo-measured",
+   "parts": [
+    "MEDIA-003"
+   ],
+   "status": "pass",
+   "note": "Width along the model's axes of MEDIA-003."
   },
   {
    "group": "size",

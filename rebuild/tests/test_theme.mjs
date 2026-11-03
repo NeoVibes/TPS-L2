@@ -94,10 +94,10 @@ console.log('Theme: first-paint override, System changes, explicit choices, stor
 
 const {readPreferences,savePreferences,VIEWER_PREFERENCES_KEY}=await import('../viewer/preferences.mjs');
 for(const raw of ['{','null','[]','"text"','{"projection":"fish","labels":"false","motionCues":1}'])
- assert.deepEqual(readPreferences(()=>({getItem:()=>raw})),{projection:'perspective',labels:true,motionCues:true});
-assert.deepEqual(readPreferences(()=>{throw Error('denied');}),{projection:'perspective',labels:true,motionCues:true});
-assert.deepEqual(readPreferences(()=>({getItem:()=>'{"projection":"orthographic","labels":false,"motionCues":false,"mode":"play"}'})),{projection:'orthographic',labels:false,motionCues:false});
+ assert.deepEqual(readPreferences(()=>({getItem:()=>raw})),{labels:true,motionCues:true});
+assert.deepEqual(readPreferences(()=>{throw Error('denied');}),{labels:true,motionCues:true});
+assert.deepEqual(readPreferences(()=>({getItem:()=>'{"projection":"orthographic","labels":false,"motionCues":false,"mode":"play"}'})),{labels:false,motionCues:false},'a saved projection is ignored');
 let saved;
 savePreferences({projection:'orthographic',labels:false,motionCues:false,mode:'play'},()=>({setItem(k,v){assert.equal(k,VIEWER_PREFERENCES_KEY);saved=JSON.parse(v);}}));
-assert.deepEqual(Object.keys(saved),['projection','labels','motionCues']);
+assert.deepEqual(Object.keys(saved),['labels','motionCues']);
 assert.doesNotThrow(()=>savePreferences(saved,()=>{throw Error('denied');}));

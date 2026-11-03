@@ -10,19 +10,23 @@ const model=read('build/exports/model.json'),native=read('build/exports/native-c
 assert.equal(native.native_sha256,model.source_sha256);assert.equal(native.model_sha256,createHash('sha256').update(readFileSync('build/exports/model.json')).digest('hex'));assert(native.native_unchanged);
 const raw=gunzipSync(readFileSync('build/exports/model.bin.gz')),compressed=gunzipSync(readFileSync('build/exports/model-packed.bin.gz'));
 const parts=model.parts.filter(p=>p.meshes.some(m=>m.deformation));
-assert.deepEqual(parts.map(p=>p.id).sort(),['BCL-030','FCR-030','FRL-020','JNT-010','JNT-020','STF-030','STP-020','TNE-040']);
+assert.deepEqual(parts.map(p=>p.id).sort(),['BCL-030','FCR-030','FRL-020','JNT-010','JNT-020','MEDIA-004','MEDIA-006','STF-030','STP-020','TNE-040']);
 let scalarComparisons=0,weightComparisons=0,maximumPackingAndMorphErrorMm=0,maximumWeightError=0;
 for(const sample of native.deformations)for(const part of parts){
  const data=part.meshes.find(m=>m.deformation).deformation;
  const state={pose:sample.mode,playTravel:sample.mode==='play'?1:0,tone:sample.tone===0?'low':'high',toneTouched:sample.tone!==.5,stopTravel:sample.stop||0,batteryRelease:sample.batteryRelease||0,view:'assembled'};
  const weights=deformationWeights(data,state),expected=sample.weights[part.id];
- for(let i=0;i<weights.length;i++){
+ // Tape packs follow the tape position, not the poses: in the native file their key rests at 0 in every pose.
+ const tape=data.targets.some(t=>t.tape);
+ if(tape)assert(expected.every(w=>w===0),part.id+': a tape key is never posed');
+ for(let i=0;i<weights.length&&!tape;i++){
   // The UI has two detents; compare intermediate native cam samples independently of that interaction policy.
   if(data.targets[i].controlCurve?.channel==='tone')weights[i]=interpolateSamples(data.targets[i].controlCurve.samples,sample.tone,'weight')-data.targets[i].initial;
   const error=Math.abs(weights[i]+data.targets[i].initial-expected[i]);maximumWeightError=Math.max(error,maximumWeightError);
   assert(error<.0005,part.id+'/'+sample.tone+'/'+sample.mode+': native curve mismatch '+error);weightComparisons++;
  }
  for(const view of ['service','exploded','catalog']){
+  if(tape)break;
   if(['BCL-030','STP-020','STF-030'].includes(part.id)&&view==='service')continue;
   if(!['BCL-030','STP-020','STF-030'].includes(part.id))assert(part.rest_when_separated);
   for(const value of deformationWeights(data,{...state,view}))assert(Math.abs(value)<1e-6,part.id+': separated deformation');

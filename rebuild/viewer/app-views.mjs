@@ -107,7 +107,8 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("volumeRight").value = state.volumeRight;
     $("tone").value = state.tone;
     $("hotline").setAttribute("aria-pressed", state.hotline);
-    $("audioEnable").textContent = ["blocked", "unavailable"].includes(audio.status.state) ? "Retry test audio" : state.audioEnabled ? "Disable audio" : "Enable test audio";
+    $("audioEnable").textContent = ["blocked", "unavailable", "error"].includes(audio.status.state) ? "Retry sound" : state.audioEnabled ? "Disable sound" : "Enable sound";
+    $("audioSource").value = state.audioSource;
     const [title, desc] = state.tour >= 0 ? [tourSteps[state.tour].title, tourSteps[state.tour].text] : state.contextKey === "ejectMechanism" ? ["STOP / EJECT linkage", model.inspectionContexts.ejectMechanism.description] : descriptions[state.category] || descriptions.all;
     $("storyTitle").textContent = title;
     $("storyText").textContent = desc;

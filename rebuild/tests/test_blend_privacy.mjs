@@ -35,5 +35,11 @@ try {
     assert.deepEqual(await computerPathsIn(file), privateFolders,
       'Home and temporary profile paths must be reported intact, including spaces, and deduplicated');
   }
-  console.log('Blender privacy: home and temporary profiles detected; exact neutral folder allowed in raw and compressed files.');
+  const malformed = path.join(root, 'malformed.blend'), packed = zlib.zstdCompressSync(nativeBytes([]));
+  for (const bytes of [Buffer.alloc(0), Buffer.from('BLENDER'), zlib.zstdCompressSync(Buffer.from('unrelated data')),
+    Buffer.concat([packed, Buffer.from('tail')]), packed.subarray(0, packed.length - 1)]) {
+    await writeFile(malformed, bytes);
+    await assert.rejects(() => computerPathsIn(malformed), 'A file that cannot be fully decoded must fail privacy inspection');
+  }
+  console.log('Blender privacy: home and temporary profiles detected; exact neutral folder allowed; undecodable files rejected.');
 } finally { await rm(root, {recursive: true, force: true}); }

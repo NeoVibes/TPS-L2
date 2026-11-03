@@ -131,7 +131,7 @@ $("tourPause").onclick = () => {
   transport.operation({ type: "pause" });
   views.sync();
 };
-$("projection").onchange = (e) => { cam.setProjection(e.target.value); saveViewerPreferences(); };
+$("projection").onchange = (e) => cam.setProjection(e.target.value);
 $("clearContext").onclick = () => {
   inspect.clearInspectionContext();
   inspect.select(null);
@@ -186,6 +186,9 @@ $("audioEnable").onclick = async () => {
   views.sync();
 };
 for (const channel of ["Left", "Right"]) $("volume" + channel).oninput = (e) => transport.operation({ type: "volume", channel: channel.toLowerCase(), value: +e.target.value });
+$("audioSource").oninput = (e) => {
+  transport.operation({ type: "audio-source", value: e.target.value });
+};
 $("tone").oninput = (e) => {
   transport.operation({ type: "tone", value: e.target.value });
   views.sync();
@@ -221,7 +224,7 @@ $("tourDuration").textContent = TOUR_SECONDS + "-second tour ";
 for (const key of ["min", "max", "step"]) $("speed")[key] = config.viewer.speedSlider[key];
 $("speed").value = state.speed;
 $("speedValue").textContent = state.speed.toFixed(2) + "×";
-$("audioDuration").textContent = state.tapeDuration;
+$("audioDuration").textContent = Math.round(state.tapeDuration / 60);
 // Guard callbacks as well as native disabled controls, including synthetic events.
 for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) for (const event of ["onclick", "oninput", "onchange"]) {
   const callback = control[event];

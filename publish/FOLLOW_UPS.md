@@ -6,7 +6,7 @@ The existing defect regressions cover reused geometry integrity (D1), directory-
 
 Keep committed `view/` as the sole artifact. Validate once, pass that immutable artifact between CI jobs, package and publish its exact bytes. Record source fingerprints, lockfile digest, suite names/results and actual Node/Blender/browser versions alongside output hashes; exclude evidence itself from its hash set. Consider GitHub artifact attestations instead of building a custom provenance protocol. Prove export determinism on a pinned platform before requiring rebuild-and-diff; do not round output to disguise nondeterminism.
 
-Prove all six Chromium/Firefox/WebKit × file/hosted combinations first: actual viewer, WebGL2, geometry and one control. Pin both the Playwright npm package and matching official container image by digest. Start PR browser checks with Chromium and expand only after measuring stability/runtime. Releases retain the full matrix and a real Safari smoke check while Safari support is advertised. Infrastructure failures are distinct from viewer defects.
+Browser checks run in one tool, `publish/walkthrough/run.mjs`, driving an installed Chrome; CI uses the runner's Chrome through the same launcher. Real Safari is checked by hand at release. Firefox is not tested; adding it means a second launcher with the same checks.
 
 ## Dark mode
 
@@ -20,7 +20,7 @@ A before/after state check must prove that a theme change itself preserves selec
 
 ## Mechanical evidence (report-only)
 
-Software correctness and physical accuracy are different. Known rail/lid and rail/EJECT collisions remain documented. New mechanical checks remain a separate report-only track.
+Software correctness and physical accuracy are different. Overlaps that remain are listed in the README's known problems. New mechanical checks remain a separate report-only track.
 
 First define a pinned CI platform and Blender build. Baselines apply only there; other platforms/versions report **noncomparable**, not changed. A Blender upgrade requires baseline review. Import the existing rail-sweep script only after recording its source and baseline digest. Record every sampled control value, endpoints, exact part-pair scope and adaptive refinement near contact transitions. A targeted rail test makes no claim about all part pairs, and finite sampling cannot prove continuous clearance.
 

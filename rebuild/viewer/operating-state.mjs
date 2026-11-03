@@ -1,16 +1,17 @@
 import config from '../config/model.json' with {type:'json'};
+import {advanceTape, SIDE_SECONDS, TAPE} from './tape.mjs';
 // Shared exhibit transport state. Presentation (views, sections and separation)
 // deliberately lives elsewhere. These interlocks describe this demonstration,
 // not a newly verified claim about the TPS-L2's concealed mechanism.
 export const OPERATING_POLICY=Object.freeze(config.viewer.operatingPolicy);
-// Fast winding against playing, as the model's drive gives it: a side takes 30 minutes to play and these many times less to wind.
-export const TRANSPORT_RATES=Object.freeze({stop:0,play:1,ff:OPERATING_POLICY.fastForwardRatio,rew:-OPERATING_POLICY.rewindRatio});
+// The transport modes and the way each moves the tape: forward, or back. How fast follows from the tape (tape.mjs).
+export const TRANSPORT_RATES=Object.freeze({stop:0,play:1,ff:1,rew:-1});
 const clamp = (value, min, max, fallback = min) => Number.isFinite(Number(value)) ? Math.max(min, Math.min(max, Number(value))) : fallback;
 const defaults = () => ({
   mode: 'stop', door: false, batteryOpen: false, media: 'loaded', paused: false, speed: config.viewer.defaultSpeed,
-  tapePosition: 0, tapeDuration: OPERATING_POLICY.tapeDurationSeconds, tapeRevision: 0,
+  tapePosition: 0, tapeDuration: SIDE_SECONDS, tapeRevision: 0,
   volumeLeft: .5, volumeRight: .5, toneTouched: false, tone: 'high', hotline: false,
-  audioEnabled: false, muted: false,
+  audioEnabled: false, muted: false, audioSource: 'music',   // the tape's music, or the generated test tone; not remembered
   stopCycle: null, stopTravel: 0, ejectNeedsOpenCover: false,
   autoStop: null,
 });
@@ -46,12 +47,13 @@ function normalize(state) {
   state.paused = Boolean(state.paused);
   state.speed = clamp(state.speed, ...config.viewer.speedRange, config.viewer.defaultSpeed);
   state.tapePosition = clamp(state.tapePosition, 0, 1);
-  state.tapeDuration = clamp(state.tapeDuration, 1, 86400, OPERATING_POLICY.tapeDurationSeconds);
+  state.tapeDuration = SIDE_SECONDS;   // the side the tape gives; not set from outside
   state.tapeRevision = Math.max(0, Math.floor(Number(state.tapeRevision) || 0));
   state.volumeLeft = clamp(state.volumeLeft, 0, 1, .5);
   state.volumeRight = clamp(state.volumeRight, 0, 1, .5);
   state.tone = state.tone === 'low' ? 'low' : 'high';
   for (const key of ['hotline', 'audioEnabled', 'muted', 'toneTouched']) state[key] = Boolean(state[key]);
+  state.audioSource = state.audioSource === 'tone' ? 'tone' : 'music';
   return state;
 }
 
@@ -115,6 +117,7 @@ export function dispatchOperating(state, action) {
     case 'tone': state.toneTouched = true; state.tone = action.value === 'low' ? 'low' : 'high'; break;
     case 'hotline': state.hotline = action.active === undefined ? !state.hotline : Boolean(action.active); break;
     case 'audio-enable': state.audioEnabled = action.enabled === undefined ? !state.audioEnabled : Boolean(action.enabled); break;
+    case 'audio-source': state.audioSource = action.value === 'tone' ? 'tone' : 'music'; break;   // keeps tape position, mode, speed and volume
     case 'mute': state.muted = action.muted === undefined ? !state.muted : Boolean(action.muted); break;
     case 'reset': return resetOperating(state);
     default: break;
@@ -130,14 +133,12 @@ export function advanceOperating(state, dt) {
   if (state.autoStop && !reelStalled(state)) cancelAutoStop(state);
   const interval = transportInterval(state, seconds); let stalledFor = seconds;
   if (isTapeMoving(state)) {
-    const rate = TRANSPORT_RATES[state.mode] * state.speed;
-    const next = state.tapePosition + interval.seconds * rate / state.tapeDuration;
-    if ((rate > 0 && next >= 1 - 1e-12) || (rate < 0 && next <= 1e-12)) {
-      const used = Math.abs((rate > 0 ? 1 - state.tapePosition : state.tapePosition) * state.tapeDuration / rate);
-      state.tapePosition = rate > 0 ? 1 : 0;
-      if (state.mode === 'play') { state.autoStop = {elapsed: 0}; stalledFor = Math.max(0, interval.seconds - used); }   // the reel stalls; the mechanism does the rest
+    const moved = advanceTape(state.tapePosition, state.mode, interval.seconds * state.speed, TAPE.windRadPerS);
+    state.tapePosition = moved.position;
+    if (moved.end) {
+      if (state.mode === 'play') { state.autoStop = {elapsed: 0}; stalledFor = Math.max(0, interval.seconds - moved.used / state.speed); }   // the reel stalls; the mechanism does the rest
       else { state.mode = 'stop'; state.hotline = false; }
-    } else state.tapePosition = Math.max(0, Math.min(1, next));
+    }
   }
   if (!state.autoStop && reelStalled(state) && !state.paused) state.autoStop = {elapsed: 0};
   if (state.autoStop) {

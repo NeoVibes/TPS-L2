@@ -17,6 +17,7 @@ export const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 
 // The lists people maintain, relative to rebuild/.
 export const SERVICE_PARTS_CSV = '../edit/service-manual-parts.csv', TARGETS = '../edit/targets.json', ASSESSMENTS = '../edit/assessments.json';
+export const MUSIC = '../edit/music/canon-in-d.mp3';   // the recording the tape plays (build_viewer.mjs), written beside the geometry
 /** The service-manual parts list as catalogue entries. */
 export async function serviceCatalog() {
   const {parseServiceCatalog} = await import('../viewer/service-catalog.mjs');
@@ -68,7 +69,8 @@ export const blenderStageGroups = () => BLENDER_STAGE_GROUPS.map(group => [...gr
 export async function modelInputs() {
   const config = await json('config/model.json');
   // The release wording and version (config/release.json) are not here: they only affect the page.
-  const paths = [config.native, 'config/model.json', 'config/part-ids.json', ...[...BLENDER_STAGES, ...BLENDER_HELPERS].map(p => 'tools/' + p)];
+  // The music is written beside the geometry, so it is rebuilt with it.
+  const paths = [config.native, 'config/model.json', 'config/part-ids.json', MUSIC, ...[...BLENDER_STAGES, ...BLENDER_HELPERS].map(p => 'tools/' + p)];
   return Object.fromEntries(await Promise.all(paths.sort().map(async p => [p, await fileHash(p)])));
 }
 
