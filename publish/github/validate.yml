@@ -34,9 +34,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        protocol: [file, hosted]
+        include:
+          - group: file-controls
+            arguments: --file --only=main,controls,list,interaction
+          - group: file-exterior
+            arguments: --file --only=exterior,broken,failures
+          - group: file-viewer
+            arguments: --file --only=viewer,catalog
+          - group: file-playback
+            arguments: --file --only=preferences,races,theme-startup,music
+          - group: hosted
+            arguments: --hosted
+    name: chromium (${{ matrix.group }})
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -54,9 +65,9 @@ jobs:
           printf '#!/bin/sh\nexec "%s" --use-angle=swiftshader --enable-unsafe-swiftshader "$@"\n' "$chrome_path" > "$RUNNER_TEMP/ptp-chrome"
           chmod +x "$RUNNER_TEMP/ptp-chrome"
           echo "CHROME_BIN=$RUNNER_TEMP/ptp-chrome" >> "$GITHUB_ENV"
-      - run: node publish/walkthrough/run.mjs --${{ matrix.protocol }}
+      - run: node publish/walkthrough/run.mjs ${{ matrix.arguments }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: chromium-browser-results-${{ matrix.protocol }}
+          name: chromium-browser-results-${{ matrix.group }}
           path: rebuild/build/walkthrough/summary.json
