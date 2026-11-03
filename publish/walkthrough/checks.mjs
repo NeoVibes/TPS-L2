@@ -3,6 +3,7 @@
 // loading races. Each check takes its own context, so storage never carries over. Run by run.mjs.
 import assert from 'node:assert/strict';
 import path from 'node:path';
+import {MUSIC_DRIFT_SECONDS} from '../../rebuild/viewer/audio.mjs';
 
 const snapshot = page => page.evaluate('window.portableTapePlayer.snapshot()');
 const ready = page => page.waitFor('window.portableTapePlayer?.snapshot().ready', 90);
@@ -474,10 +475,10 @@ export async function loadingRaceChecks({browser, url, record}) {
 export async function musicChecks({browser, url, record}) {
   record.music = [];
   const level = page => page.evaluate('window.portableTapePlayer.snapshot().audio.level');
-  const sample = () => { const stamp = performance.now(), s = window.portableTapePlayer.snapshot(); return {stamp, audio:s.audio, state:s.state, tape:s.state.tapePosition*s.state.tapeDuration}; };
+  const sample = frameTime => { const stamp = performance.now(), s = window.portableTapePlayer.snapshot(); return {stamp, frameTime, audio:s.audio, state:s.state, tape:s.state.tapePosition*s.state.tapeDuration}; };
   const look = page => page.call(sample);
   // Tape position is committed once per rendered frame; the media clock runs between them.
-  const atFrame = page => page.evaluate(`new Promise(done=>requestAnimationFrame(()=>done((${sample})())))`);
+  const atFrame = page => page.evaluate(`new Promise(done=>requestAnimationFrame(t=>done((${sample})(t))))`);
   const slider = (page, id, value) => page.call((i, v) => { const e = document.getElementById(i); e.value = String(v); e.dispatchEvent(new Event('input', {bubbles: true})); e.dispatchEvent(new Event('change', {bubbles: true})); return true; }, id, value);
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   // Audio needs a live media clock. Keep the full document and actual WebGL model, but
@@ -507,10 +508,21 @@ export async function musicChecks({browser, url, record}) {
     // The first PLAY also loads and compiles the mechanism. Measure both clocks after a frame
     // has presented that geometry, including on software renderers with long first draws.
     await renderedView(page, record, ['exterior','mechanism']);
-    await sleep(1500); now = await atFrame(page);
+    const playStart = await atFrame(page);
+    await sleep(2000); now = await atFrame(page);
     assert(Math.abs(now.audio.music.duration - 114.43) < 0.5, 'duration ' + now.audio.music.duration);
-    assert(Math.abs(now.audio.music.time - now.tape) < 0.3, `music at the tape's time (${now.audio.music.time} vs ${now.tape})`);
-    record.music.push({case: 'plays at tape time', music: now.audio.music.time, tape: now.tape, level: now.audio.level});
+    // Ongoing playback intentionally tolerates a fixed decoder offset to avoid audible
+    // seek loops. Verify its absolute limit AND that both clocks advance in real time.
+    // A frozen or mispaced tape must fail even if the initial offset was near zero.
+    for (const p of [playStart, now]) {
+      assert(p.audio.state === 'playing' && Math.abs(p.audio.music.time-p.tape) <= MUSIC_DRIFT_SECONDS,
+        `playing music outside the drift limit: ${p.audio.music.time} vs ${p.tape}`);
+    }
+    const audioDelta = now.audio.music.time-playStart.audio.music.time, tapeDelta = now.tape-playStart.tape;
+    const audioElapsed = (now.stamp-playStart.stamp)/1000, tapeElapsed = (now.frameTime-playStart.frameTime)/1000;
+    assert(audioElapsed >= 1.95 && tapeElapsed > 0 && Math.abs(audioDelta-audioElapsed) < .3 && Math.abs(tapeDelta-tapeElapsed) < .3,
+      `1× clock progression: media ${audioDelta}/${audioElapsed} s, tape ${tapeDelta}/${tapeElapsed} s`);
+    record.music.push({case: 'plays at tape time', music: now.audio.music.time, tape: now.tape, level: now.audio.level, audioDelta, audioElapsed, tapeDelta, tapeElapsed});
     record.phase = 'music-seek';
     const sought = await page.call(t => { const e = document.getElementById('tapePosition'); e.value = String(t); e.dispatchEvent(new Event('input', {bubbles:true})); e.dispatchEvent(new Event('change', {bubbles:true})); const s = window.portableTapePlayer.snapshot(); return {tape:s.state.tapePosition*s.state.tapeDuration, media:s.audio.music.time}; }, 60 / now.state.tapeDuration);
     assert(Math.abs(sought.tape - 60) <= now.state.tapeDuration * .0005 && Math.abs(sought.media - sought.tape) < .3, 'the seek puts both clocks at the chosen position (one slider step is 0.1% of the side)');
