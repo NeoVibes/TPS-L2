@@ -43,14 +43,27 @@ export async function openBrowser({width = 1400, height = 900} = {}) {
   async function page({browserContextId, width: w, height: h, colorScheme, reducedMotion, init = []} = {}) {
     const {targetId} = await send('Target.createTarget', {url: 'about:blank', ...(browserContextId ? {browserContextId} : {})});
     const {sessionId} = await send('Target.attachToTarget', {targetId, flatten: true});
-    const log = {console: [], errors: [], requests: [], failed: []}, routes = [], waiters = new Set();
+    const log = {console: [], errors: [], requests: [], failed: []}, routes = [], waiters = new Set(), pendingRequests = new Map();
     const listener = m => {
       if (m.sessionId !== sessionId) return;
       if (m.method === 'Runtime.exceptionThrown') log.errors.push(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text);
       if (m.method === 'Log.entryAdded') log.console.push(m.params.entry.level + ': ' + m.params.entry.text);
       if (m.method === 'Runtime.consoleAPICalled' && ['error', 'warning'].includes(m.params.type)) log.console.push(m.params.type + ': ' + m.params.args.map(a => a.value ?? a.description).join(' '));
-      if (m.method === 'Network.requestWillBeSent') log.requests.push(m.params.request.url);
-      if (m.method === 'Network.loadingFailed') log.failed.push(m.params.errorText + ' ' + (m.params.blockedReason || ''));
+      if (m.method === 'Network.requestWillBeSent') {
+        const {requestId, request, initiator} = m.params;
+        log.requests.push(request.url);
+        // Failure reports may become CI artifacts. Keep local user paths, queries and Blob identifiers out.
+        const u = new URL(request.url);
+        const url = u.protocol === 'blob:' || u.protocol === 'data:' ? u.protocol :
+          u.protocol === 'file:' ? 'file:…/' + u.pathname.split('/').pop() : u.origin + u.pathname;
+        pendingRequests.set(requestId, {url, initiator: initiator?.type});
+      }
+      if (m.method === 'Network.loadingFailed') {
+        const {requestId, errorText, type, canceled, blockedReason} = m.params;
+        log.failed.push({...pendingRequests.get(requestId), type, errorText, canceled: Boolean(canceled), blockedReason});
+        pendingRequests.delete(requestId);
+      }
+      if (m.method === 'Network.loadingFinished') pendingRequests.delete(m.params.requestId);
       if (m.method === 'Fetch.requestPaused') {
         const route = routes.find(r => m.params.request.url.endsWith(r.suffix)), requestId = m.params.requestId;
         const go = method => s(method, method === 'Fetch.failRequest' ? {requestId, errorReason: 'Failed'} : {requestId}).catch(() => {});

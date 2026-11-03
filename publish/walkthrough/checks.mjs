@@ -169,9 +169,11 @@ export async function viewerChecks({browser, url, record, output, full, theme}) 
       await page.press('[data-workmode="inspect"]');
       await renderedView(page, record, ['exterior', 'cassette', 'mechanism', 'electronics']);
     }
+    record.phase = 'page-wide-diagnostics';
     const final = await snapshot(page);
     const origin = new URL(url).origin;
     record.diagnostics = final.diagnostics;
+    record.failedRequests = page.log.failed;
     record.externalRequests = page.log.requests.filter(u => /^https?:/.test(u) && new URL(u).origin !== origin);
     assert.deepEqual(final.packageErrors, [], 'No package loading errors');
     assert.deepEqual(page.log.errors, [], 'No uncaught page errors');
@@ -509,6 +511,13 @@ export async function musicChecks({browser, url, record}) {
     // has presented that geometry, including on software renderers with long first draws.
     await renderedView(page, record, ['exterior','mechanism']);
     const playStart = await atFrame(page);
+    for (const theme of ['dark', 'light', 'system']) {
+      await page.select('#theme-select', theme);
+      const during = await look(page);
+      assert.equal(during.state.mode, 'play');
+      assert.equal(during.audio.source, 'music');
+      assert(during.audio.state === 'playing' && during.audio.music.playing, theme + ': recording must keep playing across a theme change');
+    }
     await sleep(2000); now = await atFrame(page);
     assert(Math.abs(now.audio.music.duration - 114.43) < 0.5, 'duration ' + now.audio.music.duration);
     // Ongoing playback intentionally tolerates a fixed decoder offset to avoid audible
