@@ -197,6 +197,9 @@ export async function themeRuntime({page, record, output, advanceFrame}) {
   await page.press('#audioEnable');
   await page.press('[data-mode="play"]');
   await advanceFrame(page, record, 'Theme invariant baseline', 32);
+  // The application clock is frozen, but loading and decoding the recording are
+  // asynchronous. At mid-side the recording has ended and the tape plays silently.
+  await page.waitFor(`(()=>{const {audio}=window.portableTapePlayer.snapshot();return audio.music.loaded && audio.state==='ready' && !audio.music.playing})()`, 60);
   const before = await invariant(page);
   assert(before.state.selectedId, 'The invariant comparison must preserve a selected part');
   assert.equal(before.state.mode, 'play'); assert(before.state.tapePosition > .4 && before.state.tapePosition < .6);

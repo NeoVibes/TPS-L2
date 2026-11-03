@@ -12,14 +12,20 @@ export default async function exteriorSteps(browser, target) {
     let page = await browser.page(), E = page.evaluate; const wait = browser.sleep;
     const ready = () => page.waitFor('window.portableTapePlayer && window.portableTapePlayer.snapshot().ready', 90);
     await page.goto(url); await ready(); await wait(1200);
-    const choose = v => E(`(()=>{const e=document.getElementById('exteriorVersion');e.value=${JSON.stringify(v)};e.dispatchEvent(new Event('change',{bubbles:true}))})()`);
-    const click = selector => E(`document.querySelector(${JSON.stringify(selector)}).click()`);
+    const renderRecord = "JSON.parse(document.getElementById('stage').dataset.test || 'null')";
+    let beforeActionFrame;
+    const change = async action => {
+      beforeActionFrame = await E(`(()=>{const frame=${renderRecord}?.frames ?? 0;${action};return frame})()`);
+    };
+    const choose = v => change(`const e=document.getElementById('exteriorVersion');e.value=${JSON.stringify(v)};e.dispatchEvent(new Event('change',{bubbles:true}))`);
+    const click = selector => change(`document.querySelector(${JSON.stringify(selector)}).click()`);
     const text = id => E(`document.getElementById(${JSON.stringify(id)})?.textContent?.replace(/\\s+/g,' ').trim()`);
     // What the page shows: its state, how many parts are visible, where every part is, and where the controls sit on screen.
     const look = () => E(`(()=>{const s=window.portableTapePlayer.snapshot();const r=v=>Math.round(v*100)/100;return {state:s.state,lettering:s.lettering,visible:s.parts.filter(p=>p.visible).length,
       parts:JSON.stringify(s.parts.map(p=>[p.id,p.visible,p.position.map(r),p.quaternion.map(r)])),screen:JSON.stringify(Object.entries(s.controls).map(([k,c])=>c&&[k,Math.round(c.x),Math.round(c.y)])),hash:location.hash}})()`);
-    // Covers and views ease into place; wait until three looks in a row are the same.
-    const settle = async () => { let last, steady = 0; for (let i = 0; i < 60 && steady < 2; i++) { await wait(250); const seen = await look(), now = seen.parts + seen.screen; steady = now === last ? steady + 1 : 0; last = now; } };
+    // Three timer samples can all come from one slow frame. Compare the versions only after the
+    // actual post-input render has reached its final pose and finished any stroke or camera glide.
+    const settle = () => page.waitFor(`(()=>{const frame=${renderRecord};return frame?.settled && !frame.stopCycle && frame.frames>${beforeActionFrame}})()`, 60);
 
     // ---- the choice itself
     const options = await E(`[...document.getElementById('exteriorVersion').options].map(o=>[o.value,o.textContent])`);
@@ -67,13 +73,14 @@ export default async function exteriorSteps(browser, target) {
       ['service view', async () => { await click('#batteryDoor'); await settle(); await click('[data-view="service"]'); await page.waitFor('window.portableTapePlayer.snapshot().loaded.length>=3', 60); await settle(); }, false],
       ['exploded view', async () => { await click('[data-view="exploded"]'); await settle(); }, false],
       ['all components', async () => { await click('[data-view="catalog"]'); await settle(); }, false],
-      ['a section cut', async () => { await click('[data-view="assembled"]'); await E(`(()=>{const e=document.getElementById('section');e.value='x';e.dispatchEvent(new Event('change',{bubbles:true}))})()`); await settle(); }, false],
+      ['a section cut', async () => { await click('[data-view="assembled"]'); await change(`const e=document.getElementById('section');e.value='x';e.dispatchEvent(new Event('change',{bubbles:true}))`); await settle(); }, false],
       ['a part isolated', async () => { await E(`(()=>{const e=document.getElementById('section');e.value='off';e.dispatchEvent(new Event('change',{bubbles:true}))})()`); await click('[data-workmode="inspect"]'); await E(`location.hash='part=EXT-030'`); await wait(900); await click('#isolate'); await settle(); }, false],
       ['the guided tour, paused', async () => { await click('#isolate'); await click('#closeInspector'); await click('#tour'); await wait(1200); await click('#tourPause'); await settle(); }, false],
     ];
     let turn = 0;
     for (const [name, enter, moving] of states) {
       await enter();
+      if (!moving) await settle();
       const before = await look(), to = versions[1 + turn++ % 2];
       await choose(to); await (moving ? wait(300) : settle());
       const after = await look(), reasons = same(before, after, moving);

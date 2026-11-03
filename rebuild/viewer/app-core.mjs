@@ -215,9 +215,9 @@ function followLinks(p, weights, smoothing) {
   }
   linkM.multiply(p.stopMatrix).decompose(p.baseP, p.baseQ, linkS);
 }
-function updateParts(dt, spinDt = dt, spinMode = state.mode) {
+function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
   updateOperationIndicator(indicatorMaterials, state);
-  const smoothing = 1 - Math.exp(-dt * config.viewer.poseSmoothingRate), pose = transport.poseName();
+  const smoothing = snapPose ? 1 : 1 - Math.exp(-dt * config.viewer.poseSmoothingRate), pose = transport.poseName();
   displayService = T.MathUtils.lerp(displayService, state.view === "service" ? 1 : 0, smoothing);
   displayExplosion = T.MathUtils.lerp(displayExplosion, state.explode, smoothing);
   displayRadial = T.MathUtils.lerp(displayRadial, state.radial, smoothing);
@@ -317,9 +317,11 @@ function animate(now) {
   const wallDt = Math.max(0, (now - lastTime) / 1e3 || 0);
   lastTime = now;
   if (document.hidden) return;
-  const active = state.stopCycle && !state.paused || state.mode !== "stop" && !state.paused && (state.explode === 0 && state.radial === 0) || state.tour >= 0 && !state.paused || cam.moving || now < settleUntil;
-  if (!dirty && !active) return;
-  const start = performance.now(), dt = Math.min(wallDt, 0.1);
+  const moving = !state.paused && (Boolean(state.stopCycle) || state.tour >= 0 || (state.mode !== "stop" && state.explode === 0 && state.radial === 0));
+  const active = moving || cam.moving || now < settleUntil;
+  // Keep one final render even if the previous frame ran past the deadline.
+  if (!dirty && !active && !settleUntil) return;
+  const start = performance.now();
   const transportStep = transportInterval(state, wallDt);
   if (state.explode === 0 && state.radial === 0 && state.tour < 0) {
     const before = [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join();
@@ -327,8 +329,12 @@ function animate(now) {
     if (before !== [state.mode, state.media, state.stopCycle?.committed, Boolean(state.stopCycle), Boolean(state.autoStop), state.ejectNeedsOpenCover].join()) views.sync();
   }
   if (state.tour >= 0 && !state.paused) tour.seek(tour.position + wallDt);
-  updateParts(reducedMotion.matches ? 10 : dt, state.tour >= 0 ? 0 : transportStep.seconds, transportStep.mode);
-  cam.step(dt);
+  // Pose interpolation is exponential and the camera glide has a bounded duration.
+  // Both take visible wall time, including a long gap on a slow renderer.
+  const finalPose = settleUntil > 0 && now >= settleUntil;
+  if (finalPose) settleUntil = 0;
+  updateParts(wallDt, state.tour >= 0 ? 0 : transportStep.seconds, transportStep.mode, reducedMotion.matches || (finalPose && !moving));
+  cam.step(wallDt);
   orbit.update();
   cam.updateClipRange();
   renderer.render(scene, camera);
@@ -351,7 +357,7 @@ function animate(now) {
   audio.sync(state);
   // Publish every completed render: a slow renderer can become idle before
   // the throttled UI update reaches its fifteenth frame.
-  $("stage").dataset.test = JSON.stringify({ mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
+  $("stage").dataset.test = JSON.stringify({ settled: !settleUntil && !moving && !cam.moving, mode: state.mode, view: state.view, door: state.door, media: state.media, batteryOpen: state.batteryOpen, batteryProgress: displayBattery, stopTravel: state.stopTravel, ejectTravel: ejectTravel(state), stopCycle: state.stopCycle?.kind || null, explode: displayExplosion, radial: displayRadial, cassetteVariant: state.cassetteVariant, cassetteReady: packages.loaded.has("cassette"), batteryCaseReady: packages.loaded.has("exterior"), paused: state.paused, tour: state.tour, visible: parts.filter((p) => p.group.visible).length, volumeLeft: state.volumeLeft, volumeRight: state.volumeRight, tone: state.tone, hotline: state.hotline, assemblyLabels: labels.visibleAssemblies(), frames: frameNumber, phase: parts.find((p) => p.data.id === "MEC-011")?.phase, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, near: camera.near, far: camera.far, pixelRatio: renderer.getPixelRatio() });
   if (frameNumber % 15 === 0 || !active) {
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";

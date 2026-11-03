@@ -5,45 +5,49 @@
 import {pathToFileURL} from 'node:url';
 import {writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {renderedView} from './checks.mjs';
 
 export default async function mainSteps(browser, target, out, shotPrefix) {
   const url = target.startsWith('http') ? target : pathToFileURL(target).href;
   const record = {steps: {}};
   try {
-    const page = await browser.page(), E = page.evaluate, wait = browser.sleep;
+    const page = await browser.page({width: 1400, height: 813}), E = page.evaluate, wait = browser.sleep;
     await page.goto(url);
     record.ready_seconds = await page.waitFor('window.portableTapePlayer && window.portableTapePlayer.snapshot().ready', 90);
     const clickText = text => E(`(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent.replace(/\\s+/g,' ').trim().includes(${JSON.stringify(text)})&&!b.disabled);if(!b)return false;b.click();return true})()`);
     const setValue = (id, value) => E(`(()=>{const e=document.getElementById(${JSON.stringify(id)});if(!e)return false;e.value=${JSON.stringify(String(value))};e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));return true})()`);
     const snap = () => E(`(()=>{const s=window.portableTapePlayer.snapshot();const r=v=>typeof v==='number'?Math.round(v*1e4)/1e4:v;const walk=o=>Array.isArray(o)?o.map(walk):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,walk(v)])):r(o);return {state:walk(s.state),loaded:[...(s.loaded||[])].sort(),packageErrors:s.packageErrors,controls:walk(s.controls),parts:JSON.stringify(walk(s.parts))}})()`);
     const text = id => E(`document.getElementById(${JSON.stringify(id)})?.textContent?.replace(/\\s+/g,' ').trim().slice(0,160)`);
-    // Waits until the model stops moving, then records its state and a fingerprint of every part's position.
-    async function settled(name, {moving = false} = {}) {
-      let last, s;
-      for (let i = 0; i < 60; i++) { await wait(250); s = await snap(); if (moving || s.parts === last) break; last = s.parts; }
-      const {parts, ...rest} = s;
-      record.steps[name] = {...rest, positions: moving ? '(moving)' : createHash('sha256').update(parts).digest('hex').slice(0, 12), status: await text('status') ?? null, packageStatus: await text('packageStatus')};
-      return s;
+    // A slow renderer can repeat one snapshot while the camera, loading, or mechanism is still moving.
+    // Wait for a completed final render after the action, then compare the original full-pose fingerprint.
+    const render = "JSON.parse(document.getElementById('stage').dataset.test || 'null')";
+    async function settled(name, action, requiredPackages, view) {
+      const before = action ? await E(`(${render})?.frames || 0`) : 0;
+      if (action && await action() === false) throw Error(name + ': control unavailable');
+      if (requiredPackages) await renderedView(page, {}, requiredPackages, view);
+      await page.waitFor(`(r => r?.frames > ${before} && r.settled)(${render})`, 90);
+      const {parts, ...rest} = await snap();
+      record.steps[name] = {...rest, positions: createHash('sha256').update(parts).digest('hex').slice(0, 12), status: await text('status') ?? null, packageStatus: await text('packageStatus')};
     }
-    await settled('start');
+    await settled('start', null, ['exterior', 'cassette'], 'assembled');
     if (shotPrefix) await page.screenshot(shotPrefix + '-start.png');
-    await clickText('Service view'); await page.waitFor(`window.portableTapePlayer.snapshot().loaded.length>=3`, 60).catch(()=>{}); await settled('service view');
+    await settled('service view', () => clickText('Service view'), ['exterior', 'cassette', 'mechanism', 'electronics'], 'service');
     if (shotPrefix) await page.screenshot(shotPrefix + '-service.png');
-    await clickText('Exploded assembly'); await settled('exploded');
-    await clickText('All components'); await settled('all components');
-    await clickText('Assembled'); await settled('assembled again');
-    await page.click('#eject'); await settled('stop pressed');
-    await page.click('#door'); await settled('door open');
-    await page.click('#eject'); await settled('eject with door open');
-    await page.click('#door'); await settled('door closed');
-    await page.click('#batteryDoor'); await settled('battery cover open');
+    await settled('exploded', () => clickText('Exploded assembly'));
+    await settled('all components', () => clickText('All components'));
+    await settled('assembled again', () => clickText('Assembled'));
+    await settled('stop pressed', () => page.click('#eject'));
+    await settled('door open', () => page.click('#door'));
+    await settled('eject with door open', () => page.click('#eject'));
+    await settled('door closed', () => page.click('#door'));
+    await settled('battery cover open', () => page.click('#batteryDoor'));
     if (shotPrefix) await page.screenshot(shotPrefix + '-battery.png');
-    await page.click('#batteryDoor'); await settled('battery cover closed');
-    await setValue('volumeLeft', 0.85); await setValue('volumeRight', 0.2); await settled('volume moved');
+    await settled('battery cover closed', () => page.click('#batteryDoor'));
+    await settled('volume moved', async () => { await setValue('volumeLeft', 0.85); return setValue('volumeRight', 0.2); });
     record.steps.toneOptions = await E(`[...document.getElementById('tone').options].map(o=>o.value)`);
-    await setValue('tone', record.steps.toneOptions[0]); await settled('tone changed');
-    await setValue('spread', 60); await settled('separation 60');
-    await setValue('spread', 0); await settled('separation 0');
+    await settled('tone changed', () => setValue('tone', record.steps.toneOptions[0]));
+    await settled('separation 60', () => setValue('spread', 60));
+    await settled('separation 0', () => setValue('spread', 0));
     await clickText('Inspect'); await wait(400);
     await setValue('search', '8-835-008-11'); await wait(500);
     record.steps.searchMotor = await E(`[...document.querySelectorAll('.part-result,.service-result,[class*=result]')].slice(0,8).map(b=>b.textContent.replace(/\\s+/g,' ').trim().slice(0,70))`);
@@ -56,14 +60,18 @@ export default async function mainSteps(browser, target, out, shotPrefix) {
     record.steps.copy = {button: await text('copyPartLink'), fallback: await E(`document.getElementById('copyFallback')?.value||''`)};
     await clickText('Operate'); await wait(300);
     record.steps.cassetteOptions = await E(`[...document.getElementById('cassetteVariant').options].map(o=>o.value)`);
-    for (const v of record.steps.cassetteOptions) { await setValue('cassetteVariant', v); await settled('cassette ' + v); }
-    await page.click('#audioEnable'); await wait(500); record.steps.audio = await text('audioStatus');
+    for (const v of record.steps.cassetteOptions) await settled('cassette ' + v, () => setValue('cassetteVariant', v));
+    await page.click('#audioEnable'); await page.waitFor("window.portableTapePlayer.snapshot().audio.state === 'ready'", 30); record.steps.audio = await text('audioStatus');
     await setValue('tapePosition', 0.5); await wait(200);   // mid-side, so that REW below has tape to wind back
-    await clickText('PLAY'); await wait(900); const a = await snap(); await wait(600); const b = await snap();
+    const transportRendered = mode => page.waitFor(`(${render})?.mode === ${JSON.stringify(mode)}`, 30);
+    await clickText('PLAY'); await transportRendered('play');
+    const a = await snap(), frame = await E(`(${render}).frames`);
+    await page.waitFor(`(${render}).frames > ${frame}`, 30);
+    const b = await snap();
     record.steps.play = {mode: a.state.mode, partsAreMoving: a.parts !== b.parts};
-    await clickText('FF'); await wait(700); record.steps.ff = {mode: (await snap()).state.mode};
-    await clickText('REW'); await wait(700); record.steps.rew = {mode: (await snap()).state.mode};
-    await page.click('#eject'); await wait(900); record.steps.stopAfterRun = {mode: (await snap()).state.mode};
+    await clickText('FF'); await transportRendered('ff'); record.steps.ff = {mode: (await snap()).state.mode};
+    await clickText('REW'); await transportRendered('rew'); record.steps.rew = {mode: (await snap()).state.mode};
+    await page.click('#eject'); await page.waitFor(`(r => r?.mode === 'stop' && !r.stopCycle)(${render})`, 30); record.steps.stopAfterRun = {mode: (await snap()).state.mode};
     const m = await page.metrics();
     record.heapMB = Math.round(m.JSHeapUsedSize / 1e6);
     record.requests = page.log.requests.map(u => decodeURIComponent(u).replace(/^.*\/(view|publish|Portable Tape Player[^/]*)\//, '').replace(/^.*\//, '').replace(/^data:.{0,30}.*/, 'data:'));

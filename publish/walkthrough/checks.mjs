@@ -474,10 +474,20 @@ export async function loadingRaceChecks({browser, url, record}) {
 export async function musicChecks({browser, url, record}) {
   record.music = [];
   const level = page => page.evaluate('window.portableTapePlayer.snapshot().audio.level');
-  const look = page => page.evaluate(`(()=>{const s=window.portableTapePlayer.snapshot();return {audio:s.audio,state:s.state,tape:s.state.tapePosition*s.state.tapeDuration}})()`);
+  const sample = () => { const stamp = performance.now(), s = window.portableTapePlayer.snapshot(); return {stamp, audio:s.audio, state:s.state, tape:s.state.tapePosition*s.state.tapeDuration}; };
+  const look = page => page.call(sample);
+  // Tape position is committed once per rendered frame; the media clock runs between them.
+  const atFrame = page => page.evaluate(`new Promise(done=>requestAnimationFrame(()=>done((${sample})())))`);
   const slider = (page, id, value) => page.call((i, v) => { const e = document.getElementById(i); e.value = String(v); e.dispatchEvent(new Event('input', {bubbles: true})); e.dispatchEvent(new Event('change', {bubbles: true})); return true; }, id, value);
   const sleep = ms => new Promise(r => setTimeout(r, ms));
-  let context = await browser.context(), page = await context.page({width: 1400, height: 900});
+  // Audio needs a live media clock. Keep the full document and actual WebGL model, but
+  // rasterize fewer pixels for this audio-only case on software-rendered CI machines.
+  async function musicPage(context) {
+    const page = await context.page();
+    await page.send('Emulation.setDeviceMetricsOverride', {width:1024, height:720, deviceScaleFactor:.5, mobile:false});
+    return page;
+  }
+  let context = await browser.context(), page = await musicPage(context);
   try {
     record.phase = 'music-startup';
     await page.goto(url, {until: 'load'}); await ready(page);
@@ -494,18 +504,23 @@ export async function musicChecks({browser, url, record}) {
     record.phase = 'music-play';
     await page.press('[data-mode="play"]');
     await page.waitFor('(()=>{const a=window.portableTapePlayer.snapshot().audio;return a.state==="playing"&&a.level>0.001})()', 15);
-    await sleep(1500); now = await look(page);
+    // The first PLAY also loads and compiles the mechanism. Measure both clocks after a frame
+    // has presented that geometry, including on software renderers with long first draws.
+    await renderedView(page, record, ['exterior','mechanism']);
+    await sleep(1500); now = await atFrame(page);
     assert(Math.abs(now.audio.music.duration - 114.43) < 0.5, 'duration ' + now.audio.music.duration);
     assert(Math.abs(now.audio.music.time - now.tape) < 0.3, `music at the tape's time (${now.audio.music.time} vs ${now.tape})`);
     record.music.push({case: 'plays at tape time', music: now.audio.music.time, tape: now.tape, level: now.audio.level});
     record.phase = 'music-seek';
-    await slider(page, 'tapePosition', 60 / now.state.tapeDuration); await sleep(800); now = await look(page);
-    assert(now.audio.music.time > 59.9 && now.audio.music.time < 61.5 && now.audio.state === 'playing', 'a seek moves the music with the tape: ' + now.audio.music.time);
+    const sought = await page.call(t => { const e = document.getElementById('tapePosition'); e.value = String(t); e.dispatchEvent(new Event('input', {bubbles:true})); e.dispatchEvent(new Event('change', {bubbles:true})); const s = window.portableTapePlayer.snapshot(); return {tape:s.state.tapePosition*s.state.tapeDuration, media:s.audio.music.time}; }, 60 / now.state.tapeDuration);
+    assert(Math.abs(sought.tape - 60) <= now.state.tapeDuration * .0005 && Math.abs(sought.media - sought.tape) < .3, 'the seek puts both clocks at the chosen position (one slider step is 0.1% of the side)');
+    await sleep(800); now = await atFrame(page);
+    assert(now.audio.state === 'playing' && now.audio.music.time > sought.media && now.tape > sought.tape, `music and tape must advance from the seek point (${now.audio.music.time}, ${now.tape})`);
     record.phase = 'music-speed';
-    await slider(page, 'speed', .55); const t0 = (await look(page)).audio.music.time; await sleep(2000);
-    const advanced = (await look(page)).audio.music.time - t0;
-    assert(advanced > .85 && advanced < 1.4, 'at 0.55× the music runs at 0.55× (' + advanced.toFixed(2) + ' s in 2 s)');
-    record.music.push({case: 'motion speed 0.55', advancedIn2s: advanced});
+    await slider(page, 'speed', .55); const first = await atFrame(page); await sleep(2000); const last = await atFrame(page);
+    const advanced = last.audio.music.time - first.audio.music.time, elapsed = (last.stamp-first.stamp)/1000;
+    assert(elapsed >= 1.95 && advanced/elapsed > .425 && advanced/elapsed < .7, `at 0.55× music advanced ${advanced.toFixed(2)} s in ${elapsed.toFixed(2)} s`);
+    record.music.push({case: 'motion speed 0.55', advanced, elapsed});
     record.phase = 'music-floor';
     await slider(page, 'speed', .05); await sleep(600); now = await look(page);
     assert.match(now.audio.message, /silent below/); assert(await level(page) < .001, 'silent below the slowest rate');
@@ -515,11 +530,11 @@ export async function musicChecks({browser, url, record}) {
     assert.match(now.audio.message, /past the end/i); assert.equal(now.state.mode, 'play', 'the tape runs on'); assert(await level(page) < .001);
     record.phase = 'music-switch';
     await slider(page, 'tapePosition', .75); await sleep(300);
-    const before = await look(page);
-    await page.select('#audioSource', 'tone');
+    const change = await page.call(() => { const state = () => {const s=window.portableTapePlayer.snapshot().state;return [s.tapePosition,s.mode,s.speed];}; const before=state(), e=document.getElementById('audioSource'); e.value='tone'; e.dispatchEvent(new Event('input',{bubbles:true})); e.dispatchEvent(new Event('change',{bubbles:true})); return {before,after:state()}; });
+    assert.deepEqual(change.after, change.before, 'switching keeps the tape, mode and speed');
     await page.waitFor('(()=>{const a=window.portableTapePlayer.snapshot().audio;return a.source==="tone"&&a.state==="playing"&&a.level>0.001})()', 10);
     now = await look(page);
-    assert(Math.abs(now.state.tapePosition - before.state.tapePosition) < .001 && now.state.mode === 'play' && now.state.speed === before.state.speed, 'switching keeps the tape, mode and speed');
+    assert.equal(now.state.mode, 'play');
     assert.equal(now.audio.music.playing, false, 'never both at once');
     await page.select('#audioSource', 'music'); await sleep(800); now = await look(page);
     assert.match(now.audio.message, /past the end/i, 'back to the music, which at 75% of the side has ended');
@@ -534,7 +549,7 @@ export async function musicChecks({browser, url, record}) {
     assert.equal(now.state.audioSource, 'music'); assert.equal(now.state.audioEnabled, false); assert.equal(now.state.tapePosition, 0);
     assert.deepEqual(page.log.errors, []);
   } finally { await context.close(); }
-  context = await browser.context(); page = await context.page({width: 1400, height: 900});
+  context = await browser.context(); page = await musicPage(context);
   try {
     record.phase = 'music-missing';
     await page.route('/geometry/music/canon-in-d.js', r => r.fail());
