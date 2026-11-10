@@ -23,7 +23,7 @@ The release tools prepare and check a ZIP; they never rebuild or upload it. **Co
    node publish/release.mjs
    ```
 
-   It stops if the kit breaks a rule, `view/` is out of date, the model has unaccepted changes, or a file names your computer, your user or a home folder. Otherwise it extracts the ZIP into a temporary directory and checks its complete inventory and hashes against the candidate, then writes the ZIP beside the kit with its checksum, a SHA256SUMS file and a file list. Give last release's list as a second argument to see what was added or removed. There is no second browser run on the extracted copy: matching hashes establish it contains the tested bytes.
+   It stops if the kit breaks a rule, `view/` is out of date, the model has unaccepted changes, or a file that ships holds a password, PIN, key, token, e-mail address or other personal detail, a home folder or a name from your computer (`publish/scan-secrets.mjs`; the repository's checks run it on every push too). Otherwise it extracts the ZIP into a temporary directory and checks its complete inventory and hashes against the candidate, then writes the ZIP beside the kit with its checksum, a SHA256SUMS file and a file list. Give last release's list as a second argument to see what was added or removed. There is no second browser run on the extracted copy: matching hashes establish it contains the tested bytes.
 
 The ZIP holds every file in the kit except the build's scratch folders, hidden files, backups and archives. The kit describes the current version only; "what changed" belongs in your release notes.
 
@@ -38,6 +38,8 @@ The README lists three ways to take part. For the second and third:
 ## Your identity
 
 If you publish with git, use a public name and a no-reply address: every commit carries both. Publishing needs no git if the repository holds only the README, the picture and the forms, with the ZIP attached to a Release.
+
+Before every push, run `node publish/scan-secrets.mjs --git-new` in the repository: it checks the commits GitHub does not have yet, their author addresses and every file in them (`--git` checks the whole history). On GitHub, turn on secret scanning with push protection for the repository, and in your account's e-mail settings keep your address private and block pushes that would expose it. A key that was ever pushed counts as public: revoke it, then remove it.
 
 ## Checking that the kit still works
 

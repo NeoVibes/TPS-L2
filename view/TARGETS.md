@@ -1,10 +1,10 @@
 # Targets
 
-Version 0.3.0. Written by the build from `edit/targets.json`; edit that file, not this one.
+Version 0.3.1. Written by the build from `edit/targets.json`; edit that file, not this one.
 
 **These are the numbers the model is meant to match, and how the model compares today.** Most come from photographs, videos, Sony's service manual and published standards. A target is not a measurement of a real unit unless its class is `measured`. Where the model fails a target, the model is wrong or the target is in doubt; both are shown rather than hidden.
 
-Of 125 targets, the model passes 100, fails 8 and has no check yet for 17.
+Of 132 targets, the model passes 102, fails 8 and has no check yet for 22.
 
 ## The three exterior versions
 
@@ -177,6 +177,13 @@ Tolerance is the uncertainty on the target, not a manufacturing tolerance. Lengt
 | `lid.flap_depth` | 1.42 | ± 0.02 | mm | designed | chosen so that the closed lid's top flap rests on the top-end rail, 0.02 mm off it as at the lid's opening stop. Imagery did not establish its fold depth | EXT-030 | 1.42 | pass |
 | `lid.bottom_flap_depth` | 6.42 | ± 0.02 | mm | designed | the original model fold is retained to close the bottom against the rear cabinet return; the depth has not been physically verified | EXT-030 | 6.4242 | pass |
 | `belt.length_ratio_main_to_second` | 1.2 | ± 0.05 | ratio | photo-measured | imagery of a second dismantled unit; listed replacement belt sizes give 1.21 |  | 1.2156 | pass |
+| `wiring.playback_cables` | 2 | ± 0 | parts | documented | Sony TPS-L2 service manual, New mounting diagram, printed pages 15-16: head to jack board and jack board to main. Count cable assemblies, not individual cores. | WIR-PB-01 WIR-PB-02 | 2 | pass |
+| `wiring.external_motor_leads` | 4 | ± 0 | parts | documented | Sony TPS-L2 service manual, New mounting diagram, printed pages 15-16: two drive leads and two feedback leads enter M901. | WIR-MTR-01 WIR-MTR-02 WIR-MTR-03 WIR-MTR-04 | 4 | pass |
+| `accessory.headphone_driver_diameter` | 23 | not stated | mm | documented | Sony MDR-3L2 specification: 23 mm dynamic driver | MDR-L-05 MDR-R-05 |  | no check |
+| `accessory.headphone_pad_outside_diameter` | 38.1 | not stated | mm | reported | A replacement-pad maker's stated size (1.5 in); not checked on an original pad | MDR-L-07 MDR-R-07 |  | no check |
+| `accessory.adapter_blade_spacing` | 12.7 | not stated | mm | standard | NEMA 1-15 plug: blade centres 0.500 in apart | AC31-005 AC31-006 |  | no check |
+| `accessory.adapter_input` | 120 | not stated | V AC, 60 Hz, 5 W | reported | The AC-31's rating label, read from photographs of a real unit | AC31-003 |  | no check |
+| `accessory.adapter_output` | 3 | not stated | V DC, 300 mA, centre negative | reported | The AC-31's rating label, read from photographs of a real unit | AC31-003 |  | no check |
 
 ## Other checks
 
@@ -184,7 +191,7 @@ Checks that have no target of their own: they test that the model is consistent 
 
 | Check | Group | Model | Allowed | Outcome | Note |
 |---|---|---|---|---|---|
-| `solids.single_closed_shell` | solids | 40 parts | 0 to 0 | **fail** | 506 parts: 466 are one closed solid, 40 are not. Vertices closer than 0.001 mm are joined; lettering is left out. |
+| `solids.single_closed_shell` | solids | 40 parts | 0 to 0 | **fail** | 521 parts: 481 are closed solids, 40 are not. A part is one closed shell, or as many as its object declares in closed_shells (a wire's core inside its jacket is two). Vertices closer than 0.001 mm are joined; lettering is left out. The 39 accessory parts are not held to this (24 are closed solids). |
 | `cassette.head_band_clears_the_carriage_plate` | envelope | 0.1 mm | 0.05 to … | pass | Gap between the back of the cassette's head band and the head-carriage plate under it, at rest. |
 | `cassette.left_wall_room_at_registered_width` | envelope | 1.398 mm | 2 to … | **fail** | Room left of the cassette if the width surplus is removed from the left side. Needs a wall plus clearance; 2 mm is a working minimum. |
 | `flywheel_on_capstan_axis` | axes | 0 mm | -0.05 to 0.05 | pass | Centre of the part against the axis it turns on; both faces of the chassis must share it. |
@@ -247,4 +254,4 @@ Checks that have no target of their own: they test that the model is consistent 
 | `fr_gear_a.swings_between_ff_and_rew` | motion | 3.688 mm | 0.5 to … | pass | FF sends drive to the take-up side, REW to the supply side, by swinging this gear. |
 | `pinch_roller.meets_capstan_in_play` | motion | -0.1 mm | -0.5 to 0 | pass | Roller-to-capstan gap in PLAY at the target roller and capstan sizes. |
 
-Totals by group: solids 0 pass, 1 fail; envelope 23 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 5 pass, 0 fail.
+Totals by group: wiring 2 pass, 0 fail; solids 0 pass, 1 fail; envelope 23 pass, 8 fail; axes 34 pass, 1 fail; motion 81 pass, 0 fail, 7 for information; parts 12 pass, 0 fail; size 5 pass, 0 fail.

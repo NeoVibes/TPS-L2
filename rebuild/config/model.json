@@ -4,7 +4,9 @@
   "native": "../edit/Portable Tape Player.blend",
   "controllers": {
     "transport": "CTRL-TRANSPORT",
-    "operating": "CTRL-OPERATING"
+    "operating": "CTRL-OPERATING",
+    "headphones": "ACC-HEADPHONES",
+    "adapter": "ACC-ADAPTER"
   },
   "controls": [
     {
@@ -283,6 +285,33 @@
       ]
     },
     {
+      "id": "mdr-3l2",
+      "name": "MDR-3L2 headphones",
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "ac-31-us",
+      "name": "AC-31 power adapter",
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "aa-cells",
+      "name": "AA cells",
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
       "id": "ungrouped",
       "name": "Ungrouped",
       "axis": [
@@ -292,6 +321,47 @@
       ]
     }
   ],
+  "accessories": {
+    "assemblies": [
+      "mdr-3l2",
+      "ac-31-us",
+      "aa-cells"
+    ],
+    "cellLoad": "spring_compression",
+    "note": "Parts of these assemblies are accessories: hidden until the Accessories switch shows them, counted apart from the device, left out of its targets. cellLoad is the native control that brings the battery springs down onto the cells; shown, the viewer applies its native value, hidden, zero.",
+    "plugs": {
+      "headphones": {
+        "assembly": "mdr-3l2",
+        "controller": "headphones",
+        "cord": "MDR-021",
+        "label": "Headphones",
+        "states": {
+          "A": 1,
+          "B": 2
+        },
+        "choices": {
+          "out": "Headphones unplugged",
+          "A": "Headphones in socket A",
+          "B": "Headphones in socket B"
+        }
+      },
+      "adapter": {
+        "assembly": "ac-31-us",
+        "controller": "adapter",
+        "cord": "AC31-008",
+        "label": "AC adapter",
+        "states": {
+          "DC IN": 1
+        },
+        "choices": {
+          "out": "Adapter unplugged",
+          "DC IN": "Adapter in DC IN"
+        }
+      }
+    },
+    "plugSeconds": 0.6,
+    "plugNote": "Each accessory's native controller holds plug_socket (0 unplugged) and plug_insertion (0 the plug's tip at the socket's mouth, 1 seated). Choosing a socket cuts to the accessory's plugged-in place with the plug at the mouth, then the plug slides in over plugSeconds; unplugging slides it out, then cuts back. Separated views, hiding the accessories and Reset show them unplugged."
+  },
   "inspectionContexts": {
     "servoBoard": {
       "label": "Servo board + L601",
@@ -512,7 +582,11 @@
         "WIR-MIC-02",
         "WIR-MIC-03",
         "WIR-OUT-01",
-        "WIR-OUT-02"
+        "WIR-OUT-02",
+        "WIR-PB-01",
+        "WIR-PB-02",
+        "WIR-MIC-04",
+        "WIR-OUT-03"
       ],
       "focusPartId": "JB-001"
     },
@@ -622,7 +696,16 @@
         "VOL-029",
         "VOL-030",
         "VOL-060",
-        "VOL-061"
+        "VOL-061",
+        "WIR-IN-01",
+        "WIR-IN-02",
+        "WIR-AF-01",
+        "WIR-TNE-01",
+        "WIR-TNE-02",
+        "WIR-TNE-03",
+        "WIR-TNE-04",
+        "RET-101",
+        "RET-102"
       ],
       "focusPartId": "MB-001"
     },
@@ -831,6 +914,66 @@
       ],
       "focusPartId": "MTR-001",
       "refNo": "M1"
+    },
+    "playbackWiring": {
+      "label": "Playback wiring",
+      "description": "Follow the head cable through the HOT LINE contacts and preamp inputs, then inspect the TONE, volume and headphone wiring.",
+      "partIds": [
+        "BAY-060",
+        "JB-001",
+        "MB-001",
+        "WIR-PB-01",
+        "WIR-PB-02",
+        "WIR-MIC-01",
+        "WIR-MIC-02",
+        "WIR-MIC-03",
+        "WIR-MIC-04",
+        "WIR-OUT-01",
+        "WIR-OUT-02",
+        "WIR-OUT-03",
+        "RET-101",
+        "RET-102",
+        "RET-103",
+        "RET-104",
+        "HLT-031",
+        "HLT-032",
+        "JCK-11",
+        "JCK-12",
+        "JCK-21",
+        "JCK-22",
+        "JCK-23",
+        "JCK-24",
+        "RES-801",
+        "RES-802",
+        "RES-803",
+        "RES-804",
+        "WIR-IN-01",
+        "WIR-IN-02",
+        "WIR-TNE-01",
+        "WIR-TNE-02",
+        "WIR-TNE-03",
+        "WIR-TNE-04",
+        "WIR-AF-01",
+        "CAP-101",
+        "CAP-201",
+        "VOL-001",
+        "TNE-021",
+        "TNE-022",
+        "TNE-031",
+        "TNE-032",
+        "TNE-033",
+        "TNE-034",
+        "HLT-011",
+        "HLT-012",
+        "HLT-013",
+        "HLT-014",
+        "HLT-015",
+        "HLT-016",
+        "MIC-005",
+        "MIC-006",
+        "MIC-007"
+      ],
+      "focusPartId": "WIR-PB-01"
     }
   },
   "roles": {
@@ -955,17 +1098,24 @@
       "BCL-030",
       "STP-020",
       "MEDIA-004",
-      "MEDIA-006"
-    ],
-    "inspectionOnly": [
+      "MEDIA-006",
+      "SWT-002",
+      "SWT-004",
+      "SWT-007",
+      "WIR-PB-01",
       "BAT-010",
       "BAT-011",
-      "MIC-010",
-      "HLT-021",
       "JCK-21",
       "JCK-22",
       "JCK-23",
       "JCK-24",
+      "JCK-36",
+      "MDR-021",
+      "AC31-008"
+    ],
+    "inspectionOnly": [
+      "MIC-010",
+      "HLT-021",
       "SB-101",
       "SB-102",
       "SB-103"
@@ -976,11 +1126,15 @@
       "battery": "BCL-030",
       "play": [
         "JNT-010",
-        "JNT-020"
+        "JNT-020",
+        "WIR-PB-01"
       ],
       "transport": [
         "FCR-030",
-        "FRL-020"
+        "FRL-020",
+        "SWT-002",
+        "SWT-004",
+        "SWT-007"
       ],
       "shutoff": [
         "STF-030"
@@ -988,7 +1142,20 @@
       "tape": {
         "MEDIA-004": "supply",
         "MEDIA-006": "takeup"
-      }
+      },
+      "cells": [
+        "BAT-010",
+        "BAT-011"
+      ],
+      "plug": [
+        "JCK-21",
+        "JCK-22",
+        "JCK-23",
+        "JCK-24",
+        "JCK-36",
+        "MDR-021",
+        "AC31-008"
+      ]
     }
   },
   "belts": {

@@ -207,6 +207,8 @@ $("performance").onclick = () => {
   $("performanceReadout").textContent = JSON.stringify({ device: metrics.device, firstExteriorMs: Math.round(metrics.firstExteriorMs), loaded: [...packages.loaded], sample: metrics.sampleKey, frames: metrics.frames.length, meanFrameMs: metrics.frames.length ? metrics.frames.reduce((s, v) => s + v.interval, 0) / metrics.frames.length : null, memoryBytes: performance.memory?.usedJSHeapSize || "Unavailable in this browser", downloadBytes: Object.values(packages.files).reduce((s, p) => s + p.bytes, 0), physicalPhoneTest: "Not performed" }, null, 2);
 };
 $("exteriorVersion").onchange = (e) => views.setExterior(e.target.value);
+$("accessories").onclick = () => views.setAccessories(!state.accessories);
+for (const el of document.querySelectorAll("[data-plug]")) el.onchange = () => views.setPlug(el.dataset.plug, el.value);
 window.addEventListener("hashchange", () => {
   views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model?.exterior?.default);
   inspect.applyPartLink();

@@ -350,6 +350,9 @@ details p {
   background: var(--surface);
   color: var(--ink);
 }
+#clearSearch {
+  margin: 10px 0 4px;   /* focus rings reach 6 px out: keep them off the field and the count */
+}
 .catalog small {
   display: block;
   margin: 5px 0;

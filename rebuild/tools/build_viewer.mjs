@@ -93,7 +93,7 @@ export async function geometryFiles() {
   const strip = report => { const {native_sha256, ...rest} = report; return rest; };
   const partMeasurements = await json('build/exports/part-measurements.json');
   const measured = {parts: partMeasurements.parts, exterior: partMeasurements.exterior || {}, cassette_detailed: (await json('build/exports/cassette/part-measurements.json')).parts,
-    targets: strip(await json('build/exports/target-measurements.json'))};
+    targets: strip(await json('build/exports/target-measurements.json')), accessories: meta.inventory.accessoryIds};
   writes.push(['geometry/model.js', dataFile('model', {meta, packages, motion: {controls: motion.controls, active_owner_ids: motion.active_owner_ids}, measured})]);
 
   return {writes, meta, packages};

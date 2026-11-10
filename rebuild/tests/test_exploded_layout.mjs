@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createExplodedLayout,explodedOffset} from '../viewer/exploded-layout.mjs';
+import config from '../config/model.json' with {type:'json'};
 
 const model=JSON.parse(await readFile('build/viewer-data/model.json'));
 const {ownerIds}=assertInventoryCoverage(model);
@@ -78,7 +79,7 @@ for(const part of model.parts){
   for(let axis=0;axis<3;axis++){
    const bounds=displayedBounds(part),min=bounds.min[axis]+delta[axis],max=bounds.max[axis]+delta[axis];
    maximumDimensionErrorMm=Math.max(maximumDimensionErrorMm,Math.abs((max-min)-(bounds.max[axis]-bounds.min[axis])));
-   assert.ok(min>=layout.bounds.min[axis]-1e-9&&max<=layout.bounds.max[axis]+1e-9,'Camera bounds enclose whole parts throughout the transition');
+   if(!config.accessories.assemblies.includes(part.assembly))assert.ok(min>=layout.bounds.min[axis]-1e-9&&max<=layout.bounds.max[axis]+1e-9,'Camera bounds enclose whole parts throughout the transition');   // the accessories stay put beside the player
   }
  }
 }

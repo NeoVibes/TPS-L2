@@ -19,9 +19,10 @@ def longest_length(points):
     gaps = extreme[:, None, :] - extreme[None, :, :]
     return float(np.sqrt((gaps ** 2).sum(axis=2)).max())
 
-def measure_solid(bm, to_mm, weld):
+def measure_solid(bm, to_mm, weld, bodies=1):
     """bm holds the whole part in assembled position. to_mm converts its units to mm; weld (in its units)
-    joins vertices that were split only for shading."""
+    joins vertices that were split only for shading. bodies is how many closed shells the part is by design
+    (a wire's core inside its jacket is two); it is closed when watertight with exactly that many."""
     bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=weld)
     bm.verts.ensure_lookup_table(); bm.edges.ensure_lookup_table()
     points = np.array([v.co[:] for v in bm.verts], dtype=np.float64) * to_mm
@@ -40,10 +41,10 @@ def measure_solid(bm, to_mm, weld):
     shells = len({find(v.index) for v in bm.verts if v.link_edges})
     watertight = open_edges == 0 and shared_edges == 0 and loose_edges == 0 and len(bm.faces) > 0
     why = []
-    if shells > 1: why.append(f'{shells} separate shells')
+    if shells != bodies: why.append(f'{shells} separate shells' + (f' (by design {bodies})' if bodies > 1 else ''))
     if open_edges: why.append(f'{open_edges} open edges')
     if shared_edges: why.append(f'{shared_edges} edges shared by more than two faces')
     if loose_edges: why.append(f'{loose_edges} loose edges')
     return dict(size_mm=[round(float(v), 3) for v in (high - low)], longest_length_mm=round(longest_length(points), 3),
                 volume_mm3=round(abs(bm.calc_volume(signed=True)) * to_mm ** 3, 3) if watertight and shells == 1 else None,
-                closed_solid=watertight and shells == 1, why_not_closed='; '.join(why), shells=shells, vertices=len(bm.verts), faces=len(bm.faces))
+                closed_solid=watertight and shells == bodies, why_not_closed='; '.join(why), shells=shells, vertices=len(bm.verts), faces=len(bm.faces))

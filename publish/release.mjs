@@ -3,7 +3,8 @@
 // Makes the download ZIP from the kit folder as it is, and stops if anything should not ship.
 // It needs no git. It checks, in order: the kit's rules; that view/ is up to date and the model is
 // in its accepted state; that the Blender file holds no folder path from this computer; and that no
-// text file names this computer's user, host or a home folder. Then it writes the ZIP, its checksum
+// file that ships holds a password, PIN, key, token, personal detail, home folder or a name from this
+// computer (publish/scan-secrets.mjs). Then it writes the ZIP, its checksum
 // and its file list, and shows what was added or removed since the last list so a person can review it.
 //
 // What ships: every file in the kit except the build's scratch folders, hidden files and backup or
@@ -11,12 +12,12 @@
 import {readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {deflateRawSync, crc32} from 'node:zlib';
-import os from 'node:os';
 import path from 'node:path';
 import {KIT, VIEW, ROOT, json} from '../rebuild/tools/integrity.mjs';
 import {checkKit} from '../rebuild/tools/check.mjs';
 import {fingerprintView, describeChanges} from '../rebuild/tools/compare.mjs';
 import {verifyZip} from './verify-zip.mjs';
+import {scanFiles, describe} from './scan-secrets.mjs';
 import {acquireBuildLock} from '../rebuild/tools/build-lock.mjs';
 
 const stop = reasons => { throw Error(reasons.join('\n') + '\nNo ZIP was made.'); };
@@ -75,16 +76,8 @@ if (process.argv[1]?.endsWith('release.mjs')) {
       const changed = describeChanges(JSON.parse(readFileSync(path.join(ROOT, 'accepted.json'), 'utf8')), await fingerprintView(VIEW));
       if (changed.length) reasons.push('The model differs from its accepted state in ' + changed.length + ' place(s). Review them with npm test, then npm run accept.');
     }
-    // Words that identify this computer or its user must not appear in any text file that ships.
-    const personal = [os.userInfo().username, os.hostname().split('.')[0], path.basename(os.homedir())].filter(w => w && w.length > 2);
-    const home = /(?:\/Users\/|\/home\/|[A-Z]:\\Users\\)[A-Za-z0-9._-]+/;
-    for (const file of ship) {
-      if (!/\.(md|mjs|js|py|json|csv|html|css|yml|txt)$/.test(file) || file.startsWith('view/geometry/')) continue;
-      const text = readFileSync(path.join(KIT, file), 'utf8');
-      for (const word of personal) if (text.toLowerCase().includes(word.toLowerCase())) reasons.push(file + ' contains "' + word + '", a name from this computer');
-      const found = text.match(home);
-      if (found && !/tools\/(check|blend_file)\.mjs$|publish\/(release\.mjs|clean_blender_file\.py)$/.test(file)) reasons.push(file + ' contains a home-folder path: ' + found[0]);
-    }
+    // Nothing that ships may hold a password, key, token, personal detail or a name from this computer.
+    for (const finding of scanFiles(ship.map(file => path.join(KIT, file)), KIT)) reasons.push(describe(finding));
     const outDir = path.resolve(process.argv[2] || path.join(KIT, '..'));
     if (outDir === KIT || outDir.startsWith(KIT + path.sep)) reasons.push('The output folder is inside the kit. Choose one outside it, so this ZIP and its lists are not packed into the next one.');
     if (reasons.length) stop(reasons);

@@ -80,6 +80,7 @@ const scene=[];
 for(const data of model.parts){
  const packagedPart=packagedById.get(data.id);
  if(packagedPart.package!=='exterior'&&!data.is_cassette)continue;
+ if(config.accessories.assemblies.includes(data.assembly))continue;   // accessories are hidden until the Accessories switch shows them
  const alternative=altById.get(data.id),chunks=alternative?.meshes||data.meshes,blob=alternative?altRaw:raw,materials=alternative?alt.materials:model.materials;
  const triangleCount=chunks.reduce((sum,chunk)=>sum+chunk.i[1]/3,0),positions=new Float32Array(triangleCount*9),opaque=new Uint8Array(triangleCount),gripPoints=[];
  let triOffset=0;

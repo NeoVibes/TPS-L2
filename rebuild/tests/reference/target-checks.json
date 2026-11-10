@@ -688,6 +688,14 @@
     "size.clutch.spring.outer_diameter": {
       "value": 7.197,
       "status": "pass"
+    },
+    "wiring.playback_cables": {
+      "value": 2,
+      "status": "pass"
+    },
+    "wiring.external_motor_leads": {
+      "value": 4,
+      "status": "pass"
     }
   }
 }

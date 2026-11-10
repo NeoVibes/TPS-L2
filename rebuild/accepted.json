@@ -2,13 +2,195 @@
  "what": "The accepted state of the model: one fingerprint per part, each target's definition and outcome, and any confirmation level above 1. Written by \"npm run accept\".",
  "format": 2,
  "parts": {
+  "AA-001": {
+   "shape": "e9afdb748de67e08",
+   "poses": "b2a47201b6a9326e",
+   "spin": "3cc210bbe9baeb19",
+   "other": "aa1a82773a0ed67c",
+   "vertices": 10434,
+   "triangles": 13056,
+   "size_mm": [
+    0.014,
+    0.014,
+    0.05
+   ]
+  },
+  "AA-002": {
+   "shape": "e9afdb748de67e08",
+   "poses": "c90204838fc4a967",
+   "spin": "3cc210bbe9baeb19",
+   "other": "cd9544f818319e05",
+   "vertices": 10434,
+   "triangles": 13056,
+   "size_mm": [
+    0.014,
+    0.014,
+    0.05
+   ]
+  },
+  "AC31-001": {
+   "shape": "35bba8cde669c71c",
+   "poses": "39abf482246517ba",
+   "spin": "34e88fe9323c5187",
+   "other": "686bb89372d2806d",
+   "vertices": 5952,
+   "triangles": 3184,
+   "size_mm": [
+    0.055,
+    0.077,
+    0.037
+   ]
+  },
+  "AC31-002": {
+   "shape": "441bdce18751369f",
+   "poses": "5f5f2a3eb6a51c86",
+   "spin": "bd5ded21cdeef867",
+   "other": "e53543bc5e4554ae",
+   "vertices": 3784,
+   "triangles": 2212,
+   "size_mm": [
+    0.056,
+    0.077,
+    0.02
+   ]
+  },
+  "AC31-003": {
+   "shape": "ab98a338eec52eca",
+   "poses": "7208c01f91f5edfd",
+   "spin": "fa17432f63e87349",
+   "other": "590e6ea2de889146",
+   "vertices": 7938,
+   "triangles": 7082,
+   "size_mm": [
+    0.044,
+    0.05,
+    0
+   ]
+  },
+  "AC31-004": {
+   "shape": "1e3b5c34fb537949",
+   "poses": "0f2496827e580033",
+   "spin": "fa17432f63e87349",
+   "other": "4d3d6908cb65da4d",
+   "vertices": 2250,
+   "triangles": 1416,
+   "size_mm": [
+    0.023,
+    0.013,
+    0
+   ]
+  },
+  "AC31-005": {
+   "shape": "d7b0043d04cac21e",
+   "poses": "21da58fcf856b098",
+   "spin": "34e88fe9323c5187",
+   "other": "b6249b17fdb1a895",
+   "vertices": 6809,
+   "triangles": 3712,
+   "size_mm": [
+    0.001,
+    0.006,
+    0.016
+   ]
+  },
+  "AC31-006": {
+   "shape": "5e07ed2486c23dab",
+   "poses": "033a5a485f2f5b38",
+   "spin": "34e88fe9323c5187",
+   "other": "ce966294a48d0383",
+   "vertices": 6803,
+   "triangles": 3712,
+   "size_mm": [
+    0.001,
+    0.006,
+    0.016
+   ]
+  },
+  "AC31-007": {
+   "shape": "6cfe0490a90b7b6e",
+   "poses": "dbf62cbdebc366fb",
+   "spin": "34e88fe9323c5187",
+   "other": "02c939d3d04ace76",
+   "vertices": 952,
+   "triangles": 1900,
+   "size_mm": [
+    0.012,
+    0.021,
+    0.01
+   ]
+  },
+  "AC31-008": {
+   "shape": "61f7294850623f9b",
+   "poses": "c2cb5cca63594771",
+   "spin": "1c250c056570c74d",
+   "other": "935ba5ef835199f6",
+   "vertices": 20064,
+   "triangles": 40120,
+   "size_mm": [
+    0.089,
+    0.13,
+    0.022
+   ]
+  },
+  "AC31-009": {
+   "shape": "2f3ae57516b7cd19",
+   "poses": "33ea11a99cb8aac7",
+   "spin": "34e88fe9323c5187",
+   "other": "fcb210eab2c36837",
+   "vertices": 2752,
+   "triangles": 5244,
+   "size_mm": [
+    0.011,
+    0.009,
+    0.007
+   ]
+  },
+  "AC31-010": {
+   "shape": "74dadda0ba913a95",
+   "poses": "4810d6e8be166e57",
+   "spin": "438b8d81e87102ce",
+   "other": "ca5a325e2d3d15d4",
+   "vertices": 3317,
+   "triangles": 5219,
+   "size_mm": [
+    0.019,
+    0.015,
+    0.009
+   ]
+  },
+  "AC31-011": {
+   "shape": "31fa1fa52d816923",
+   "poses": "1d902d4f4a6d3675",
+   "spin": "34e88fe9323c5187",
+   "other": "5ca0fb808d59521f",
+   "vertices": 512,
+   "triangles": 1024,
+   "size_mm": [
+    0.01,
+    0.008,
+    0.005
+   ]
+  },
+  "AC31-012": {
+   "shape": "1b9f1eb265c85916",
+   "poses": "ec186eed3931dae4",
+   "spin": "438b8d81e87102ce",
+   "other": "c70c83bb76aa773c",
+   "vertices": 1216,
+   "triangles": 2432,
+   "size_mm": [
+    0.01,
+    0.008,
+    0.005
+   ]
+  },
   "BAS-001": {
-   "shape": "e0e647cc795144c6",
+   "shape": "a9a99e2330a5ec2b",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "5ea40e4a0d062c77",
-   "vertices": 25016,
-   "triangles": 14052,
+   "vertices": 25017,
+   "triangles": 14056,
    "size_mm": [
     68.7,
     19.55,
@@ -42,9 +224,9 @@
    ]
   },
   "BAT-010": {
-   "shape": "2d0a03cf761470d6",
+   "shape": "c668f458ec75c925",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
+   "spin": "b1b83f716fe9de83",
    "other": "0542659ba8e15444",
    "vertices": 4040,
    "triangles": 8036,
@@ -55,9 +237,9 @@
    ]
   },
   "BAT-011": {
-   "shape": "002802a92154cd5c",
+   "shape": "4afb71faded6737e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
+   "spin": "486cf0d56d549aa8",
    "other": "1acdfbd48f08ac3c",
    "vertices": 4040,
    "triangles": 8036,
@@ -380,14 +562,14 @@
    ]
   },
   "BAY-060": {
-   "shape": "d45bff82de99354a",
+   "shape": "1c13a4fb75ede2c4",
    "poses": "4e5cae778a166417",
-   "spin": "34e88fe9323c5187",
-   "other": "30f1633ed554713e",
-   "vertices": 2244,
-   "triangles": 1722,
+   "spin": "07a6d95043686dca",
+   "other": "de72db2733b5332d",
+   "vertices": 2484,
+   "triangles": 1938,
    "size_mm": [
-    6.3,
+    6.66,
     15.8,
     7.4
    ]
@@ -588,11 +770,11 @@
    ]
   },
   "CAP-101": {
-   "shape": "f18cc37821d807a2",
+   "shape": "1cbff60cad725a14",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "2f603eef2e3f5577",
-   "vertices": 3280,
+   "spin": "54d598ec7659c19a",
+   "other": "a6370aa657ebe76b",
+   "vertices": 3288,
    "triangles": 1860,
    "size_mm": [
     3.6,
@@ -601,11 +783,11 @@
    ]
   },
   "CAP-102": {
-   "shape": "e1181808b196f941",
+   "shape": "228df88b87abd960",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "e023cf9aea0e5998",
-   "vertices": 3280,
+   "spin": "54d598ec7659c19a",
+   "other": "3f2d0ee6c7669826",
+   "vertices": 3288,
    "triangles": 1860,
    "size_mm": [
     3.6,
@@ -640,11 +822,11 @@
    ]
   },
   "CAP-105": {
-   "shape": "2033ba6d496d44e4",
+   "shape": "37bd2f131f8d4f37",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "fe7f0865790a5410",
-   "vertices": 4000,
+   "spin": "54d598ec7659c19a",
+   "other": "8f579cccf7200f0c",
+   "vertices": 4008,
    "triangles": 2236,
    "size_mm": [
     3.6,
@@ -692,11 +874,11 @@
    ]
   },
   "CAP-109": {
-   "shape": "0340a6f1def615d4",
+   "shape": "199e7ccf744f147f",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "2a97ebb248280a5e",
-   "vertices": 3300,
+   "spin": "54d598ec7659c19a",
+   "other": "f6649d6124957937",
+   "vertices": 3308,
    "triangles": 1872,
    "size_mm": [
     3.6,
@@ -705,11 +887,11 @@
    ]
   },
   "CAP-110": {
-   "shape": "494840e022025ff1",
+   "shape": "82c0525cf5dc9f3e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "86b7963c0f80b6fb",
-   "vertices": 3340,
+   "spin": "54d598ec7659c19a",
+   "other": "9dc723bf85c748b9",
+   "vertices": 3348,
    "triangles": 1892,
    "size_mm": [
     3.6,
@@ -718,11 +900,11 @@
    ]
   },
   "CAP-111": {
-   "shape": "dbc67970c1b22614",
+   "shape": "251f9e71b449d986",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "68625d31c4018c06",
-   "vertices": 3308,
+   "spin": "54d598ec7659c19a",
+   "other": "849ba99e7b41ef2d",
+   "vertices": 3316,
    "triangles": 1880,
    "size_mm": [
     3.6,
@@ -744,11 +926,11 @@
    ]
   },
   "CAP-113": {
-   "shape": "123462f856121f6d",
+   "shape": "3bc4580c6991ecdd",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "597624653bcd1f9c",
-   "vertices": 3318,
+   "spin": "54d598ec7659c19a",
+   "other": "6cbcb7c9b248df89",
+   "vertices": 3326,
    "triangles": 1882,
    "size_mm": [
     3.6,
@@ -783,11 +965,11 @@
    ]
   },
   "CAP-116": {
-   "shape": "c084c467d13652dc",
+   "shape": "88988bd28db54801",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "036eb1a621f34dc8",
-   "vertices": 3716,
+   "spin": "54d598ec7659c19a",
+   "other": "adb4c78461da3d17",
+   "vertices": 3724,
    "triangles": 2064,
    "size_mm": [
     4.6,
@@ -796,11 +978,11 @@
    ]
   },
   "CAP-201": {
-   "shape": "b414f440db154bcd",
+   "shape": "1397648b54d3ba82",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "4723fcdfb1ab8047",
-   "vertices": 4000,
+   "spin": "54d598ec7659c19a",
+   "other": "6c2d73d29497e589",
+   "vertices": 4008,
    "triangles": 2236,
    "size_mm": [
     3.6,
@@ -809,11 +991,11 @@
    ]
   },
   "CAP-202": {
-   "shape": "17cb73751a960134",
+   "shape": "b3a13eb942a48785",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "6759a1c4b66a5620",
-   "vertices": 4000,
+   "spin": "54d598ec7659c19a",
+   "other": "fbbf5e5ce012069c",
+   "vertices": 4008,
    "triangles": 2236,
    "size_mm": [
     3.6,
@@ -848,11 +1030,11 @@
    ]
   },
   "CAP-205": {
-   "shape": "a96510af84ebb665",
+   "shape": "cf0989f7a7ea8048",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "dd673a9d9a1a7c64",
-   "vertices": 3276,
+   "spin": "54d598ec7659c19a",
+   "other": "5a996f398efde4af",
+   "vertices": 3284,
    "triangles": 1864,
    "size_mm": [
     3.6,
@@ -900,11 +1082,11 @@
    ]
   },
   "CAP-209": {
-   "shape": "cf6b9710605e5c8e",
+   "shape": "055fd5b4b5112e4f",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "a11a32b3f52e5028",
-   "vertices": 3320,
+   "spin": "54d598ec7659c19a",
+   "other": "7d5e8d7b5b842523",
+   "vertices": 3328,
    "triangles": 1884,
    "size_mm": [
     3.6,
@@ -913,11 +1095,11 @@
    ]
   },
   "CAP-210": {
-   "shape": "373100b37887fd3d",
+   "shape": "0364cd409b4d97b0",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "e54032f05a05db02",
-   "vertices": 4000,
+   "spin": "54d598ec7659c19a",
+   "other": "a36a4394dce44600",
+   "vertices": 4008,
    "triangles": 2236,
    "size_mm": [
     3.6,
@@ -926,11 +1108,11 @@
    ]
   },
   "CAP-211": {
-   "shape": "978978a285261d4d",
+   "shape": "92a1d2a416727b22",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "e1f7d135c4793549",
-   "vertices": 3280,
+   "spin": "54d598ec7659c19a",
+   "other": "d653d32af70d6716",
+   "vertices": 3288,
    "triangles": 1860,
    "size_mm": [
     3.6,
@@ -952,11 +1134,11 @@
    ]
   },
   "CAP-213": {
-   "shape": "af5adddf86aded46",
+   "shape": "ae1feda2a4aa6101",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "be264d78ee4b91cf",
-   "vertices": 3328,
+   "spin": "54d598ec7659c19a",
+   "other": "bf83f1a07fcd0595",
+   "vertices": 3336,
    "triangles": 1886,
    "size_mm": [
     3.6,
@@ -991,11 +1173,11 @@
    ]
   },
   "CAP-216": {
-   "shape": "e28062bc5c3edf3e",
+   "shape": "6e1e48165d31a138",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "335252a2fc5dd249",
-   "vertices": 4030,
+   "spin": "54d598ec7659c19a",
+   "other": "e704d46e5e5c75f4",
+   "vertices": 4038,
    "triangles": 2282,
    "size_mm": [
     4.6,
@@ -1004,11 +1186,11 @@
    ]
   },
   "CAP-301": {
-   "shape": "80f03a39873b6bc7",
+   "shape": "6be074d6717a37b8",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "54e2a0cec5a0a122",
-   "vertices": 3314,
+   "spin": "54d598ec7659c19a",
+   "other": "b651b5f9fb3baaf4",
+   "vertices": 3322,
    "triangles": 1878,
    "size_mm": [
     3.6,
@@ -1017,12 +1199,12 @@
    ]
   },
   "CAP-601": {
-   "shape": "6dd6b67c7079c13a",
+   "shape": "f3723b00a18aa5cc",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "abab83022c71aad1",
-   "vertices": 1254,
-   "triangles": 2384,
+   "spin": "54d598ec7659c19a",
+   "other": "dca62b721a727257",
+   "vertices": 1392,
+   "triangles": 2474,
    "size_mm": [
     3.7,
     2.526,
@@ -1030,12 +1212,12 @@
    ]
   },
   "CAP-602": {
-   "shape": "5187c18f75cb9d6c",
+   "shape": "c6a98ab6b4c39149",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "ebc5a49797c931ee",
-   "vertices": 1236,
-   "triangles": 2352,
+   "spin": "54d598ec7659c19a",
+   "other": "ac999e6dc3ae6361",
+   "vertices": 1378,
+   "triangles": 2442,
    "size_mm": [
     3.2,
     2.5,
@@ -1043,12 +1225,12 @@
    ]
   },
   "CAP-603": {
-   "shape": "baec4abb82efb8ae",
+   "shape": "bf1c277427e86ab8",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "3921ab3b8b5373e1",
-   "vertices": 1248,
-   "triangles": 2372,
+   "spin": "54d598ec7659c19a",
+   "other": "4f09e1ceb0967593",
+   "vertices": 1404,
+   "triangles": 2474,
    "size_mm": [
     3.2,
     2.526,
@@ -1056,12 +1238,12 @@
    ]
   },
   "CAP-604": {
-   "shape": "4a8ccacde2d489f7",
+   "shape": "725e06ade8618c3f",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "afaf652e1dec0821",
-   "vertices": 1260,
-   "triangles": 2396,
+   "spin": "54d598ec7659c19a",
+   "other": "9f079f9f829ea03e",
+   "vertices": 1407,
+   "triangles": 2498,
    "size_mm": [
     3.7,
     2.611,
@@ -1069,12 +1251,12 @@
    ]
   },
   "CAP-605": {
-   "shape": "d77baf5c81ccf278",
+   "shape": "a27602547070a25b",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "8d535b12b91449df",
-   "vertices": 1210,
-   "triangles": 2300,
+   "spin": "54d598ec7659c19a",
+   "other": "6bcb7a7b637e1838",
+   "vertices": 1340,
+   "triangles": 2390,
    "size_mm": [
     3.7,
     2.5,
@@ -1082,12 +1264,12 @@
    ]
   },
   "CAP-606": {
-   "shape": "a33fe904c43ab473",
+   "shape": "37f467ec6fa6003e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "fe0c368590d771eb",
-   "vertices": 1242,
-   "triangles": 2368,
+   "spin": "54d598ec7659c19a",
+   "other": "aa907a76626ac472",
+   "vertices": 1396,
+   "triangles": 2480,
    "size_mm": [
     3.7,
     2.695,
@@ -1095,12 +1277,12 @@
    ]
   },
   "CAP-607": {
-   "shape": "b7bef571ef41fc60",
+   "shape": "a9d076789c940728",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "44a4847ce31f3d81",
-   "vertices": 1246,
-   "triangles": 2376,
+   "spin": "54d598ec7659c19a",
+   "other": "262b35957f75adf7",
+   "vertices": 1392,
+   "triangles": 2474,
    "size_mm": [
     3.7,
     2.779,
@@ -1108,12 +1290,12 @@
    ]
   },
   "CAP-801": {
-   "shape": "4736759cf9c264f1",
+   "shape": "391f109d74326dc0",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "0cb9f2572341d2f5",
-   "vertices": 1164,
-   "triangles": 1964,
+   "spin": "54d598ec7659c19a",
+   "other": "3dd791d4a8720adf",
+   "vertices": 1236,
+   "triangles": 2034,
    "size_mm": [
     1.8,
     2.908,
@@ -1121,11 +1303,11 @@
    ]
   },
   "CAP-901": {
-   "shape": "4e3321b216e3c124",
+   "shape": "512796a1665a7f61",
    "poses": "79ebeaf67608f9b2",
-   "spin": "54d598ec7659c19a",
-   "other": "9e762a0065e22886",
-   "vertices": 3114,
+   "spin": "fa17432f63e87349",
+   "other": "499b58615fb6892c",
+   "vertices": 3195,
    "triangles": 5216,
    "size_mm": [
     12,
@@ -1359,12 +1541,12 @@
    "control": "d5cfde8e95bffd28"
   },
   "DIO-601": {
-   "shape": "d58fb755ee1f787c",
+   "shape": "3b19a37a6740ab39",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "19370efd0fba932c",
-   "vertices": 1408,
-   "triangles": 2604,
+   "spin": "54d598ec7659c19a",
+   "other": "fd32e65e76f199b4",
+   "vertices": 1598,
+   "triangles": 2772,
    "size_mm": [
     1.187,
     3.284,
@@ -1372,12 +1554,12 @@
    ]
   },
   "DIO-602": {
-   "shape": "88c5c1781594499a",
+   "shape": "44e4f1c7a597d976",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "00acad63f69ee4f7",
-   "vertices": 1403,
-   "triangles": 2598,
+   "spin": "54d598ec7659c19a",
+   "other": "88d12bcffc954d45",
+   "vertices": 1593,
+   "triangles": 2766,
    "size_mm": [
     3.284,
     1.39,
@@ -2048,10 +2230,10 @@
    ]
   },
   "EXT-061": {
-   "shape": "dfb5b2506ea68ae0",
+   "shape": "ef21a87aeeb0d9d1",
    "poses": "c82aa5b2cfcff3ee",
    "spin": "fa17432f63e87349",
-   "other": "eb8c6a4a499ecfd1",
+   "other": "6a0b03f23927afc6",
    "vertices": 3183,
    "triangles": 6110,
    "size_mm": [
@@ -2987,12 +3169,12 @@
    ]
   },
   "JB-001": {
-   "shape": "425e6e0c94675e37",
+   "shape": "94a03e31a26fd603",
    "poses": "79ebeaf67608f9b2",
-   "spin": "4661713e7360ffa7",
-   "other": "26a0d477e5221b6f",
-   "vertices": 93829,
-   "triangles": 84836,
+   "spin": "ce087abdc4e8f2f7",
+   "other": "45ffb534e10ca922",
+   "vertices": 94655,
+   "triangles": 85484,
    "size_mm": [
     68.315,
     17.086,
@@ -3091,9 +3273,9 @@
    ]
   },
   "JCK-21": {
-   "shape": "3864809197ea2d16",
+   "shape": "82435592efbad6dd",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
+   "spin": "7a643d00989bd995",
    "other": "3310fd6ec4260fce",
    "vertices": 496,
    "triangles": 398,
@@ -3104,9 +3286,9 @@
    ]
   },
   "JCK-22": {
-   "shape": "19d6df4cebcc6a86",
+   "shape": "07de490d3b129d26",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
+   "spin": "5d20c800ed6c1b4e",
    "other": "e54db782fcdc15ca",
    "vertices": 501,
    "triangles": 398,
@@ -3117,9 +3299,9 @@
    ]
   },
   "JCK-23": {
-   "shape": "9c129122b3883b51",
+   "shape": "76433e5f0c08192b",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
+   "spin": "38ad50533ca4b849",
    "other": "4fe0479872162e41",
    "vertices": 597,
    "triangles": 478,
@@ -3130,9 +3312,9 @@
    ]
   },
   "JCK-24": {
-   "shape": "643c586ee900fd5a",
+   "shape": "19de9107c59b5615",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
+   "spin": "4cb5be96e1dac435",
    "other": "2c820749c6c9f5ab",
    "vertices": 433,
    "triangles": 354,
@@ -3208,12 +3390,12 @@
    ]
   },
   "JCK-36": {
-   "shape": "432a542225376150",
+   "shape": "759de6ef5513a8ce",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "5d4f436c2fc2578c",
-   "vertices": 1734,
-   "triangles": 2054,
+   "spin": "244c6c148a814820",
+   "other": "22f32a55a016b4fb",
+   "vertices": 1794,
+   "triangles": 2122,
    "size_mm": [
     1.9,
     7.05,
@@ -3247,12 +3429,12 @@
    ]
   },
   "JCK-39": {
-   "shape": "b9bb3ebb68448cc1",
+   "shape": "9f8b93cf9321b3a5",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "2343d1d7c0a6f7c5",
-   "vertices": 512,
-   "triangles": 512,
+   "vertices": 540,
+   "triangles": 536,
    "size_mm": [
     0.35,
     4.1,
@@ -3455,16 +3637,16 @@
    ]
   },
   "MB-001": {
-   "shape": "ade3155332b3dcb3",
+   "shape": "185b37914a757e0e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "862b56f7afbefe9a",
-   "other": "c0e7ced5bdd3db35",
-   "vertices": 262783,
-   "triangles": 157064,
+   "spin": "1c6bf74f9c0214c5",
+   "other": "a9008c3436eb3062",
+   "vertices": 268745,
+   "triangles": 160856,
    "size_mm": [
     79.544,
     51.126,
-    1.1
+    1.653
    ]
   },
   "MB-010": {
@@ -3543,6 +3725,331 @@
     20.117,
     2,
     7.05
+   ]
+  },
+  "MDR-001": {
+   "shape": "f75c9407447c10c6",
+   "poses": "2b2322ef006c6fd5",
+   "spin": "34e88fe9323c5187",
+   "other": "20f2204d5a24adb6",
+   "vertices": 3300,
+   "triangles": 6596,
+   "size_mm": [
+    0.149,
+    0.049,
+    0.01
+   ]
+  },
+  "MDR-020": {
+   "shape": "6a37473d8604bbba",
+   "poses": "07d5918fee8b05a6",
+   "spin": "34e88fe9323c5187",
+   "other": "973e058f6a3d6157",
+   "vertices": 200,
+   "triangles": 396,
+   "size_mm": [
+    0.004,
+    0.006,
+    0.003
+   ]
+  },
+  "MDR-021": {
+   "shape": "3c5e19e5f0fd7c20",
+   "poses": "3ddcf27115b92c1d",
+   "spin": "25c38028f5573398",
+   "other": "460919ee0db5d865",
+   "vertices": 45408,
+   "triangles": 90808,
+   "size_mm": [
+    0.081,
+    0.039,
+    0.012
+   ]
+  },
+  "MDR-022": {
+   "shape": "4a86a89a9f63740f",
+   "poses": "76236cf311d6f5a6",
+   "spin": "34e88fe9323c5187",
+   "other": "bba908ec2a9aa193",
+   "vertices": 320,
+   "triangles": 640,
+   "size_mm": [
+    0.009,
+    0.025,
+    0.012
+   ]
+  },
+  "MDR-023": {
+   "shape": "84e5d5a42cb053a2",
+   "poses": "a25867900da9d3ea",
+   "spin": "34e88fe9323c5187",
+   "other": "f46b91c8e2862abc",
+   "vertices": 3264,
+   "triangles": 6524,
+   "size_mm": [
+    0.017,
+    0.008,
+    0.006
+   ]
+  },
+  "MDR-024": {
+   "shape": "ffcc972a3aacd143",
+   "poses": "cc38d4460b613c77",
+   "spin": "438b8d81e87102ce",
+   "other": "c48f1f12ced86abe",
+   "vertices": 1400,
+   "triangles": 1684,
+   "size_mm": [
+    0.02,
+    0.011,
+    0.007
+   ]
+  },
+  "MDR-025": {
+   "shape": "67c1e064f3ffa4c5",
+   "poses": "4910e7ab8db5e919",
+   "spin": "bd5ded21cdeef867",
+   "other": "f39f58fc7bf53b06",
+   "vertices": 1297,
+   "triangles": 2574,
+   "size_mm": [
+    0.015,
+    0.007,
+    0.005
+   ]
+  },
+  "MDR-L-01": {
+   "shape": "bf9f370118c5baef",
+   "poses": "de7f49441ccf11ce",
+   "spin": "34e88fe9323c5187",
+   "other": "00d612c9d7812536",
+   "vertices": 1200,
+   "triangles": 2400,
+   "size_mm": [
+    0.009,
+    0.018,
+    0.009
+   ]
+  },
+  "MDR-L-02": {
+   "shape": "3260fe2c1f5769b3",
+   "poses": "c6388f36ea3530e6",
+   "spin": "438b8d81e87102ce",
+   "other": "5617eab85fc9252a",
+   "vertices": 1720,
+   "triangles": 3432,
+   "size_mm": [
+    0.014,
+    0.057,
+    0.013
+   ]
+  },
+  "MDR-L-03": {
+   "shape": "439421aecdd4ceea",
+   "poses": "94d3d80cb9145537",
+   "spin": "54d598ec7659c19a",
+   "other": "e714a5e0906650f4",
+   "vertices": 3556,
+   "triangles": 2632,
+   "size_mm": [
+    0.025,
+    0.037,
+    0.025
+   ]
+  },
+  "MDR-L-04": {
+   "shape": "df47e4dc1be0619c",
+   "poses": "e30a937ece18e8ab",
+   "spin": "34e88fe9323c5187",
+   "other": "e4e3a727d53dff9f",
+   "vertices": 1250,
+   "triangles": 2496,
+   "size_mm": [
+    0.021,
+    0.029,
+    0.029
+   ]
+  },
+  "MDR-L-05": {
+   "shape": "02af0b5b7f165d02",
+   "poses": "e30a937ece18e8ab",
+   "spin": "34e88fe9323c5187",
+   "other": "9b03ecfffc7254cd",
+   "vertices": 674,
+   "triangles": 1344,
+   "size_mm": [
+    0.014,
+    0.021,
+    0.021
+   ]
+  },
+  "MDR-L-06": {
+   "shape": "ab2074df38326bb4",
+   "poses": "e30a937ece18e8ab",
+   "spin": "fa17432f63e87349",
+   "other": "6772ba555203b326",
+   "vertices": 20318,
+   "triangles": 10632,
+   "size_mm": [
+    0.015,
+    0.023,
+    0.023
+   ]
+  },
+  "MDR-L-07": {
+   "shape": "c4e75af5b18e42dd",
+   "poses": "e30a937ece18e8ab",
+   "spin": "34e88fe9323c5187",
+   "other": "cff9a03b84362c71",
+   "vertices": 2802,
+   "triangles": 5600,
+   "size_mm": [
+    0.028,
+    0.036,
+    0.037
+   ]
+  },
+  "MDR-L-08": {
+   "shape": "979879222b3e940e",
+   "poses": "130e8209b178fd86",
+   "spin": "34e88fe9323c5187",
+   "other": "06cb6f16e24022b0",
+   "vertices": 384,
+   "triangles": 764,
+   "size_mm": [
+    0.007,
+    0.009,
+    0.005
+   ]
+  },
+  "MDR-L-09": {
+   "shape": "3f030b3b754cbf71",
+   "poses": "886dcdba2b52d750",
+   "spin": "34e88fe9323c5187",
+   "other": "3ec1794ef3ed3e18",
+   "vertices": 708,
+   "triangles": 1412,
+   "size_mm": [
+    0.034,
+    0.017,
+    0.022
+   ]
+  },
+  "MDR-R-01": {
+   "shape": "2434cc5d99d42cd9",
+   "poses": "8034018e6eb3d69a",
+   "spin": "34e88fe9323c5187",
+   "other": "56d91d001fd37c69",
+   "vertices": 1200,
+   "triangles": 2400,
+   "size_mm": [
+    0.009,
+    0.018,
+    0.009
+   ]
+  },
+  "MDR-R-02": {
+   "shape": "1c6d3243a3100bab",
+   "poses": "d4ad8a280120e928",
+   "spin": "438b8d81e87102ce",
+   "other": "90434d0f14e86399",
+   "vertices": 1720,
+   "triangles": 3432,
+   "size_mm": [
+    0.014,
+    0.057,
+    0.013
+   ]
+  },
+  "MDR-R-03": {
+   "shape": "6649070cd8041ba6",
+   "poses": "d9f60bd28bf96f65",
+   "spin": "54d598ec7659c19a",
+   "other": "9cd2a1eadf56649e",
+   "vertices": 3556,
+   "triangles": 2632,
+   "size_mm": [
+    0.025,
+    0.037,
+    0.025
+   ]
+  },
+  "MDR-R-04": {
+   "shape": "671cee2533686c61",
+   "poses": "3d94c5dd667e868d",
+   "spin": "34e88fe9323c5187",
+   "other": "b3d47ab39b9091d6",
+   "vertices": 1250,
+   "triangles": 2496,
+   "size_mm": [
+    0.021,
+    0.029,
+    0.029
+   ]
+  },
+  "MDR-R-05": {
+   "shape": "37a6541f6e1dfe5b",
+   "poses": "3d94c5dd667e868d",
+   "spin": "34e88fe9323c5187",
+   "other": "2a9e728184f3794d",
+   "vertices": 674,
+   "triangles": 1344,
+   "size_mm": [
+    0.014,
+    0.021,
+    0.021
+   ]
+  },
+  "MDR-R-06": {
+   "shape": "23d7604bdb8303aa",
+   "poses": "3d94c5dd667e868d",
+   "spin": "fa17432f63e87349",
+   "other": "a0a3ecf51017568c",
+   "vertices": 20564,
+   "triangles": 10848,
+   "size_mm": [
+    0.015,
+    0.023,
+    0.023
+   ]
+  },
+  "MDR-R-07": {
+   "shape": "cbc390bf98e2c87d",
+   "poses": "3d94c5dd667e868d",
+   "spin": "34e88fe9323c5187",
+   "other": "f889a466ca45658a",
+   "vertices": 2802,
+   "triangles": 5600,
+   "size_mm": [
+    0.028,
+    0.036,
+    0.036
+   ]
+  },
+  "MDR-R-08": {
+   "shape": "fb8d97930c83fb6d",
+   "poses": "19806779522592cc",
+   "spin": "34e88fe9323c5187",
+   "other": "e76173d00aa55c1b",
+   "vertices": 384,
+   "triangles": 764,
+   "size_mm": [
+    0.007,
+    0.009,
+    0.005
+   ]
+  },
+  "MDR-R-09": {
+   "shape": "414ec4a8d34e38dd",
+   "poses": "5bba749e65fe9697",
+   "spin": "34e88fe9323c5187",
+   "other": "be9c3594acbe14fb",
+   "vertices": 624,
+   "triangles": 1244,
+   "size_mm": [
+    0.044,
+    0.018,
+    0.022
    ]
   },
   "MEC-001": {
@@ -4105,12 +4612,12 @@
    ]
   },
   "MTR-030": {
-   "shape": "edbd7da7a7e57e9c",
+   "shape": "389f5bb3c1c9c8c5",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
    "other": "ce28960018dde5c7",
-   "vertices": 11154,
-   "triangles": 7460,
+   "vertices": 4841,
+   "triangles": 4138,
    "size_mm": [
     11.2,
     6.5,
@@ -4277,7 +4784,7 @@
    "shape": "e166c34193f56e07",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "a2ae106adf8e34bc",
+   "other": "b3cec2def82582b1",
    "vertices": 4920,
    "triangles": 3352,
    "size_mm": [
@@ -4290,7 +4797,7 @@
    "shape": "fdb6ff8156e3b79e",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "60d6cc4f7dd6ec6a",
+   "other": "2a53565fef5aff3e",
    "vertices": 5146,
    "triangles": 3516,
    "size_mm": [
@@ -4303,7 +4810,7 @@
    "shape": "66fb8334056d6760",
    "poses": "79ebeaf67608f9b2",
    "spin": "07a6d95043686dca",
-   "other": "0c2d195951940e59",
+   "other": "bc50c32d70061b02",
    "vertices": 4756,
    "triangles": 2852,
    "size_mm": [
@@ -4316,7 +4823,7 @@
    "shape": "4cbe245506f26987",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "dc26ed2e370f828c",
+   "other": "2e3df1c92b9079a7",
    "vertices": 4940,
    "triangles": 3352,
    "size_mm": [
@@ -4329,7 +4836,7 @@
    "shape": "5a4a193d918c97d8",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "abd28c8827dd9bc0",
+   "other": "745c9adfb62feec3",
    "vertices": 5164,
    "triangles": 3352,
    "size_mm": [
@@ -4342,7 +4849,7 @@
    "shape": "97dbb608241def9a",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "59fa7b7c4bfb5714",
+   "other": "6933905db4e48d3e",
    "vertices": 5204,
    "triangles": 3348,
    "size_mm": [
@@ -4355,7 +4862,7 @@
    "shape": "6f935369bdf7eee8",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "e2907ff87fe08fd4",
+   "other": "82b7d18645dbac2f",
    "vertices": 5208,
    "triangles": 3352,
    "size_mm": [
@@ -4368,7 +4875,7 @@
    "shape": "816e1c25d4cfe3af",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "2827ec40243cc558",
+   "other": "aa0b4ba9a12a39a7",
    "vertices": 5408,
    "triangles": 3516,
    "size_mm": [
@@ -4381,7 +4888,7 @@
    "shape": "865c1b3c84e3d726",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "cd66ba6376e3b1cb",
+   "other": "9f5b5cb8006b8b20",
    "vertices": 5158,
    "triangles": 3352,
    "size_mm": [
@@ -4394,7 +4901,7 @@
    "shape": "80a26a9b68b47de5",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "7f397baf80364041",
+   "other": "5005c796f9ba38a4",
    "vertices": 5206,
    "triangles": 3352,
    "size_mm": [
@@ -4407,7 +4914,7 @@
    "shape": "5d83ba32402f1b2d",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "a858010c20a72813",
+   "other": "973001dfb832edae",
    "vertices": 5128,
    "triangles": 3348,
    "size_mm": [
@@ -4420,7 +4927,7 @@
    "shape": "dd2f31062b1d82ef",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "c2b203e64280ed71",
+   "other": "3c44863d2ef04326",
    "vertices": 5194,
    "triangles": 3348,
    "size_mm": [
@@ -4433,7 +4940,7 @@
    "shape": "1ad970b2c562e776",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "de593d48f51c3bcb",
+   "other": "c5cbf3e80317cfa3",
    "vertices": 5246,
    "triangles": 3348,
    "size_mm": [
@@ -4446,7 +4953,7 @@
    "shape": "4882b62ed652b3ad",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "83f54c82283ac8b3",
+   "other": "0b339d4aec019dc0",
    "vertices": 5034,
    "triangles": 3352,
    "size_mm": [
@@ -4459,7 +4966,7 @@
    "shape": "b0965575944e98fb",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "25eba877f59beee3",
+   "other": "c6dc2181e09290ff",
    "vertices": 5320,
    "triangles": 3516,
    "size_mm": [
@@ -4472,7 +4979,7 @@
    "shape": "74e957ffc154ac9a",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "004b2c78b795f7a8",
+   "other": "40dd13069daab1e9",
    "vertices": 5408,
    "triangles": 3516,
    "size_mm": [
@@ -4485,7 +4992,7 @@
    "shape": "20de772779b2aff1",
    "poses": "79ebeaf67608f9b2",
    "spin": "fa17432f63e87349",
-   "other": "3e803638574c086a",
+   "other": "f5fcfedc657cbef2",
    "vertices": 5351,
    "triangles": 3552,
    "size_mm": [
@@ -4498,7 +5005,7 @@
    "shape": "81a210d5f73b61de",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "00dfda4242413caf",
+   "other": "a42bb022328b63f8",
    "vertices": 5234,
    "triangles": 3516,
    "size_mm": [
@@ -4511,7 +5018,7 @@
    "shape": "7045c6678376aa0d",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "5622ea0e3c92ee26",
+   "other": "b092e69eb58b76c6",
    "vertices": 5100,
    "triangles": 3352,
    "size_mm": [
@@ -4524,7 +5031,7 @@
    "shape": "f5bbb8fd603af5cd",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "e9bf5320764f9da2",
+   "other": "145f5098622ae2bf",
    "vertices": 5256,
    "triangles": 3352,
    "size_mm": [
@@ -4537,7 +5044,7 @@
    "shape": "6f9348fd121a4ab8",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "2ed5222096183d62",
+   "other": "89c0358cb02ce18c",
    "vertices": 5222,
    "triangles": 3350,
    "size_mm": [
@@ -4550,7 +5057,7 @@
    "shape": "7cc05b88b7e8770f",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "293233bdf7924e94",
+   "other": "824b025dcb90fb4d",
    "vertices": 5462,
    "triangles": 3516,
    "size_mm": [
@@ -4563,7 +5070,7 @@
    "shape": "d68c4343a9e1ea89",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "b2d48e1b33831c30",
+   "other": "449c2ed2da750022",
    "vertices": 5114,
    "triangles": 3352,
    "size_mm": [
@@ -4576,7 +5083,7 @@
    "shape": "fd741a0208cb4421",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "ead7208ccd190a15",
+   "other": "e88f5a784139fca9",
    "vertices": 5156,
    "triangles": 3350,
    "size_mm": [
@@ -4589,7 +5096,7 @@
    "shape": "c81a2b27f16a1e60",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "6ded4af7169e721f",
+   "other": "0550d645bab9bfab",
    "vertices": 5130,
    "triangles": 3348,
    "size_mm": [
@@ -4602,7 +5109,7 @@
    "shape": "7a3244bdc2851172",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "f4e105c1d787eb8f",
+   "other": "84d42106646551f8",
    "vertices": 5168,
    "triangles": 3350,
    "size_mm": [
@@ -4615,7 +5122,7 @@
    "shape": "bec021ba99edc59c",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "74758fa96469d464",
+   "other": "108aad958b83e159",
    "vertices": 5096,
    "triangles": 3348,
    "size_mm": [
@@ -4628,7 +5135,7 @@
    "shape": "ad2291c267f9be97",
    "poses": "79ebeaf67608f9b2",
    "spin": "bd5ded21cdeef867",
-   "other": "bf973e7fe2505b8e",
+   "other": "133f1a04c136f77f",
    "vertices": 5196,
    "triangles": 3348,
    "size_mm": [
@@ -4651,11 +5158,11 @@
    ]
   },
   "RES-601": {
-   "shape": "785303c338198a79",
+   "shape": "7ed3c1977faa0acf",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "76f17a51dc58171a",
-   "vertices": 1896,
+   "other": "0750f2674a2675a2",
+   "vertices": 1888,
    "triangles": 2908,
    "size_mm": [
     1.46,
@@ -4664,10 +5171,10 @@
    ]
   },
   "RES-602": {
-   "shape": "1c6eb2f02aa2b140",
+   "shape": "d876951455f1284e",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "1227956c9efcbb12",
+   "other": "5e769e2c5df3cffa",
    "vertices": 1880,
    "triangles": 2892,
    "size_mm": [
@@ -4677,11 +5184,11 @@
    ]
   },
   "RES-603": {
-   "shape": "114c8de774721049",
+   "shape": "7991c2e14137159a",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "b488edaff175b2c4",
-   "vertices": 1904,
+   "other": "108fa149d1952ed3",
+   "vertices": 1896,
    "triangles": 2924,
    "size_mm": [
     4.455,
@@ -4690,11 +5197,11 @@
    ]
   },
   "RES-604": {
-   "shape": "2c5ce8208274af0e",
+   "shape": "d8cdaa2f5f72c995",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "1d33c346505db76f",
-   "vertices": 1892,
+   "other": "30d406d571632448",
+   "vertices": 1886,
    "triangles": 2904,
    "size_mm": [
     3.235,
@@ -4703,11 +5210,11 @@
    ]
   },
   "RES-605": {
-   "shape": "39c3de28c49e912b",
+   "shape": "527f74ced0e4ac7e",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "a4ba3b0597c37821",
-   "vertices": 1896,
+   "other": "91adcad8cd8e949d",
+   "vertices": 1888,
    "triangles": 2908,
    "size_mm": [
     1.972,
@@ -4716,11 +5223,11 @@
    ]
   },
   "RES-606": {
-   "shape": "147d33e17b096352",
+   "shape": "f090ee3c183fdd12",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
-   "other": "08c9ede204eb396b",
-   "vertices": 1768,
+   "other": "aa89283448ac445c",
+   "vertices": 1804,
    "triangles": 2684,
    "size_mm": [
     2.099,
@@ -4729,11 +5236,11 @@
    ]
   },
   "RES-607": {
-   "shape": "7edf315dc5520269",
+   "shape": "78a238daa6890c98",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
    "other": "8923bc21fa2112b5",
-   "vertices": 1753,
+   "vertices": 1771,
    "triangles": 2674,
    "size_mm": [
     6.23,
@@ -4742,11 +5249,11 @@
    ]
   },
   "RES-608": {
-   "shape": "5df870486d573e39",
+   "shape": "8eb82f65130d0fd0",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
    "other": "1c44b7cdbae127c1",
-   "vertices": 1755,
+   "vertices": 1775,
    "triangles": 2676,
    "size_mm": [
     1.46,
@@ -4755,11 +5262,11 @@
    ]
   },
   "RES-609": {
-   "shape": "d76658c910ad3260",
+   "shape": "551f34bb83a78dd0",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
    "other": "565d05dac3df10b0",
-   "vertices": 1755,
+   "vertices": 1773,
    "triangles": 2676,
    "size_mm": [
     6.188,
@@ -4768,11 +5275,11 @@
    ]
   },
   "RES-610": {
-   "shape": "a837328f01413f42",
+   "shape": "d5b3b53ecb94f72f",
    "poses": "79ebeaf67608f9b2",
    "spin": "3cc210bbe9baeb19",
    "other": "dd1d49f9f2604851",
-   "vertices": 1752,
+   "vertices": 1772,
    "triangles": 2672,
    "size_mm": [
     1.46,
@@ -4923,6 +5430,58 @@
     6.714
    ]
   },
+  "RET-101": {
+   "shape": "66fb5da2ecbd0554",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "0e70647037863dbd",
+   "other": "a6c0e9a8947cfdf1",
+   "vertices": 11718,
+   "triangles": 16112,
+   "size_mm": [
+    11.67,
+    18.925,
+    1.457
+   ]
+  },
+  "RET-102": {
+   "shape": "b222d8e85c3371c6",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "34e88fe9323c5187",
+   "other": "c40643554b221a7b",
+   "vertices": 4843,
+   "triangles": 3596,
+   "size_mm": [
+    4.92,
+    17.88,
+    1.553
+   ]
+  },
+  "RET-103": {
+   "shape": "bf3b1285dd4d3ad0",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "34e88fe9323c5187",
+   "other": "5180002103b42762",
+   "vertices": 236,
+   "triangles": 148,
+   "size_mm": [
+    17.705,
+    0.58,
+    1.014
+   ]
+  },
+  "RET-104": {
+   "shape": "b16803aab5616791",
+   "poses": "aeeab6b2aa4354ac",
+   "spin": "34e88fe9323c5187",
+   "other": "c23a5bbdccd543be",
+   "vertices": 120,
+   "triangles": 68,
+   "size_mm": [
+    4.57,
+    0.7,
+    2.87
+   ]
+  },
   "RLC-001": {
    "shape": "8caddafd7c77afb5",
    "poses": "b6a30984974c975f",
@@ -4976,12 +5535,12 @@
    ]
   },
   "SB-001": {
-   "shape": "b757048f3a87d5a7",
+   "shape": "8ef7edf408ebf3a5",
    "poses": "79ebeaf67608f9b2",
-   "spin": "b225a766468b2ade",
-   "other": "80381eb086f0ee30",
-   "vertices": 145079,
-   "triangles": 125068,
+   "spin": "9e45ad1a3ec01583",
+   "other": "b27fe97e05db9a6e",
+   "vertices": 145143,
+   "triangles": 125128,
    "size_mm": [
     44.698,
     31.44,
@@ -4989,12 +5548,12 @@
    ]
   },
   "SB-101": {
-   "shape": "552a63c4a87f009e",
+   "shape": "abfee37132a6578d",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "c393dd4507a6166f",
-   "vertices": 14525,
-   "triangles": 29046,
+   "vertices": 15560,
+   "triangles": 29372,
    "size_mm": [
     39.095,
     9.644,
@@ -5626,10 +6185,10 @@
    ]
   },
   "SWT-002": {
-   "shape": "1150348d6df24c48",
+   "shape": "06e9e343e9725a83",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "7bdc9ab8f979ff1b",
+   "spin": "6598cfff161172bb",
+   "other": "396289c34ac792a1",
    "vertices": 928,
    "triangles": 1300,
    "size_mm": [
@@ -5642,7 +6201,7 @@
    "shape": "23fabe7316e9d994",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
-   "other": "5b1197d90440d38b",
+   "other": "d25bcbbbc3f62ce3",
    "vertices": 920,
    "triangles": 1300,
    "size_mm": [
@@ -5652,10 +6211,10 @@
    ]
   },
   "SWT-004": {
-   "shape": "1e33f9e2681c1cae",
+   "shape": "cf5b1d2738af6e06",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
-   "other": "040971c2a252b41f",
+   "spin": "07ec0dae47814733",
+   "other": "b87e02b1b6706596",
    "vertices": 512,
    "triangles": 508,
    "size_mm": [
@@ -5691,10 +6250,10 @@
    ]
   },
   "SWT-007": {
-   "shape": "328745b1be4fd970",
+   "shape": "7cbf1ad4160e16c8",
    "poses": "79ebeaf67608f9b2",
-   "spin": "34e88fe9323c5187",
-   "other": "93951f946b9457ba",
+   "spin": "70195fe529098f7c",
+   "other": "0178f77253ad892f",
    "vertices": 40,
    "triangles": 28,
    "size_mm": [
@@ -5704,11 +6263,11 @@
    ]
   },
   "THP-601": {
-   "shape": "69057840e41b73d1",
+   "shape": "e0795b0dedeebf2c",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
    "other": "4d9f42fc9cd7e38c",
-   "vertices": 1425,
+   "vertices": 1445,
    "triangles": 2648,
    "size_mm": [
     3.621,
@@ -5835,30 +6394,30 @@
    "control": "29a04e6de63a2c75"
   },
   "TNE-021": {
-   "shape": "ddc28b6d090d9ca3",
+   "shape": "03e6ccbf4b8f93a2",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "b963076ccefdc623",
-   "vertices": 24,
-   "triangles": 12,
+   "vertices": 116,
+   "triangles": 60,
    "size_mm": [
-    3.848,
-    0.5,
-    0.15
+    0.633,
+    4.553,
+    0.175
    ],
    "control": "29a04e6de63a2c75"
   },
   "TNE-022": {
-   "shape": "1dc89264b10c435a",
+   "shape": "380ea63359a90bea",
    "poses": "79ebeaf67608f9b2",
    "spin": "34e88fe9323c5187",
    "other": "942b60908f7740da",
-   "vertices": 24,
-   "triangles": 12,
+   "vertices": 114,
+   "triangles": 60,
    "size_mm": [
-    3.715,
-    0.5,
-    0.15
+    0.777,
+    4.567,
+    0.175
    ],
    "control": "29a04e6de63a2c75"
   },
@@ -5954,11 +6513,11 @@
    ]
   },
   "TR-601": {
-   "shape": "4b6f9eb350e77170",
+   "shape": "1ebd8a3d5e2c81e8",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
    "other": "8a3d146a02bc3170",
-   "vertices": 1491,
+   "vertices": 1509,
    "triangles": 2412,
    "size_mm": [
     5.4,
@@ -5967,11 +6526,11 @@
    ]
   },
   "TR-602": {
-   "shape": "a5ff0cf82bac5c19",
+   "shape": "fd04982753be5bda",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
    "other": "ffdccdaba110bcd6",
-   "vertices": 1514,
+   "vertices": 1532,
    "triangles": 2428,
    "size_mm": [
     5.4,
@@ -5980,11 +6539,11 @@
    ]
   },
   "TR-603": {
-   "shape": "1b3cacdd3523c64b",
+   "shape": "c4931295ce873fbf",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
    "other": "358d0f8d1837c4bc",
-   "vertices": 1479,
+   "vertices": 1497,
    "triangles": 2402,
    "size_mm": [
     5,
@@ -5993,7 +6552,7 @@
    ]
   },
   "VOL-001": {
-   "shape": "3c67955321fa8446",
+   "shape": "5863273e7278091e",
    "poses": "79ebeaf67608f9b2",
    "spin": "54d598ec7659c19a",
    "other": "600a0beefd9f133a",
@@ -6311,64 +6870,103 @@
    ]
   },
   "WIR-611": {
-   "shape": "d93b7f040c032d09",
+   "shape": "e6d331aadc82abb6",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "7b5fc3be73b61e96",
-   "vertices": 17640,
-   "triangles": 35084,
+   "spin": "54d598ec7659c19a",
+   "other": "29b19032efd04ae6",
+   "vertices": 18592,
+   "triangles": 36952,
    "size_mm": [
-    12.717,
-    13.184,
+    12.567,
+    13.094,
     7.373
    ]
   },
   "WIR-612": {
-   "shape": "afc3443d7387f1df",
+   "shape": "5bf8cf6f960a28eb",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "ccac39bb25689411",
-   "vertices": 20784,
-   "triangles": 41372,
+   "spin": "54d598ec7659c19a",
+   "other": "c3de0583f05602f6",
+   "vertices": 22064,
+   "triangles": 43896,
    "size_mm": [
-    12.053,
-    17.149,
+    15.06,
+    16.21,
     8.308
    ]
   },
   "WIR-901": {
-   "shape": "cbfb979f3756446f",
+   "shape": "ab6a5f0117d3670c",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "c7d5b15d05c19e3f",
-   "vertices": 1796,
-   "triangles": 3308,
+   "spin": "bd5ded21cdeef867",
+   "other": "5d4dc68389d28859",
+   "vertices": 2192,
+   "triangles": 3968,
    "size_mm": [
-    3.737,
-    4.965,
-    3.061
+    21.714,
+    8.443,
+    3.382
    ]
   },
   "WIR-902": {
-   "shape": "160dd3ef0a9b477e",
+   "shape": "afc4044b25becc30",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "bd5ded21cdeef867",
+   "other": "ccfbee2601a6f577",
+   "vertices": 1912,
+   "triangles": 3496,
+   "size_mm": [
+    38.824,
+    6.602,
+    3.844
+   ]
+  },
+  "WIR-AF-01": {
+   "shape": "ec876ebd841284a0",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
-   "other": "030842f561a81af9",
-   "vertices": 1488,
-   "triangles": 2780,
+   "other": "fc25d4db52e4a9cf",
+   "vertices": 3558,
+   "triangles": 7036,
    "size_mm": [
-    4.469,
-    3.39,
-    3.294
+    12.181,
+    34.554,
+    1.231
+   ]
+  },
+  "WIR-IN-01": {
+   "shape": "aad90b4946672acf",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "7eb3edf8c4dfa6b0",
+   "vertices": 4080,
+   "triangles": 8080,
+   "size_mm": [
+    37.495,
+    13.298,
+    1.232
+   ]
+  },
+  "WIR-IN-02": {
+   "shape": "62e769ab1ffc9481",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "d5683325352a15d2",
+   "vertices": 3846,
+   "triangles": 7612,
+   "size_mm": [
+    30.807,
+    12.639,
+    1.222
    ]
   },
   "WIR-MIC-01": {
-   "shape": "88b1026e71d66d30",
+   "shape": "e447737c9041e485",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "30fb4e5737464814",
-   "vertices": 5180,
-   "triangles": 9884,
+   "spin": "54d598ec7659c19a",
+   "other": "bb41bd7faa8a5d2e",
+   "vertices": 5540,
+   "triangles": 10568,
    "size_mm": [
     17.371,
     6.259,
@@ -6376,12 +6974,12 @@
    ]
   },
   "WIR-MIC-02": {
-   "shape": "d14a7d6039ca013e",
+   "shape": "2799c9fb146bfa8d",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "30c1ed027f79dda8",
-   "vertices": 5976,
-   "triangles": 11756,
+   "spin": "54d598ec7659c19a",
+   "other": "80ad5db5c0c44bb2",
+   "vertices": 6320,
+   "triangles": 12408,
    "size_mm": [
     21.081,
     5.442,
@@ -6389,51 +6987,64 @@
    ]
   },
   "WIR-MIC-03": {
-   "shape": "514a2c12209107c9",
+   "shape": "ac2514f753b3e4d1",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "ad6a36dd4d228228",
-   "vertices": 5544,
-   "triangles": 10892,
+   "spin": "54d598ec7659c19a",
+   "other": "60778dea36e605cf",
+   "vertices": 5848,
+   "triangles": 11464,
    "size_mm": [
     20.079,
     6.448,
     3.756
    ]
   },
-  "WIR-MTR-01": {
-   "shape": "72a382e0b766268b",
+  "WIR-MIC-04": {
+   "shape": "e7523af540d2d1f0",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
-   "other": "db5baa891913d45c",
-   "vertices": 13632,
-   "triangles": 27116,
+   "other": "cf54564847b9344d",
+   "vertices": 506,
+   "triangles": 916,
    "size_mm": [
-    20.735,
+    62.014,
+    65.245,
+    26.047
+   ]
+  },
+  "WIR-MTR-01": {
+   "shape": "5e854e4cd01564f5",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "54d598ec7659c19a",
+   "other": "96fb1cf6a8ca6b1b",
+   "vertices": 14312,
+   "triangles": 28440,
+   "size_mm": [
+    20.89,
     15.903,
-    7.754
+    7.375
    ]
   },
   "WIR-MTR-02": {
-   "shape": "8692a703fffeb6b2",
+   "shape": "d8de62ed2f9ecc5b",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "14914dcb778f9e85",
-   "vertices": 15408,
-   "triangles": 30668,
+   "spin": "54d598ec7659c19a",
+   "other": "61fe3b70ab8a6691",
+   "vertices": 16032,
+   "triangles": 31880,
    "size_mm": [
-    18.128,
-    19.864,
-    8.907
+    18.47,
+    19.817,
+    7.171
    ]
   },
   "WIR-MTR-03": {
-   "shape": "a315df0b298847e4",
+   "shape": "a349e2038df7895b",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "d1863e9924c00778",
-   "vertices": 29704,
-   "triangles": 59084,
+   "spin": "54d598ec7659c19a",
+   "other": "3644d84356b37899",
+   "vertices": 30432,
+   "triangles": 60504,
    "size_mm": [
     54.49,
     28.716,
@@ -6441,12 +7052,12 @@
    ]
   },
   "WIR-MTR-04": {
-   "shape": "a1c86f8ce68a77c6",
+   "shape": "db4694732564c926",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "7f3f1fa53bcc0995",
-   "vertices": 31240,
-   "triangles": 62156,
+   "spin": "54d598ec7659c19a",
+   "other": "2697529b4b909052",
+   "vertices": 32032,
+   "triangles": 63704,
    "size_mm": [
     52.392,
     27.992,
@@ -6454,12 +7065,12 @@
    ]
   },
   "WIR-OUT-01": {
-   "shape": "13549c02dfdcf506",
+   "shape": "d49cb73e9b6a08d4",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "77f7cae7295a9074",
-   "vertices": 49632,
-   "triangles": 99068,
+   "spin": "54d598ec7659c19a",
+   "other": "2dcdcc82c00e0d9b",
+   "vertices": 50328,
+   "triangles": 100424,
    "size_mm": [
     32.065,
     95.213,
@@ -6467,25 +7078,64 @@
    ]
   },
   "WIR-OUT-02": {
-   "shape": "9cab684e9fbee1c3",
+   "shape": "c9425d9eb61ad008",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "bdb8cbfda7934404",
-   "vertices": 46272,
-   "triangles": 92348,
+   "spin": "54d598ec7659c19a",
+   "other": "73db2ce59fa9ca91",
+   "vertices": 47128,
+   "triangles": 94024,
    "size_mm": [
     32.679,
     75.055,
     25.401
    ]
   },
-  "WIR-PWR-01": {
-   "shape": "2cced03cf144e541",
+  "WIR-OUT-03": {
+   "shape": "cf86c62f674c8350",
    "poses": "79ebeaf67608f9b2",
    "spin": "438b8d81e87102ce",
-   "other": "118ab2173d161108",
-   "vertices": 22248,
-   "triangles": 44300,
+   "other": "4d06beb3918c4da3",
+   "vertices": 748,
+   "triangles": 1400,
+   "size_mm": [
+    42.535,
+    71.507,
+    26.044
+   ]
+  },
+  "WIR-PB-01": {
+   "shape": "766cc17a9c9505ef",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "ca190f4981b7cc21",
+   "other": "58ab840742b2086e",
+   "vertices": 68558,
+   "triangles": 74552,
+   "size_mm": [
+    73.684,
+    74.236,
+    24.776
+   ]
+  },
+  "WIR-PB-02": {
+   "shape": "b27f4a55ade0d970",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "8afb91a1ab9de24d",
+   "other": "5950928d6e33a1da",
+   "vertices": 55278,
+   "triangles": 60104,
+   "size_mm": [
+    68.854,
+    71.375,
+    27.166
+   ]
+  },
+  "WIR-PWR-01": {
+   "shape": "2b470651c926792c",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "54d598ec7659c19a",
+   "other": "d1da03fb27908e5b",
+   "vertices": 22608,
+   "triangles": 44984,
    "size_mm": [
     58.815,
     31.045,
@@ -6493,12 +7143,12 @@
    ]
   },
   "WIR-PWR-02": {
-   "shape": "952445da2a0a2f2e",
+   "shape": "c73b4b9a8848ac1e",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "ad7a473bb579c9bb",
-   "vertices": 34672,
-   "triangles": 69164,
+   "spin": "54d598ec7659c19a",
+   "other": "00f9ee84ad647846",
+   "vertices": 35552,
+   "triangles": 70888,
    "size_mm": [
     39.692,
     93.583,
@@ -6506,38 +7156,38 @@
    ]
   },
   "WIR-PWR-03": {
-   "shape": "cb38d0bff8af0e4a",
+   "shape": "b08a062f7a6d8dac",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "6b248b00f350fc6d",
-   "vertices": 8844,
-   "triangles": 17228,
+   "spin": "54d598ec7659c19a",
+   "other": "3c1bcc8596852ca9",
+   "vertices": 9172,
+   "triangles": 17848,
    "size_mm": [
-    17.099,
+    17.106,
     6.06,
     10.171
    ]
   },
   "WIR-PWR-04": {
-   "shape": "81183fa02bba5ffa",
+   "shape": "c36608096cc31b53",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "7c0dd0e27a098d89",
-   "vertices": 11064,
-   "triangles": 21980,
+   "spin": "54d598ec7659c19a",
+   "other": "326031a94f9fc971",
+   "vertices": 11600,
+   "triangles": 23016,
    "size_mm": [
-    19.017,
+    19.023,
     10.277,
     8.335
    ]
   },
   "WIR-PWR-05": {
-   "shape": "eb986e3c22fb63d6",
+   "shape": "6c05c8953908db19",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "46f29488a18e977d",
-   "vertices": 28865,
-   "triangles": 57432,
+   "spin": "54d598ec7659c19a",
+   "other": "40515c6546a44129",
+   "vertices": 29401,
+   "triangles": 58468,
    "size_mm": [
     77.275,
     18.95,
@@ -6545,25 +7195,25 @@
    ]
   },
   "WIR-PWR-06": {
-   "shape": "792e1c50d5a72cf1",
+   "shape": "e5320d67d757fa1f",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "8bfda188f00bae3d",
-   "vertices": 46224,
-   "triangles": 92348,
+   "spin": "54d598ec7659c19a",
+   "other": "0d758a983a84a779",
+   "vertices": 47392,
+   "triangles": 94648,
    "size_mm": [
-    14.602,
-    117.531,
+    14.611,
+    117.528,
     19.702
    ]
   },
   "WIR-PWR-07": {
-   "shape": "554d503640de0be8",
+   "shape": "a63a8761e5fe933f",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "d836e97679f17b7b",
-   "vertices": 22152,
-   "triangles": 44156,
+   "spin": "54d598ec7659c19a",
+   "other": "19e9596ce9035b39",
+   "vertices": 22952,
+   "triangles": 45720,
    "size_mm": [
     40.022,
     24.891,
@@ -6571,12 +7221,12 @@
    ]
   },
   "WIR-PWR-08": {
-   "shape": "f2bafa3eddc3087b",
+   "shape": "b2a3f7eb9d6a587c",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "17ebe33114b7c21b",
-   "vertices": 19248,
-   "triangles": 38300,
+   "spin": "54d598ec7659c19a",
+   "other": "7c6b68da471bff14",
+   "vertices": 19640,
+   "triangles": 39048,
    "size_mm": [
     16.636,
     56.43,
@@ -6584,16 +7234,68 @@
    ]
   },
   "WIR-PWR-09": {
-   "shape": "536c5889d0fbc16a",
+   "shape": "8cc635cfa08a63c6",
    "poses": "79ebeaf67608f9b2",
-   "spin": "438b8d81e87102ce",
-   "other": "d62e76d5a8e64ed1",
-   "vertices": 24648,
-   "triangles": 49100,
+   "spin": "54d598ec7659c19a",
+   "other": "d201a4823db13a0e",
+   "vertices": 24928,
+   "triangles": 49624,
    "size_mm": [
     60.45,
     20,
     3.545
+   ]
+  },
+  "WIR-TNE-01": {
+   "shape": "9acefb09e8329c40",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "9c09814b24c20ac8",
+   "vertices": 6004,
+   "triangles": 11928,
+   "size_mm": [
+    52.725,
+    14.7,
+    1.307
+   ]
+  },
+  "WIR-TNE-02": {
+   "shape": "bdd2bc43db1f62b1",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "f2ba545c03296c50",
+   "vertices": 7138,
+   "triangles": 14196,
+   "size_mm": [
+    60.731,
+    20.467,
+    1.144
+   ]
+  },
+  "WIR-TNE-03": {
+   "shape": "d2289233ad39a53c",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "1b8584dfd1f8f4ae",
+   "vertices": 5742,
+   "triangles": 11404,
+   "size_mm": [
+    42.885,
+    14.695,
+    1.099
+   ]
+  },
+  "WIR-TNE-04": {
+   "shape": "de0aab60435beeb1",
+   "poses": "79ebeaf67608f9b2",
+   "spin": "438b8d81e87102ce",
+   "other": "47cc7dd4597f2e18",
+   "vertices": 6660,
+   "triangles": 13240,
+   "size_mm": [
+    50.634,
+    17.21,
+    1.377
    ]
   },
   "exterior early EXT-010": {
@@ -6753,7 +7455,7 @@
    ]
   }
  },
- "settings": "98124ac61dcf6152",
+ "settings": "b870cbc8e933ad29",
  "controls": "2e177d18da6b05b7",
  "targets": {
   "cassette.width": {
@@ -7255,6 +7957,34 @@
   "belt.length_ratio_main_to_second": {
    "definition": "e72805bad0a7c457",
    "outcome": "pass"
+  },
+  "wiring.playback_cables": {
+   "definition": "f6d557939260f3c4",
+   "outcome": "pass"
+  },
+  "wiring.external_motor_leads": {
+   "definition": "a0730180042652ae",
+   "outcome": "pass"
+  },
+  "accessory.headphone_driver_diameter": {
+   "definition": "c5f9f96e2702c6b4",
+   "outcome": "no check"
+  },
+  "accessory.headphone_pad_outside_diameter": {
+   "definition": "29ff875e6084b68a",
+   "outcome": "no check"
+  },
+  "accessory.adapter_blade_spacing": {
+   "definition": "2e0a36c85a781b39",
+   "outcome": "no check"
+  },
+  "accessory.adapter_input": {
+   "definition": "f8e1a0c6f72fe86e",
+   "outcome": "no check"
+  },
+  "accessory.adapter_output": {
+   "definition": "d26c8ae3d061439b",
+   "outcome": "no check"
   }
  },
  "confirmation": {}

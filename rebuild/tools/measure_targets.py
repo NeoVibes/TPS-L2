@@ -35,7 +35,10 @@ native, digest = bound_native()
 bpy.ops.wm.open_mainfile(filepath=str(native), load_ui=False, use_scripts=False)
 inventory = json.loads((OUT / 'inventory.json').read_text())
 if inventory['native_sha256'] != digest: raise RuntimeError('The part list in the working files belongs to a different Blender file.')
-owners = {o['part_id']: o for o in inventory['owners']}
+owners = {o['part_id']: o for o in inventory['owners'] if o['presentation']['assembly'] not in CONFIG['accessories']['assemblies']}   # the device alone
+for o in bpy.data.objects:          # and its battery bay empty: no cells, so the springs at rest
+    if CONFIG['accessories']['cellLoad'] in o.keys(): o[CONFIG['accessories']['cellLoad']] = 0.0; o.update_tag()
+bpy.context.scene.frame_set(bpy.context.scene.frame_current); bpy.context.view_layer.update()
 # The targets are checked on the default exterior version; lettering of the other versions is left out.
 exterior = prepare_exterior(bpy, next(o for o in bpy.data.objects if o.get('controller_id') == CONFIG['controllers']['transport']))
 dg = bpy.context.evaluated_depsgraph_get()

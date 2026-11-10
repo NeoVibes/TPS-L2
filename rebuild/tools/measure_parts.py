@@ -27,6 +27,8 @@ transport = controllers[CONFIG['controllers']['transport']]
 for key, value in {'Run Demo': 0., 'Transport': 0, 'Door': 0., 'Cassette': 0., 'STOP EJECT': 0., 'Eject stroke': 0., 'Service view': 0., 'Exploded view': 0.}.items():
     if key in transport: transport[key] = value
 exterior = prepare_exterior(bpy, transport)      # every version's lettering is shown, so all of it is measured
+for o in bpy.data.objects:                        # the battery springs at rest, as without the cells
+    if CONFIG['accessories']['cellLoad'] in o.keys(): o[CONFIG['accessories']['cellLoad']] = 0.0; o.update_tag()
 transport.update_tag(); scene.frame_set(0); bpy.context.view_layer.update()
 depsgraph = bpy.context.evaluated_depsgraph_get()
 
@@ -39,7 +41,8 @@ def measure(names):
     for obj in solid:
         evaluated = obj.evaluated_get(depsgraph); mesh = evaluated.to_mesh()
         mesh.transform(evaluated.matrix_world); bm.from_mesh(mesh); evaluated.to_mesh_clear()
-    report.update(measure_solid(bm, MM, WELD))
+    bodies = max((int(o.get('closed_shells', 1)) for o in solid), default=1)   # several closed bodies by design
+    report.update(measure_solid(bm, MM, WELD, bodies))
     bm.free()
     return report
 

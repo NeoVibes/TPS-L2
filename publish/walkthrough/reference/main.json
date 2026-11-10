@@ -37,6 +37,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "selectedId": null
    },
@@ -203,7 +206,7 @@
      "axis": null
     }
    },
-   "positions": "6f008d8a2db1",
+   "positions": "ab6651ad5901",
    "status": "Stopped",
    "packageStatus": "Loading cassette…"
   },
@@ -243,6 +246,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -413,7 +419,7 @@
      "axis": null
     }
    },
-   "positions": "80bcbb48e5c0",
+   "positions": "a7dc4d1a4ba3",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -453,6 +459,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -467,163 +476,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 832.7472,
-     "y": 353.6389,
+     "x": 832.7023,
+     "y": 353.6516,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 832.828,
-     "y": 363.4858,
+     "x": 832.7833,
+     "y": 363.4977,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 833.3436,
-     "y": 379.9362,
+     "x": 833.2992,
+     "y": 379.9468,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 824.0141,
-     "y": 375.4345,
+     "x": 823.9698,
+     "y": 375.4456,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 863.7537,
-     "y": 413.5132,
+     "x": 863.7953,
+     "y": 413.4951,
      "inFrustum": true,
      "axis": [
       {
-       "x": 863.7537,
-       "y": 413.5132
+       "x": 863.7953,
+       "y": 413.4951
       },
       {
-       "x": 863.8672,
-       "y": 396.6509
+       "x": 863.9091,
+       "y": 396.6354
       }
      ]
     },
     "CTL-06": {
-     "x": 867.4849,
-     "y": 412.3995,
+     "x": 867.5258,
+     "y": 412.3817,
      "inFrustum": true,
      "axis": [
       {
-       "x": 867.4849,
-       "y": 412.3995
+       "x": 867.5258,
+       "y": 412.3817
       },
       {
-       "x": 867.6286,
-       "y": 395.5893
+       "x": 867.6699,
+       "y": 395.574
       }
      ]
     },
     "CTL-07": {
-     "x": 884.8186,
-     "y": 317.0268,
+     "x": 884.8541,
+     "y": 317.024,
      "inFrustum": true,
      "axis": [
       {
-       "x": 884.8186,
-       "y": 317.0268
+       "x": 884.8541,
+       "y": 317.024
       },
       {
-       "x": 884.8088,
-       "y": 317.6284
+       "x": 884.8443,
+       "y": 317.6255
       }
      ]
     },
     "CTL-08": {
-     "x": 792.6234,
-     "y": 398.3629,
+     "x": 792.5856,
+     "y": 398.3713,
      "inFrustum": true,
      "axis": [
       {
-       "x": 792.6234,
-       "y": 398.3629
+       "x": 792.5856,
+       "y": 398.3713
       },
       {
-       "x": 792.5813,
-       "y": 396.8541
+       "x": 792.5436,
+       "y": 396.8626
       }
      ]
     },
     "EXT-030": {
-     "x": 709.4914,
-     "y": 429.6623,
+     "x": 709.4554,
+     "y": 429.6693,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 705.5524,
-     "y": 429.1253,
+     "x": 705.5166,
+     "y": 429.1324,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 705.1633,
-     "y": 429.2312,
+     "x": 705.1276,
+     "y": 429.2383,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 942.6303,
-     "y": 392.5248,
+     "x": 942.655,
+     "y": 392.5123,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
-     "x": 942.1169,
-     "y": 403.675,
+     "x": 942.1415,
+     "y": 403.6612,
      "inFrustum": true,
      "axis": null
     },
     "BCL-010": {
-     "x": 927.0494,
-     "y": 386.3393,
+     "x": 927.0769,
+     "y": 386.3274,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 737.2537,
-     "y": 419.4104,
+     "x": 737.2164,
+     "y": 419.4181,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 741.8011,
-     "y": 418.1776,
+     "x": 741.7636,
+     "y": 418.1853,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 740.2498,
-     "y": 435.7319,
+     "x": 740.2128,
+     "y": 435.7382,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 740.5053,
-     "y": 435.6589,
+     "x": 740.4683,
+     "y": 435.6652,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 738.2676,
-     "y": 399.223,
+     "x": 738.2301,
+     "y": 399.2322,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 738.5282,
-     "y": 399.1569,
+     "x": 738.4907,
+     "y": 399.166,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "6667c4d1f2b7",
+   "positions": "b544851f3a0d",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -663,6 +672,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -833,7 +845,7 @@
      "axis": null
     }
    },
-   "positions": "c1a8215e8873",
+   "positions": "a52c1baf8dd2",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -873,6 +885,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -1043,7 +1058,7 @@
      "axis": null
     }
    },
-   "positions": "61185fa0a629",
+   "positions": "be7d26bb6396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1083,6 +1098,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -1253,7 +1271,7 @@
      "axis": null
     }
    },
-   "positions": "61185fa0a629",
+   "positions": "be7d26bb6396",
    "status": "Stopped · Open cover, then press STOP / EJECT",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1293,6 +1311,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -1463,7 +1484,7 @@
      "axis": null
     }
    },
-   "positions": "e8c7a5951747",
+   "positions": "df1e163d9722",
    "status": "Stopped · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1503,6 +1524,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -1673,7 +1697,7 @@
      "axis": null
     }
    },
-   "positions": "fc6e4153acad",
+   "positions": "a66da0b66935",
    "status": "Stopped · No engaged cassette · Cover open",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1713,6 +1737,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -1883,7 +1910,7 @@
      "axis": null
     }
    },
-   "positions": "61185fa0a629",
+   "positions": "be7d26bb6396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -1923,6 +1950,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -2093,7 +2123,7 @@
      "axis": null
     }
    },
-   "positions": "66efd94d1899",
+   "positions": "38fc34d3d544",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2133,6 +2163,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -2303,7 +2336,7 @@
      "axis": null
     }
    },
-   "positions": "61185fa0a629",
+   "positions": "be7d26bb6396",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2343,6 +2376,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -2513,7 +2549,7 @@
      "axis": null
     }
    },
-   "positions": "d0a9b4712087",
+   "positions": "f8c3b2a36e02",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2557,6 +2593,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -2727,7 +2766,7 @@
      "axis": null
     }
    },
-   "positions": "b2e7bff209d5",
+   "positions": "4afff37ee345",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2767,6 +2806,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -2781,163 +2823,163 @@
    "packageErrors": [],
    "controls": {
     "CTL-01": {
-     "x": 883.5561,
-     "y": 405.6883,
+     "x": 883.5696,
+     "y": 405.6774,
      "inFrustum": true,
      "axis": null
     },
     "CTL-02": {
-     "x": 884.0052,
-     "y": 407.3025,
+     "x": 884.0236,
+     "y": 407.2895,
      "inFrustum": true,
      "axis": null
     },
     "CTL-03": {
-     "x": 884.4562,
-     "y": 409.982,
+     "x": 884.4797,
+     "y": 409.9642,
      "inFrustum": true,
      "axis": null
     },
     "CTL-04": {
-     "x": 887.2657,
-     "y": 410.9005,
+     "x": 887.2916,
+     "y": 410.8798,
      "inFrustum": true,
      "axis": null
     },
     "CTL-05": {
-     "x": 888.7825,
-     "y": 419.1451,
+     "x": 888.8111,
+     "y": 419.1113,
      "inFrustum": true,
      "axis": [
       {
-       "x": 888.7825,
-       "y": 419.1451
+       "x": 888.8111,
+       "y": 419.1113
       },
       {
-       "x": 888.7825,
-       "y": 414.3495
+       "x": 888.8111,
+       "y": 414.3155
       }
      ]
     },
     "CTL-06": {
-     "x": 889.4433,
-     "y": 418.959,
+     "x": 889.4755,
+     "y": 418.925,
      "inFrustum": true,
      "axis": [
       {
-       "x": 889.4433,
-       "y": 418.959
+       "x": 889.4755,
+       "y": 418.925
       },
       {
-       "x": 889.4433,
-       "y": 414.1722
+       "x": 889.4755,
+       "y": 414.138
       }
      ]
     },
     "CTL-07": {
-     "x": 851.0242,
-     "y": 378.036,
+     "x": 851.4248,
+     "y": 377.3845,
      "inFrustum": true,
      "axis": [
       {
-       "x": 851.0242,
-       "y": 378.036
+       "x": 851.4248,
+       "y": 377.3845
       },
       {
-       "x": 851.0242,
-       "y": 378.2136
+       "x": 851.4248,
+       "y": 377.5622
       }
      ]
     },
     "CTL-08": {
-     "x": 842.4171,
-     "y": 419.9312,
+     "x": 842.5144,
+     "y": 419.9,
      "inFrustum": true,
      "axis": [
       {
-       "x": 842.4171,
-       "y": 419.9312
+       "x": 842.5144,
+       "y": 419.9
       },
       {
-       "x": 842.4171,
-       "y": 419.4804
+       "x": 842.5144,
+       "y": 419.4492
       }
      ]
     },
     "EXT-030": {
-     "x": 831.4187,
-     "y": 419.5989,
+     "x": 831.3804,
+     "y": 418.1432,
      "inFrustum": true,
      "axis": null
     },
     "EXT-031": {
-     "x": 846.9714,
-     "y": 419.4657,
+     "x": 846.9189,
+     "y": 418.0305,
      "inFrustum": true,
      "axis": null
     },
     "EXT-032": {
-     "x": 847.5212,
-     "y": 419.6181,
+     "x": 847.5308,
+     "y": 418.1744,
      "inFrustum": true,
      "axis": null
     },
     "EXT-040": {
-     "x": 837.1911,
-     "y": 443.0065,
+     "x": 837.0451,
+     "y": 443.1224,
      "inFrustum": true,
      "axis": null
     },
     "EXT-041": {
      "x": 846.9542,
-     "y": 459.3288,
+     "y": 459.644,
      "inFrustum": false,
      "axis": null
     },
     "BCL-010": {
-     "x": 826.6978,
-     "y": 424.3246,
+     "x": 826.6666,
+     "y": 424.3033,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-001": {
-     "x": 832.7984,
-     "y": 427.2104,
+     "x": 832.7931,
+     "y": 427.2089,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-002": {
-     "x": 837.6101,
-     "y": 426.9719,
+     "x": 837.6059,
+     "y": 426.9702,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-003": {
-     "x": 840.265,
-     "y": 433.6559,
+     "x": 840.2618,
+     "y": 433.6547,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-004": {
-     "x": 842.4553,
-     "y": 433.0494,
+     "x": 842.4528,
+     "y": 433.0477,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-005": {
-     "x": 844.6359,
+     "x": 844.6344,
      "y": 426.0065,
      "inFrustum": true,
      "axis": null
     },
     "MEDIA-006": {
-     "x": 846.8104,
-     "y": 425.3982,
+     "x": 846.8101,
+     "y": 425.3978,
      "inFrustum": true,
      "axis": null
     }
    },
-   "positions": "f4b5aca578b4",
+   "positions": "17ab4c2ceb17",
    "status": "Disconnected · transport stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -2977,6 +3019,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -3147,7 +3192,7 @@
      "axis": null
     }
    },
-   "positions": "b2e7bff209d5",
+   "positions": "4afff37ee345",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3213,6 +3258,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -3383,7 +3431,7 @@
      "axis": null
     }
    },
-   "positions": "997ca90c50c6",
+   "positions": "7a0aba4e206a",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },
@@ -3423,6 +3471,9 @@
     "category": "all",
     "isolate": false,
     "tour": -1,
+    "accessories": false,
+    "headphones": "out",
+    "adapter": "out",
     "exterior": "later",
     "contextIds": null,
     "contextKey": null,
@@ -3593,7 +3644,7 @@
      "axis": null
     }
    },
-   "positions": "997ca90c50c6",
+   "positions": "7a0aba4e206a",
    "status": "Stopped",
    "packageStatus": "exterior + cassette + mechanism + electronics"
   },

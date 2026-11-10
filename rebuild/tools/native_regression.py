@@ -10,6 +10,8 @@ model=json.loads((OUT/'model.json').read_text())
 if model['source_sha256']!=digest:raise RuntimeError('Regression sampler received stale geometry metadata')
 bpy.ops.wm.open_mainfile(filepath=str(native),load_ui=False,use_scripts=False)
 scene=bpy.context.scene
+for o in bpy.data.objects:   # the player without its accessories, as exported: the battery springs at rest
+ if CONFIG['accessories']['cellLoad'] in o.keys():o[CONFIG['accessories']['cellLoad']]=0.;o.update_tag()
 controllers={o.get('controller_id'):o for o in bpy.data.objects if o.get('controller_id')}
 transport=controllers[CONFIG['controllers']['transport']]
 operating=controllers[CONFIG['controllers']['operating']]
@@ -57,6 +59,16 @@ for value in CONFIG['sampling']['ordinary']:
  operating['battery_catch_release_mm']=value*operating.id_properties_ui('battery_catch_release_mm').as_dict()['max'];operating.update_tag();scene.frame_set(1);scene.frame_set(0);bpy.context.view_layer.update()
  deformations.append({'mode':'stop','tone':.5,'batteryRelease':value,'weights':weights()})
 evaluate()
+# Plug-in states: every accessory part's place and every shape key, along the insertion (the viewer blends the
+# exported mouth and seated places and interpolates the exported key curves; these are fresh native evaluations).
+plugs=[]
+for accessory,plug in CONFIG['accessories'].get('plugs',{}).items():
+ ctl=controllers[CONFIG['controllers'][plug['controller']]];ids=[p['id'] for p in model['parts'] if p['assembly']==plug['assembly']]
+ for name,value in plug['states'].items():
+  for t in [i/50 for i in range(51)]+[.0137,.3333,.6667,.917,.953,.981]:
+   ctl['plug_socket']=value;ctl['plug_insertion']=t;ctl.update_tag();evaluate()
+   plugs.append({'accessory':accessory,'state':name,'insertion':t,'weights':weights(),'matrices':matrices(ids)})
+ ctl['plug_socket']=0;ctl['plug_insertion']=1.;ctl.update_tag();evaluate()
 assert sha256(native)==digest,'Regression sampling must not modify the model'
-write_json(OUT/'native-checks.json',{'schema_version':1,'native_sha256':digest,'model_sha256':sha256(OUT/'model.json'),'sampler_sha256':sha256(Path(__file__)),'fps':scene.render.fps/scene.render.fps_base,'frame1':frame1,'doors':doors,'battery':battery,'deformations':deformations,'native_unchanged':True,'scope':'Fresh independent evaluations under factory startup and auto-run disabled. No native save, collision-free or factory-function claim.'})
-print('NATIVE REGRESSION SAMPLES',len(frame1)*len(roots),len(doors),len(battery),len(deformations),flush=True)
+write_json(OUT/'native-checks.json',{'schema_version':1,'native_sha256':digest,'model_sha256':sha256(OUT/'model.json'),'sampler_sha256':sha256(Path(__file__)),'fps':scene.render.fps/scene.render.fps_base,'frame1':frame1,'doors':doors,'battery':battery,'deformations':deformations,'plugs':plugs,'native_unchanged':True,'scope':'Fresh independent evaluations under factory startup and auto-run disabled. No native save, collision-free or factory-function claim.'})
+print('NATIVE REGRESSION SAMPLES',len(frame1)*len(roots),len(doors),len(battery),len(deformations),len(plugs),flush=True)

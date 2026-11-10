@@ -1,0 +1,40 @@
+wire_id,core_or_drain,terminal_a,terminal_b,first_mesh_center_xyz_mm,last_mesh_center_xyz_mm,model_path_length_mm,median_model_jacket_od_mm,jacket_note,evidence_limit
+WIR-MIC-01,single,MIC-005 / tin solder,JB-001 / Jack PCB solder MIC901 red,38.350 -7.900 61.800,21.324 -8.500 59.520,23.55,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-MIC-02,single,MIC-006 / tin solder,JB-001 / Jack PCB solder MIC901 black,38.350 -6.300 59.850,17.661 -8.500 59.454,28.31,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-MIC-03,single,MIC-007 / tin solder,JB-001 / Jack PCB solder MIC901 white,38.350 -10.300 58.000,18.596 -8.500 63.140,26.05,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-OUT-01,single,MB-001 / New main wire solder WIR-OUT-01,JB-001 / Jack PCB solder output white,-29.276 11.882 -29.113,-7.988 -8.500 56.642,163.57,0.438,,model only; hidden dressing and conductor gauge unmeasured
+WIR-OUT-02,single,MB-001 / New main wire solder WIR-OUT-02,JB-001 / Jack PCB solder output blue,-22.105 11.882 -9.415,-6.630 -8.500 52.215,152.33,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-01,single,JCK-35 / tin solder,MB-001 / New main wire solder WIR-PWR-01,32.750 9.580 -57.000,-25.646 11.942 -26.280,82.68,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-02,single,JCK-35 / tin solder,SB-001 / Power solder • WIR-PWR-02 • b,33.600 9.580 -56.950,-4.981 8.580 36.298,114.94,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-03,single,JCK-35 / tin solder,BAT-022 / tin solder,33.050 9.580 -55.950,16.320 2.840 -50.450,28.44,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-04,single,JCK-36 / tin solder,BAT-020 / tin solder,33.800 9.580 -49.350,16.320 3.870 -57.800,36.32,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-05,single,JCK-13 / tin solder,BAT-011 / tin solder,33.950 9.200 -53.150,-41.900 7.120 -38.900,111.09,,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-06,single,JCK-13 / tin solder,SWT-003 / Power solder • WIR-PWR-06 • b,33.950 9.200 -51.900,22.300 -2.150 60.600,154.97,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-07,single,SWT-002 / Power solder • WIR-PWR-07 • a,SB-001 / Power solder • WIR-PWR-07 • b,23.900 -2.150 60.600,-11.168 8.580 40.928,73.00,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-08,single,SB-001 / Power solder • WIR-PWR-08 • a,MB-001 / New main wire solder WIR-PWR-08,-10.326 8.580 38.192,-24.097 11.942 -17.825,63.08,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PWR-09,single,BAT-010 / tin solder,BAT-021 / tin solder,-41.900 7.120 -53.600,16.320 3.870 -43.100,94.93,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-611,single,SB-001 / Servo PCB solder L601 terminal 1,SB-001 / Servo PCB solder L601 terminal 2,-17.895 9.750 48.588,-7.043 9.750 53.765,54.05,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-612,single,SB-001 / Servo PCB solder L601 terminal 3,SB-001 / Servo PCB solder L601 terminal 4,-20.469 9.750 55.280,-18.064 9.750 44.631,68.15,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-901,single,EXT-061 / D901 solder • yellow lead splice,SB-001 / Servo PCB solder D901 yellow,19.350 8.150 61.722,15.937 9.750 57.552,9.08,,bare diode leg,model only; hidden dressing and conductor gauge unmeasured
+WIR-902,single,EXT-061 / D901 solder • blue lead splice,SB-001 / Servo PCB solder D901 blue,17.850 8.150 61.722,13.706 9.750 58.899,8.65,,bare diode leg,model only; hidden dressing and conductor gauge unmeasured
+WIR-MTR-01,single,MTR-031 / tin joints,SB-001 / Servo PCB solder L601 terminal 1,-37.486 8.812 59.297,-17.495 9.750 48.588,42.76,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-MTR-02,single,MTR-032 / tin joints,SB-001 / Servo PCB solder L601 terminal 4,-30.848 8.615 59.302,-17.664 9.750 44.631,47.53,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-MTR-03,single,MTR-033 / tin joints,SB-001 / Servo PCB solder • WIR-MTR-03,-33.920 2.450 55.040,19.094 9.750 35.793,98.01,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-MTR-04,single,MTR-033 / tin joints,SB-001 / Servo PCB solder • WIR-MTR-04,-33.920 12.550 55.040,15.137 9.750 35.625,103.24,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-01,WHT,BAY-060 / HP901 terminal 1,JB-001 / Audio solder IN WHT,31.010 -7.950 -7.050,-32.670 -9.480 58.330,157.58,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-01,RED,BAY-060 / HP901 terminal 2,JB-001 / Audio solder IN RED,31.010 -6.900 -7.050,-29.490 -9.480 58.340,153.33,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-01,SH,BAY-060 / HP901 terminal 3,JB-001 / Audio solder IN SH,31.010 -5.850 -7.050,-32.760 -9.480 55.150,158.49,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-02,WHT,JB-001 / Audio solder OUT WHT,MB-001 / Audio solder PRE WHT,-28.810 -9.480 55.160,36.020 12.790 -5.940,138.49,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-02,RED,JB-001 / Audio solder OUT RED,MB-001 / Audio solder PRE RED,-28.800 -9.480 52.170,32.990 12.790 -5.940,136.94,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-PB-02,SH,JB-001 / Audio solder OUT SH,MB-001 / Audio solder PRE SH,-32.750 -9.480 52.160,30.100 12.790 -5.130,140.33,1.180,shares outer jacket,model only; hidden dressing and conductor gauge unmeasured
+WIR-MIC-04,single,MB-001 / Audio solder WIR-MIC-04,JB-001 / Jack PCB solder MIC901 red,5.280 12.780 0.500,21.320 -9.560 59.520,181.50,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-OUT-03,single,MB-001 / Audio solder WIR-OUT-03,JB-001 / Audio solder WIR-OUT-03,-33.130 12.780 -6.000,1.790 -9.490 49.750,145.54,0.450,,model only; hidden dressing and conductor gauge unmeasured
+WIR-TNE-01,single,MB-001 / New S301 solder tone_LU,MB-001 / Main link solder WIR-TNE-01 B,-29.683 12.720 -11.805,22.380 12.720 -12.823,65.94,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-TNE-02,single,MB-001 / New S301 solder tone_BRN,MB-001 / Main link solder WIR-TNE-02 B,-33.091 12.720 -11.805,27.074 12.720 -20.613,78.51,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-TNE-03,single,MB-001 / New S301 solder tone_WHT,MB-001 / Main link solder WIR-TNE-03 B,-29.993 12.720 -15.966,12.377 12.720 -19.632,55.69,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-TNE-04,single,MB-001 / New S301 solder tone_VIO,MB-001 / Main link solder WIR-TNE-04 B,-33.268 12.720 -15.966,16.848 12.720 -11.142,65.65,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-IN-01,single,MB-001 / Main link solder WIR-IN-01 A,MB-001 / Main link solder WIR-IN-01 B,36.020 12.720 -12.250,-1.213 12.720 -22.605,44.89,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-IN-02,single,MB-001 / Main link solder WIR-IN-02 A,MB-001 / Main link solder WIR-IN-02 B,33.094 12.720 -12.469,2.550 12.720 -11.530,41.80,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-AF-01,single,MB-001 / Main link solder WIR-AF-01 A,MB-001 / Main link solder WIR-AF-01 B,12.970 12.720 5.730,24.860 12.720 -28.640,38.71,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-901,board jumper,SB-001 / Servo PCB solder D901 yellow,SB-001 / Servo PCB solder D901 yellow far,15.670 9.510 57.550,-2.190 9.500 53.370,19.18,0.370,,model only; hidden dressing and conductor gauge unmeasured
+WIR-902,board jumper,SB-001 / Servo PCB solder D901 blue,SB-001 / Servo PCB solder L601 terminal 3,13.440 9.510 58.900,-20.170 9.510 55.280,39.46,0.370,,model only; hidden dressing and conductor gauge unmeasured

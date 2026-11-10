@@ -190,6 +190,13 @@
   {"id": "lid.height_over_width", "value": 1.62, "tol": 0.05, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit"},
   {"id": "lid.flap_depth", "value": 1.42, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["EXT-030"], "basis": "chosen so that the closed lid's top flap rests on the top-end rail, 0.02 mm off it as at the lid's opening stop. Imagery did not establish its fold depth"},
   {"id": "lid.bottom_flap_depth", "value": 6.42, "tol": 0.02, "unit": "mm", "class": "designed", "parts": ["EXT-030"], "basis": "the original model fold is retained to close the bottom against the rear cabinet return; the depth has not been physically verified"},
-  {"id": "belt.length_ratio_main_to_second", "value": 1.2, "tol": 0.05, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit; listed replacement belt sizes give 1.21"}
+  {"id": "belt.length_ratio_main_to_second", "value": 1.2, "tol": 0.05, "unit": "ratio", "class": "photo-measured", "basis": "imagery of a second dismantled unit; listed replacement belt sizes give 1.21"},
+  {"id": "wiring.playback_cables", "value": 2, "tol": 0, "unit": "parts", "class": "documented", "parts": ["WIR-PB-01", "WIR-PB-02"], "basis": "Sony TPS-L2 service manual, New mounting diagram, printed pages 15-16: head to jack board and jack board to main. Count cable assemblies, not individual cores."},
+  {"id": "wiring.external_motor_leads", "value": 4, "tol": 0, "unit": "parts", "class": "documented", "parts": ["WIR-MTR-01", "WIR-MTR-02", "WIR-MTR-03", "WIR-MTR-04"], "basis": "Sony TPS-L2 service manual, New mounting diagram, printed pages 15-16: two drive leads and two feedback leads enter M901."},
+  {"id": "accessory.headphone_driver_diameter", "value": 23.0, "unit": "mm", "class": "documented", "parts": ["MDR-L-05", "MDR-R-05"], "basis": "Sony MDR-3L2 specification: 23 mm dynamic driver"},
+  {"id": "accessory.headphone_pad_outside_diameter", "value": 38.1, "unit": "mm", "class": "reported", "parts": ["MDR-L-07", "MDR-R-07"], "basis": "A replacement-pad maker's stated size (1.5 in); not checked on an original pad"},
+  {"id": "accessory.adapter_blade_spacing", "value": 12.7, "unit": "mm", "class": "standard", "parts": ["AC31-005", "AC31-006"], "basis": "NEMA 1-15 plug: blade centres 0.500 in apart"},
+  {"id": "accessory.adapter_input", "value": 120, "unit": "V AC, 60 Hz, 5 W", "class": "reported", "parts": ["AC31-003"], "basis": "The AC-31's rating label, read from photographs of a real unit"},
+  {"id": "accessory.adapter_output", "value": 3, "unit": "V DC, 300 mA, centre negative", "class": "reported", "parts": ["AC31-003"], "basis": "The AC-31's rating label, read from photographs of a real unit"}
  ]
 }

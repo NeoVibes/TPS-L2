@@ -116,15 +116,15 @@ try {
   assert.equal(second.status, 0, second.stderr); assert.match(second.stdout, /Left out/);
   assert((await readFile(path.join(out(2), name + '.zip'))).equals(zip), 'the same files give the same ZIP, byte for byte');
   for (const f of ['.hidden-note', 'edit/Portable Tape Player.blend1', 'old.zip', '.git']) await rm(at(f), {recursive: true});
-  // A text file that names a home folder stops the release.
-  await writeFile(at('publish/note.md'), 'saved to /' + 'Users/someone/Desktop\n');
+  // A file that names a home folder or holds a password stops the release.
+  await writeFile(at('publish/note.md'), 'saved to /' + 'Users/someone/Desktop\n' + 'DB_' + 'PASSWORD=' + 'hunter2hunter2\n');
   const leak = release(out(3));
-  assert.notEqual(leak.status, 0); assert.match(leak.stderr, /publish\/note\.md contains a home-folder path/); assert(!(await access(path.join(out(3), name + '.zip')).then(() => true, () => false)), 'no ZIP is made');
+  assert.notEqual(leak.status, 0); assert.match(leak.stderr, /publish\/note\.md:1 .*\[home-path\]/); assert.match(leak.stderr, /publish\/note\.md:2 .*\[password\]/); assert(!(await access(path.join(out(3), name + '.zip')).then(() => true, () => false)), 'no ZIP is made');
   await rm(at('publish/note.md'));
   // An output folder inside the kit would be packed into the next ZIP.
   const inside2 = release(at('out'));
   assert.notEqual(inside2.status, 0); assert.match(inside2.stderr, /output folder is inside the kit/);
-  done.push('the release tool needs no git, ships exactly the kit, is repeatable, and refuses a file that names a home folder or an output folder inside the kit');
+  done.push('the release tool needs no git, ships exactly the kit, is repeatable, and refuses a file that names a home folder or holds a password, and an output folder inside the kit');
 
   // 7. A target edit shows in the change report; an assessment counts only after accept and only while its target stands.
   await edit('edit/targets.json', s => { const f = JSON.parse(s); f.targets.find(t => t.id === 'body.height').tol = 3; f.targets.push({id: 'scratch.capstan_length', value: 24.41, tol: 0.1, unit: 'mm', class: 'measured', basis: 'made up for this check', measure: {size_of: 'BAY-052', along: 'depth'}}); return JSON.stringify(f, null, 1) + '\n'; });

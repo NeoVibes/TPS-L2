@@ -22,6 +22,7 @@ jobs:
       - name: Validate committed bytes without rebuilding
         working-directory: rebuild
         run: |
+          node ../publish/scan-secrets.mjs
           npm ci
           npm run check
           npm run test:fast

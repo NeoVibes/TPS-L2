@@ -62,7 +62,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
       history.replaceState(null, "", location.pathname + location.search + (params.size ? "#" + params : ""));
     }
   }
-  async function focusContext(key) {
+  async function focusContext(key, partId = null) {
     if (state.graphicsUnavailable) return;
     const { model, scene } = stage, context = model.inspectionContexts[key];
     if (!context) return;
@@ -86,7 +86,8 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     if (state.graphicsUnavailable || inspectionRevision !== revision || state.contextIds !== context.partIds) return;
     updateParts(100, 0);
     scene.updateMatrixWorld(true);
-    const selected = parts.find((p) => p.data.id === context.focusPartId) || parts.find((p) => context.partIds.includes(p.data.id));
+    // a link may name the part to select within the context; otherwise the context's own focus part
+    const selected = parts.find((p) => p.data.id === partId && context.partIds.includes(partId)) || parts.find((p) => p.data.id === context.focusPartId) || parts.find((p) => context.partIds.includes(p.data.id));
     select(key.startsWith("service:") || ["motorAssembly", "motorCutaway", "beltDrive", "ejectMechanism"].includes(key) ? null : selected);
     fitInspectionContext(key);
     history.replaceState(null, "", location.pathname + location.search + "#context=" + encodeURIComponent(key) + "&part=" + encodeURIComponent(selected?.data.id || "") + versionSuffix());
@@ -199,7 +200,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     const params = new URLSearchParams(location.hash.slice(1));
     const context = params.get("context");
     if (!informationOnly && context && stage.model?.inspectionContexts?.[context]) {
-      focusContext(context);
+      focusContext(context, params.get("part"));
       return;
     }
     const id = params.get("part");
@@ -225,6 +226,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
     $("inspector").hidden = !part;
     if (part) {
+      if (part.accessory && !state.accessories) views.setAccessories(true);
       if (state.contextIds && !state.contextIds.includes(part.data.id)) clearInspectionContext();
       if (state.subsystem !== "all" && state.subsystem !== part.data.group) {
         state.subsystem = "all";
@@ -234,7 +236,9 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
       $("partId").textContent = part.data.id;
       refreshPartInformation(part);
       $("copyPartLink").textContent = copyTarget(part.data.id, location, versionSuffix()).label;
-      history.replaceState(null, "", location.pathname + location.search + "#part=" + encodeURIComponent(part.data.id) + versionSuffix());
+      // within an inspection context the link keeps it, so a reload shows the same parts
+      const link = state.contextKey ? "#context=" + encodeURIComponent(state.contextKey) + "&part=" : "#part=";
+      history.replaceState(null, "", location.pathname + location.search + link + encodeURIComponent(part.data.id) + versionSuffix());
       packages.ensure(part.data.package).catch(() => {
       });
     } else if (location.hash.startsWith("#part=")) history.replaceState(null, "", location.pathname + location.search + (versionSuffix() ? "#" + versionSuffix().slice(1) : ""));

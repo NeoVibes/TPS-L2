@@ -5,9 +5,10 @@
 import * as T from "three";
 import {cancelStopCycle, cancelAutoStop} from "./operating-state.mjs";
 import {TOUR_SECONDS} from "./tour-timeline.mjs";
+import config from "../config/model.json" with {type: "json"};
 
 // One availability flag and selector keep controls and their handlers consistent after a graphics failure.
-export const GRAPHICS_CONTROLS = '[data-mode], [data-view], [data-angle], [data-category], [data-context], [data-workmode="tour"], [data-workmode="operate"], #tour, #tourNext, #tourPause, #quickTour, #pause, #reset, #spread, #speed, #motionCues, #toggleLabels, #projection, #section, #sectionOffset, #subsystem, #homeCamera, #controlCamera, #inspectCassette, #batteryDoor, #eject, #door, #cassette, #focus, #isolate, #clearContext, #audioEnable, #hotline, #volumeLeft, #volumeRight, #tone, #tapePosition, #tourSeek, #retryAssets';
+export const GRAPHICS_CONTROLS = '#accessories, [data-plug], [data-mode], [data-view], [data-angle], [data-category], [data-context], [data-workmode="tour"], [data-workmode="operate"], #tour, #tourNext, #tourPause, #quickTour, #pause, #reset, #spread, #speed, #motionCues, #toggleLabels, #projection, #section, #sectionOffset, #subsystem, #homeCamera, #controlCamera, #inspectCassette, #batteryDoor, #eject, #door, #cassette, #focus, #isolate, #clearContext, #audioEnable, #hotline, #volumeLeft, #volumeRight, #tone, #tapePosition, #tourSeek, #retryAssets';
 export function syncUnavailable($, state, model) {
   if (!state.graphicsUnavailable) return false;
   $("shell").setAttribute("aria-busy", "false");
@@ -112,7 +113,10 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     const [title, desc] = state.tour >= 0 ? [tourSteps[state.tour].title, tourSteps[state.tour].text] : state.contextKey === "ejectMechanism" ? ["STOP / EJECT linkage", model.inspectionContexts.ejectMechanism.description] : descriptions[state.category] || descriptions.all;
     $("storyTitle").textContent = title;
     $("storyText").textContent = desc;
-    $("partCount").textContent = model ? model.inventory.physicalIds.length + " device parts · " + model.inventory.presentationOnlyIds.length + " display objects" : "Loading model";
+    $("partCount").textContent = model ? model.inventory.physicalIds.length + " device parts · " + (state.accessories && model.inventory.accessoryIds?.length ? model.inventory.accessoryIds.length + " accessories · " : "") + model.inventory.presentationOnlyIds.length + " display objects" : "Loading model";
+    // The plug choices show with the accessories; they plug in from the assembled view.
+    const separated = state.view !== "assembled" || Boolean(state.explode) || Boolean(state.radial);
+    for (const el of document.querySelectorAll("[data-plug]")) { el.hidden = !state.accessories; el.disabled = separated; el.title = separated ? "Plug in from the assembled view" : ""; el.value = state[el.dataset.plug]; }
     updateVisibility();
   }
   // Cancel immediately: the frame loop does not advance mechanical state while
@@ -196,7 +200,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     const { materials, highlightMaterials } = stage;
     for (const p of parts) {
       const covered = state.view === "assembled" && !state.door && !state.batteryOpen && state.uiMode === "operate" && !state.selected && state.subsystem === "all";
-      p.group.visible = (!covered || p.data.package === "exterior" || p.family === "tape") && (!state.isolate || p === state.selected) && (state.subsystem === "all" || p.data.group === state.subsystem) && (!state.contextIds || state.contextIds.includes(p.data.id));
+      p.group.visible = (!covered || p.data.package === "exterior" || p.family === "tape") && (!state.isolate || p === state.selected) && (state.subsystem === "all" || p.data.group === state.subsystem) && (!state.contextIds || state.contextIds.includes(p.data.id)) && (state.accessories || !p.accessory);
       const highlighted = p === state.selected || state.category !== "all" && p.family === state.category;
       for (const m of p.group.children) {
         m.material = m.userData.cueMaterials?.[highlighted ? 1 : 0] || (highlighted ? highlightMaterials : materials)[m.userData.materialIndex];
@@ -243,5 +247,20 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     onExterior();
   }
 
-  return { setUIMode, applySection, sync, setView, setSeparation, focusCategory, updateVisibility, controlCloseup, setExterior };
+  /** Shows or hides the accessories (headphones, adapter, cells); the battery springs follow the cells. */
+  function setAccessories(on) {
+    state.accessories = Boolean(on);
+    if (!state.accessories) for (const key in config.accessories.plugs) state[key] = "out";   // shown again, they start unplugged
+    $("accessories").setAttribute("aria-pressed", String(state.accessories));
+    sync();
+  }
+  /** Plugs an accessory into one of its sockets, or unplugs it ("out"). */
+  function setPlug(key, value) {
+    if (!state.accessories || !(value === "out" || value in config.accessories.plugs[key].states)) return;
+    state[key] = value;
+    sync();
+  }
+  for (const el of document.querySelectorAll("[data-plug]"))   // the choices, from the config
+    el.replaceChildren(...Object.entries(config.accessories.plugs[el.dataset.plug].choices).map(([value, text]) => new Option(text, value)));
+  return { setUIMode, applySection, sync, setView, setSeparation, focusCategory, updateVisibility, controlCloseup, setExterior, setAccessories, setPlug };
 }
