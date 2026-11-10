@@ -22,6 +22,8 @@ jobs:
           node-version: '24.22.0'
           cache: npm
           cache-dependency-path: rebuild/package-lock.json
+      - name: Look for passwords, keys, tokens and personal details
+        run: node ../publish/scan-secrets.mjs
       - run: npm ci
       - run: npm run check
       - run: npm run test:fast

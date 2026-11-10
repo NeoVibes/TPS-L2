@@ -25,6 +25,7 @@ import {batterySequence} from "./operating-pose.mjs";
 import {createDoorMotion, applyHingePose} from "./door-motion.mjs";
 import {createExplodedLayout} from "./exploded-layout.mjs";
 import {deformationWeights} from "./native-deformation.mjs";
+import {plugTarget, stepPlug, plugMoving} from "./plug-motion.mjs";
 import {reelSystem} from "./tape.mjs";
 import {CONTROL_BINDINGS, controlVisualOffset} from "./model-controls.mjs";
 import {modelData, listData} from "./data.mjs";
@@ -48,7 +49,10 @@ export const motionCueEnabled = { value: Number(preferences.motionCues) };
 const indicatorMaterials = [];
 export const $ = (id) => document.getElementById(id);
 const clamp = T.MathUtils.clamp;
-export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1 };
+export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1, accessories: false, ...Object.fromEntries(Object.keys(config.accessories.plugs).map((key) => [key, "out"])) };
+// Each accessory's plug as shown (plug-motion.mjs), and which accessory each accessory assembly belongs to.
+const plugMotion = Object.fromEntries(Object.keys(config.accessories.plugs).map((key) => [key, { shown: "out", insertion: 1 }]));
+const plugOf = Object.fromEntries(Object.entries(config.accessories.plugs).map(([key, plug]) => [plug.assembly, key]));
 const family = (p) => p.category;
 export let model;
 let parts = [];
@@ -182,7 +186,7 @@ export function reset() {
   $("sectionValue").textContent = "0 mm";
   views.applySection();
   inspect.select(null);
-  views.updateVisibility();
+  views.setAccessories(false);
   displayExplosion = 0;
   displayService = 0;
   displayRadial = 0;
@@ -226,6 +230,8 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
   if (Math.abs(displayService - (state.view === "service" ? 1 : 0)) < 1e-5) displayService = state.view === "service" ? 1 : 0;
   displayBattery = T.MathUtils.lerp(displayBattery, ["exploded", "catalog"].includes(state.view) ? 0 : Number(state.batteryOpen), smoothing);
   const battery = batterySequence(displayBattery), eject = ejectTravel(state), contact = model.parts.find((p) => p.ejectContact)?.ejectContact;
+  const playerParts = parts.reduce((n, q) => n + (q.accessory ? 0 : 1), 0);   // the separation stagger counts the player's parts only
+  for (const key in plugMotion) { const target = plugTarget(state, key); stepPlug(plugMotion[key], target, snapPose || target !== state[key] ? Infinity : dt, config.accessories.plugSeconds); }   // hidden or separated: unplugged at once
   for (const p of parts) {
     p.deformPlay = T.MathUtils.lerp(p.deformPlay || 0, state.mode === "play" ? 1 : 0, smoothing);
     let base = p.poses[state.view === "service" && p.data.rest_when_separated ? "stop" : pose];
@@ -234,6 +240,8 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
       base.p.z += cassetteLift(contact, eject);
     }
     if (config.roles.stopTranslation.includes(p.data.id)) base = { ...base, p: p.poses.stop.p.clone().lerp(p.poses.eject.p, state.stopTravel || 0) };
+    const plug = p.accessory && plugMotion[plugOf[p.data.assembly]], plugged = plug && plug.shown !== "out" && p.plugPoses?.[plug.shown];
+    if (plugged) base = { p: plugged[0].p.clone().lerp(plugged[1].p, plug.insertion), q: plugged[1].q, s: plugged[1].s };   // the plug slides straight in
     const staged = shutOffRole[p.data.id] && shutOffStaged(shutOffRole[p.data.id], state.mode) && p.poses.shutoff_tripped ? shutOffWeights(shutOffRole[p.data.id]) : null;
     if (staged && !p.links) base = mixPoses(p, staged, base.s);
     if (p.batteryHinge) {
@@ -242,12 +250,12 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
     }
     if (p.data.id === config.roles.batteryLatch) base = { ...base, p: p.poses.stop.p.clone().lerp(p.poses.battery_release.p, battery.release) };
     if (p.links) followLinks(p, staged || [[state.view === "service" && p.data.rest_when_separated ? "stop" : pose, 1]], smoothing);
-    else if (p.batteryHinge) p.baseQ.copy(base.q);
+    else if (p.batteryHinge || p.accessory) p.baseQ.copy(base.q);   // accessories cut to their places
     else p.baseQ.slerp(base.q, smoothing);
     if (p.hinge) p.baseQ.normalize();
     if (p.batteryHinge) applyHingePose(p.batteryHinge, p.baseQ, p.baseP);
     else if (p.hinge) applyHingePose(p.hinge, p.baseQ, p.baseP);
-    else if (config.roles.instantTranslation.includes(p.data.id) || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
+    else if (config.roles.instantTranslation.includes(p.data.id) || p.accessory || p.data.is_cassette && state.media !== "removed" && contact) p.baseP.copy(base.p);
     else if (!p.links) p.baseP.lerp(base.p, smoothing);
     p.group.scale.copy(base.s);
     const spin = spinStopped(p.data.id, spinMode, state) ? null : p.spin[spinMode];   // a stalled reel, and tape-turned parts with no cassette, stand still
@@ -263,7 +271,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
       p.group.position.copy(p.baseP);
       p.group.quaternion.copy(p.baseQ);
     }
-    const d = p.data, delay = 0.32 * d.order / Math.max(1, parts.length - 1), progress = clamp((displayExplosion - delay) / (1 - delay), 0, 1), axial = clamp(progress / 0.45, 0, 1), fan = clamp((progress - 0.45) / 0.55, 0, 1), service = displayService * clamp((1 - displayExplosion) / (1 - delay), 0, 1);
+    const d = p.data, delay = 0.32 * d.order / Math.max(1, playerParts - 1), progress = clamp((displayExplosion - delay) / (1 - delay), 0, 1), axial = clamp(progress / 0.45, 0, 1), fan = clamp((progress - 0.45) / 0.55, 0, 1), service = displayService * clamp((1 - displayExplosion) / (1 - delay), 0, 1);
     p.group.position.x += d.service[0] * service + d.direction[0] * d.distance * axial + d.fan[0] * fan;
     p.group.position.y += d.service[1] * service + d.direction[1] * d.distance * axial + d.fan[1] * fan;
     p.group.position.z += d.service[2] * service + d.direction[2] * d.distance * axial + d.fan[2] * fan;
@@ -276,7 +284,7 @@ function updateParts(dt, spinDt = dt, spinMode = state.mode, snapPose = false) {
       const g = mesh.geometry, deformation = g?.userData.nativeDeformation;
       if (g?.userData.nativeArticulation) applyArticulation(mesh, g.userData.nativeArticulation, eject);
       if (!deformation) continue;
-      const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel, shutoff: config.deformation.channels.shutoff.includes(deformation.owner) ? shutOffWeights("lever") : null }), previous = mesh.userData.deformationWeights;
+      const target = deformationWeights(deformation, { ...state, pose, playTravel: p.deformPlay, batteryRelease: battery.release, stopTravel: state.stopTravel, shutoff: config.deformation.channels.shutoff.includes(deformation.owner) ? shutOffWeights("lever") : null, plugs: plugMotion }), previous = mesh.userData.deformationWeights;
       const weights = target.map((v, i) => config.roles.smoothDeformation.includes(deformation.owner) && previous ? T.MathUtils.lerp(previous[i], v, smoothing) : v);
       if (!previous || weights.some((v, i) => Math.abs(v - previous[i]) > 1e-7)) {
         weights.forEach((w, i) => { mesh.morphTargetInfluences[i] = w; });   // blended on the GPU (app-packages.mjs)
@@ -318,7 +326,7 @@ function animate(now) {
   lastTime = now;
   if (document.hidden) return;
   const moving = !state.paused && (Boolean(state.stopCycle) || state.tour >= 0 || (state.mode !== "stop" && state.explode === 0 && state.radial === 0));
-  const active = moving || cam.moving || now < settleUntil;
+  const active = moving || cam.moving || now < settleUntil || plugMoving(state, plugMotion);
   // Keep one final render even if the previous frame ran past the deadline.
   if (!dirty && !active && !settleUntil) return;
   const start = performance.now();
@@ -443,7 +451,7 @@ export async function init() {
       const refdata = Object.values(data.spin)[0], reference = refdata ? { axis: V(refdata.axis).normalize(), center: V(refdata.center) } : null;
       const spin = Object.fromEntries(Object.entries(data.spin).map(([k, s]) => [k, { rate: s.rate * (config.viewer.rotationScale ?? 1) * (reference ? V(s.axis).normalize().dot(reference.axis) : 1) }]));
       const links = data.links ? data.links.map((l) => ({ pivot: V(l.pivot), axis: V(l.axis).normalize(), poses: Object.fromEntries(Object.entries(l.poses).map(([k, [a, ...t]]) => [k, { a, t: V(t) }])), a: 0, t: new T.Vector3() })) : null;
-      const p = { data, group, poses, baseP: poses.stop.p.clone(), baseQ: poses.stop.q.clone(), phase: 0, reference, spin, hinge: createDoorMotion(data), batteryHinge: createDoorMotion(data, { battery: true }), family: family(data), links, stopMatrix: new T.Matrix4().compose(poses.stop.p, poses.stop.q, poses.stop.s) };
+      const p = { data, group, poses, baseP: poses.stop.p.clone(), baseQ: poses.stop.q.clone(), phase: 0, reference, spin, hinge: createDoorMotion(data), batteryHinge: createDoorMotion(data, { battery: true }), family: family(data), accessory: config.accessories.assemblies.includes(data.assembly), plugPoses: data.plugPoses ? Object.fromEntries(Object.entries(data.plugPoses).map(([k, ends]) => [k, ends.map(([p2, q, s]) => ({ p: V(p2), q: Q(q), s: V(s) }))])) : null, links, stopMatrix: new T.Matrix4().compose(poses.stop.p, poses.stop.q, poses.stop.s) };
       labels.addPart(p, () => {
         tour.clear();
         inspect.select(p);
@@ -498,13 +506,13 @@ export async function init() {
     updateParts(10, 0);
     views.sync();
     inspect.search();
-    for (const group of [...new Set(model.parts.map((p) => p.group))]) {
+    for (const group of [...new Set(model.parts.filter((p) => !config.accessories.assemblies.includes(p.assembly)).map((p) => p.group))]) {   // the player's subsystems; accessories are found by search
       const option = document.createElement("option");
       option.value = group;
       option.textContent = group;
       $("subsystem").append(option);
     }
-    for (const key2 of ["motorAssembly", "motorCutaway", "beltDrive", "ejectMechanism", "batteryHousing", "battery", "servoBoard", "dcPower", "jackHotline", "mainAf"]) {
+    for (const key2 of ["motorAssembly", "motorCutaway", "beltDrive", "ejectMechanism", "batteryHousing", "battery", "servoBoard", "dcPower", "jackHotline", "playbackWiring", "mainAf"]) {
       const context = model.inspectionContexts?.[key2];
       if (context) {
         const b = document.createElement("button");
@@ -524,7 +532,7 @@ export async function init() {
       const record = $("portable-tape-player-state");
       if (record) record.textContent = JSON.stringify(window.portableTapePlayer.snapshot());
     }
-    for (const group of explodedLayout.groups) labels.addAssembly(group, () => {
+    for (const group of explodedLayout.groups.filter((g) => !config.accessories.assemblies.includes(g.id))) labels.addAssembly(group, () => {   // accessories do not move apart
       inspect.select(parts.find((p) => p.data.id === group.partIds[0]));
       views.sync();
     });
@@ -542,7 +550,7 @@ export async function init() {
         return [id, { x, y, inFrustum: point.z >= -1 && point.z <= 1 && point.x >= -1 && point.x <= 1 && point.y >= -1 && point.y <= 1, axis: transport.controlScreenAxis(id) }];
       }));
       const lettering = packages.draws.filter((m) => m.userData.versions).map((m) => m.userData.part.data.id + " " + m.userData.versions.join("+") + (m.visible ? " shown" : " hidden")).sort();
-      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), audio: { ...audio.status, source: state.audioSource, music: audio.music, level: audio.level() }, ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
+      return JSON.parse(JSON.stringify({ ready: !state.graphicsUnavailable, state: { ...values, selectedId: state.selected?.data.id || null }, lettering, loaded: [...packages.loaded], renderedFrames: frameNumber, packageErrors: metrics.packageErrors, diagnostics: sessionDiagnostics(), audio: { ...audio.status, source: state.audioSource, music: audio.music, level: audio.level() }, plugs: plugMotion, ...(appearance ? {appearanceInvariant: appearanceSnapshot()} : {}), controls, parts: parts.map((p) => ({ id: p.data.id, visible: p.group.visible, position: p.group.position.toArray(), quaternion: p.group.quaternion.toArray(), scale: p.group.scale.toArray(), phase: p.phase, deformation: p.group.children.filter((m) => m.userData.deformationWeights).map((m) => m.userData.deformationWeights) })) }));
     } }), writable: false, configurable: false });
   } catch (err) {
     console.error(err);

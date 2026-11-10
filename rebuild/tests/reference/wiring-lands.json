@@ -1,0 +1,266 @@
+{
+ "WIR-MIC-01": [
+  [
+   "MIC-005",
+   "",
+   "tin solder"
+  ],
+  [
+   "JB-001",
+   "Jack PCB solder MIC901 red",
+   ""
+  ]
+ ],
+ "WIR-MIC-02": [
+  [
+   "MIC-006",
+   "",
+   "tin solder"
+  ],
+  [
+   "JB-001",
+   "Jack PCB solder MIC901 black",
+   ""
+  ]
+ ],
+ "WIR-MIC-03": [
+  [
+   "MIC-007",
+   "",
+   "tin solder"
+  ],
+  [
+   "JB-001",
+   "Jack PCB solder MIC901 white",
+   ""
+  ]
+ ],
+ "WIR-OUT-01": [
+  [
+   "MB-001",
+   "New main wire solder WIR-OUT-01",
+   ""
+  ],
+  [
+   "JB-001",
+   "Jack PCB solder output white",
+   ""
+  ]
+ ],
+ "WIR-OUT-02": [
+  [
+   "MB-001",
+   "New main wire solder WIR-OUT-02",
+   ""
+  ],
+  [
+   "JB-001",
+   "Jack PCB solder output blue",
+   ""
+  ]
+ ],
+ "WIR-PWR-01": [
+  [
+   "JCK-35",
+   "",
+   "tin solder"
+  ],
+  [
+   "MB-001",
+   "New main wire solder WIR-PWR-01",
+   ""
+  ]
+ ],
+ "WIR-PWR-02": [
+  [
+   "JCK-35",
+   "",
+   "tin solder"
+  ],
+  [
+   "SB-001",
+   "Power solder • WIR-PWR-02 • b",
+   ""
+  ]
+ ],
+ "WIR-PWR-03": [
+  [
+   "JCK-35",
+   "",
+   "tin solder"
+  ],
+  [
+   "BAT-022",
+   "",
+   "tin solder"
+  ]
+ ],
+ "WIR-PWR-04": [
+  [
+   "JCK-36",
+   "",
+   "tin solder"
+  ],
+  [
+   "BAT-020",
+   "",
+   "tin solder"
+  ]
+ ],
+ "WIR-PWR-05": [
+  [
+   "JCK-13",
+   "",
+   "tin solder"
+  ],
+  [
+   "BAT-011",
+   "",
+   "tin solder"
+  ]
+ ],
+ "WIR-PWR-06": [
+  [
+   "JCK-13",
+   "",
+   "tin solder"
+  ],
+  [
+   "SWT-003",
+   "Power solder • WIR-PWR-06 • b",
+   ""
+  ]
+ ],
+ "WIR-PWR-07": [
+  [
+   "SWT-002",
+   "Power solder • WIR-PWR-07 • a",
+   ""
+  ],
+  [
+   "SB-001",
+   "Power solder • WIR-PWR-07 • b",
+   ""
+  ]
+ ],
+ "WIR-PWR-08": [
+  [
+   "SB-001",
+   "Power solder • WIR-PWR-08 • a",
+   ""
+  ],
+  [
+   "MB-001",
+   "New main wire solder WIR-PWR-08",
+   ""
+  ]
+ ],
+ "WIR-PWR-09": [
+  [
+   "BAT-010",
+   "",
+   "tin solder"
+  ],
+  [
+   "BAT-021",
+   "",
+   "tin solder"
+  ]
+ ],
+ "WIR-611": [
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 1",
+   ""
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 2",
+   ""
+  ]
+ ],
+ "WIR-612": [
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 3",
+   ""
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 4",
+   ""
+  ]
+ ],
+ "WIR-901": [
+  [
+   "EXT-061",
+   "D901 solder • yellow lead splice",
+   ""
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder D901 yellow",
+   ""
+  ]
+ ],
+ "WIR-902": [
+  [
+   "EXT-061",
+   "D901 solder • blue lead splice",
+   ""
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder D901 blue",
+   ""
+  ]
+ ],
+ "WIR-MTR-01": [
+  [
+   "MTR-031",
+   "",
+   "tin joints"
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 1",
+   ""
+  ]
+ ],
+ "WIR-MTR-02": [
+  [
+   "MTR-032",
+   "",
+   "tin joints"
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder L601 terminal 4",
+   ""
+  ]
+ ],
+ "WIR-MTR-03": [
+  [
+   "MTR-033",
+   "",
+   "tin joints"
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder • WIR-MTR-03",
+   ""
+  ]
+ ],
+ "WIR-MTR-04": [
+  [
+   "MTR-033",
+   "",
+   "tin joints"
+  ],
+  [
+   "SB-001",
+   "Servo PCB solder • WIR-MTR-04",
+   ""
+  ]
+ ]
+}

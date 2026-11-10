@@ -15,3 +15,7 @@ __pycache__/
 .DS_Store
 *.zip
 *.log
+
+# Claude Code's local settings and notes: they can hold keys, tokens and this computer's paths.
+.claude/
+CLAUDE.local.md

@@ -81,6 +81,67 @@ def sample_controls(scene,controllers,roots,parts,C,deformations,config,setpose,
                 if d['owner']==owner:
                     for target in d['targets']:target['controlCurve']['samples'].append({'value':value,'weight':keys.key_blocks[target['name']].value})
         operating['battery_catch_release_mm']=0.;operating.update_tag();setpose()
+    # The battery springs follow the native cell-load control: 0 with the accessories hidden (no cells), 1 its native value (cells in).
+    name=config['accessories']['cellLoad'];holders=[o for o in bpy.data.objects if name in o.keys()]
+    if len(holders)!=1:raise ValueError('Expected one native control holding '+name)
+    load=holders[0];native_load=config['accessories']['nativeCellLoad']   # the export starts from the springs at rest
+    for d,keys in deformations:
+        if d['owner'] in config['deformation']['channels']['cells']:
+            for target in d['targets']:target['controlCurve']={'channel':'cells','samples':[]}
+    for value in (0.,1.):
+        load[name]=value*native_load;load.update_tag();scene.frame_set(1);scene.frame_set(0);bpy.context.view_layer.update()
+        for d,keys in deformations:
+            if d['owner'] in config['deformation']['channels']['cells']:
+                for target in d['targets']:target['controlCurve']['samples'].append({'value':value,'weight':keys.key_blocks[target['name']].value})
+    load[name]=0.;load.update_tag();setpose()
+    # Plug-in states (config: accessories.plugs). For each state, the accessory's parts with the plug at the socket's
+    # mouth (insertion 0) and seated (1): a plug slides along its axis, so its pose between is the straight blend
+    # (checked at the midpoint); and every shape key the insertion moves, sampled along it like the controls above.
+    plugs={}
+    for accessory,plug in config['accessories'].get('plugs',{}).items():
+        ctl=controllers[config['controllers'][plug['controller']]];ids=[row['id'] for row in roots.values() if row['assembly']==plug['assembly']]
+        def plugged(state,t):
+            ctl['plug_socket']=state;ctl['plug_insertion']=float(t);ctl.update_tag();scene.frame_set(1);scene.frame_set(0);bpy.context.view_layer.update()
+        plugged(0,1.)
+        rest={f'{d["owner"]}/{t["name"]}':keys.key_blocks[t['name']].value for d,keys in deformations for t in d['targets']}
+        plugs[accessory]={}
+        for name,value in plug['states'].items():
+            poses={}
+            for t in (0.,.5,1.):
+                plugged(value,t);poses[t]={pid:trs(C@byid[pid].matrix_world) for pid in ids}
+            for pid in ids:
+                a,m,b=poses[0.][pid],poses[.5][pid],poses[1.][pid]
+                if max(abs(m[0][i]-(a[0][i]+b[0][i])/2) for i in range(3))>config['sampling']['positionToleranceMm'] or max(abs(a[k][i]-b[k][i]) for k in (1,2) for i in range(len(a[k])))>2e-6:raise ValueError(f'{accessory}/{name}/{pid}: the insertion is not a straight slide')
+                next(p for p in parts if p['id']==pid).setdefault('plugPoses',{})[name]=[a,b]
+            cache={}
+            def weights(t):
+                if t not in cache:plugged(value,t);cache[t]={k:keys.key_blocks[k.split('/',1)[1]].value for d,keys in deformations for k in [f'{d["owner"]}/{tt["name"]}' for tt in d['targets']]}
+                return cache[t]
+            grid=[i/40 for i in range(41)]
+            for t in grid:weights(t)
+            def refine(a,b,depth=0):
+                mid=(a+b)/2;wa,wb,wm=weights(a),weights(b),weights(mid)
+                if max(abs(wm[k]-(wa[k]+wb[k])/2) for k in wm)>config['sampling']['weightTolerance']:
+                    if depth>=20:raise ValueError(f'{accessory}/{name}: unresolved native discontinuity near {mid}')
+                    refine(a,mid,depth+1);refine(mid,b,depth+1)
+            for a,b in zip(grid,grid[1:]):refine(a,b)
+            moving=sorted(k for k in rest if any(abs(w[k]-rest[k])>1e-8 for w in cache.values()))
+            for d,keys in deformations:
+                for target in d['targets']:
+                    k=f'{d["owner"]}/{target["name"]}'
+                    if k not in moving:continue
+                    if 'plug' in target:raise ValueError(f'{k}: follows more than one plug state')
+                    target['plug']={'accessory':accessory,'state':name,'samples':[{'value':t,'weight':cache[t][k]} for t in sorted(cache)]}
+            plugs[accessory][name]={'controller_id':ctl['controller_id'],'socket':value,'sampleCount':len(cache),'shapeKeys':moving}
+        plugged(0,1.)
+        # the cord's whole length unplugged, along its ring centres (its objects in order; each later one shares its first ring)
+        objs=sorted([o for o in bpy.data.objects if o.type=='MESH' and (o.get('part_id') or o.get('owner_part_id'))==plug['cord']],key=lambda o:o.get('release_role')!='part')
+        sides=max(len(p.vertices) for p in objs[0].data.polygons);centres=[]   # the end caps are the largest faces
+        for o in objs:
+            P=np.array([tuple(C@o.matrix_world@v.co) for v in o.data.vertices]);assert len(P)%sides==0,(plug['cord'],o.name)
+            R=P.reshape(-1,sides,3).mean(1);centres.extend(R if not centres else R[1:])
+        plugs[accessory]['cord']={'part':plug['cord'],'sides':sides,'lengthMm':float(np.linalg.norm(np.diff(np.array(centres),axis=0),axis=1).sum())}
+    setpose()
     for d,keys in deformations:
         if d['owner']==config['deformation']['channels']['tone']:
             for target in d['targets']:target['controlCurve']={'channel':'tone','samples':result['tone']['deformation'][d['owner']+'/'+target['name']]}
@@ -121,4 +182,4 @@ def sample_controls(scene,controllers,roots,parts,C,deformations,config,setpose,
                     elif isinstance(value,(str,bool,int,float)) or value is None:properties[prop.identifier]=value
                     elif prop.is_array:properties[prop.identifier]=array_value(value)
                 constraints.append({'editing_location':'Native object constraint','owner':identity(data),'type':constraint.type,'properties':properties})
-    return {'schema_version':1,'controls':result,'native_inputs':inputs,'native_dependencies':dependencies,'native_constraints':constraints,'native_modifier_dependencies':modifier_dependencies,'native_parenting':parents,'snapshot_reference_policy':'snapshot_ref joins this generated graph only; authoring and viewer bindings use part_id/controller_id. Datablock names are descriptive, never lookup keys.','active_owner_ids':sorted(byid),'behaviors':{'transport':{'kind':'mixed','native':'Driver rates and exported mode poses','viewer':'viewer/operating-state.mjs: timing, sequencing and interpolation'},'battery':{'kind':'mixed','native':'Operating controller battery_open_deg and battery_catch_release_mm','viewer':'config/model.json: opening fraction and release sequencing; viewer/door-motion.mjs: interpolation'},'belts':{'kind':'mixed','native':'Swept path geometry and driving-owner rates','viewer':'viewer/drive-materials.mjs: traveling visual cues'},'separation':{'kind':'viewer-defined','editing_location':'Native viewer_* presentation properties and config/model.json assemblies; viewer/exploded-layout.mjs','separate_native_system':'Transport Service view, Exploded view and per-part part_explode operate Blender independently'},'audio':{'kind':'viewer-defined','editing_location':'viewer/audio.mjs and viewer/shared/audio-policy.mjs'},'tours':{'kind':'viewer-defined','editing_location':'viewer/tour-timeline.mjs'}}}
+    return {'schema_version':1,'controls':result,'plugs':plugs,'native_inputs':inputs,'native_dependencies':dependencies,'native_constraints':constraints,'native_modifier_dependencies':modifier_dependencies,'native_parenting':parents,'snapshot_reference_policy':'snapshot_ref joins this generated graph only; authoring and viewer bindings use part_id/controller_id. Datablock names are descriptive, never lookup keys.','active_owner_ids':sorted(byid),'behaviors':{'transport':{'kind':'mixed','native':'Driver rates and exported mode poses','viewer':'viewer/operating-state.mjs: timing, sequencing and interpolation'},'battery':{'kind':'mixed','native':'Operating controller battery_open_deg and battery_catch_release_mm','viewer':'config/model.json: opening fraction and release sequencing; viewer/door-motion.mjs: interpolation'},'belts':{'kind':'mixed','native':'Swept path geometry and driving-owner rates','viewer':'viewer/drive-materials.mjs: traveling visual cues'},'separation':{'kind':'viewer-defined','editing_location':'Native viewer_* presentation properties and config/model.json assemblies; viewer/exploded-layout.mjs','separate_native_system':'Transport Service view, Exploded view and per-part part_explode operate Blender independently'},'audio':{'kind':'viewer-defined','editing_location':'viewer/audio.mjs and viewer/shared/audio-policy.mjs'},'tours':{'kind':'viewer-defined','editing_location':'viewer/tour-timeline.mjs'}}}

@@ -71,10 +71,18 @@ export function runChecks(file, measured) {
     return {value: value(), target: p.value, tol: about.tol ?? ('tol' in p ? p.tol : 'tol_pct' in p ? p.value * p.tol_pct / 100 : 0)};
   });
 
+  for (const id of ['wiring.playback_cables', 'wiring.external_motor_leads']) {
+    if (!byId.has(id)) continue;
+    const ids = T(id).parts;
+    direct('wiring', id, id, () => ids.filter(key => key in measured.parts).length,
+      {parts: ids, note: 'Counts corresponding native part owners. The wiring contact regression checks the conductive connections separately.'});
+  }
   // ---------- solids
   add('solids', 'solids.single_closed_shell', {unit: 'parts', cls: 'designed'}, () => {
-    const all = Object.entries(measured.parts), bad = all.filter(([, p]) => !p.closed_solid).map(([id]) => id).sort();
-    return {value: bad.length, target: 0, tol: 0, parts: bad, note: all.length + ' parts: ' + (all.length - bad.length) + ' are one closed solid, ' + bad.length + ' are not. Vertices closer than 0.001 mm are joined; lettering is left out.'};
+    const extra = new Set(measured.accessories || []), every = Object.entries(measured.parts);
+    const all = every.filter(([id]) => !extra.has(id)), bad = all.filter(([, p]) => !p.closed_solid).map(([id]) => id).sort();
+    const accessories = every.filter(([id]) => extra.has(id)), shut = accessories.filter(([, p]) => p.closed_solid).length;
+    return {value: bad.length, target: 0, tol: 0, parts: bad, note: all.length + ' parts: ' + (all.length - bad.length) + ' are closed solids, ' + bad.length + ' are not. A part is one closed shell, or as many as its object declares in closed_shells (a wire\'s core inside its jacket is two). Vertices closer than 0.001 mm are joined; lettering is left out.' + (accessories.length ? ' The ' + accessories.length + ' accessory parts are not held to this (' + shut + ' are closed solids).' : '')};
   });
 
   // ---------- envelope

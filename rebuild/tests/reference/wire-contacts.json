@@ -1,0 +1,172 @@
+{
+ "WIR-611": [
+  "SB-001 / Servo PCB solder L601 terminal 1",
+  "SB-001 / Servo PCB solder L601 terminal 2"
+ ],
+ "WIR-612": [
+  "SB-001 / Servo PCB solder L601 terminal 3",
+  "SB-001 / Servo PCB solder L601 terminal 4"
+ ],
+ "WIR-901": [
+  "EXT-061 / D901 leads • tin finish estimate",
+  "EXT-061 / D901 solder • yellow lead splice",
+  "SB-001 / Servo PCB solder D901 yellow",
+  "SB-001 / Servo PCB solder D901 yellow far"
+ ],
+ "WIR-902": [
+  "EXT-061 / D901 leads • tin finish estimate",
+  "EXT-061 / D901 solder • blue lead splice",
+  "SB-001 / Servo PCB solder D901 blue",
+  "SB-001 / Servo PCB solder L601 terminal 3"
+ ],
+ "WIR-AF-01": [
+  "MB-001 / Main link solder WIR-AF-01 A",
+  "MB-001 / Main link solder WIR-AF-01 B"
+ ],
+ "WIR-IN-01": [
+  "MB-001 / Main link solder WIR-IN-01 A",
+  "MB-001 / Main link solder WIR-IN-01 B"
+ ],
+ "WIR-IN-02": [
+  "MB-001 / Main link solder WIR-IN-02 A",
+  "MB-001 / Main link solder WIR-IN-02 B"
+ ],
+ "WIR-MIC-01": [
+  "JB-001 / Jack PCB solder MIC901 red",
+  "MIC-005 / MIC joints • tin solder estimate",
+  "MIC-005 / MIC901 • tinned terminal",
+  "WIR-MIC-04 / WIR-MIC-04 continuous conductor"
+ ],
+ "WIR-MIC-02": [
+  "JB-001 / Jack PCB solder MIC901 black",
+  "MIC-006 / MIC joints • tin solder estimate",
+  "MIC-006 / MIC901 • tinned terminal"
+ ],
+ "WIR-MIC-03": [
+  "JB-001 / Jack PCB solder MIC901 white",
+  "MIC-007 / MIC joints • tin solder estimate",
+  "MIC-007 / MIC901 • tinned terminal"
+ ],
+ "WIR-MIC-04": [
+  "JB-001 / Jack PCB solder MIC901 red",
+  "MB-001 / Audio solder WIR-MIC-04",
+  "WIR-MIC-01 / Harness • continuous copper",
+  "WIR-MIC-01 / MIC leads • tinned copper envelope"
+ ],
+ "WIR-MTR-01": [
+  "MTR-031 / MNF • porous bronze bushings",
+  "MTR-031 / Motor harness • tin joints estimate",
+  "SB-001 / Servo PCB solder L601 terminal 1"
+ ],
+ "WIR-MTR-02": [
+  "MTR-032 / MNF • porous bronze bushings",
+  "MTR-032 / Motor harness • tin joints estimate",
+  "SB-001 / Servo PCB solder L601 terminal 4"
+ ],
+ "WIR-MTR-03": [
+  "MTR-033 / Motor harness • tin joints estimate",
+  "SB-001 / Servo PCB solder • WIR-MTR-03"
+ ],
+ "WIR-MTR-04": [
+  "MTR-033 / Motor harness • tin joints estimate",
+  "SB-001 / Servo PCB solder • WIR-MTR-04"
+ ],
+ "WIR-OUT-01": [
+  "JB-001 / Jack PCB solder output white",
+  "MB-001 / New main wire solder WIR-OUT-01"
+ ],
+ "WIR-OUT-02": [
+  "JB-001 / Jack PCB solder output blue",
+  "MB-001 / New main wire solder WIR-OUT-02"
+ ],
+ "WIR-OUT-03": [
+  "JB-001 / Audio solder WIR-OUT-03",
+  "MB-001 / Audio solder WIR-OUT-03"
+ ],
+ "WIR-PB-01": [
+  "BAY-060 / HP901 terminal 1",
+  "BAY-060 / HP901 terminal 2",
+  "BAY-060 / HP901 terminal 3",
+  "JB-001 / Audio solder IN RED",
+  "JB-001 / Audio solder IN SH",
+  "JB-001 / Audio solder IN WHT"
+ ],
+ "WIR-PB-02": [
+  "JB-001 / Audio solder OUT RED",
+  "JB-001 / Audio solder OUT SH",
+  "JB-001 / Audio solder OUT WHT",
+  "MB-001 / Audio solder PRE RED",
+  "MB-001 / Audio solder PRE SH",
+  "MB-001 / Audio solder PRE WHT"
+ ],
+ "WIR-PWR-01": [
+  "JCK-35 / CNJ901 • exposed brass contact estimate",
+  "JCK-35 / Power terminations • tin solder estimate",
+  "MB-001 / New main wire solder WIR-PWR-01"
+ ],
+ "WIR-PWR-02": [
+  "JCK-35 / CNJ901 • exposed brass contact estimate",
+  "JCK-35 / Power terminations • tin solder estimate",
+  "SB-001 / Power solder • WIR-PWR-02 • b"
+ ],
+ "WIR-PWR-03": [
+  "BAT-022 / Battery contacts • plated metal",
+  "BAT-022 / Power terminations • tin solder estimate",
+  "JCK-35 / CNJ901 • exposed brass contact estimate",
+  "JCK-35 / Power terminations • tin solder estimate"
+ ],
+ "WIR-PWR-04": [
+  "BAT-020 / Battery contacts • plated metal",
+  "BAT-020 / Power terminations • tin solder estimate",
+  "JCK-36 / Power terminations • tin solder estimate"
+ ],
+ "WIR-PWR-05": [
+  "BAT-011 / Battery contacts • plated metal",
+  "BAT-011 / Power terminations • tin solder estimate",
+  "JCK-13 / CNJ901 • tinned terminal and lead estimate",
+  "JCK-13 / Power terminations • tin solder estimate"
+ ],
+ "WIR-PWR-06": [
+  "JCK-13 / Power terminations • tin solder estimate",
+  "SWT-003 / Power solder • WIR-PWR-06 • b"
+ ],
+ "WIR-PWR-07": [
+  "SB-001 / Power solder • WIR-PWR-07 • b",
+  "SWT-002 / Power solder • WIR-PWR-07 • a"
+ ],
+ "WIR-PWR-08": [
+  "MB-001 / New main wire solder WIR-PWR-08",
+  "SB-001 / Power solder • WIR-PWR-08 • a"
+ ],
+ "WIR-PWR-09": [
+  "BAT-010 / Battery contacts • plated metal",
+  "BAT-010 / Power terminations • tin solder estimate",
+  "BAT-021 / Battery contacts • plated metal",
+  "BAT-021 / Power terminations • tin solder estimate"
+ ],
+ "WIR-TNE-01": [
+  "MB-001 / Main link solder WIR-TNE-01 B",
+  "MB-001 / New S301 solder tone_LU",
+  "MB-001 / New main PCB conductor 24",
+  "TNE-031 / Current controls • plated contact"
+ ],
+ "WIR-TNE-02": [
+  "MB-001 / Main link solder WIR-TNE-02 B",
+  "MB-001 / New S301 solder tone_BRN",
+  "MB-001 / New main copper • S301 brown",
+  "TNE-032 / Current controls • plated contact"
+ ],
+ "WIR-TNE-03": [
+  "MB-001 / Main link solder WIR-TNE-03 B",
+  "MB-001 / New S301 solder tone_WHT",
+  "MB-001 / New main PCB conductor 26",
+  "MB-001 / New main solder R209 pin2",
+  "TNE-033 / Current controls • plated contact"
+ ],
+ "WIR-TNE-04": [
+  "MB-001 / Main link solder WIR-TNE-04 B",
+  "MB-001 / New S301 solder tone_VIO",
+  "MB-001 / New main PCB conductor 27",
+  "TNE-034 / Current controls • plated contact"
+ ]
+}

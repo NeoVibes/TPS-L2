@@ -32,7 +32,7 @@ function frameLoop() {
     cam: {moving: false, step() {}, updateClipRange() {}}, orbit: {update() {}}, scene: {}, camera: {near: 1, far: 2000},
     renderer, labels: {update() {}, visibleAssemblies: () => []}, audio: {sync() {}},
     transportInterval: () => ({seconds: 0, mode: 'stop'}), advanceOperating() {}, views: {sync() {}},
-    updateParts() {}, reducedMotion: {matches: true}, tour: {seek() {}, position: 0},
+    updateParts() {}, reducedMotion: {matches: true}, tour: {seek() {}, position: 0}, plugMotion: {}, plugMoving: () => false,
     displayBattery: 0, displayExplosion: 0, displayRadial: 0, ejectTravel: () => 0,
     packages: {loaded: new Set(['exterior'])}, parts: [{data: {id: 'MEC-011'}, group: {visible: true}, phase: 0}],
     metrics: {frames: [], sampleKey: 'assembled/stop', motionSampling: false},

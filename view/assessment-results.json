@@ -1,9 +1,9 @@
 {
  "what": "Results of checking the model against edit/targets.json and edit/assessments.json. Written by \"npm run build\"; do not edit. Issue numbers refer to this project's GitHub issues.",
- "version": "0.3.0",
+ "version": "0.3.1",
  "bound_to": {
-  "model": "556692b578e2c243f00b553945c7a9ef8de425dd119562e8c23c41a910f01b8f",
-  "targets": "18977a21fa0b52d99a2f985b00f77a501a60c9bb49f2e09d3178d7c9bb274462",
+  "model": "5c03d13ae3103b475a019956a2f5e29423bf3fef26d36937260451850cd75a68",
+  "targets": "4ce8b0994c9937c3e005e3a549d2f1d7f3f9af54b48c2d548fde85c0f8691fb6",
   "assessments": "799ed8053f15702312beb4049d62c17aad9190331f0a37970294c928c7568111",
   "service_list": "5018b1708add61ad8a0f4d81e9e590af5f45e94c23873046e16fdd00e7a4a63a"
  },
@@ -18,9 +18,15 @@
  ],
  "rows_at_each_level": {
   "0": 143,
-  "1": 518
+  "1": 572
  },
  "check_totals": {
+  "wiring": {
+   "pass": 2,
+   "fail": 0,
+   "info": 0,
+   "no data": 0
+  },
   "solids": {
    "pass": 0,
    "fail": 1,
@@ -901,9 +907,92 @@
    "checks": [
     "belt.length_ratio_main_to_second"
    ]
+  },
+  "wiring.playback_cables": {
+   "definition": "f6d557939260f3c4",
+   "outcome": "pass",
+   "checks": [
+    "wiring.playback_cables"
+   ]
+  },
+  "wiring.external_motor_leads": {
+   "definition": "a0730180042652ae",
+   "outcome": "pass",
+   "checks": [
+    "wiring.external_motor_leads"
+   ]
+  },
+  "accessory.headphone_driver_diameter": {
+   "definition": "c5f9f96e2702c6b4",
+   "outcome": "no check",
+   "checks": []
+  },
+  "accessory.headphone_pad_outside_diameter": {
+   "definition": "29ff875e6084b68a",
+   "outcome": "no check",
+   "checks": []
+  },
+  "accessory.adapter_blade_spacing": {
+   "definition": "2e0a36c85a781b39",
+   "outcome": "no check",
+   "checks": []
+  },
+  "accessory.adapter_input": {
+   "definition": "f8e1a0c6f72fe86e",
+   "outcome": "no check",
+   "checks": []
+  },
+  "accessory.adapter_output": {
+   "definition": "d26c8ae3d061439b",
+   "outcome": "no check",
+   "checks": []
   }
  },
  "checks": [
+  {
+   "group": "wiring",
+   "id": "wiring.playback_cables",
+   "target": "wiring.playback_cables",
+   "uses": [],
+   "variant": null,
+   "value": 2,
+   "expected": 2,
+   "allowed": [
+    2,
+    2
+   ],
+   "unit": "parts",
+   "class": "documented",
+   "parts": [
+    "WIR-PB-01",
+    "WIR-PB-02"
+   ],
+   "status": "pass",
+   "note": "Counts corresponding native part owners. The wiring contact regression checks the conductive connections separately."
+  },
+  {
+   "group": "wiring",
+   "id": "wiring.external_motor_leads",
+   "target": "wiring.external_motor_leads",
+   "uses": [],
+   "variant": null,
+   "value": 4,
+   "expected": 4,
+   "allowed": [
+    4,
+    4
+   ],
+   "unit": "parts",
+   "class": "documented",
+   "parts": [
+    "WIR-MTR-01",
+    "WIR-MTR-02",
+    "WIR-MTR-03",
+    "WIR-MTR-04"
+   ],
+   "status": "pass",
+   "note": "Counts corresponding native part owners. The wiring contact regression checks the conductive connections separately."
+  },
   {
    "group": "solids",
    "id": "solids.single_closed_shell",
@@ -961,7 +1050,7 @@
     "SWT-003"
    ],
    "status": "fail",
-   "note": "506 parts: 466 are one closed solid, 40 are not. Vertices closer than 0.001 mm are joined; lettering is left out."
+   "note": "521 parts: 481 are closed solids, 40 are not. A part is one closed shell, or as many as its object declares in closed_shells (a wire's core inside its jacket is two). Vertices closer than 0.001 mm are joined; lettering is left out. The 39 accessory parts are not held to this (24 are closed solids)."
   },
   {
    "group": "envelope",
@@ -4604,6 +4693,216 @@
   }
  ],
  "rows": {
+  "AA-001": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AA-002": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-001": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-002": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-003": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-004": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-005": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-006": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-007": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-008": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-009": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-010": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-011": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "AC31-012": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "BAS-001": {
    "level": 1,
    "checklist": "placeholder",
@@ -8774,6 +9073,381 @@
     }
    ]
   },
+  "MDR-001": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-020": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-021": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-022": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-023": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-024": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-025": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-02": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-03": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-04": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-05": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-06": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-07": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-08": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-L-09": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-02": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-03": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-04": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-05": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-06": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-07": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-08": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "MDR-R-09": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "MEC-001": {
    "level": 1,
    "checklist": "placeholder",
@@ -10454,6 +11128,66 @@
     }
    ]
   },
+  "RET-101": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "RET-102": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "RET-103": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "RET-104": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "RLC-001": {
    "level": 1,
    "checklist": "placeholder",
@@ -12104,6 +12838,51 @@
     }
    ]
   },
+  "WIR-AF-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-IN-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-IN-02": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
   "WIR-MIC-01": {
    "level": 1,
    "checklist": "placeholder",
@@ -12135,6 +12914,21 @@
    ]
   },
   "WIR-MIC-03": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-MIC-04": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -12225,6 +13019,51 @@
    ]
   },
   "WIR-OUT-02": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-OUT-03": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-PB-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-PB-02": {
    "level": 1,
    "checklist": "placeholder",
    "features": [
@@ -12360,6 +13199,66 @@
    ]
   },
   "WIR-PWR-09": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-TNE-01": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-TNE-02": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-TNE-03": {
+   "level": 1,
+   "checklist": "placeholder",
+   "features": [
+    {
+     "name": "overall geometry",
+     "required": true,
+     "level": 1,
+     "why": [
+      "not assessed: this part has no reviewed feature checklist yet"
+     ],
+     "assessments": []
+    }
+   ]
+  },
+  "WIR-TNE-04": {
    "level": 1,
    "checklist": "placeholder",
    "features": [

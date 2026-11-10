@@ -10,6 +10,10 @@ from belt_geometry import recover_belt, wrap_samples, seam_distance
 native,digest=bound_native()
 check_space(O,projected_bytes=0)
 bpy.ops.wm.open_mainfile(filepath=str(native),load_ui=False,use_scripts=False);s=bpy.context.scene
+# The player is exported as it is without its accessories: the battery springs at rest. The viewer brings them onto the
+# cells (the native control's value, kept here for the samples) when the accessories are shown.
+for _o in bpy.data.objects:
+ if CONFIG['accessories']['cellLoad'] in _o.keys():CONFIG['accessories']['nativeCellLoad']=_o[CONFIG['accessories']['cellLoad']];_o[CONFIG['accessories']['cellLoad']]=0.;_o.update_tag()
 inventory=audit(R/'config/part-ids.json')
 serial={'value':str(s.get('release_serial_number','')),'fictional':bool(s.get('release_serial_is_fictional',False)),'part_id':str(s.get('release_serial_part_id',''))}
 if serial != {'value':'12345','fictional':True,'part_id':'BAT-001'}:raise ValueError('Missing or modified fictional serial metadata. Restore the release serial properties on the scene.')
@@ -36,7 +40,8 @@ operation=controllers[CONFIG['controllers']['operating']]
 exterior=prepare_exterior(bpy,c,check=True)
 rows=[{'id':r['part_id'],'object':r['object'],'status':r['status'],**r['presentation']} for r in inventory['owners']]
 canonical=collect_owners();roots={canonical[r['id']]:r for r in rows}
-inventory_binding={'sha256':sha256(O/'inventory.json'),'ownerIds':sorted(r['id'] for r in rows),'physicalIds':sorted(r['id'] for r in rows if not r['is_cassette']),'presentationOnlyIds':sorted(r['id'] for r in rows if r['is_cassette'])}
+accessory=lambda r:r['assembly'] in CONFIG['accessories']['assemblies']   # counted apart from the device (config: accessories)
+inventory_binding={'sha256':sha256(O/'inventory.json'),'ownerIds':sorted(r['id'] for r in rows),'physicalIds':sorted(r['id'] for r in rows if not r['is_cassette'] and not accessory(r)),'accessoryIds':sorted(r['id'] for r in rows if accessory(r)),'presentationOnlyIds':sorted(r['id'] for r in rows if r['is_cassette'])}
 C=Matrix(((1000,0,0,0),(0,0,1000,0),(0,-1000,0,0),(0,0,0,1)))
 
 def setpose(mode=0,door=0,media=0,eject=0,frame=0):
@@ -150,6 +155,7 @@ for i,(root,r) in enumerate(roots.items()):
    slot_material=ob.material_slots[mi].material if mi<len(ob.material_slots) else None
    chunk={'p':append(verts,'<f4'),'n':append(norms,'<f4'),'i':append(inds,'<u4'),'m':material(slot_material) if shown_by_default(ob,exterior) else None}
    # Lettering that only some exterior versions show says which, and takes its material number after all the others.
+   if ob.get('wire_land'):chunk['wireLand']=ob['wire_land']
    if exterior_tags(ob):chunk['versions']=exterior_tags(ob);chunk['piece']=ob.name
    if chunk['m'] is None:late_materials.append((chunk,slot_material))
    if ob.get('eject_articulation'):
@@ -302,7 +308,7 @@ write_json(O/'motion.json',motion)
 meta_motion=motion['controls']
 print('POSES DONE',flush=True)
 assert sorted(p['id'] for p in parts)==inventory_binding['ownerIds'], 'Export owner coverage differs from current inventory'
-meta={'fictional_serial':serial,'source_sha256':digest,'exterior':{'versions':exterior['versions'],'default':exterior['default']},'inactiveBindings':inactive,'nativeCueSubstitutions':cue_substitutions,'source':native.relative_to(KIT).as_posix(),'inventory':inventory_binding,'units':'millimeters','controls':meta_motion,'parts':parts,'materials':materials,'triangles':totaltri,'geometry_bytes':len(buf),'config':CONFIG['title'],'spin_sampling':spin_sampling,'frozen_controls':frozen_controls,'deformation_owners':sorted(set(d['owner'] for d,k in deformation_sources)),'legacy_static_shape_channels':[d for d,k in legacy_shape_sources]}
+meta={'plugs':motion['plugs'],'fictional_serial':serial,'source_sha256':digest,'exterior':{'versions':exterior['versions'],'default':exterior['default']},'inactiveBindings':inactive,'nativeCueSubstitutions':cue_substitutions,'source':native.relative_to(KIT).as_posix(),'inventory':inventory_binding,'units':'millimeters','controls':meta_motion,'parts':parts,'materials':materials,'triangles':totaltri,'geometry_bytes':len(buf),'config':CONFIG['title'],'spin_sampling':spin_sampling,'frozen_controls':frozen_controls,'deformation_owners':sorted(set(d['owner'] for d,k in deformation_sources)),'legacy_static_shape_channels':[d for d,k in legacy_shape_sources]}
 meta_bytes=json.dumps(meta,separators=(',',':')).encode();geometry_bytes=gzip.compress(buf,compresslevel=6,mtime=0)
 check_space(O,projected_bytes=len(meta_bytes)+len(geometry_bytes)+1024**2)
 write_bytes_guarded(O/'model.json',meta_bytes);write_bytes_guarded(O/'model.bin.gz',geometry_bytes);assert hashlib.sha256(native.read_bytes()).hexdigest()==digest

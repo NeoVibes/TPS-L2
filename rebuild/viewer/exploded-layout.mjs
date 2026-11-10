@@ -2,7 +2,7 @@
 // rigid: no rotation, component packing, or changes to source registration.
 // These offsets illustrate assembly structure, not factory removal instructions.
 import config from '../config/model.json' with {type:'json'};
-const DEFINITIONS=Object.freeze(config.assemblies);
+const DEFINITIONS=Object.freeze(config.assemblies),ACCESSORIES=new Set(config.accessories.assemblies);
 export const EXPLODED_GROUP_ORDER=Object.freeze(DEFINITIONS.map(group=>group.name));
 const ZERO=()=>[0,0,0];
 const add=(a,b)=>a.map((value,i)=>value+b[i]);
@@ -35,7 +35,8 @@ export function createExplodedLayout(parts,{gapMm=config.viewer.explodedGapMm,si
   if(typeof part.id!=='string'||!part.id)throw new Error('Exploded assembly needs a component ID');
   if(seen.has(part.id))throw new Error('Duplicate component ID '+part.id);seen.add(part.id);
   const bounds=validateBounds(part),group=byAssembly.get(explodedAssemblyId(part));
-  group.partIds.push(part.id);include(group.assembledBounds,bounds);include(nativeBounds,bounds);
+  group.partIds.push(part.id);include(group.assembledBounds,bounds);
+  if(!ACCESSORIES.has(group.id))include(nativeBounds,bounds);   // accessories stay where they are and do not widen the player's layout
  }
  const groups=[...byAssembly.values()].filter(group=>group.partIds.length);
  // The connected transport, complete motor and battery case remain the datum.
@@ -56,7 +57,7 @@ export function createExplodedLayout(parts,{gapMm=config.viewer.explodedGapMm,si
   const group=byAssembly.get(explodedAssemblyId(part)),offset=[...group.offset];
   offsets[part.id]=offset;assemblyIds[part.id]=group.id;
   const partBounds=validateBounds(part),anchor=center(partBounds);anchor[2]=partBounds.max[2];
-  labelAnchors[part.id]=add(anchor,offset);include(bounds,partBounds,offset);
+  labelAnchors[part.id]=add(anchor,offset);if(!ACCESSORIES.has(group.id))include(bounds,partBounds,offset);
  }
  const outputGroups=groups.map(group=>{
   const anchor=center(group.assembledBounds),labelAnchor=add(anchor,group.offset);

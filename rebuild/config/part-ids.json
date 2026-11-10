@@ -2651,6 +2651,276 @@
       "id": "BAY-073",
       "origin": "authoring-helper",
       "state_at_registration": "active"
+    },
+    {
+      "id": "RET-101",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RET-102",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-MIC-04",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-OUT-03",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PB-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-PB-02",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-AF-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-IN-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-IN-02",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-TNE-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-TNE-02",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-TNE-03",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "WIR-TNE-04",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RET-103",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "RET-104",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-001",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-020",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-021",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-022",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-023",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-024",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-025",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-02",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-03",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-04",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-05",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-06",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-07",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-08",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-L-09",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-01",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-02",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-03",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-04",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-05",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-06",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-07",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-08",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "MDR-R-09",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-001",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-002",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-003",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-004",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-005",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-006",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-007",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-008",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-009",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-010",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-011",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AC31-012",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AA-001",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
+    },
+    {
+      "id": "AA-002",
+      "origin": "manual-reconciliation",
+      "state_at_registration": "active"
     }
   ]
 }

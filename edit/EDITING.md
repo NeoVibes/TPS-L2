@@ -21,6 +21,10 @@ Blender decides shapes, positions, and how far and how fast things move; two con
 
 To change a speed, find the part by `part_id`, follow its driver, and change the multiplier. Keep driver expressions simple (arithmetic, comparisons, `a if b else c`) so they work with scripts off.
 
+## Accessories and plugs
+
+The headphones' and the adapter's *Move assembly* objects are controllers too. `plug_socket` picks a socket (0 unplugged; headphones 1 socket A, 2 socket B; adapter 1 DC IN) and `plug_insertion` runs from 0, the plug's tip at the socket's mouth, to 1, seated. The plug, the cord's moving end, the socket springs and the battery switch follow them. Save both accessories unplugged and seated (`plug_socket` 0, `plug_insertion` 1). Each cord's moving end is a separate piece, *… · plug end*, whose shape keys hold its route for each state.
+
 ## Exterior versions
 
 The *Exterior version* choice on the transport controller switches between Later, Intermediate and Early. Only lettering differs. A piece that only some versions show carries `exterior_versions` and two visibility drivers, both set by `show_in_versions` (below); an untagged piece shows in all three. Save with Later selected. `targets.json` holds the table of what each version shows, and the build stops if the model disagrees with it.
