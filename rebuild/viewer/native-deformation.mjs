@@ -4,7 +4,7 @@ import {tapeKeyWeights} from './tape.mjs';
 // Native shape-key displacements in owner coordinates. These are reconstructed
 // spring paths; they do not simulate force, compliance or contact pressure.
 const clamp = value => Math.max(0, Math.min(1, value));
-export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0,shutoff=null,tapePosition=0,accessories=false,plugs=null}={}){
+export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='high',toneTouched=false,view='assembled',batteryRelease=0,stopTravel=0,shutoff=null,tapePosition=0,accessories=false,cells=accessories,plugs=null}={}){
  const disconnected=['exploded','catalog','service'].includes(view);
  // Tape keys (the packs, the ribbon's runs) follow the tape position in every view.
  const tape=deformation.targets.some(t=>t.tape)?tapeKeyWeights(deformation.targets,tapePosition):null;
@@ -14,7 +14,7 @@ export function deformationWeights(deformation,{pose='stop',playTravel=0,tone='h
   // A key the plug-in states move (a socket spring, a cord's end) follows its accessory's plug: its state and how far in.
   else if(target.plug){const m=plugs?.[target.plug.accessory];weight=m&&m.shown===target.plug.state?interpolateSamples(target.plug.samples,m.insertion,'weight'):target.initial;}
   else if(curve){
-   const values={tone:disconnected||!toneTouched?.5:tone==='low'?0:1,play:disconnected?0:clamp(playTravel),stop:['exploded','catalog'].includes(view)?0:clamp(stopTravel),battery:['exploded','catalog'].includes(view)?0:clamp(batteryRelease),cells:accessories?1:0};   // the springs meet the cells when the accessories are shown
+   const values={tone:disconnected||!toneTouched?.5:tone==='low'?0:1,play:disconnected?0:clamp(playTravel),stop:['exploded','catalog'].includes(view)?0:clamp(stopTravel),battery:['exploded','catalog'].includes(view)?0:clamp(batteryRelease),cells:cells?1:0};   // the springs meet the cells when the cells are in
    if(!(curve.channel in values))throw Error('Unknown native control curve '+curve.channel);
    weight=interpolateSamples(curve.samples,values[curve.channel],'weight');
   }else if(config.deformation.channels.transport.includes(deformation.owner))weight=target.weights[disconnected?'stop':pose];

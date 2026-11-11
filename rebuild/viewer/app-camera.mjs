@@ -3,6 +3,7 @@
 // It is given the camera to move (through "stage") and owns the glide in progress.
 import config from "../config/model.json" with { type: "json" };
 import * as T from "three";
+import {fitBoxDistance} from "./fit-camera.mjs";
 
 const V = (a) => new T.Vector3().fromArray(a), clamp = T.MathUtils.clamp;
 const halfFovTangent = Math.tan(16 * Math.PI / 180);
@@ -115,7 +116,13 @@ export function createCamera({ $, state, parts, stage, layout, invalidate, reduc
     const { camera } = stage;
     camera.up.set(0, 1, 0);
     const spec = config.viewer.cameraPresets[view];
-    if (spec) {
+    if (spec && view === "assembled" && camera.isPerspectiveCamera && parts.length) {
+      // As large as the stage allows: the player, with the accessories when they are out, from the preset's side.
+      const box = new T.Box3();
+      for (const p of parts) if (p.data.authoritativeBounds && (!p.accessory || state.accessories)) box.expandByPoint(V(p.data.authoritativeBounds.min)).expandByPoint(V(p.data.authoritativeBounds.max));
+      const direction = V(spec.position).sub(V(spec.target)).normalize(), center = box.getCenter(new T.Vector3());
+      to(center.toArray(), center.clone().addScaledVector(direction, fitBoxDistance(box, direction, camera.up, camera.aspect, camera.fov)).toArray());
+    } else if (spec) {
       const position = [...spec.position];
       if (spec.depth) position[2] += spec.depth[0] * Math.max(spec.depth[1], spec.depth[2] / camera.aspect);
       to(spec.target, position);

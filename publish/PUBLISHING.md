@@ -13,7 +13,7 @@ The release tools prepare and check a ZIP; they never rebuild or upload it. **Co
 
    Run a full rebuild after changing the native file; `npm test` warns while a home or temporary profile path is still there. Only the exact neutral folder above (and its macOS `/private/tmp/` spelling) is exempt; temporary folders can also reveal user or tool information.
 3. Set the new version in `rebuild/config/release.json`, `rebuild/package.json` and `rebuild/package-lock.json`, then `npm run build:viewer`.
-4. On the final candidate, run `npm run check`, `npm run test:fast`, and `npm run test:release`. The fast suite must have zero skips. The release suite needs current native/reference working files and allows no unexpected skips. Run `node publish/walkthrough/run.mjs` (Chrome, from disk and hosted). Check real Safari by hand from disk and hosted: startup, geometry, transport, separation, interrupted STOP/EJECT, keyboard zoom and sound. Firefox is not tested; say so in the README. Record unavailable checks as incomplete, not passed. Keep logs, traces, screenshots and temporary fixtures in `rebuild/build/` or outside the kit.
+4. On the final candidate, run `npm run check`, `npm run test:fast`, and `npm run test:release`. The fast suite must have zero skips. The release suite needs current native/reference working files and allows no unexpected skips. Run `node publish/walkthrough/run.mjs` (Chrome, from disk and hosted). Check real Safari by hand from disk and hosted: startup, the views, the drawers, the Actions menu, transport, sound and full screen. Firefox is not tested; say so in the README. Record unavailable checks as incomplete, not passed. Keep logs, traces, screenshots and temporary fixtures in `rebuild/build/` or outside the kit.
 
    For appearance changes, check System, Light and Dark during loading and after startup, including delayed or failed geometry, live device preference changes, blocked storage and Reset. Verify that a theme switch preserves the current selection, camera, transport, tape position and audio, including a pending STOP/EJECT stroke. Check text, controls, keyboard focus, canvas labels and selection highlights at desktop and narrow widths. Keep the existing light assembled and separated backdrops and the model's materials, lighting and exposure. Use the intended explicit theme when creating screenshots for comparison or publication.
 
@@ -46,13 +46,13 @@ Before every push, run `node publish/scan-secrets.mjs --git-new` in the reposito
 Validate the candidate before packaging; use disposable copies for rebuild/edit experiments:
 
 - double-click the candidate's `view/index.html` in Chrome and Safari
-- let Chrome check the viewer, opened from disk and served from a subfolder (about 3 minutes):
+- let Chrome use the viewer, opened from disk and served from a subfolder (about a minute; on GitHub, where Chrome draws in software, 15 to 30 minutes):
 
   ```sh
   node publish/walkthrough/run.mjs
   ```
 
-  It walks through every control and compares with the recorded behaviour, switches the exterior version in every state, uses the parts list with and without 3D graphics, checks damaged and delayed geometry files, preferences, themes and contrast, keyboard zoom and interrupted STOP/EJECT. It needs Chrome (set `CHROME_BIN` if it is somewhere unusual) and the packages from `npm ci` in `rebuild/`. `--file` or `--hosted` runs one protocol, `--only=races,theme-startup` named checks. After an intended change to the viewer's behaviour, review the differences, then record them with `--update-reference`.
+  It opens the page and checks that nothing fails or reaches outside its folder; both rows on one line from desktop to phone width; the four views; the drawers; the transport; every item of the Actions menu, and the same actions with the mouse on the model; the sound; isolating a part; full screen; the three exterior versions; the tour; text contrast in light and dark; and the page without 3D or with a geometry file missing. Each check says in plain words what is wrong. It needs Chrome (set `CHROME_BIN` if it is somewhere unusual) and the packages from `npm ci` in `rebuild/`. `--file` or `--hosted` runs one way of opening it, `--only=sound,parts` named checks. Results and a few pictures go to `rebuild/build/walkthrough/`.
 - in `rebuild/`: `npm ci`, `npm run build`, `npm test`
 - `node rebuild/tools/compare.mjs "/path/to/previous kit" .` lists every part, pose and motion sample that differs from the previous release
 - try real edits on throwaway copies:

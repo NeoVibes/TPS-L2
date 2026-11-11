@@ -49,7 +49,7 @@ export const motionCueEnabled = { value: Number(preferences.motionCues) };
 const indicatorMaterials = [];
 export const $ = (id) => document.getElementById(id);
 const clamp = T.MathUtils.clamp;
-export const state = { ...createOperatingState(), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1, accessories: false, ...Object.fromEntries(Object.keys(config.accessories.plugs).map((key) => [key, "out"])) };
+export const state = { ...createOperatingState({ audioEnabled: true }), uiMode: "operate", cassetteVariant: "refined", labels: preferences.labels, subsystem: "all", projection: "perspective", section: "off", sectionOffset: 0, view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false, tour: -1, accessories: false, cells: false, ...Object.fromEntries(Object.keys(config.accessories.plugs).map((key) => [key, "out"])) };
 // Each accessory's plug as shown (plug-motion.mjs), and which accessory each accessory assembly belongs to.
 const plugMotion = Object.fromEntries(Object.keys(config.accessories.plugs).map((key) => [key, { shown: "out", insertion: 1 }]));
 const plugOf = Object.fromEntries(Object.entries(config.accessories.plugs).map(([key, plug]) => [plug.assembly, key]));
@@ -81,7 +81,9 @@ let highlightMaterials = [];
 export const metrics = { started: performance.now(), firstExteriorMs: null, frames: [], packageErrors: [], device: navigator.userAgent };
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 export const audio = createAudioEngine({ onStatus: (message) => {
+  // Shown beside the model only when it says something the sound choice does not already say.
   $("audioStatus").textContent = typeof message === "string" ? message : message.message;
+  $("audioStatus").hidden = ["off", "playing"].includes(message.state) || /^Sound (ready|paused)/.test(message.message);   // the usual states need no words
 }, loadMusic: async () => {
   // Only when sound is enabled with the music chosen: the data file is read, checked against the part list and
   // handed to a media element as a Blob address (the page may not fetch anything).
@@ -125,6 +127,7 @@ export const transport = createTransport({ $, state, parts, stage, packages, aud
     inspect.select(parts.find((p) => p.data.id === id));
     views.sync();
   },
+  accessories: { setPlug: (key, value) => views.setPlug(key, value), setCells: (on) => views.setCells(on) },
   setOrbitEnabled: (enabled) => {
     orbit.enabled = enabled;
     if (!enabled) {
@@ -168,9 +171,10 @@ export function reset() {
   if (state.graphicsUnavailable || !renderer) return;
   transport.cancelControlHold();
   $("controlCamera").value = "";
-  $("audioControls").open = true;
   tour.clear();
+  const sound = { audioEnabled: state.audioEnabled, audioSource: state.audioSource };   // Reset keeps the sound choice, as it keeps the appearance
   resetOperating(state);
+  Object.assign(state, sound);
   tour.rewind();
   Object.assign(state, { mode: "stop", door: false, media: "loaded", view: "assembled", explode: 0, radial: 0, speed: config.viewer.defaultSpeed, paused: false, category: "all", selected: null, isolate: false });
   for (const p of parts) p.phase = 0;
@@ -370,7 +374,7 @@ function animate(now) {
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";
     const mean = metrics.frames.reduce((a, v) => a + v.interval, 0) / metrics.frames.length;
-    $("fps").textContent = state.mode === "stop" || state.paused ? "Render on change" : Math.round(1e3 / mean) + " FPS · " + renderer.info.render.calls + " draws";
+    $("fps").textContent = state.mode === "stop" || state.paused ? "Drawn only when something changes." : Math.round(1e3 / mean) + " frames a second, " + renderer.info.render.calls + " draw calls.";
   }
 }
 // Optional read-only evidence for appearance changes; ordinary session snapshots stay small.
@@ -495,6 +499,8 @@ export async function init() {
     new ResizeObserver(resize).observe($("stage"));
     resize();
     cam.setProjection("perspective");
+    cam.preset("assembled");
+    cam.step(Infinity);   // the opening view is fitted to the stage at once, without a glide
     $("motionCues").checked = preferences.motionCues;
     $("toggleLabels").setAttribute("aria-pressed", state.labels);
     await packages.ensure("exterior");
@@ -526,6 +532,7 @@ export async function init() {
     inspect.applyPartLink();
     $("loading").hidden = true;
     $("shell").setAttribute("aria-busy", "false");
+    audio.preload();   // the music is the chosen sound; read it now so the first press can start it
     requestAnimationFrame(animate);
     if (window.portableTapePlayer && performance.now() - lastObservation > 500) {
       lastObservation = performance.now();

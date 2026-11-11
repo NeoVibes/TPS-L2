@@ -22,12 +22,32 @@ $("door").onclick = () => {
   });
   views.sync();
 };
+// A menu item does the step it needs first: the door before the cassette, the cover before the batteries.
+let followUp = 0;
+function then(milliseconds, step) {
+  clearTimeout(followUp);
+  followUp = setTimeout(() => { step(); views.sync(); }, milliseconds);
+}
 $("cassette").onclick = () => {
   tour.clear();
-  transport.operation({ type: "cassette" });
+  const inserted = state.media === "removed";
+  if (state.door) transport.operation({ type: "cassette", inserted });
+  else {
+    transport.operation({ type: "door", open: true });
+    then(700, () => { if (state.door) transport.operation({ type: "cassette", inserted }); });
+  }
   packages.ensure("mechanism").catch(() => {
   });
   views.sync();
+};
+$("cells").onclick = () => {
+  tour.clear();
+  const put = !state.cells;
+  if (state.batteryOpen) views.setCells(put);
+  else {
+    transport.modelAction(config.roles.batteryDoor[0], "click");
+    then(900, () => { if (state.batteryOpen) views.setCells(put); });
+  }
 };
 $("pause").onclick = () => {
   transport.operation({ type: "pause" });
@@ -57,12 +77,23 @@ $("isolate").onclick = () => {
   inspect.focusPart();
 };
 $("closeInspector").onclick = () => inspect.dismiss();
+$("showAll").onclick = () => {
+  state.isolate = false;
+  state.subsystem = "all";
+  $("subsystem").value = "all";
+  inspect.clearInspectionContext();
+  inspect.select(null);
+  views.updateVisibility();
+  cam.preset(state.view);
+  views.sync();
+};
 $("tour").onclick = () => {
   if (state.tour >= 0) {
     tour.clear();
     views.sync();
   } else {
     reset();
+    if (document.body.dataset.drawer === "parts" || narrow.matches) views.setDrawer("");   // its caption shows over the model
     views.setUIMode("tour");
     tour.seek(0);
   }
@@ -71,11 +102,47 @@ $("tourNext").onclick = () => {
   state.tapeRevision++;
   tour.seek(tour.steps.slice(0, state.tour + 1).reduce((sum, s) => sum + s.duration, 0));
 };
-$("quickTour").onclick = () => $("tour").click();
-$("fullscreen").onclick = () => {
-  if (document.fullscreenElement) document.exitFullscreen();
-  else document.documentElement.requestFullscreen?.();
-};
+// The model alone: the page's rows and drawers go, and the browser's full screen is used where it has one.
+function setSolo(on) {
+  document.body.classList.toggle("solo", on);
+  const label = on ? "Show the controls again" : "Show the model alone";
+  $("fullscreen").setAttribute("aria-pressed", String(on));
+  $("fullscreen").setAttribute("aria-label", label);
+  $("fullscreen").title = label;
+  if (on && !document.fullscreenElement) document.documentElement.requestFullscreen?.()?.catch(() => {
+  });
+  if (!on && document.fullscreenElement) document.exitFullscreen?.();
+  invalidate();
+}
+$("fullscreen").onclick = () => setSolo(!document.body.classList.contains("solo"));
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) setSolo(false);
+});
+// The drawers, one at a time.
+for (const b of document.querySelectorAll("button[data-drawer]")) b.onclick = () => views.setDrawer(document.body.dataset.drawer === b.dataset.drawer ? "" : b.dataset.drawer);
+$("closeDrawer").onclick = () => views.setDrawer("");
+$("viewMenu").onchange = (e) => views.setView(e.target.value);
+// The two popup menus of the bottom row. A press anywhere else closes them.
+const menus = [["actionsButton", "actionsMenu"], ["moreControls", "moreMenu"]].map(([button, menu]) => {
+  const set = (open) => {
+    $(menu).hidden = !open;
+    $(button).setAttribute("aria-expanded", String(open));
+  };
+  $(button).onclick = () => set($(menu).hidden);
+  document.addEventListener("pointerdown", (e) => {
+    if (!$(menu).hidden && !$(menu).contains(e.target) && !$(button).contains(e.target)) set(false);
+  });
+  return { set, get open() { return !$(menu).hidden; } };
+});
+// In a narrow window the version, the sound choice, the volume and the tone go into the More menu.
+const narrow = matchMedia("(max-width: 939px)");
+function placeControls() {
+  (narrow.matches ? $("moreMenu") : $("versionSlot")).append($("exteriorVersion"));
+  (narrow.matches ? $("moreMenu") : $("soundSlot")).append($("soundGroup"));
+  if (!narrow.matches) menus[1].set(false);
+}
+narrow.addEventListener("change", placeControls);
+placeControls();
 $("toggleLabels").onclick = () => {
   state.labels = !state.labels;
   saveViewerPreferences();
@@ -102,12 +169,17 @@ for (const b of document.querySelectorAll("[data-angle]")) b.onclick = () => {
 };
 document.addEventListener("keydown", (e) => {
   if (e.defaultPrevented || e.target.tagName === "SELECT") return;
-  if (e.key === "Escape") {
+  if (e.key === "Escape") {   // closes what is open, one thing at a time
+    const menu = menus.find((m) => m.open);
+    if (menu) { menu.set(false); return; }
+    if (document.body.classList.contains("solo")) { setSolo(false); return; }
+    const busy = Boolean(state.selected) || state.tour >= 0 || state.isolate;
     tour.clear();
     state.isolate = false;
     inspect.dismiss();
     views.updateVisibility();
     views.sync();
+    if (!busy && document.body.dataset.drawer) views.setDrawer("");
     return;
   }
   if (state.graphicsUnavailable) return;
@@ -119,7 +191,6 @@ document.addEventListener("keydown", (e) => {
   }
   if (e.key === "0") reset();
 });
-for (const b of document.querySelectorAll("[data-workmode]")) b.onclick = () => views.setUIMode(b.dataset.workmode);
 $("tourSeek").oninput = (e) => {
   const seconds = +e.target.value;
   views.setUIMode("tour");
@@ -180,15 +251,21 @@ $("copyPartLink").onclick = () => {
   return copyText(target.text, $("copyPartLink"), target.kind === "id" ? "Part ID copied" : "Public link copied");
 };
 $("copyPartDetails").onclick = () => copyText(inspect.copiedDetails(), $("copyPartDetails"), "Part details copied");
-$("audioEnable").onclick = async () => {
-  transport.operation({ type: "audio-enable", enabled: ["blocked", "unavailable"].includes(audio.status.state) || !state.audioEnabled });
-  if (state.audioEnabled) await audio.enable(state);
+// The page opens with the music chosen. A browser lets sound start only after a press, so the first press anywhere
+// starts it; a press after the browser blocked it tries again.
+function wakeSound() {
+  if (state.audioEnabled && !state.graphicsUnavailable && ["off", "blocked"].includes(audio.status.state)) audio.enable(state);
+}
+for (const type of ["pointerdown", "keydown"]) document.addEventListener(type, wakeSound, true);
+// One choice: mute, the tape's music, or the test tone. Choosing a sound turns the sound on.
+$("audioSource").oninput = async (e) => {
+  const value = e.target.value, on = value !== "mute";
+  if (on) transport.operation({ type: "audio-source", value });
+  transport.operation({ type: "audio-enable", enabled: on });
+  if (on) await audio.enable(state);
   views.sync();
 };
 for (const channel of ["Left", "Right"]) $("volume" + channel).oninput = (e) => transport.operation({ type: "volume", channel: channel.toLowerCase(), value: +e.target.value });
-$("audioSource").oninput = (e) => {
-  transport.operation({ type: "audio-source", value: e.target.value });
-};
 $("tone").oninput = (e) => {
   transport.operation({ type: "tone", value: e.target.value });
   views.sync();
@@ -207,7 +284,10 @@ $("performance").onclick = () => {
   $("performanceReadout").textContent = JSON.stringify({ device: metrics.device, firstExteriorMs: Math.round(metrics.firstExteriorMs), loaded: [...packages.loaded], sample: metrics.sampleKey, frames: metrics.frames.length, meanFrameMs: metrics.frames.length ? metrics.frames.reduce((s, v) => s + v.interval, 0) / metrics.frames.length : null, memoryBytes: performance.memory?.usedJSHeapSize || "Unavailable in this browser", downloadBytes: Object.values(packages.files).reduce((s, p) => s + p.bytes, 0), physicalPhoneTest: "Not performed" }, null, 2);
 };
 $("exteriorVersion").onchange = (e) => views.setExterior(e.target.value);
-$("accessories").onclick = () => views.setAccessories(!state.accessories);
+$("accessories").onclick = () => {
+  views.setAccessories(!state.accessories);
+  if (state.view === "assembled") cam.preset("assembled");   // step back to take them in, or forward again
+};
 for (const el of document.querySelectorAll("[data-plug]")) el.onchange = () => views.setPlug(el.dataset.plug, el.value);
 window.addEventListener("hashchange", () => {
   views.setExterior(new URLSearchParams(location.hash.slice(1)).get("exterior") || model?.exterior?.default);

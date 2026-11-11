@@ -21,7 +21,7 @@ assert.equal(readFileSync(path.join(VIEW, 'theme-init.js'), 'utf8'), readFileSyn
 assert(!/<link[^>]+rel="stylesheet"/i.test(html));
 // A user-followed repository link does not fetch a resource or make offline startup depend on it.
 assert(!/(?:src|href)=["'](?:https?:)?\/\//i.test(html.replace(/<a\b[^>]*>/gi, '')));
-assert(html.includes('<a href="https://github.com/NeoVibes/TPS-L2" target="_blank" rel="noopener noreferrer">View the project on GitHub</a>'));
+assert(html.includes('<a href="https://github.com/NeoVibes/TPS-L2" target="_blank" rel="noopener noreferrer">github.com/NeoVibes/TPS-L2</a>'));
 const policy = html.match(/Content-Security-Policy" content="([^"]+)"/)[1];
 assert(policy.includes("default-src 'none'") && policy.includes("connect-src 'none'") && policy.includes("script-src 'unsafe-inline' 'self'"));
 assert(!html.includes('component-evidence'));

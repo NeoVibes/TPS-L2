@@ -1,6 +1,6 @@
 {
  "what": "Results of checking the model against edit/targets.json and edit/assessments.json. Written by \"npm run build\"; do not edit. Issue numbers refer to this project's GitHub issues.",
- "version": "0.3.1",
+ "version": "0.3.2",
  "bound_to": {
   "model": "5c03d13ae3103b475a019956a2f5e29423bf3fef26d36937260451850cd75a68",
   "targets": "4ce8b0994c9937c3e005e3a549d2f1d7f3f9af54b48c2d548fde85c0f8691fb6",

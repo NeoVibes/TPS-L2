@@ -54,15 +54,23 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
   const wantsMusic = () => latest?.audioSource === 'music';
   const musicPlayable = () => Boolean(latest && !disposed && latest.audioEnabled && visible && !latest.muted && wantsMusic() && latest.mode === 'play' &&
     isTapeMoving(latest) && context?.state === 'running');
+  // The music's data is read once. preload() reads it before the first press, so that the press which starts
+  // the sound finds the music ready and can start it at once, while the browser still counts it as the press's.
+  let asset = null, assetLoad = null;
+  const readMusic = () => assetLoad ||= Promise.resolve().then(loadMusic).then((a) => (asset = a), (error) => { assetLoad = null; throw error; });
+  function attachMusic(a) {
+    const element = createMediaElement(a.url); element.preload = 'auto';
+    const node = context.createMediaElementSource(element);
+    node.connect(graph.direct); node.connect(graph.filter);
+    music = { ...a, element, node };
+  }
   function startMusicLoad() {
     if (!loadMusic) { musicError = 'this copy has no music'; return; }
+    if (asset) { attachMusic(asset); return; }
     const ticket = ++generation;
-    musicLoad = Promise.resolve().then(loadMusic).then((asset) => {
-      if (disposed || ticket !== generation) { asset?.release?.(); return; }
-      const element = createMediaElement(asset.url); element.preload = 'auto';
-      const node = context.createMediaElementSource(element);
-      node.connect(graph.direct); node.connect(graph.filter);
-      music = { ...asset, element, node }; musicLoad = null;
+    musicLoad = readMusic().then((a) => {
+      if (disposed || ticket !== generation) { if (disposed) a?.release?.(); return; }
+      attachMusic(a); musicLoad = null;
       if (latest) sync(latest);
     }, (error) => {
       if (disposed || ticket !== generation) return;
@@ -77,7 +85,7 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
     const tape = latest.tapePosition * latest.tapeDuration;
     if (tape >= duration) { pauseMusic(); report('ready', 'Past the end of the music · the tape runs on in silence'); return; }
     if (latest.speed < MUSIC_MIN_RATE) { pauseMusic(); report('ready', 'Music is silent below ' + MUSIC_MIN_RATE + '× motion speed'); return; }
-    if (blocked) { pauseMusic(); report('blocked', 'Browser blocked the music · press Enable sound to retry'); return; }
+    if (blocked) { pauseMusic(); report('blocked', 'The browser blocked the music · choose Mute, then the music again'); return; }
     // Rate and pitch are written only when they differ, not on every frame.
     try { if (el.playbackRate !== latest.speed) el.playbackRate = latest.speed; } catch { pauseMusic(); report('ready', 'Music is silent at this motion speed'); return; }
     if ('preservesPitch' in el) { if (el.preservesPitch) el.preservesPitch = false; } else if (el.webkitPreservesPitch) el.webkitPreservesPitch = false;
@@ -92,7 +100,7 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
         if (starting !== attempt) return;   // superseded: a pause aborts a pending start
         starting = null;
         if (!musicPlayable()) return;
-        blocked = true; el.pause(); report('blocked', 'Browser blocked the music · press Enable sound to retry');   // no automatic retry
+        blocked = true; el.pause(); report('blocked', 'The browser blocked the music · choose Mute, then the music again');   // no automatic retry
       });
     }
     report('playing', latest.hotline ? 'Hot Line simulation over the music · generated room signal, no microphone' : 'Playing ' + (music.title || 'the music'));
@@ -141,13 +149,13 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
     if (!latest.audioEnabled) { stopSources(); report('off', 'Sound off'); }
     else if (!visible) { stopSources(); report('background', 'Sound suspended while this page is hidden'); }
     else if (!context) {
-      if (status.state !== 'unavailable') report('off', 'Press Enable sound to hear ' + (wantsMusic() ? 'the music' : 'the test tone'));
+      if (status.state !== 'unavailable') report('off', 'Choose a sound to hear it');
     }
     else if (context.state !== 'running') {
       stopSources();
-      report('blocked', 'Sound is suspended · press Enable sound to retry');
+      report('blocked', 'Sound is suspended · choose Mute, then the sound again');
     } else if (latest.muted) { stopSources(); report('muted', 'Sound muted'); }
-    else if (wantsMusic() && musicError) { stopSources(); report('error', 'Music could not be loaded (' + musicError + ') · press Enable sound to retry, or choose the test tone'); }
+    else if (wantsMusic() && musicError) { stopSources(); report('error', 'Music could not be loaded (' + musicError + ') · choose Mute, then the music again to retry, or choose the test tone'); }
     else if (!playable) { stopSources(); report(wantsMusic() && !music ? 'loading' : 'ready', latest.paused ? 'Sound paused with the transport' : wantsMusic() && !music ? 'Loading music…' : 'Sound ready · press PLAY'); }
     else if (wantsMusic()) { stopTone(); ensureRoom(); playMusic(); }
     else {
@@ -174,7 +182,7 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
         if (!disposed && latest) sync(latest);
       } catch {
         stopSources();
-        if (!disposed) report('blocked', 'Browser blocked sound · press Enable sound to retry');
+        if (!disposed) report('blocked', 'The browser blocked the sound · choose Mute, then the sound again');
       }
       return status;
     })();
@@ -212,7 +220,8 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
     if (music) {
       music.node.disconnect(); music.element.removeAttribute?.('src'); music.element.load?.();
       music.release?.(); music = null;
-    }
+    } else asset?.release?.();
+    asset = null;
     if (context) {
       context.onstatechange = null;
       try { await context.close(); } catch {}
@@ -225,7 +234,9 @@ export function createAudioEngine({ AudioContextClass = globalThis.AudioContext 
     const samples = new Float32Array(graph.meter.fftSize); graph.meter.getFloatTimeDomainData(samples);
     return Math.sqrt(samples.reduce((sum, v) => sum + v * v, 0) / samples.length);
   }
-  return { enable, sync, setVisibility, dispose, level, get status() { return { ...status }; },
+  /** Reads the music's data ahead of the first press; nothing plays. */
+  const preload = () => { if (loadMusic && !disposed && !asset) readMusic().catch(() => {}); };
+  return { enable, sync, setVisibility, dispose, level, preload, get status() { return { ...status }; },
     get music() { return { loaded: Boolean(music), loading: Boolean(musicLoad), error: musicError, duration: music ? (Number.isFinite(music.element.duration) && music.element.duration > 0 ? music.element.duration : music.duration) : null,
       time: music ? music.element.currentTime : null, playing: Boolean(music && !music.element.paused) }; } };
 }

@@ -16,8 +16,8 @@ jobs:
       run:
         working-directory: rebuild
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '24.22.0'
           cache: npm
@@ -27,32 +27,18 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run test:fast
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: software-${{ matrix.os }}
           path: rebuild/build/test-results/summary.json
   chromium:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - group: file-controls
-            arguments: --file --only=main,controls,list,interaction
-          - group: file-exterior
-            arguments: --file --only=exterior,broken,failures
-          - group: file-viewer
-            arguments: --file --only=viewer,catalog
-          - group: file-playback
-            arguments: --file --only=preferences,races,theme-startup,music
-          - group: hosted
-            arguments: --hosted
-    name: chromium (${{ matrix.group }})
+    name: chromium
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '24.22.0'
           cache: npm
@@ -67,9 +53,9 @@ jobs:
           printf '#!/bin/sh\nexec "%s" --use-angle=swiftshader --enable-unsafe-swiftshader "$@"\n' "$chrome_path" > "$RUNNER_TEMP/ptp-chrome"
           chmod +x "$RUNNER_TEMP/ptp-chrome"
           echo "CHROME_BIN=$RUNNER_TEMP/ptp-chrome" >> "$GITHUB_ENV"
-      - run: node publish/walkthrough/run.mjs ${{ matrix.arguments }}
-      - uses: actions/upload-artifact@v4
+      - run: node publish/walkthrough/run.mjs
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: chromium-browser-results-${{ matrix.group }}
+          name: chromium-browser-results
           path: rebuild/build/walkthrough/summary.json
