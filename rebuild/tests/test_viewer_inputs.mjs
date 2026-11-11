@@ -30,6 +30,7 @@ class Target {
   }
   setAttribute(key, value) { this.attributes[key] = String(value); }
   setPointerCapture() {}
+  append() {}
   getRootNode() { return document; }
   getBoundingClientRect() { return {left: 0, top: 0, width: 800, height: 600}; }
   emit(type, values = {}) {
@@ -41,7 +42,8 @@ class Target {
   }
   click() { if (!this.disabled) this.emit('click'); }
 }
-const originalDocument = globalThis.document, originalWindow = globalThis.window;
+const originalDocument = globalThis.document, originalWindow = globalThis.window, originalMatchMedia = globalThis.matchMedia;
+globalThis.matchMedia = () => ({matches: false, addEventListener() {}});   // the page asks whether the window is narrow
 const elements = new Map(), $ = id => {
   if (!elements.has(id)) elements.set(id, new Target());
   return elements.get(id);
@@ -99,7 +101,7 @@ function resetFixture() {
 beforeEach(resetFixture);
 after(() => {
   stage.orbit.dispose();
-  globalThis.document = originalDocument; globalThis.window = originalWindow;
+  globalThis.document = originalDocument; globalThis.window = originalWindow; globalThis.matchMedia = originalMatchMedia;
   globalThis.portableTapePlayerData = originalData;
   delete globalThis[harnessKey];
 });

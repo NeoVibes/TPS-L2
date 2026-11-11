@@ -1,4 +1,4 @@
-// Inspect mode: searching, selecting and focusing parts, service-manual fields, part links,
+// The Parts drawer: searching, selecting and focusing parts, service-manual fields, part links,
 // and the named groups of parts ("contexts") such as the motor assembly.
 // It owns the service catalogue and the selection. It is given the camera, views and packages
 // controllers, and three things from the core: clearTour, reset and updateParts.
@@ -226,6 +226,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     if (!part) { state.isolate = false; selection = null; $("copyFallback").value = ""; $("copyFallbackLabel").hidden = true; }
     $("inspector").hidden = !part;
     if (part) {
+      if (document.body.dataset.drawer !== "parts") views.setDrawer("parts");   // its details are read there
       if (part.accessory && !state.accessories) views.setAccessories(true);
       if (state.contextIds && !state.contextIds.includes(part.data.id)) clearInspectionContext();
       if (state.subsystem !== "all" && state.subsystem !== part.data.group) {
@@ -309,6 +310,7 @@ export function createInspect({ $, state, parts, stage, packages, cam, views, cl
     rememberOpener(source);
     state.selected = null;
     $("inspector").hidden = false;
+    document.body.dataset.drawer = "parts";
     $("partId").textContent = data.id;
     $("partName").textContent = displayName(data);
     refreshPartInformation({ data });

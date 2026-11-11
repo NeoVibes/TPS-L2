@@ -152,6 +152,7 @@ export function createMasterList({ $, data, exterior, pickPart }) {
   // The exterior-version choice: one option per version, labelled with its lettering and approximate serial range.
   $("exteriorVersion").replaceChildren(...(data.exteriors || []).map((e) => { const option = element("option", e.label + " · " + e.lettering + " · " + e.serials); option.value = e.id; return option; }));
   $("exteriorNote").textContent = data.exteriorNote || "";
+  $("versionKey").replaceChildren(...(data.exteriors || []).map((e) => element("li", e.label + ": " + e.lettering + ", " + e.serials)));
   $("levelKey").replaceChildren(...data.levels.map((text, level) => element("li", "Level " + level + ": " + text)));
   for (const id of ["masterSearch", "masterStatus", "masterLevel"]) $(id).oninput = refresh;
   $("masterClear").onclick = () => {

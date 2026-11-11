@@ -91,10 +91,10 @@ for (const [name, after] of [['STOP', s => act(s, 'transport', {mode: 'stop'})],
   assert.equal(Context.latest.active.size, 0, 'STOP silences and releases all looping sources');
   await audio.dispose(); }
 
-// The browser blocks the start: the tape runs on silently, no automatic retry; Enable sound tries again.
+// The browser blocks the start: the tape runs on silently, no automatic retry; choosing the music again tries again.
 { const {audio} = setup(), s = playing(); Media.block = true;
   await audio.enable(s); await tick(); audio.sync(s); await tick(); await tick();
-  assert.equal(audio.status.state, 'blocked'); assert.match(audio.status.message, /Enable sound to retry/); assert.equal(s.mode, 'play');
+  assert.equal(audio.status.state, 'blocked'); assert.match(audio.status.message, /choose Mute, then the music again/); assert.equal(s.mode, 'play');
   const el = element(); audio.sync(s); audio.sync(s); await tick(); assert.equal(el.plays || 0, 0, 'no retry by itself');
   Media.block = false; await audio.enable(s); await tick(); audio.sync(s); await tick(); assert.equal(el.paused, false); await audio.dispose(); }
 

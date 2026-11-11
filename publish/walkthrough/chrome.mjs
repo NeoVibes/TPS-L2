@@ -38,8 +38,8 @@ export async function openBrowser({width = 1400, height = 900} = {}) {
   const send = (method, params = {}, sessionId) => new Promise((resolve, reject) => { const id = next++; pending.set(id, {resolve, reject}); ws.send(JSON.stringify({id, method, params, sessionId})); });
   const version = (await send('Browser.getVersion')).product;
 
-  // Without width and height a page keeps the window's own viewport (1400 × 813 at the default window size,
-  // which the walkthrough references were recorded at); with them it is exactly that size.
+  // Without width and height a page keeps the window's own viewport (1400 × 813 at the default window size);
+  // with them it is exactly that size.
   async function page({browserContextId, width: w, height: h, colorScheme, reducedMotion, init = []} = {}) {
     const {targetId} = await send('Target.createTarget', {url: 'about:blank', ...(browserContextId ? {browserContextId} : {})});
     const {sessionId} = await send('Target.attachToTarget', {targetId, flatten: true});
@@ -74,7 +74,8 @@ export async function openBrowser({width = 1400, height = 900} = {}) {
     listeners.add(listener);
     const s = (method, params) => send(method, params, sessionId);
     for (const d of ['Page', 'Runtime', 'Network', 'Log', 'Performance']) await s(d + '.enable');
-    const event = (method, seconds = 90) => { let w; const p = new Promise((resolve, reject) => { w = {method, resolve}; waiters.add(w); setTimeout(() => { if (waiters.delete(w)) reject(new Error('Timed out waiting for ' + method)); }, seconds * 1000); }); return p; };
+    // The timer is cleared when the event comes, or it would keep Node running for its full length after the last page.
+    const event = (method, seconds = 90) => { let w, timer; const p = new Promise((resolve, reject) => { w = {method, resolve: v => { clearTimeout(timer); resolve(v); }}; waiters.add(w); timer = setTimeout(() => { if (waiters.delete(w)) reject(new Error('Timed out waiting for ' + method)); }, seconds * 1000); }); return p; };
     const evaluate = async (expression) => { const r = await s('Runtime.evaluate', {expression, awaitPromise: true, returnByValue: true, userGesture: true}); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description || r.exceptionDetails.text); return r.result.value; };
     const call = (fn, ...args) => evaluate(`(${fn})(...${JSON.stringify(args)})`);
     const viewport = (vw, vh) => s('Emulation.setDeviceMetricsOverride', {width: vw, height: vh, deviceScaleFactor: 1, mobile: false});
@@ -138,7 +139,7 @@ export async function openBrowser({width = 1400, height = 900} = {}) {
     return {log, send: s, evaluate, call, goto, reload, waitFor, press, key, focus, fill, select, visible, disabled, screenshot, route, unroute, viewport, media, addInit,
       url: () => evaluate('location.href'),
       async metrics() { const {metrics} = await s('Performance.getMetrics'); return Object.fromEntries(metrics.map(m => [m.name, m.value])); },
-      // A script click, as the walkthrough uses; press() is the real mouse click.
+      // A script click; press() is the real mouse click.
       async click(selector) { return evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)return false;e.scrollIntoView({block:'center'});e.click();return true})()`); },
       async close() { listeners.delete(listener); await send('Target.closeTarget', {targetId}).catch(() => {}); }};
   }

@@ -8,9 +8,10 @@ export function createTour({ $, state, parts, steps, views, cam, invalidate }) {
   const reels = reelSystem((id) => parts.find((p) => p.data.id === id)?.data.spin);   // the model's rates: part.spin carries rotationScale
   let position = 0;   // seconds from the start of the tour
 
-  /** Ends the tour and leaves everything else as it is. */
+  /** Ends the tour and leaves everything else as it is; the player answers the pointer again. */
   function clear() {
     state.tour = -1;
+    if (state.uiMode === "tour") document.body.dataset.mode = state.uiMode = "operate";
     $("tourProgress").textContent = "";
     $("tourPause").hidden = true;
   }

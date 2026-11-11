@@ -1,6 +1,6 @@
 # Wiring
 
-The wiring follows Sony's New board mounting (service manual, printed pp.15–16) and schematic (pp.17–18). In the viewer, **Inspect → Playback wiring** shows the head cable, switches, microphone and both headphone sockets; in Blender, search for the part IDs below. [wiring-map.csv](wiring-map.csv) lists each lead's ends and modelled length (Blender world millimetres).
+The wiring follows Sony's New board mounting (service manual, printed pp.15–16) and schematic (pp.17–18). In the viewer, **Parts → Assemblies → Playback wiring** shows the head cable, switches, microphone and both headphone sockets; in Blender, search for the part IDs below. [wiring-map.csv](wiring-map.csv) lists each lead's ends and modelled length (Blender world millimetres).
 
 | Parts | What they are |
 |---|---|

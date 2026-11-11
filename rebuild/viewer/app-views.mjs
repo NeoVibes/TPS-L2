@@ -1,5 +1,6 @@
-// Which view is showing (assembled, service, exploded, by category), the Tour/Operate/Inspect
-// switch, section cuts, part visibility, and keeping the page controls in step with the state.
+// Which view is showing (assembled, service, exploded, by category), which drawer is open and what
+// a click on the model does, section cuts, part visibility, the accessories, and keeping the page
+// controls in step with the state.
 // It is given the other controllers it calls (camera, transport, packages) and the few things it
 // needs from the tour and the inspector when a view changes.
 import * as T from "three";
@@ -8,23 +9,24 @@ import {TOUR_SECONDS} from "./tour-timeline.mjs";
 import config from "../config/model.json" with {type: "json"};
 
 // One availability flag and selector keep controls and their handlers consistent after a graphics failure.
-export const GRAPHICS_CONTROLS = '#accessories, [data-plug], [data-mode], [data-view], [data-angle], [data-category], [data-context], [data-workmode="tour"], [data-workmode="operate"], #tour, #tourNext, #tourPause, #quickTour, #pause, #reset, #spread, #speed, #motionCues, #toggleLabels, #projection, #section, #sectionOffset, #subsystem, #homeCamera, #controlCamera, #inspectCassette, #batteryDoor, #eject, #door, #cassette, #focus, #isolate, #clearContext, #audioEnable, #hotline, #volumeLeft, #volumeRight, #tone, #tapePosition, #tourSeek, #retryAssets';
+export const GRAPHICS_CONTROLS = '#accessories, #cells, #showAll, [data-plug], [data-mode], [data-view], #viewMenu, [data-angle], [data-category], [data-context], #tour, #tourNext, #tourPause, #pause, #reset, #spread, #speed, #motionCues, #toggleLabels, #projection, #section, #sectionOffset, #subsystem, #homeCamera, #controlCamera, #inspectCassette, #batteryDoor, #eject, #door, #cassette, #focus, #isolate, #clearContext, #audioSource, #hotline, #volumeLeft, #volumeRight, #tone, #tapePosition, #tourSeek, #retryAssets';
 export function syncUnavailable($, state, model) {
   if (!state.graphicsUnavailable) return false;
   $("shell").setAttribute("aria-busy", "false");
   $("loading").hidden = false;
   $("loading").dataset.unavailable = "true";
   $("loadingTitle").textContent = "3D unavailable; parts catalog available.";
+  document.body.dataset.drawer = "parts";
+  for (const b of document.querySelectorAll("button[data-drawer]")) b.setAttribute("aria-pressed", String(b.dataset.drawer === "parts"));
   $("loading").querySelector(".spinner").hidden = true;
   $("loadingRetry").hidden = false;
   $("retryAssets").hidden = true;
-  $("packageStatus").textContent = "3D unavailable; parts catalog available.";
+  $("packageStatus").hidden = true;
   $("partCount").textContent = model ? model.parts.length + " components · catalog only" : "Embedded parts list available";
   $("cassetteVariantStatus").textContent = model ? "Cassette choice applies to catalog details." : "Cassette metadata unavailable.";
-  $("status").textContent = "Transport unavailable";
-  $("fps").textContent = "Catalog only";
-  $("stageHelp").textContent = "Browse the finder or parts list for component details";
-  $("stageCaptionText").textContent = "Search component IDs and service entries.";
+  $("status").textContent = "";
+  $("fps").textContent = "";
+  $("story").hidden = true;
   $("storyTitle").textContent = "Explore the parts catalog";
   $("storyText").textContent = model ? "Search components, select a variant and copy details or contribute evidence." : "Model metadata did not load. The embedded parts list, filters, CSV and contribution actions remain available; component finder and measured details are unavailable.";
   for (const control of document.querySelectorAll(GRAPHICS_CONTROLS)) control.disabled = true;
@@ -35,13 +37,17 @@ export function syncUnavailable($, state, model) {
   return true;
 }
 
+// The cells are the accessory with no plug; they go in and out by themselves.
+const plugAssemblies = new Set(Object.values(config.accessories.plugs).map((plug) => plug.assembly));
+export const isCell = (part) => part.accessory && !plugAssemblies.has(part.data.assembly);
+
 const descriptions = {
-  all: ["A small machine, opened up", "Turn the model with your mouse. Run the transport, open the cassette compartment, or move the covers aside to see how the mechanism fits together."],
-  motor: ["01 / The source of motion", "The motor turns the belt-driven flywheel. The large flywheel helps steady the capstan’s rotation. Select any part to inspect it on its own."],
-  belts: ["02 / Following the drive", "Follow one white stripe around each black belt. These illustrative motion cues follow the driving pulleys through the modeled twists and wraps. Use slow motion to inspect direction; factory timing and coupling remain unverified."],
-  gears: ["03 / Switching direction", "The gear train and clutch coordinate the reels. FF and REW change the transport state. Meshing gears counter-rotate; the fast-reverse drive includes an explicitly illustrative substitute."],
-  tape: ["04 / At the tape", "PLAY advances the head and pinch roller. The capstan and roller control tape travel while the take-up reel collects it. Open the door to lift and remove the cassette."],
-  controls: ["05 / Beneath the buttons", "Watch the transport controls engage and release. STOP disengages playback before the door and cassette operate. Hidden selector linkages remain illustrative."]
+  all: ["A small machine, opened up", "Turn the model with your mouse. Run the transport, open the cassette door, or move the covers aside to see how the mechanism fits together."],
+  motor: ["01 / The source of motion", "The motor turns the flywheel through a belt. The heavy flywheel keeps the capstan turning steadily."],
+  belts: ["02 / Following the drive", "Follow the white mark around each black belt to see which way it runs. Slow the motion down in Explore to see it clearly. The marks are drawn on; real belts have none."],
+  gears: ["03 / Switching direction", "The gears and the clutch turn the reels. Fast forward and rewind change which wheels drive them. Gears that mesh turn opposite ways. Part of the rewind drive is a stand-in."],
+  tape: ["04 / At the tape", "PLAY moves the head and the pinch roller up to the tape. The capstan and roller pull the tape and the take-up reel winds it in. Open the door to lift the cassette out."],
+  controls: ["05 / Beneath the buttons", "Watch the keys go down and come back. STOP lets go of PLAY before the door and the cassette move. The links hidden behind the keys are guesses."]
 };
 
 // onExterior() runs after the exterior version changes, so the inspector can show the part as that version has it.
@@ -55,10 +61,27 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     transport.cancelControlHold();
     state.uiMode = mode;
     document.body.dataset.mode = mode;
-    for (const b of document.querySelectorAll("[data-workmode]")) b.setAttribute("aria-pressed", b.dataset.workmode === mode);
     if (mode === "inspect") packages.ensureAll();
     if (mode !== "tour") clearTour();
     sync();
+  }
+  /** Opens one drawer ("explore", "parts", "about") or closes them (""). With Parts open, a click on the model selects a part; otherwise it works the player. */
+  function setDrawer(name = "") {
+    const was = document.body.dataset.drawer || "";
+    document.body.dataset.drawer = name;
+    for (const b of document.querySelectorAll("button[data-drawer]")) b.setAttribute("aria-pressed", String(b.dataset.drawer === name));
+    if (name === "parts" && state.uiMode !== "inspect" && state.contextKey !== "ejectMechanism") setUIMode("inspect");
+    else if (was === "parts" && name !== "parts") {
+      if (!state.isolate) select(null);   // an isolated part stays on its own; Show all parts brings the rest back
+      if (state.uiMode === "inspect" && !state.contextKey) setUIMode("operate");
+    }
+    showAllButton();
+    invalidate();
+  }
+  // Beside the model while it shows only some of its parts (an isolated part, an assembly, a subsystem) and Parts,
+  // which has its own way back, is closed.
+  function showAllButton() {
+    $("showAll").hidden = !(state.isolate || state.contextIds || state.subsystem !== "all") || document.body.dataset.drawer === "parts";
   }
   function applySection() {
     if (state.graphicsUnavailable || !stage.renderer) return;
@@ -74,31 +97,37 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("tapePosition").value = state.tapePosition;
     $("tapeValue").textContent = Math.round(state.tapePosition * 100) + "%";
     $("stage").dataset.view = state.view;
-    $("stageHelp").textContent = state.view === "exploded" ? "Aligned assemblies · zoom for individual IDs" : state.uiMode === "operate" && ["assembled", "service"].includes(state.view) ? "Click buttons · drag volume grips · hold Hot Line" : "Drag to orbit · scroll to zoom · click a component";
+    const separated = state.explode > 0 || state.radial > 0;
     stage.syncBackdrop?.();
     for (const el of document.querySelectorAll("button[data-mode]")) {
       el.setAttribute("aria-pressed", el.dataset.mode === state.mode);
       el.disabled = state.explode > 1e-3 || state.radial > 1e-3;
     }
     for (const el of document.querySelectorAll("button[data-view]")) el.setAttribute("aria-pressed", el.dataset.view === state.view);
+    $("viewMenu").value = state.view;
+    // The Actions menu: each item names what it will do next.
     $("batteryDoor").textContent = state.batteryOpen ? "Close battery cover" : "Open battery cover";
     $("batteryDoor").setAttribute("aria-pressed", state.batteryOpen);
-    $("batteryDoor").disabled = state.explode > 0 || state.radial > 0;
-    $("door").textContent = state.door ? "Close door" : "Open door";
-    $("cassette").textContent = state.media === "removed" ? "Insert cassette" : "Remove cassette";
-    $("cassette").disabled = !state.door || (state.explode > 0 || state.radial > 0);
-    $("door").disabled = state.explode > 0 || state.radial > 0;
-    $("status").textContent = state.explode > 0 || state.radial > 0 ? "Disconnected · transport stopped" : (state.paused ? "Motion paused" : { stop: "Stopped", play: "PLAY · illustrative drive running", ff: "FF · illustrative fast forward", rew: "REW · illustrative reverse winding" }[state.mode]) + (state.media !== "loaded" ? " · No engaged cassette" : "") + (state.door ? " · Cover open" : "");
-    if (state.ejectNeedsOpenCover) $("status").textContent += " · Open cover, then press STOP / EJECT";
-    else if (state.stopCycle) $("status").textContent += " · " + (state.stopCycle.kind === "stop" ? "Releasing transport" : "Eject button stroke");
-    else if (state.autoStop) $("status").textContent += " · End of tape: reel stalled, automatic shut-off";
+    $("door").textContent = state.door ? "Close cassette door" : "Open cassette door";
+    $("cassette").textContent = state.media === "removed" ? "Put cassette in" : "Remove cassette";
+    $("cells").textContent = state.cells ? "Remove batteries" : "Put batteries in";
+    $("accessories").textContent = state.accessories ? "Hide accessories" : "Show accessories";
+    $("accessories").setAttribute("aria-pressed", String(state.accessories));
+    for (const id of ["batteryDoor", "door", "cassette", "cells"]) $(id).disabled = separated;
+    // The transport line shows only when there is something to say.
+    const notes = [separated ? "Taken apart, transport off" : state.paused ? "Paused" : { stop: "", play: "Playing", ff: "Fast forward", rew: "Rewinding" }[state.mode]];
+    if (!separated) {
+      if (state.ejectNeedsOpenCover) notes.push("Open the cassette door, then press stop / eject");
+      else if (state.stopCycle) notes.push(state.stopCycle.kind === "stop" ? "Releasing the transport" : "Eject stroke");
+      else if (state.autoStop) notes.push("End of the tape: automatic shut-off");
+      if (state.mode !== "stop" && state.media !== "loaded") notes.push("No cassette");
+    }
+    $("status").textContent = notes.filter(Boolean).join(" · ");
     $("pause").textContent = state.paused ? "Resume motion" : "Pause motion";
     $("spread").value = Math.round(Math.max(state.explode, state.radial) * 100);
     $("spreadValue").textContent = Math.round(Math.max(state.explode, state.radial) * 100) + "%";
     $("tour").textContent = state.tour >= 0 ? "End tour" : "Start guided tour";
-    $("quickTour").textContent = state.tour >= 0 ? "End tour" : "Guided tour";
     $("tourNext").hidden = state.tour < 0;
-    $("reset").textContent = "Reset";
     $("tourPause").hidden = state.tour < 0;
     $("tourPause").textContent = state.paused ? "Resume tour" : "Pause tour";
     $("tourSeek").value = tourPosition();
@@ -108,15 +137,15 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("volumeRight").value = state.volumeRight;
     $("tone").value = state.tone;
     $("hotline").setAttribute("aria-pressed", state.hotline);
-    $("audioEnable").textContent = ["blocked", "unavailable", "error"].includes(audio.status.state) ? "Retry sound" : state.audioEnabled ? "Disable sound" : "Enable sound";
-    $("audioSource").value = state.audioSource;
+    $("audioSource").value = state.audioEnabled ? state.audioSource : "mute";
     const [title, desc] = state.tour >= 0 ? [tourSteps[state.tour].title, tourSteps[state.tour].text] : state.contextKey === "ejectMechanism" ? ["STOP / EJECT linkage", model.inspectionContexts.ejectMechanism.description] : descriptions[state.category] || descriptions.all;
     $("storyTitle").textContent = title;
     $("storyText").textContent = desc;
-    $("partCount").textContent = model ? model.inventory.physicalIds.length + " device parts · " + (state.accessories && model.inventory.accessoryIds?.length ? model.inventory.accessoryIds.length + " accessories · " : "") + model.inventory.presentationOnlyIds.length + " display objects" : "Loading model";
-    // The plug choices show with the accessories; they plug in from the assembled view.
-    const separated = state.view !== "assembled" || Boolean(state.explode) || Boolean(state.radial);
-    for (const el of document.querySelectorAll("[data-plug]")) { el.hidden = !state.accessories; el.disabled = separated; el.title = separated ? "Plug in from the assembled view" : ""; el.value = state[el.dataset.plug]; }
+    $("story").hidden = !(state.tour >= 0 || state.category !== "all" || state.contextKey === "ejectMechanism");   // a caption only while there is a story to tell
+    $("partCount").textContent = model ? model.inventory.physicalIds.length + " parts" + (state.accessories && model.inventory.accessoryIds?.length ? ", and " + model.inventory.accessoryIds.length + " accessory parts" : "") : "Loading model";
+    // The accessories plug in from the assembled view.
+    const unpluggable = state.view !== "assembled" || separated;
+    for (const el of document.querySelectorAll("[data-plug]")) { el.disabled = unpluggable; el.title = unpluggable ? "Plug in from the assembled view" : ""; el.value = state[el.dataset.plug]; }
     updateVisibility();
   }
   // Cancel immediately: the frame loop does not advance mechanical state while
@@ -149,7 +178,6 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     prepareViewChange(fromTour);
     $("controlCamera").value = "";
     state.view = view;
-    $("audioControls").open = view === "assembled";
     clearInspectionContext();
     if (view !== "assembled") packages.ensureAll();
     state.explode = view === "catalog" ? 1 : 0;
@@ -200,7 +228,7 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     const { materials, highlightMaterials } = stage;
     for (const p of parts) {
       const covered = state.view === "assembled" && !state.door && !state.batteryOpen && state.uiMode === "operate" && !state.selected && state.subsystem === "all";
-      p.group.visible = (!covered || p.data.package === "exterior" || p.family === "tape") && (!state.isolate || p === state.selected) && (state.subsystem === "all" || p.data.group === state.subsystem) && (!state.contextIds || state.contextIds.includes(p.data.id)) && (state.accessories || !p.accessory);
+      p.group.visible = (!covered || p.data.package === "exterior" || p.family === "tape") && (!state.isolate || p === state.selected) && (state.subsystem === "all" || p.data.group === state.subsystem) && (!state.contextIds || state.contextIds.includes(p.data.id)) && (!p.accessory || (isCell(p) ? state.cells : state.accessories));
       const highlighted = p === state.selected || state.category !== "all" && p.family === state.category;
       for (const m of p.group.children) {
         m.material = m.userData.cueMaterials?.[highlighted ? 1 : 0] || (highlighted ? highlightMaterials : materials)[m.userData.materialIndex];
@@ -209,12 +237,12 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
       }
     }
     $("isolate").textContent = state.isolate ? "Show all parts" : "Isolate part";
+    showAllButton();
     invalidate();
   }
   function controlCloseup(key) {
     if (state.graphicsUnavailable) return;
     if (!stage.camera || !key) return;
-    $("audioControls").open = true;
     transport.cancelControlHold();
     clearTour();
     clearInspectionContext();
@@ -228,6 +256,8 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     $("section").value = "off";
     state.isolate = false;
     select(null);
+    // The headphones and the adapter stand where these close-ups look from: put them away (the cells stay in).
+    if (state.accessories) { state.accessories = false; for (const plug in config.accessories.plugs) state[plug] = "out"; }
     setUIMode("operate");
     applySection();
     cam.controlView(key);
@@ -247,20 +277,29 @@ export function createViews({ $, state, parts, stage, packages, cam, transport, 
     onExterior();
   }
 
-  /** Shows or hides the accessories (headphones, adapter, cells); the battery springs follow the cells. */
+  /** Shows or hides the accessories (headphones, adapter, cells). */
   function setAccessories(on) {
-    state.accessories = Boolean(on);
+    state.accessories = state.cells = Boolean(on);
     if (!state.accessories) for (const key in config.accessories.plugs) state[key] = "out";   // shown again, they start unplugged
-    $("accessories").setAttribute("aria-pressed", String(state.accessories));
     sync();
   }
-  /** Plugs an accessory into one of its sockets, or unplugs it ("out"). */
+  /** Puts the two cells in the battery case or takes them out; the battery springs follow them. */
+  function setCells(on) {
+    state.cells = Boolean(on);
+    sync();
+  }
+  /** Plugs an accessory into one of its sockets, or unplugs it ("out"). Plugging in shows the accessories. */
   function setPlug(key, value) {
-    if (!state.accessories || !(value === "out" || value in config.accessories.plugs[key].states)) return;
+    if (!(value === "out" || value in config.accessories.plugs[key].states)) return;
+    if (value !== "out" && !state.accessories) {
+      state.accessories = true;
+      if (state.view === "assembled") cam.preset("assembled");   // step back to take the accessories in
+    }
+    if (!state.accessories) return;
     state[key] = value;
     sync();
   }
   for (const el of document.querySelectorAll("[data-plug]"))   // the choices, from the config
     el.replaceChildren(...Object.entries(config.accessories.plugs[el.dataset.plug].choices).map(([value, text]) => new Option(text, value)));
-  return { setUIMode, applySection, sync, setView, setSeparation, focusCategory, updateVisibility, controlCloseup, setExterior, setAccessories, setPlug };
+  return { setUIMode, setDrawer, applySection, sync, setView, setSeparation, focusCategory, updateVisibility, controlCloseup, setExterior, setAccessories, setCells, setPlug };
 }

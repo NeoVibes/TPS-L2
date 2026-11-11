@@ -15,8 +15,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '24.22.0'
       - name: Validate committed bytes without rebuilding
@@ -26,15 +26,15 @@ jobs:
           npm ci
           npm run check
           npm run test:fast
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - name: Stage the viewer with its license notices
         run: |
           mkdir "$RUNNER_TEMP/ptp-pages"
           cp -R view/. "$RUNNER_TEMP/ptp-pages/"
           cp LICENSE LICENSES.md "$RUNNER_TEMP/ptp-pages/"
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/ptp-pages
       - name: Deploy committed files
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

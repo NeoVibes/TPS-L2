@@ -46,6 +46,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
       if (state.graphicsUnavailable) return;
       $("loadingText").textContent = text;
       $("packageStatus").textContent = text;
+      $("packageStatus").hidden = false;   // shown only while something is loading
     });
   }
 
@@ -91,7 +92,7 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
         p.loaded = true;
       }
       loaded.add(name);
-      $("packageStatus").textContent = [...loaded].join(" + ");
+      $("packageStatus").hidden = true;
       onLoaded(name);
     });
     queue = job;
@@ -140,10 +141,12 @@ export function createPackages({ $, state, parts, stage, metrics, motionCueEnabl
         }
       }
       loaded.add("cassette");
+      $("packageStatus").hidden = true;
       $("cassetteVariantStatus").textContent = VARIANT_TEXT[state.cassetteVariant];
       onLoaded("cassette");
     }).catch((err) => {
       promises.delete("cassette");
+      $("packageStatus").hidden = true;
       $("cassetteVariantStatus").textContent = "Refinement unavailable; original geometry shown. Change the selection to retry.";
       metrics.packageErrors.push(String(err));
       if (state.graphicsUnavailable) return;
