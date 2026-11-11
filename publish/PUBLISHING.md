@@ -46,7 +46,7 @@ Before every push, run `node publish/scan-secrets.mjs --git-new` in the reposito
 Validate the candidate before packaging; use disposable copies for rebuild/edit experiments:
 
 - double-click the candidate's `view/index.html` in Chrome and Safari
-- let Chrome use the viewer, opened from disk and served from a subfolder (about a minute):
+- let Chrome use the viewer, opened from disk and served from a subfolder (about a minute; on GitHub, where Chrome draws in software, 15 to 30 minutes):
 
   ```sh
   node publish/walkthrough/run.mjs
